@@ -1,4 +1,4 @@
-THE ONE TO RULE THEM ALL — 0.2.1
+THE ONE TO RULE THEM ALL — 0.2.2-claude
 25. oktober 2026 · Retail 12.1.5
 
 Første utgave inneholder Rogue-oppsett. Kjernen kan få egne klassemoduler.
@@ -86,6 +86,9 @@ Etter fullført Undo blir samme backup sperret mot ny gjenoppretting.
 Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
 En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
 velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
+Er en gjenstand, et battle pet eller et equipment set fra det gamle oppsettet
+borte når du bruker Undo, blir plassen tom. Resten gjenopprettes, og chatten
+sier hvilke plasser det gjelder.
 
 OPPDATERING FRA 0.1.0 ELLER 0.2.0
 
@@ -95,7 +98,8 @@ Ved bytte av profil/layout bruker du først Undo i opprinnelig loadout.
 
 FØRSTE TEST I WOW
 
-Åpne /tor på Ickalore. Kontroller at profilen og plassene stemmer før Apply.
+Åpne /tor på Rogue-karakteren din. Kontroller at profilen og plassene stemmer
+før Apply.
 Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
 deretter burst på en treningsdukke. Test også Undo når du er ute av kamp og
 Stealth. På en alt uten modul skal vinduet vise at ingen profil er tilgjengelig.

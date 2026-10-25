@@ -176,7 +176,7 @@ local function refresh(panel, resetScroll)
             panel.statusText:SetText("Ready to apply the previewed layout.")
             panel.statusText:SetTextColor(0.65, 0.88, 0.72)
         else
-            panel.statusText:SetText(snapshot.plan and "Apply unavailable. Read the reason at the top of the preview." or "No compatible profile. The addon remains passive on this character.")
+            panel.statusText:SetText(snapshot.plan and "Apply unavailable. Read the reason at the top of the preview." or "No profile for this specialization. The addon will not change anything on this character.")
             panel.statusText:SetTextColor(0.92, 0.78, 0.53)
         end
         local activeBackup = snapshot.backup and snapshot.backup.state ~= "restored"
@@ -188,14 +188,14 @@ end
 local function execute(panel, command)
     if panel.busy then return end
     panel.busy = true
-    local called, success, problem = pcall(A.Execute, command)
+    local called, success, problem, note = pcall(A.Execute, command)
     panel.busy = false
     if not called or success ~= true then
         panel.lastError = tostring(not called and success or problem or "Command did not complete; see chat for details.")
         panel.lastMessage = nil
     else
         panel.lastError = nil
-        panel.lastMessage = command == "undo" and "Original bars restored. Generated macros were kept." or "Setup verified. Use /reload to save your previous setup."
+        panel.lastMessage = note or (command == "undo" and "Original bars restored. Generated macros were kept." or "Setup verified. Use /reload to save your previous setup.")
     end
     refresh(panel, true)
 end

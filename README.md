@@ -2,7 +2,7 @@
 
 **The One To Rule Them All** is a World of Warcraft Retail addon that installs
 Rogue action-bar layouts and native macros, with an option to restore the previous
-setup. Current addon version: **0.2.1**, targeting Retail **12.1.5**.
+setup. Current addon version on this branch: **0.2.2-claude**, targeting Retail **12.1.5**.
 
 [![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml)
 
