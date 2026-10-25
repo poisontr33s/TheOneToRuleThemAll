@@ -1,3 +1,13 @@
+0.2.2-astra — 25 October 2026
+
+- The preview shows actual built-in keybindings beside each main-bar and Bar 2
+  ability, including both bound keys, mouse buttons and unbound slots.
+- Compact shows Alt chords for the user's bindings and identifies conflicts.
+- Macro buttons describe their localized abilities and conditional alternatives.
+- Binding changes refresh the open preview. No new bindings or automatic casts.
+- Macro bodies, placements, damage priorities and Undo behavior are unchanged.
+- Separate Astra test build from main; live WoW testing remains outstanding.
+
 0.2.1 — 25 October 2026
 
 - Uses C_SpecializationInfo; obsolete global functions are absent from the tests.

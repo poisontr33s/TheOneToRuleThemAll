@@ -2,12 +2,17 @@
 
 **The One To Rule Them All** is a World of Warcraft Retail addon that installs
 Rogue action-bar layouts and native macros, with an option to restore the previous
-setup. Current addon version: **0.2.1**, targeting Retail **12.1.5**.
+setup. Current addon version: **0.2.2-astra**, targeting Retail **12.1.5**.
 
-[![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml)
+[![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=astra)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra)
 
 Open `/tor` to preview a layout, check what will change, apply it, or undo it.
 Every combat action is chosen and pressed by the player.
+
+The preview shows your existing keys alongside the abilities, including Compact
+Alt combinations and unbound slots. Macro buttons describe the abilities they
+cast. This reads WoW's built-in bindings; custom action-bar addons may use other
+bindings. Opening the preview does not assign keys or move buttons.
 
 ## Included profiles
 
@@ -24,7 +29,8 @@ Other classes and Outlaw have no playable profile yet and remain passive.
 ## Install and test in WoW
 
 1. Open the latest successful [Test and package run](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml)
-   for `main` and download its addon ZIP artifact.
+   for `astra` and download its addon ZIP artifact. This is the Astra test build;
+   `main` remains the shared stable baseline and `claude` is a separate build.
 2. With WoW closed, extract the `TheOneToRuleThemAll` folder into
    `World of Warcraft/_retail_/Interface/AddOns/`. Keep existing SavedVariables.
 3. Import the relevant code from [TALENTS.txt](TheOneToRuleThemAll/TALENTS.txt).
@@ -43,8 +49,9 @@ protected actions and macro casting have **not yet been verified in WoW**.
 ## Shared development
 
 This repository is the source for changes by Astra, Claude and the owner.
-Read the current `main` before starting, make each change on a separate branch,
-and use a pull request for review. Include the purpose, test results and any
+Read the current `main` before starting. Astra develops on `astra` and Claude on
+`claude`; use pull requests to review changes before merging into `main`.
+Include the purpose, test results and any
 remaining live-client checks. This is the working convention; branch protection
 is not configured by this initial upload.
 
@@ -71,7 +78,7 @@ tests are kept beside the addon under `validation/`.
 
 The current Rogue policies retain the original fixed-gear study described in
 [GEAR-LOCK.txt](TheOneToRuleThemAll/GEAR-LOCK.txt) and the playing guide. Versions
-0.2.0 and 0.2.1 improved setup and recovery; they do not claim a new DPS gain.
+0.2.x improves setup, recovery and the preview; it does not claim a new DPS gain.
 The full research archive remains a separate historical artifact and is not
 required to test or package this addon. This repository does not contain its raw
 simulation runs.

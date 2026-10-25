@@ -30,6 +30,8 @@ local function reset()
        assistedSpell=1229376,assistedDynamic=12345,assistedVariant="identity",bindings={},bindingKeys={ACTIONBUTTON1={"1"},ACTIONBUTTON2={"2"}}}
     TheOneToRuleThemAllDB=nil; TheOneToRuleThemAll=nil; AstraRogueSetupDB=nil; AstraSubSetupDB=nil; SlashCmdList={}
     print=function(msg) S.messages[#S.messages+1]=msg end
+    -- Most binding tests use the formatter fallback; focused tests install it.
+    GetBindingText=nil
     -- Removed global aliases must stay absent: accidental reuse must fail.
     GetSpecialization=nil
     GetSpecializationInfo=nil
@@ -719,6 +721,7 @@ for _,scenario in ipairs({
 end
 local ctx={test=test,expect=expect,copy=copy,equal=equal,command=command,messageContains=messageContains,state=function() return S end,addon=function() return TheOneToRuleThemAll end}
 dofile(addonDir .. "/validation/test_core_v2.lua")(ctx)
+dofile(addonDir .. "/validation/test_controls.lua")(ctx)
 dofile(addonDir .. "/validation/test_ui.lua")(ctx)
 TOR_TEST_TOTAL=total; TOR_TEST_FAILED=failed
 realPrint(string.format("RESULT: %d tests, %d passed, %d failed",total,total-failed,failed))

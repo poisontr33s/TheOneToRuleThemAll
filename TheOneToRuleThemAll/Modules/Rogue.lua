@@ -44,11 +44,16 @@ local function build(mode,api,layout,enforce)
         local burstBody = "#showtooltip\n/cast " .. name(185313) .. "\n/cast " .. name(121471)
         if goreBurst then burstBody = "#showtooltip " .. name(426591) .. "\n/cast " .. name(185313) .. "\n/cast " .. name(121471) .. "\n/cast " .. name(426591) end
         local burst = macro(goreBurst and "TOR GBurst" or "TOR Burst",burstBody)
+        burst.displayText = name(185313) .. " + " .. name(121471) .. (goreBurst and (" + " .. name(426591)) or "")
         if compact then
             local generator = macro("TOR CBuilder","#showtooltip\n/cast [mod:alt] " .. name(197835) .. "; [bonusbar:1] " .. name(185438) .. "; " .. name(builder))
+            generator.displayText = name(builder) .. " / " .. name(185438) .. " (Stealth / Dance)"
+            generator.altDisplayText = name(197835)
             -- In AoE, Coup is attempted first as in the guide macro. The plain
             -- Eviscerate name retains its native temporary Coup replacement.
             local finisher = macro("TOR CFinish","#showtooltip\n/cast [mod:alt] " .. name(441423) .. "\n/cast [mod:alt] " .. name(319175) .. "; " .. name(196819))
+            finisher.displayText = name(196819) .. " / " .. name(441423)
+            finisher.altDisplayText = name(319175) .. " / " .. name(441423)
             macros = {generator,finisher,burst}
             main = {generator,finisher,sp(280719),burst,sp(mode=="sub" and 426591 or 31224),sp(mode=="sub" and 31224 or 185311),sp(1766),sp(1966),sp(1856)}
             if goreBurst then main = {generator,finisher,sp(280719),burst,sp(31224),sp(185311),sp(1766),sp(1966),sp(1856)} end
@@ -67,8 +72,11 @@ local function build(mode,api,layout,enforce)
         else
             local aoe = macro("TOR AoE","#showtooltip\n/cast " .. name(441423) .. "\n/cast " .. name(319175))
             local generator = macro("TOR Builder","#showtooltip\n/cast [bonusbar:1] " .. name(185438) .. "; " .. name(builder))
+            aoe.displayText = name(319175) .. " / " .. name(441423)
+            generator.displayText = name(builder) .. " / " .. name(185438) .. " (Stealth / Dance)"
             macros = {aoe,burst,generator}
             main = {generator,sp(197835),{kind="spell",id=196819},aoe,sp(280719),burst,sp(1766),sp(mode=="sub" and 426591 or 1966),sp(1856)}
+            main[3].displayText = name(196819) .. " / " .. name(441423)
             lines = {
                 "1 Builder; 2 Storm; 3 Eviscerate/Coup; 4 AoE; 5 Secret Technique; 6 Dance+Blades; 7 Kick; 8 " .. (mode=="sub" and "Goremaw" or "Feint") .. "; 9 Vanish.",
                 (mode=="sub" and "Seven" or "Six") .. " routine class buttons, plus items. Separate Dance and Blades remain on bar 2.",
@@ -93,6 +101,8 @@ local function build(mode,api,layout,enforce)
         if compact then
             local generator = macro("TOR ABuilder","#showtooltip\n/cast [mod:alt] " .. name(51723) .. "; " .. name(1329))
             local spendSpread = macro("TOR ASpend","#showtooltip\n/cast [mod:alt] " .. name(1247227) .. "; " .. name(32645))
+            generator.displayText, generator.altDisplayText = name(1329), name(51723)
+            spendSpread.displayText, spendSpread.altDisplayText = name(32645), name(1247227)
             macros = {generator,spendSpread}
             main = {generator,spendSpread,sp(703),sp(1943),sp(385627),sp(360194),sp(1766),sp(1966),sp(1856)}
             lines = {

@@ -24,6 +24,8 @@ through api.spellName and checked against native name/body limits.
 UI.lua is a lazy setup panel. A.Inspect returns read-only readiness and preview;
 A.Execute is the single guarded command path used by slash and panel actions.
 The panel's events refresh presentation only while the panel is visible.
+Controls.lua reads native keybindings for the preview; it never changes them.
+Unmapped bars are identified rather than assigned guessed keys.
 
 All writes occur on an explicit out-of-combat setup/undo command or click. Modules must
 not add combat-event decision logic, timer-driven rotation selection, gear

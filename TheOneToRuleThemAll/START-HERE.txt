@@ -1,4 +1,4 @@
-THE ONE TO RULE THEM ALL — 0.2.1
+THE ONE TO RULE THEM ALL — 0.2.2-astra
 25. oktober 2026 · Retail 12.1.5
 
 Første utgave inneholder Rogue-oppsett. Kjernen kan få egne klassemoduler.
@@ -22,6 +22,9 @@ INSTALLASJON
    På kompatibel Subtlety velges subburst som utgangspunkt. Se gjennom
    Standard eller Compact og trykk Apply layout når du vil legge det inn.
    Å åpne vinduet eller velge forhåndsvisning flytter ingen knapper.
+   Ved hver evne vises tastene du allerede har bundet i WoW. Compact viser
+   Alt-kombinasjonene for disse tastene. En plass uten tast merkes som ubundet.
+   Makroknappene viser evnenavn, for eksempel Backstab og Shadowstrike.
    Dance, Blades og Goremaw deler én makro. Les PLAY-GUIDE.txt for bruken.
 
 4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 i Options
@@ -30,8 +33,9 @@ INSTALLASJON
 Vil du først se oppsettet: /tor preview subburst
 Direkte installasjon som før: /tor subburst
 Vil du ha færre talltaster: /tor subburst compact
-Compact bruker fire offensive talltaster pluss Alt. Alt+1 velger AoE-builder;
-Alt+2 velger AoE-finisher. Du velger dette selv. Det reduserer ikke antall
+Compact subburst bruker fire offensive knappeplasser pluss Alt. Hold Alt med
+tasten for plass 1 for AoE-builder, og med tasten for plass 2 for AoE-finisher.
+Du velger dette selv. Det reduserer ikke antall
 evner eller antall kast. Addon-en stopper hvis Alt-kombinasjonene kolliderer
 med andre keybindings. Bruk standardoppsettet hvis Alt blir mer bryderi.
 
@@ -87,7 +91,7 @@ Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
 En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
 velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
 
-OPPDATERING FRA 0.1.0 ELLER 0.2.0
+OPPDATERING FRA 0.1.0, 0.2.0 ELLER 0.2.1
 
 Lukk WoW, og erstatt addon-mappen med denne utgaven. Behold SavedVariables.
 En aktiv backup følger med videre; du trenger ikke legge inn oppsettet igjen.
@@ -99,8 +103,10 @@ FØRSTE TEST I WOW
 Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
 deretter burst på en treningsdukke. Test også Undo når du er ute av kamp og
 Stealth. På en alt uten modul skal vinduet vise at ingen profil er tilgjengelig.
-Plassnummer i forhåndsvisningen er action-bar-plasser; dine faktiske taster
-er keybindings du allerede har satt opp i WoW.
+Plassnummer i forhåndsvisningen er action-bar-plasser. Tastene som vises,
+hentes fra WoWs innebygde linjer, på hovedlinjens side 1. Bruker du et annet
+action-bar-addon med egne bindinger, må du kontrollere tastene der.
+Endrer du bindinger mens vinduet er åpent, oppdateres tastevisningen.
 
 Hvis du tidligere brukte AstraRogueSetup eller AstraSubSetup og vil bevare
 tilgangen til det opprinnelige oppsettet, bruk den gamle addon-ens undo først:

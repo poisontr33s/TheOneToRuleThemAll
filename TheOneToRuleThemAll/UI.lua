@@ -42,10 +42,11 @@ local function ranges(slots)
     finish()
     return table.concat(result, ", ")
 end
-local function actionName(action)
-    if action.kind == "macro" then return action.name .. " (macro)" end
-    local ok, name = pcall(A.api.spellName, action.id)
-    return ok and name or ("Spell " .. tostring(action.id))
+local function appendControl(lines, row, profile, number)
+    local info = A.ControlInfo(row, profile)
+    lines[#lines+1] = "Slot " .. number .. "   " .. info.actionText
+    lines[#lines+1] = "    Keys: " .. info.keysText
+    if info.altKeysText then lines[#lines+1] = "    Alt: " .. info.altKeysText end
 end
 local function previewText(panel, snapshot)
     local lines = {}
@@ -66,7 +67,8 @@ local function previewText(panel, snapshot)
         lines[#lines+1] = snapshot.canUndo and "Undo is available." or ("Undo: " .. tostring(snapshot.undoReason))
     end
     if snapshot.legacyUndo then lines[#lines+1] = snapshot.legacyUndo end
-    lines[#lines+1] = "\n" .. heading("Main bar preview - action slots, not keybindings")
+    lines[#lines+1] = "\n" .. heading("Main bar - keys for this preview")
+    lines[#lines+1] = "Keys shown use WoW's built-in action bars on main-bar page 1. Custom action-bar addons may use other bindings."
     local main, bar2, bar2Slots, stealth, other = {}, {}, {}, {}, {}
     for _, row in ipairs(plan.rows or {}) do
         if row.slot >= 1 and row.slot <= 12 then
@@ -81,14 +83,14 @@ local function previewText(panel, snapshot)
         end
     end
     table.sort(main, function(a,b) return a.slot < b.slot end)
-    for _, row in ipairs(main) do lines[#lines+1] = "Slot " .. row.slot .. "   " .. actionName(row.action) end
+    for _, row in ipairs(main) do appendControl(lines, row, profile, row.slot) end
     lines[#lines+1] = "Key assignments stay the same; Apply replaces the abilities in the listed slots."
     if #bar2 > 0 then
         lines[#lines+1] = "\n" .. heading("Action Bar 2")
         lines[#lines+1] = "Your existing keys for these Action Bar 2 slots will cast the abilities listed below after Apply."
         table.sort(bar2, function(a,b) return a.slot < b.slot end)
         for _, row in ipairs(bar2) do
-            lines[#lines+1] = "Slot " .. (row.slot - 60) .. "   " .. actionName(row.action)
+            appendControl(lines, row, profile, row.slot - 60)
         end
     end
     lines[#lines+1] = "\n" .. heading("Using this layout")
@@ -217,7 +219,7 @@ local function createPanel()
     local title = label(panel, "GameFontNormalLarge", 580)
     title:SetPoint("TOPLEFT", 20, -18)
     title:SetText("The One To Rule Them All")
-    local version = label(panel, "GameFontHighlightSmall", 80)
+    local version = label(panel, "GameFontHighlightSmall", 110)
     version:SetPoint("TOPRIGHT", -20, -21)
     version:SetText("v" .. A.version)
     panel.characterText = label(panel, "GameFontHighlightSmall", 660)
