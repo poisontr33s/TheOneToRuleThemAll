@@ -1,0 +1,241 @@
+-- Run against the real UI callbacks with behavioral widget mocks.
+return function(c)
+    local test, expect, copy, equal = c.test, c.expect, c.copy, c.equal
+    local function baseline()
+        local S=c.state()
+        return {slots=copy(S.slots),macros=copy(S.macros),cursor=copy(S.cursor),
+            created=S.created,placements=S.placements,bindingCalls=S.bindingCalls,
+            db=copy(TheOneToRuleThemAllDB)}
+    end
+    local function unchanged(before)
+        local S=c.state()
+        expect(equal(before.slots,S.slots),"UI preview changed action slots")
+        expect(equal(before.macros,S.macros),"UI preview changed macros")
+        expect(equal(before.cursor,S.cursor),"UI preview changed cursor")
+        expect(before.created==S.created and before.placements==S.placements,
+            "UI preview invoked action or macro writes")
+        expect(before.bindingCalls==S.bindingCalls,"UI changed bindings")
+        expect(equal(before.db,TheOneToRuleThemAllDB),"UI preview changed saved data")
+    end
+    local function open()
+        c.command("ui")
+        local p=c.addon().panel
+        expect(p and p:IsShown(),"Setup panel did not open")
+        return p
+    end
+    local function click(button)
+        expect(button and button:GetScript("OnClick"),"Expected a wired button")
+        button:Click()
+    end
+    local function directClick(button)
+        -- Deliberately skip disabled-widget filtering to simulate a state
+        -- change between an earlier readiness check and command execution.
+        button:GetScript("OnClick")(button,"LeftButton")
+    end
+    test("UI is lazy and does not create a panel or touch bars on addon load",function()
+        local S=c.state()
+        expect(c.addon().panel==nil and #S.frames==1)
+        expect(S.created==0 and S.placements==0 and not TheOneToRuleThemAllDB)
+    end)
+    test("UI shows localized class and plain status and previous setup text",function()
+        local S=c.state();S.localizedClass="Voleur"
+        local p=open()
+        expect(p.characterText:GetText():find("Voleur",1,true))
+        expect(not p.characterText:GetText():find("ROGUE",1,true))
+        expect(p.previewText:GetText():find("Status",1,true))
+        local function plainText()
+            for _,f in ipairs(S.frames) do
+                if f.GetText and f:IsVisible() then
+                    local text=f:GetText():lower()
+                    expect(not text:find("readiness",1,true) and not text:find("snapshot",1,true),"Technical UI text: "..text)
+                end
+            end
+        end
+        plainText()
+        expect(p.undoWarning:GetText():find("previous setup",1,true))
+        click(p.applyButton);plainText()
+        expect(p.statusText:GetText():find("previous setup",1,true))
+        click(p.undoButton);plainText()
+    end)
+    test("UI previews each localized Bar2 assignment and warns what existing keys will cast",function()
+        local S=c.state()
+        local ids={185313,121471,1784,1966,31224,5277,185311,2983,36554,2094,408,57934}
+        for i,id in ipairs(ids) do S.names[id]="Local utility "..i end
+        S.unlearned[2983]=true
+        local before=baseline();local p=open()
+        local text=p.previewText:GetText()
+        local section=text:match("Action Bar 2(.-)Using this layout")
+        expect(section and section:find("existing keys",1,true) and section:find("will cast",1,true))
+        for i in ipairs(ids) do
+            if i~=8 then expect(section:find("Slot "..i.."   Local utility "..i,1,true),"Missing utility slot "..i) end
+        end
+        expect(not section:find("Slot 8   Local utility 8",1,true))
+        unchanged(before)
+    end)
+    test("GUI Apply omits model chat while Show details explicitly reveals the model",function()
+        local S=c.state();local p=open()
+        local evidence=c.addon().profiles.subburst.evidence
+        expect(not p.previewText:GetText():find(evidence.patch,1,true))
+        click(p.applyButton)
+        expect(not c.messageContains("Evidence:") and not c.messageContains("SimC"))
+        expect(not c.messageContains("fixed template") and not c.messageContains("Reference model only"))
+        expect(c.messageContains("Action Bar 2 slot 1:") and c.messageContains("existing keys"))
+        local before=baseline();click(p.detailsButton)
+        expect(p.previewText:GetText():find(evidence.patch,1,true))
+        expect(p.previewText:GetText():find(evidence.gear,1,true))
+        expect(p.previewText:GetText():find(evidence.tuning,1,true))
+        click(p.detailsButton)
+        expect(not p.previewText:GetText():find(evidence.patch,1,true))
+        unchanged(before)
+    end)
+    test("binding and cursor events update setup availability without changes",function()
+        local S=c.state();local p=open();click(p.compactButton)
+        expect(p.applyButton:IsEnabled())
+        S.bindings["ALT-1"]="OTHER_ACTION";local before=baseline()
+        S.dispatchUIEvent("UPDATE_BINDINGS")
+        expect(not p.applyButton:IsEnabled());unchanged(before)
+        S.bindings["ALT-1"]=nil;S.dispatchUIEvent("UPDATE_BINDINGS")
+        expect(p.applyButton:IsEnabled())
+        S.cursor={kind="item",id=123};before=baseline()
+        S.dispatchUIEvent("CURSOR_CHANGED")
+        expect(not p.applyButton:IsEnabled());unchanged(before)
+    end)
+    test("UI open profile layout and details previews preserve macros cursor and saved data",function()
+        local S=c.state()
+        S.macros[121]={name="PlayerMacro",icon=134400,body="/cast Original"}
+        S.slots[1]={kind="macro",id=121}
+        S.slots[10]={kind="item",id=456}
+        local before=baseline()
+        local p=open()
+        click(p.compactButton); click(p.standardButton)
+        click(p.profileNext); click(p.profilePrev)
+        click(p.detailsButton); click(p.detailsButton); click(p.refreshButton)
+        unchanged(before)
+    end)
+    test("UI default slash toggles panel without creating duplicate frames",function()
+        local S=c.state()
+        c.command("")
+        local p=c.addon().panel
+        expect(p and p:IsShown())
+        local n=#S.frames
+        c.command(""); expect(not p:IsShown())
+        c.command(""); expect(p:IsShown() and #S.frames==n)
+        expect(S.placements==0 and S.created==0 and not TheOneToRuleThemAllDB)
+    end)
+    test("UI preview preserves an occupied cursor and disables Apply",function()
+        local S=c.state(); S.cursor={kind="item",id=12345}
+        local before=baseline(); local p=open()
+        expect(not p.applyButton:IsEnabled())
+        click(p.refreshButton)
+        unchanged(before)
+    end)
+    test("UI compact preview exposes Alt conflict while standard remains usable",function()
+        local S=c.state(); S.bindings["ALT-1"]="ACTIONPAGE1"
+        local before=baseline(); local p=open()
+        expect(p.applyButton:IsEnabled())
+        click(p.compactButton)
+        expect(not p.applyButton:IsEnabled())
+        expect(p.snapshot.applyReason and p.snapshot.applyReason:find("ALT-1",1,true))
+        click(p.standardButton); expect(p.applyButton:IsEnabled())
+        unchanged(before)
+    end)
+    test("UI Apply and Undo execute the native setup and restore the prior slots",function()
+        local S=c.state()
+        S.slots[1]={kind="item",id=111}; S.slots[10]={kind="spell",id=222}
+        local original=copy(S.slots); local p=open()
+        expect(p.selectedId=="subburst" and p.applyButton:IsEnabled())
+        click(p.applyButton)
+        expect(TheOneToRuleThemAllDB.backup.state=="applied" and S.created==3)
+        expect(not p.applyButton:IsEnabled() and p.undoButton:IsEnabled())
+        expect(S.slots[6].kind=="macro" and S.slots[10].id==222)
+        click(p.undoButton)
+        expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
+        expect(not p.undoButton:IsEnabled() and p.applyButton:IsEnabled())
+        expect(S.bindingCalls==0)
+    end)
+    test("UI stale Apply callback still refuses combat before any changes",function()
+        local S=c.state(); local p=open()
+        expect(p.applyButton:IsEnabled())
+        S.combat=true; local before=baseline()
+        directClick(p.applyButton)
+        unchanged(before)
+        expect(not p.applyButton:IsEnabled() and c.messageContains("Leave combat"))
+    end)
+    test("UI stale Apply callback refuses a changed class before any changes",function()
+        local S=c.state(); local p=open()
+        S.class="MAGE"; S.spec=62; local before=baseline()
+        directClick(p.applyButton)
+        unchanged(before)
+        expect(not p.applyButton:IsEnabled())
+    end)
+    test("UI combat and spec events refresh readiness without applying a profile",function()
+        local S=c.state(); local p=open(); local before=baseline()
+        S.combat=true; S.dispatchUIEvent("PLAYER_REGEN_DISABLED")
+        expect(not p.applyButton:IsEnabled())
+        S.combat=false; S.dispatchUIEvent("PLAYER_REGEN_ENABLED")
+        expect(p.applyButton:IsEnabled())
+        S.class="DEATHKNIGHT"; S.spec=252
+        S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
+        expect(not p.applyButton:IsEnabled() and #p.snapshot.profiles==0)
+        unchanged(before)
+    end)
+    test("UI missing required ability blocks Apply without discarding preview",function()
+        local S=c.state(); S.unlearned[426591]=true
+        local before=baseline(); local p=open()
+        -- Select the coupled-burst profile explicitly if another compatible
+        -- profile was chosen as the initial preview.
+        p.selectedId="subburst"; p:Refresh(true)
+        expect(not p.applyButton:IsEnabled() and p.snapshot.plan)
+        expect(p.snapshot.applyReason:find("Goremaw",1,true))
+        unchanged(before)
+    end)
+    test("UI Undo refuses a changed loadout through the shared command guard",function()
+        local S=c.state(); local p=open(); click(p.applyButton)
+        S.config=999; local before=baseline()
+        directClick(p.undoButton)
+        unchanged(before)
+        expect(not p.undoButton:IsEnabled())
+    end)
+    test("UI failed placement shows error and keeps successful rollback recoverable",function()
+        local S=c.state(); S.slots[1]={kind="item",id=777}
+        local original=copy(S.slots); local p=open()
+        S.failPickup=280719; click(p.applyButton)
+        expect(equal(original,S.slots),"Failed setup did not restore original slots")
+        expect(TheOneToRuleThemAllDB.backup.state=="restored")
+        expect(not p.undoButton:IsEnabled())
+        expect(c.messageContains("Original bars restored"))
+    end)
+    test("UI retains Undo after a failed setup once the occupied cursor is cleared",function()
+        local S=c.state(); S.slots[1]={kind="item",id=888}
+        local original=copy(S.slots); local p=open()
+        S.failPlacement=5; click(p.applyButton)
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
+        expect(S.cursor and not p.undoButton:IsEnabled())
+        ClearCursor(); click(p.refreshButton)
+        expect(p.undoButton:IsEnabled() and not p.applyButton:IsEnabled())
+        click(p.undoButton)
+        expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
+    end)
+    test("UI close unregisters refresh events and opening again does not write",function()
+        local S=c.state(); local p=open()
+        expect(p:IsEventRegistered("PLAYER_REGEN_DISABLED"))
+        local before=baseline(); click(p.closeButton)
+        expect(not p:IsShown() and next(p.events)==nil)
+        S.dispatchUIEvent("PLAYER_TALENT_UPDATE")
+        c.command("ui"); expect(p:IsShown())
+        unchanged(before)
+    end)
+    for _, alt in ipairs({
+        {"Death Knight","DEATHKNIGHT",252}, {"Evoker","EVOKER",1468},
+        {"Mage","MAGE",62}, {"Priest","PRIEST",256}, {"Outlaw","ROGUE",260},
+    }) do
+        test("UI remains passive on unsupported "..alt[1],function()
+            local S=c.state(); S.class=alt[2]; S.spec=alt[3]
+            local before=baseline(); local p=open()
+            expect(#p.snapshot.profiles==0 and not p.applyButton:IsEnabled())
+            expect(not p.undoButton:IsEnabled())
+            click(p.applyButton); click(p.refreshButton)
+            unchanged(before)
+        end)
+    end
+end

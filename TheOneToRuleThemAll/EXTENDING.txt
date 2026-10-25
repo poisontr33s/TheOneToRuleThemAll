@@ -1,0 +1,66 @@
+THE ONE TO RULE THEM ALL — CLASS MODULE CONTRACT
+
+Core.lua owns profile registration, preview, compatibility checks, native
+macro creation, transactional action placement, and per-character undo.
+Modules/Rogue.lua owns Rogue spell IDs, hero requirements, layouts, stealth
+mirroring and policy evidence. Core contains no Rogue slot assumptions.
+
+To add a module, load its Lua file after Core.lua in the .toc and call
+TheOneToRuleThemAll.RegisterProfile with:
+
+id, class (WoW class token), spec (numeric specialization ID), specName,
+label, optional requiredPage and blockedWhileStealthed,
+evidence {patch, gear, tuning, validation},
+layouts {standard={description}, compact={description, altSlots={...}}},
+build(api, layout, enforce) -> {rows, macros, skipped, lines}.
+
+Each row is {slot=<action-slot number>, action=<spell or macro record>}.
+Spell records use api.spell(id); macros use api.macro(name, body). Every
+macro referenced by a row must also occur in plan.macros. Optional spells
+must be checked with api.learned; profile compatibility checks run when
+enforce=true. Preview must not write game state. Macro bodies are localized
+through api.spellName and checked against native name/body limits.
+
+UI.lua is a lazy setup panel. A.Inspect returns read-only readiness and preview;
+A.Execute is the single guarded command path used by slash and panel actions.
+The panel's events refresh presentation only while the panel is visible.
+
+All writes occur on an explicit out-of-combat setup/undo command or click. Modules must
+not add combat-event decision logic, timer-driven rotation selection, gear
+changes, talent purchases, keybinding writes, or automatic profile switches.
+Do not infer a class's bars, forms, hero replacements or spell overrides from
+the Rogue module. A new class needs its own checked placement and undo tests.
+
+EVIDENCE REQUIRED FOR A RELEASED POLICY
+
+- Current spell and talent data, legal talent code, eligible hero tree.
+- Fixed reference gear appropriate to armor, primary stat and weapon rules.
+- The user's tier slots: head, shoulders, chest and legs. Fixed gem placement
+  and quality across that comparison. Keep role-appropriate enchants fixed.
+- Matched control against the published guide build with its recommended
+  macros, plus the best precise control found. Preserve exact inputs.
+- Test the intended human priority, including any omitted pooling or proc
+  exceptions. A policy that requires inaccessible automatic decisions is not
+  represented by an ordinary macro.
+- Macro coupling changes timing: audit timestamps, ordering, failed/blocked
+  actions and any item/GCD interleaving, then test the changed policy.
+- Report physical keys, modifier chords, logical decisions and action tempo
+  separately. Fewer numbered keys alone does not establish a damage gain.
+- Keep boss, multi-target, contact loss and mixed-pull results separate.
+  Add spec-relevant casting/movement models. Generic DungeonSlice is not a
+  complete simulation of a season's dungeon mechanics or player mistakes.
+- Label future patch forecasts separately from the current live model.
+- For healers and tanks, assess role performance and survivability; a DPS
+  ranking alone is insufficient. Do not remove essential utility to win a
+  button-count comparison.
+- State untested classes and invalidated patch/gear assumptions explicitly.
+
+CURRENT COVERAGE
+
+Native setup: Trickster Subtlety and Fatebound Assassination.
+Simulation research: all six eligible Rogue spec/hero pairs, with bounded
+talent and policy candidates. This is not every mathematically possible
+talent combination and does not prove a global optimum.
+Other real class profiles: not implemented or benchmarked in this version.
+The generic registry is validated with a synthetic non-Rogue test module;
+that test is not a playable or optimized Mage profile.

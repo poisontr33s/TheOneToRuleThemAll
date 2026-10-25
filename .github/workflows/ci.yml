@@ -1,0 +1,47 @@
+name: Test and package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Lua test runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends liblua5.4-0
+
+      - name: Run addon tests
+        run: python3 TheOneToRuleThemAll/validation/run_lua_tests.py
+
+      - name: Build installable addon
+        run: python3 tools/package_addon.py
+
+      - name: Upload installable ZIP
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          path: dist/TheOneToRuleThemAll-*.zip
+          archive: false
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: validation-report
+          path: TheOneToRuleThemAll/validation/validation-summary.json
+          if-no-files-found: warn
+          retention-days: 30

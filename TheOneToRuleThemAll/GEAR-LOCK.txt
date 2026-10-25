@@ -1,0 +1,51 @@
+THE ONE TO RULE THEM ALL — LÅST GEAR-MAL
+25. oktober 2026
+
+«Maks Hero» er her 321 i rustning/ringer og Ascended Hero 328 i hals,
+våpen og trinkets. Alle slotter er ikke bokstavelig Hero 7/7.
+Tier: hode, skuldre, bryst og bein. Nøyaktig fire bonusgivende settbiter.
+Gems: seks Flawless Quick Lapis, item 240916, quality 2 (høyest).
+Én i hode, hals, håndledd, belte og hver ring. Hver gir +16 vers/+7 haste
+i den festede spilldatabasen; total +96 vers/+42 haste. Ingen andre gems.
+
+Faste enchant-ID-er og item-ID-er står nedenfor. Ingen embellishments,
+consumables eller Omnium i sammenligningen. Dette er en sammenligningsmal,
+ikke et BiS-løfte eller et estimat på hvor raskt gear kan farmes.
+Tier/Catalyst og faste M+-items brukes i stedet for personens armory-gear.
+
+SUBTLETY / ASSASSINATION — IDENTISKE ITEMS
+head=chosen_bloodslayers_spirit_shroud,id=271510,ilevel=321,quality=epic,bonus_id=13534,gem_id=240916,enchant_id=8017
+neck=strand_of_warding_fangs,id=273781,ilevel=328,quality=epic,bonus_id=13534,gem_id=240916
+shoulders=chosen_bloodslayers_voodoo_guards,id=271508,ilevel=321,quality=epic,enchant_id=8001
+back=fireproof_drape,id=193763,ilevel=321,quality=epic
+chest=chosen_bloodslayers_banded_poncho,id=271513,ilevel=321,quality=epic,enchant_id=7987
+wrists=chosen_bloodslayers_wristguards,id=271506,ilevel=321,quality=epic,bonus_id=13534,gem_id=240916
+hands=gauntlets_of_fevered_defense,id=251124,ilevel=321,quality=epic
+waist=rootwalker_harness,id=251189,ilevel=321,quality=epic,bonus_id=13534,gem_id=240916
+legs=chosen_bloodslayers_reinforced_pants,id=271509,ilevel=321,quality=epic,enchant_id=8159
+feet=arctic_explorers_legwraps,id=251153,ilevel=321,quality=epic,enchant_id=7963
+finger1=lightwardens_bind,id=251194,ilevel=321,quality=epic,bonus_id=13534,gem_id=240916,enchant_id=7967
+finger2=ritual_binders_ring,id=159459,ilevel=321,quality=epic,bonus_id=13534,gem_id=240916,enchant_id=7967
+trinket1=freightrunners_flask,id=250215,ilevel=328,quality=epic
+trinket2=sapling_of_the_dawnroot,id=250259,ilevel=328,quality=epic
+main_hand=sharpened_lightwood_slasher,id=275070,ilevel=328,quality=epic,enchant_id=8011
+off_hand=sharpened_lightwood_slasher,id=275070,ilevel=328,quality=epic,enchant_id=8011
+
+OUTLAW — SAMME MAL, MEN LOVLIG 2.6-SEKUNDERS MAIN HAND
+main_hand=grim_harvest_gloves,id=251143,ilevel=328,quality=epic,enchant_id=8011
+Dette navnet tilhører et fist weapon, ikke en ekstra hanske. Native
+våpenstats varierer mellom specs; sammenligningen gjelder denne malen.
+
+Modell: Nightborne nivå 90; raid buffs på; Bloodlust kun boss/kontakttap.
+Sub-tallene i hovedrapporten er en prognose for annonsert tuning 27. okt.
+Assassination/Outlaw bruker nåværende tuning. Ingen fremtidig klient er målt.
+
+Gear-lock ID: TOR_Hero321_Ascended328_TierHSCL_6QuickLapis_2026-10-25
+
+Kilder:
+https://www.wowhead.com/guide/midnight/item-level-gear-upgrades-dawncrests
+https://www.wowhead.com/guide/midnight/bonus-rolls-item-upgrades
+https://www.method.gg/guides/preservation-evoker/stats-races-and-consumables
+https://www.method.gg/guides/list-of-all-midnight-consumables-enchants-and-gems
+SimulationCraft midnight 12aa5dc041b03bf9f9fdd1db00dbc8d3ec0cebb7
+Full validering: gear_lock.json, locked_activation_audit.json, gem_audit/.
