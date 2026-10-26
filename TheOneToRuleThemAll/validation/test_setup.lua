@@ -700,7 +700,7 @@ test("separate and coupled burst layouts coexist without macro-name collisions",
     command("undo");command("subburst compact")
     expect(TheOneToRuleThemAllDB.backup.state=="applied" and S.created==6 and contains(slotBody(4),"/cast Goremaw's Bite"))
 end)
-local recommendationText="Recommended starting profile: /tor subburst"
+local recommendationText="Compatible starting profile: /tor subburst"
 test("help recommends released burst only with compatible current build",function()
     command("help")
     expect(messageContains(recommendationText) and S.created==0 and S.placements==0 and S.bindingCalls==0)
@@ -719,10 +719,11 @@ for _,scenario in ipairs({
         expect(S.created==0 and S.placements==0 and S.bindingCalls==0)
     end)
 end
-local ctx={test=test,expect=expect,copy=copy,equal=equal,command=command,messageContains=messageContains,state=function() return S end,addon=function() return TheOneToRuleThemAll end}
+local ctx={test=test,expect=expect,copy=copy,equal=equal,command=command,messageContains=messageContains,state=function() return S end,addon=function() return TheOneToRuleThemAll end,reload=loadAddon}
 dofile(addonDir .. "/validation/test_core_v2.lua")(ctx)
 dofile(addonDir .. "/validation/test_controls.lua")(ctx)
 dofile(addonDir .. "/validation/test_ui.lua")(ctx)
+dofile(addonDir .. "/validation/test_deathknight.lua")(ctx)
 TOR_TEST_TOTAL=total; TOR_TEST_FAILED=failed
 realPrint(string.format("RESULT: %d tests, %d passed, %d failed",total,total-failed,failed))
 assert(failed==0,"Mock tests failed")

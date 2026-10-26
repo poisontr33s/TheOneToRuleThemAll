@@ -1,3 +1,18 @@
+0.3.0-astra — 26 October 2026
+
+- Adds San'layn and Deathbringer Blood layouts for Yipyep's Shed Assymetry.
+  The existing class/Blood talent foundation is retained; no talent, equipment
+  or keybinding changes are performed.
+- Blood places individual spells on main-bar slots 1–9 and learned utility
+  spells on fixed Bar 2 slots. Reaper's Mark has its own Deathbringer button.
+  Unlearned optional slots are preserved, including Mind Freeze on slot 7.
+- Blood has no Rogue Stealth/Dance mirroring and no generated burst macros.
+  Temporary Vampiric Strike/Exterminate overrides keep their base buttons.
+- Preview selects the compatible Blood hero profile without applying it.
+  Layout help lists only layouts provided by each profile.
+- Adds Blood placement, failure recovery, reload/Undo and UI regression tests.
+- Existing Rogue policies are unchanged. Live WoW validation remains pending.
+
 0.2.2-astra — 25 October 2026
 
 - The preview shows actual built-in keybindings beside each main-bar and Bar 2

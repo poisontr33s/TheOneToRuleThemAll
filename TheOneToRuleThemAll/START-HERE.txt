@@ -1,8 +1,9 @@
-THE ONE TO RULE THEM ALL — 0.2.2-astra
-25. oktober 2026 · Retail 12.1.5
+THE ONE TO RULE THEM ALL — 0.3.0-astra
+26. oktober 2026 · Retail 12.1.5
 
-Første utgave inneholder Rogue-oppsett. Kjernen kan få egne klassemoduler.
-Andre klasser og Outlaw har ikke et ferdig knappeoppsett i denne pakken.
+Pakken inneholder Rogue og Blood Death Knight. Yipyep har egne San'layn- og
+Deathbringer-profiler for Shed Assymetry; se BLOOD-SETUP.txt for knappene.
+Andre klasser, andre DK-specs og Outlaw har ikke et knappeoppsett her.
 
 INSTALLASJON
 
@@ -11,21 +12,24 @@ INSTALLASJON
    Sluttstien skal være:
    ...\AddOns\TheOneToRuleThemAll\TheOneToRuleThemAll.toc
 
-2. Aktiver The One To Rule Them All i WoW. Importer riktig talentkode fra
-   TALENTS.txt. Addon-en importerer ikke talenter og bytter ikke gear.
+2. Aktiver The One To Rule Them All i WoW. Velg loadoutet du vil bruke;
+   referansekodene står i TALENTS.txt. Blood bruker ditt eksisterende
+   Shed Assymetry-loadout. Addon-en importerer ikke talenter eller bytter gear.
 
 3. Stå utenfor kamp og Stealth, på hovedlinjens side 1, med tom musepeker.
    Åpne oppsettvinduet:
 
    /tor
 
-   På kompatibel Subtlety velges subburst som utgangspunkt. Se gjennom
-   Standard eller Compact og trykk Apply layout når du vil legge det inn.
+   På kompatibel Subtlety vises subburst som utgangspunkt. Blood starter
+   forhåndsvisningen med profilen som passer hero-treet ditt. Se gjennom
+   oppsettet og trykk Apply layout når du vil legge det inn.
    Å åpne vinduet eller velge forhåndsvisning flytter ingen knapper.
    Ved hver evne vises tastene du allerede har bundet i WoW. Compact viser
    Alt-kombinasjonene for disse tastene. En plass uten tast merkes som ubundet.
    Makroknappene viser evnenavn, for eksempel Backstab og Shadowstrike.
-   Dance, Blades og Goremaw deler én makro. Les PLAY-GUIDE.txt for bruken.
+   Rogue har Standard og Compact; Blood har Standard med separate evner.
+   Rogue: Dance, Blades og Goremaw deler én makro i subburst. Se PLAY-GUIDE.txt.
 
 4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 i Options
    hvis den er skjult. Dine eksisterende keybindings blir beholdt.
@@ -56,15 +60,19 @@ subburst  Ny seks-knappers Sub med Goremaw i burst-makroen
 sub       Tidligere sju-knappers Sub med separat Goremaw
 sublite   Seks-knappers Sub som utelater Goremaw-bruk
 assa      Roligere Fatebound Assassination, åtte offensive evner
+blood-sanlayn       Blood med San'layn, Shed Assymetry
+blood-deathbringer  Samme Blood-knapper, med separat Reaper's Mark
 
-Alle har standard- og compact-layout. Alle Sub-profiler bruker den samme
+Rogue har standard- og compact-layout. Blood har bare standard.
+Alle Sub-profiler bruker den samme
 talentkoden. «Sublite» og «subburst» er forskjellige skadeprioriteringer:
 bare subburst beholder Goremaw i skadeplanen.
 
 HVA SOM FLYTTES
 
-Hovedlinjens plasser 1–9, Rogue Stealth/Dance-linjens plasser 1–9 og lærte
-utilities på Action Bar 2. Plass 10–12 og andre bars blir beholdt.
+Hovedlinjens plasser 1–9 og lærte utilities på Action Bar 2. Rogue speiler
+også sine plasser 1–9 til Stealth/Dance-linjen. Blood gjør ingen slik speiling;
+ulærte valgfrie evner lar sin plass stå urørt. Hovedlinjens 10–12 beholdes.
 Vinduet og chatten viser hver berørt plass på Action Bar 2 og evnen som
 legges der. Tastene du har bundet til disse plassene, kaster de nye evnene
 etter Apply. Selve tastebindingene blir ikke endret.
@@ -77,6 +85,7 @@ navn og annet innhold overskrives ikke. Tre makroplasser trengs for Sub;
 compact Assassination trenger to. Standard Assassination trenger ingen.
 On-use-trinkets, poisons, Shroud og situasjonsutility kommer i tillegg.
 Behold dem på tilgjengelige plasser. De legges ikke automatisk i burst-makroen.
+Blood lager ingen makroer og krever ingen ledige makroplasser.
 
 UNDO OG BYTTE
 
@@ -91,13 +100,13 @@ Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
 En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
 velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
 
-OPPDATERING FRA 0.1.0, 0.2.0 ELLER 0.2.1
+OPPDATERING FRA EN TIDLIGERE VERSJON
 
 Lukk WoW, og erstatt addon-mappen med denne utgaven. Behold SavedVariables.
 En aktiv backup følger med videre; du trenger ikke legge inn oppsettet igjen.
 Ved bytte av profil/layout bruker du først Undo i opprinnelig loadout.
 
-FØRSTE TEST I WOW
+FØRSTE TEST I WOW — ROGUE
 
 Åpne /tor på Ickalore. Kontroller at profilen og plassene stemmer før Apply.
 Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
@@ -107,6 +116,17 @@ Plassnummer i forhåndsvisningen er action-bar-plasser. Tastene som vises,
 hentes fra WoWs innebygde linjer, på hovedlinjens side 1. Bruker du et annet
 action-bar-addon med egne bindinger, må du kontrollere tastene der.
 Endrer du bindinger mens vinduet er åpent, oppdateres tastevisningen.
+
+FØRSTE TEST I WOW — BLOOD
+
+På Yipyep: åpne /tor utenfor kamp på hovedlinjens side 1. Kontroller at
+San'layn eller Deathbringer stemmer med det aktive hero-treet. Se gjennom
+hovedlinjen og Bar 2, trykk Apply layout og skriv /reload.
+Prøv Death Strike, DRW, Death's Advance og AMS på sine egne knapper.
+San'layn: Heart Strike skal fortsatt fungere når Vampiric Strike kommer/går.
+Deathbringer: prøv Reaper's Mark på Bar 2 plass 11 og Marrowrend gjennom
+Exterminate-proc. Test /tor undo ute av kamp, i samme loadout, før profilbytte.
+Den fullstendige plasseringen og bytterekkefølgen står i BLOOD-SETUP.txt.
 
 Hvis du tidligere brukte AstraRogueSetup eller AstraSubSetup og vil bevare
 tilgangen til det opprinnelige oppsettet, bruk den gamle addon-ens undo først:
@@ -119,7 +139,7 @@ Behold filene og SavedVariables for å kunne bruke undo senere.
 
 HVA «TESTET» BETYR
 
-Simuleringene gjelder den oppgitte gear-malen og skadeprioriteten. Addon-en
+Rogue-simuleringene gjelder den oppgitte gear-malen og skadeprioriteten. Addon-en
 sjekker at nødvendige evner/hero-talenter er lært, men verifiserer ikke at
 hele talentkoden eller gear er identisk med simuleringen. Den vurderer ikke
 kampfakta for deg og velger ikke neste angrep. Du trykker alle handlinger.
@@ -127,8 +147,9 @@ kampfakta for deg og velger ikke neste angrep. Du trykker alle handlinger.
 Lua-tester med mockede WoW-API-er dekker plassering, undo, lokalisering,
 bindingskonflikter, loadout-bytte og vinduets knappehandlinger. validation/
 inneholder detaljene. Innlasting, visuell layout og makrokasting er ennå ikke
-prøvd i en live WoW-klient. 0.2.x endrer oppsettbetjening og gjenoppretting;
-skadeprioriteten og de tidligere simresultatene er uendret.
+prøvd i en live WoW-klient. Blood-utgaven installerer separate knapper for
+talentgrunnlaget ditt; den hevder ingen ny DPS- eller overlevelsesgevinst.
+Rogue-skadeprioriteten og de tidligere simresultatene er uendret.
 
 Hvis en berørt plass inneholder en flyout (en knapp som åpner flere evner),
 stopper oppsettet før noe flyttes. Flytt den til en uberørt linje og prøv igjen.

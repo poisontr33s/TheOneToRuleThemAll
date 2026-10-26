@@ -4,6 +4,9 @@ Core.lua owns profile registration, preview, compatibility checks, native
 macro creation, transactional action placement, and per-character undo.
 Modules/Rogue.lua owns Rogue spell IDs, hero requirements, layouts, stealth
 mirroring and policy evidence. Core contains no Rogue slot assumptions.
+Modules/DeathKnight.lua owns the Blood spell buttons and hero requirements.
+It uses base Heart Strike and Marrowrend IDs so temporary combat replacements
+are not captured as permanent action-bar assignments.
 
 To add a module, load its Lua file after Core.lua in the .toc and call
 TheOneToRuleThemAll.RegisterProfile with:
@@ -59,10 +62,13 @@ EVIDENCE REQUIRED FOR A RELEASED POLICY
 
 CURRENT COVERAGE
 
-Native setup: Trickster Subtlety and Fatebound Assassination.
+Native setup: Trickster Subtlety, Fatebound Assassination, San'layn Blood and
+Deathbringer Blood. Blood is a setup-only layout for Shed Assymetry, with no
+new optimized policy or survival claim. It uses Standard only; profile layouts
+are optional individually and the UI/command help must reflect that.
 Simulation research: all six eligible Rogue spec/hero pairs, with bounded
 talent and policy candidates. This is not every mathematically possible
 talent combination and does not prove a global optimum.
-Other real class profiles: not implemented or benchmarked in this version.
+Other class/spec profiles: not implemented or benchmarked in this version.
 The generic registry is validated with a synthetic non-Rogue test module;
 that test is not a playable or optimized Mage profile.

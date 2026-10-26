@@ -94,7 +94,10 @@ local function previewText(panel, snapshot)
         end
     end
     lines[#lines+1] = "\n" .. heading("Using this layout")
-    lines[#lines+1] = "Numbers in these notes identify slots. Use each slot's bound key; hold Alt with that key for an alternate action."
+    lines[#lines+1] = "Numbers in these notes identify slots. Use each slot's bound key."
+    if profile.layouts[snapshot.layout].altSlots then
+        lines[#lines+1] = "Hold Alt with that key for an alternate action."
+    end
     for _, line in ipairs(plan.lines or {}) do lines[#lines+1] = line end
     lines[#lines+1] = "\n" .. heading("Other affected bars")
     if #bar2 > 0 then lines[#lines+1] = "Action Bar 2: slots " .. ranges(bar2Slots) .. ". Enable it in WoW Options if hidden." end

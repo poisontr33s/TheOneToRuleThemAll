@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.2.2-astra", profiles = {} }
+TheOneToRuleThemAll = { version = "0.3.0-astra", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -297,9 +297,19 @@ local function restore(backup)
     for _, row in ipairs(backup.rows) do place(row.slot,row.action) end
     backup.state = "restored"
 end
+local function layoutNames(profile)
+    local names = {}
+    for name in pairs(profile.layouts) do names[#names+1] = name end
+    table.sort(names, function(a,b)
+        if a == "standard" then return b ~= "standard" end
+        if b == "standard" then return false end
+        return a < b
+    end)
+    return names
+end
 local function layoutFor(profile, layout)
     layout = layout or "standard"
-    check(profile.layouts[layout], "Unknown layout '" .. layout .. "'. Use standard or compact.")
+    check(profile.layouts[layout], "Unknown layout '" .. layout .. "'. Available for this profile: " .. table.concat(layoutNames(profile), ", ") .. ".")
     return layout
 end
 local function describe(profile, layout, plan)
@@ -377,7 +387,7 @@ local function listProfiles()
     local matched = false
     for _, id in ipairs(ids) do
         local p = A.profiles[id]
-        say(id .. " - " .. p.label .. " (" .. className(p.class) .. "; standard/compact)")
+        say(id .. " - " .. p.label .. " (" .. className(p.class) .. "; " .. table.concat(layoutNames(p), "/") .. ")")
         if p.class == classID() and p.spec == specID() then matched = true end
     end
     if not matched then say("No tested profile is currently included for your class/spec. No automatic fallback is applied.") end
@@ -447,7 +457,9 @@ local function help()
     for id,p in pairs(A.profiles) do
         if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
             local valid, compatible = pcall(p.recommendedWhen,A.api)
-            if valid and compatible then say("Recommended starting profile: /tor " .. id .. ". Add compact for the optional Alt layout.") end
+            if valid and compatible then
+                say("Compatible starting profile: /tor " .. id .. "." .. (p.layouts.compact and " Add compact for the optional Alt layout." or ""))
+            end
         end
     end
     say("Setup installs buttons and native macros. You choose and press every combat action; talents, keybindings and gear are untouched.")

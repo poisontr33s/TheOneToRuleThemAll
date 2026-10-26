@@ -1,8 +1,8 @@
 # TheOneToRuleThemAll
 
 **The One To Rule Them All** is a World of Warcraft Retail addon that installs
-Rogue action-bar layouts and native macros, with an option to restore the previous
-setup. Current addon version: **0.2.2-astra**, targeting Retail **12.1.5**.
+Rogue and Blood Death Knight action-bar layouts, with an option to restore the
+previous setup. Current addon version: **0.3.0-astra**, targeting Retail **12.1.5**.
 
 [![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=astra)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra)
 
@@ -22,9 +22,16 @@ bindings. Opening the preview does not assign keys or move buttons.
 | `sub` | Trickster Subtlety | Seven offensive choices, with separate Goremaw |
 | `sublite` | Trickster Subtlety | Six offensive choices, omitting Goremaw use |
 | `assa` | Fatebound Assassination | Eight offensive abilities |
+| `blood-sanlayn` | San'layn Blood | Yipyep's Shed Assymetry: separate core attacks, DRW, movement and defensives |
+| `blood-deathbringer` | Deathbringer Blood | Same Blood layout, with Reaper's Mark on Bar 2 slot 11 |
 
-Each profile has Standard and Compact layouts. Compact uses manual Alt modifiers.
-Other classes and Outlaw have no playable profile yet and remain passive.
+Rogue profiles have Standard and Compact layouts. Compact uses manual Alt modifiers.
+Blood profiles use Standard with individual spell buttons and the character's
+existing talent loadout. The preview starts with the compatible hero profile;
+applying it is manual. No trinkets, talents or keys are changed. Unlearned optional
+abilities leave their slots untouched. Read [BLOOD-SETUP.txt](TheOneToRuleThemAll/BLOOD-SETUP.txt)
+for the exact slots and the San'layn/Deathbringer switch sequence.
+Other classes, other DK specializations and Outlaw remain passive.
 
 ## Install and test in WoW
 
@@ -33,7 +40,9 @@ Other classes and Outlaw have no playable profile yet and remain passive.
    `main` remains the shared stable baseline and `claude` is a separate build.
 2. With WoW closed, extract the `TheOneToRuleThemAll` folder into
    `World of Warcraft/_retail_/Interface/AddOns/`. Keep existing SavedVariables.
-3. Import the relevant code from [TALENTS.txt](TheOneToRuleThemAll/TALENTS.txt).
+3. Select your intended talent loadout; reference codes are in
+   [TALENTS.txt](TheOneToRuleThemAll/TALENTS.txt). For Blood, keep the matching
+   Shed Assymetry loadout you already use.
 4. Outside combat and Stealth, on main-bar page 1 with an empty cursor, open `/tor`.
    Review the main bar and every affected Bar 2 slot before clicking **Apply layout**.
 5. After successful setup, `/reload` saves the previous setup. `/tor undo` restores
@@ -77,8 +86,12 @@ tests are kept beside the addon under `validation/`.
 ## Simulation scope
 
 The current Rogue policies retain the original fixed-gear study described in
-[GEAR-LOCK.txt](TheOneToRuleThemAll/GEAR-LOCK.txt) and the playing guide. Versions
-0.2.x improves setup, recovery and the preview; it does not claim a new DPS gain.
+[GEAR-LOCK.txt](TheOneToRuleThemAll/GEAR-LOCK.txt) and the playing guide.
+The Blood module installs the user's existing custom talent foundation as a
+button layout. It has no automatic priorities or coupled casts and makes no
+new DPS or survivability claim. Earlier Blood DPS simulations do not validate
+tank survivability. Both hero variants retain manual Death Strike, DRW and
+defensive timing. The addon does not validate the full talent code.
 The full research archive remains a separate historical artifact and is not
 required to test or package this addon. This repository does not contain its raw
 simulation runs.

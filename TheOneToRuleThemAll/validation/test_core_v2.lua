@@ -62,7 +62,7 @@ return function(ctx)
         expect(TheOneToRuleThemAllDB==nil); untouched()
     end)
     test("unsupported alt inspection never chooses a Rogue fallback",function()
-        S().class="DEATHKNIGHT";S().spec=250
+        S().class="DEATHKNIGHT";S().spec=252
         local view=A().Inspect()
         expect(#view.profiles==0 and not view.selectedId and not view.canApply)
         local explicit=A().Inspect("subburst")

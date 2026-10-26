@@ -1,0 +1,83 @@
+THE ONE TO RULE THEM ALL — YIPYEP / SHED ASSYMETRY
+0.3.0-astra · 26. oktober 2026
+
+KOM I GANG
+
+1. Velg det San'layn- eller Deathbringer-loadoutet du vil bruke.
+2. Stå utenfor kamp på hovedlinjens side 1 med tom musepeker. Åpne /tor.
+3. Forhåndsvisningen velger den kompatible Blood-profilen. Se gjennom de
+   viste tastene og begge linjene, og trykk Apply layout.
+4. Skriv /reload etter «Setup verified» for å lagre backupen til disk.
+
+Du kan også bruke:
+/tor preview blood-sanlayn
+/tor check blood-sanlayn
+/tor blood-sanlayn
+
+Erstatt blood-sanlayn med blood-deathbringer for Deathbringer.
+Begge har Standard-oppsett med separate evner. Ingen makroplasser trengs.
+
+HOVEDLINJEN
+
+Plass 1  Heart Strike / Vampiric Strike på samme native knapp
+Plass 2  Marrowrend / Exterminate på samme native knapp
+Plass 3  Death Strike
+Plass 4  Blood Boil
+Plass 5  Death and Decay, vanlig siktesirkel på bakken
+Plass 6  Dancing Rune Weapon
+Plass 7  Mind Freeze, bare hvis lært
+Plass 8  Death's Advance
+Plass 9  Anti-Magic Shell
+
+Shed Assymetry-koden har ikke Mind Freeze. Da lar addon-en plass 7 stå
+urørt og viser det i forhåndsvisningen. Andre evner flyttes ikke til venstre.
+Plass 10–12 og Rogue Stealth/Dance-plassene endres ikke.
+
+ACTION BAR 2
+
+Plass 1   Icebound Fortitude
+Plass 2   Vampiric Blood
+Plass 3   Lichborne
+Plass 4   Death Grip
+Plass 5   Blinding Sleet
+Plass 6   Wraith Walk
+Plass 7   Raise Ally
+Plass 8   Abomination Limb eller Gorefiend's Grasp, etter talentvalget ditt
+Plass 9   Death Pact
+Plass 10  Death's Caress
+Plass 11  Reaper's Mark — bare Deathbringer; San'layn lar plassen stå urørt
+Plass 12  Dark Command
+
+Bare lærte utility-evner legges inn. Ulærte evner lar den eksisterende
+knappen stå urørt, også ved Undo. Slå på Action Bar 2 i WoW Options hvis
+den er skjult. Kontroller tastevisningen for Reaper's Mark i Deathbringer.
+
+Talentgrunnlaget, gear og trinkets beholdes. Death Strike, DRW og defensive
+cooldowns har egne knapper; du velger selv når de brukes. Vampiric Blood
+ligger som tilgjengelig utility hvis lært, uten å endre DRW-grunnlaget ditt.
+Addon-en endrer evner i de viste plassene, men tildeler ingen nye taster.
+
+BYTTE MELLOM SAN'LAYN OG DEATHBRINGER
+
+1. I loadoutet du brukte ved Apply: gå ut av kamp og skriv /tor undo.
+2. Bytt hero/loadout i WoWs talentvindu.
+3. Åpne /tor, kontroller den nye profilen, Apply layout og /reload.
+
+Backupen gjelder karakteren og det opprinnelige loadoutet. Ved et feilaktig
+loadout-bytte før Undo: bytt tilbake til det opprinnelige og bruk Undo der.
+Ikke slett SavedVariables; de inneholder gjenopprettingen.
+
+FØRSTE PRØVE I SPILLET
+
+Prøv hovedknappene på en treningsdukke, inkludert normal plassering av
+Death and Decay. San'layn: kontroller Heart Strike før, under og etter
+Vampiric Strike. Deathbringer: prøv Reaper's Mark og kontroller Marrowrend
+før, under og etter Exterminate. Prøv de separate bevegelses-/forsvarsknappene.
+Gå ut av kamp, bruk /reload og deretter /tor undo i det samme loadoutet.
+Kontroller at de gamle knappene kommer tilbake.
+
+Automatiske tester dekker innlegging, feil under innlegging, bevaring av
+andre plasser, hero-kontroll og Undo etter addon-reload med mockede WoW-API-er.
+Faktisk innlasting, beskyttede handlinger og proc-byttene er ennå ikke testet
+i WoW-klienten. Dette er et knappeoppsett for det eksisterende buildet,
+uten en ny påstand om DPS-gevinst eller rangering av overlevelse.
