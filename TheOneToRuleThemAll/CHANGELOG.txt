@@ -1,3 +1,13 @@
+0.3.2-combined — 26 October 2026
+
+- Restores the original full-restoration requirement for completing Undo.
+  Missing original buttons keep the backup open and block a new Apply, even
+  after explicit Undo. Available originals can still be restored immediately.
+- Incomplete Undo reports the missing slots, keeps Undo enabled and can be
+  retried after /reload when the missing originals are available again.
+- Keeps the original Rogue gear template, playing guide, talent codes,
+  macros and action layouts; no new combat policy is introduced.
+
 0.3.1-combined — 26 October 2026
 
 - Combines Astra's actual-key previews and Blood profiles with Claude's

@@ -333,7 +333,7 @@ for _, entry in ipairs({{"item",33447},{"equipmentset",42},{"summonpet","BattleP
         expect(equal(S.slots,original), "An original button already in place was removed")
         expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.cursor==nil)
     end)
-    test("explicit Undo can finish failed Apply with a reported missing "..kind,function()
+    test("explicit Undo reports a missing "..kind.." after failed Apply and keeps the backup",function()
         S.slots[1]={kind=kind,id=id}
         S.slots[61]={kind="spell",id=7000}
         S.gone[id]=true; S.failPickup=197835
@@ -341,10 +341,11 @@ for _, entry in ipairs({{"item",33447},{"equipmentset",42},{"summonpet","BattleP
         expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
         S.failPickup=nil; S.messages={}
         local ok,problem,note=TheOneToRuleThemAll.Execute("undo")
-        expect(ok and problem==nil and note:find("1 slot that is now empty",1,true))
-        expect(messageContains("except main bar slot 1"))
+        expect(ok and problem==nil and note:find("Undo incomplete",1,true))
+        expect(messageContains("main bar slot 1") and messageContains("Backup kept"))
         expect(S.slots[1]==nil and S.slots[61].id==7000)
-        expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.cursor==nil)
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo" and S.cursor==nil)
+        expect(TheOneToRuleThemAll.Inspect("sub").canUndo)
     end)
 end
 test("automatic rollback restores an owned toy through the toy box",function()
@@ -429,17 +430,51 @@ test("undo empties and names an item that is gone and restores everything else",
     S.slots[61]={kind="item",id=4444}; S.slots[62]={kind="spell",id=5555}; S.slots[1]={kind="item",id=33447}
     command("subburst"); S.gone[4444]=true; S.messages={}
     local ok,problem,note=TheOneToRuleThemAll.Execute("undo")
-    expect(ok and TheOneToRuleThemAllDB.backup.state=="restored")
+    expect(ok and TheOneToRuleThemAllDB.backup.state=="needs-undo")
     expect(S.slots[61]==nil and S.slots[62].id==5555 and S.slots[1].id==33447)
-    expect(messageContains("except Action Bar 2 slot 1 (Item4444)") and note:find("1 slot that is now empty",1,true))
+    expect(messageContains("Undo incomplete: Action Bar 2 slot 1 (Item4444)") and note:find("Backup kept",1,true))
     for slot=1,9 do expect(slot==1 or S.slots[slot]==nil) end
 end)
 for _,entry in ipairs({{"equipmentset",42,"Set42"},{"summonpet","BattlePet-0-000000123456","a battle pet"}}) do
     test("undo empties a "..entry[1].." that is gone instead of stopping",function()
         S.slots[2]={kind=entry[1],id=entry[2]}; command("sub"); S.gone[entry[2]]=true
         command("undo")
-        expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.slots[2]==nil)
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo" and S.slots[2]==nil)
         expect(messageContains("main bar slot 2 ("..entry[3]..")"))
+    end)
+end
+for _,entry in ipairs({{"item",33447},{"equipmentset",42},{"summonpet","BattlePet-0-000000123456"}}) do
+    test("partial manual Undo retries a missing "..entry[1].." after reload",function()
+        local kind,id=entry[1],entry[2]
+        oldMacro(121,"BeforeSetup")
+        S.slots[1]={kind="macro",id=121}
+        S.slots[2]={kind=kind,id=id}
+        S.slots[61]={kind="spell",id=7000}
+        local original=copy(S.slots)
+        command("sub")
+        local savedRows=copy(TheOneToRuleThemAllDB.backup.rows)
+        S.gone[id]=true; S.messages={}
+        local ok,problem,note=TheOneToRuleThemAll.Execute("undo")
+        expect(ok and problem==nil and note:find("Undo incomplete",1,true))
+        expect(note:find("Backup kept",1,true) and note:find("retry /tor undo",1,true))
+        expect(not messageContains("Original bars restored"))
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
+        expect(S.slots[2]==nil and equal(S.slots[1],original[1]) and equal(S.slots[61],original[61]))
+        local partial=copy(S.slots)
+        local view=TheOneToRuleThemAll.Inspect("sub")
+        expect(view.canUndo and not view.canApply)
+        expect(not TheOneToRuleThemAll.Execute("subburst"),"New Apply replaced the incomplete backup")
+        expect(equal(S.slots,partial) and equal(TheOneToRuleThemAllDB.backup.rows,savedRows))
+        TheOneToRuleThemAllDB=copy(TheOneToRuleThemAllDB)
+        loadAddon()
+        expect(TheOneToRuleThemAll.Inspect("sub").canUndo)
+        S.gone[id]=nil; S.messages={}
+        expect(TheOneToRuleThemAll.Execute("undo"))
+        expect(equal(S.slots,original),"Retry did not restore every original action")
+        expect(TheOneToRuleThemAllDB.backup.state=="restored")
+        expect(messageContains("Original bars restored"))
+        view=TheOneToRuleThemAll.Inspect("sub")
+        expect(not view.canUndo and view.canApply)
     end)
 end
 test("undo puts back a toy through the toy box",function()

@@ -1,4 +1,4 @@
-THE ONE TO RULE THEM ALL — 0.3.1-combined
+THE ONE TO RULE THEM ALL — 0.3.2-combined
 26. oktober 2026 · Retail 12.1.5
 
 Pakken inneholder Rogue og Blood Death Knight. Yipyep har egne San'layn- og
@@ -100,8 +100,10 @@ Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
 En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
 velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
 Er en gjenstand, et battle pet eller et equipment set fra det gamle oppsettet
-borte når du bruker Undo, blir plassen tom. Resten gjenopprettes, og chatten
-sier hvilke plasser det gjelder.
+borte når du bruker Undo, kan plassen bli tom. Resten gjenopprettes, og
+chatten sier hvilke plasser som mangler. Backupen beholdes til alt er tilbake.
+Gjør de manglende originalene tilgjengelige og prøv /tor undo igjen.
+Ny Apply er blokkert mens gjenopprettingen er ufullstendig.
 
 Hvis Apply feiler, forsøkes full tilbakeføring. Kan en gammel knapp ikke
 gjenopprettes, beholdes backupen og du får beskjed om å bruke /tor undo.

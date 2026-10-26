@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.3.1-combined", profiles = {} }
+TheOneToRuleThemAll = { version = "0.3.2-combined", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -327,7 +327,7 @@ local function restore(backup, allowGone)
             if place(row.slot,row.action,allowGone) == false then gone[#gone+1] = row end
         end
     end
-    backup.state = "restored"
+    backup.state = #gone > 0 and "needs-undo" or "restored"
     return gone
 end
 local function storedText(action)
@@ -347,9 +347,9 @@ local function undoNote(gone)
     end
     local parts = {}
     for _, row in ipairs(gone) do parts[#parts+1] = slotText(row.slot) .. " (" .. storedText(row.action) .. ")" end
-    return "Original bars restored, except " .. table.concat(parts, ", ") .. ": no longer available, so "
-        .. (#gone == 1 and "that slot is" or "those slots are") .. " now empty. Generated macros kept.",
-        "Original bars restored, except " .. #gone .. (#gone == 1 and " slot that is" or " slots that are") .. " now empty. See chat."
+    return "Undo incomplete: " .. table.concat(parts, ", ") .. " unavailable; "
+        .. (#gone == 1 and "that slot is" or "those slots are") .. " now empty. Backup kept. Run /tor undo again when available.",
+        "Undo incomplete: " .. #gone .. (#gone == 1 and " slot is" or " slots are") .. " still missing. Backup kept; retry /tor undo when available. See chat."
 end
 local function layoutNames(profile)
     local names = {}

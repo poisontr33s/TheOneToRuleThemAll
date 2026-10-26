@@ -176,7 +176,11 @@ local function refresh(panel, resetScroll)
             panel.statusText:SetTextColor(1, 0.5, 0.5)
         elseif panel.lastMessage then
             panel.statusText:SetText(panel.lastMessage)
-            panel.statusText:SetTextColor(0.65, 0.88, 0.72)
+            if snapshot.backup and snapshot.backup.state == "needs-undo" then
+                panel.statusText:SetTextColor(0.92, 0.78, 0.53)
+            else
+                panel.statusText:SetTextColor(0.65, 0.88, 0.72)
+            end
         elseif snapshot.canApply then
             panel.statusText:SetText("Ready to apply the previewed layout.")
             panel.statusText:SetTextColor(0.65, 0.88, 0.72)

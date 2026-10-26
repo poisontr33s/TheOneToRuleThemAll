@@ -2,7 +2,7 @@
 
 **The One To Rule Them All** is a World of Warcraft Retail addon that installs
 Rogue and Blood Death Knight action-bar layouts, with an option to restore the
-previous setup. Current addon version: **0.3.1-combined**, targeting Retail **12.1.5**.
+previous setup. Current addon version: **0.3.2-combined**, targeting Retail **12.1.5**.
 
 [![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=combined)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Acombined)
 
@@ -70,9 +70,10 @@ both source histories. Fix integration problems on `combined`, and bring later
 source changes in explicitly after reviewing their diff.
 
 This build combines Astra's key preview and Blood profiles with Claude's clearer
-messages, Toy Box support and missing-button handling during Undo. Failed Apply
-now uses strict rollback: incomplete restoration keeps the backup available and
-does not report that all original buttons were restored.
+messages, Toy Box support and missing-button handling during Undo. Incomplete
+restoration keeps the backup available, whether it follows failed Apply or
+explicit Undo. Setup stays blocked until the original buttons are restored.
+Unavailable originals are reported so Undo can be retried after recovery.
 
 Use a pull request from `combined` to `main` for the shared release. Record the
 code checks and actual in-game results separately. CI does not merge branches.
