@@ -1,3 +1,13 @@
+0.3.1-combined — 26 October 2026
+
+- Combines Astra's actual-key previews and Blood profiles with Claude's
+  clearer messages, Toy Box pickup and partial-Undo reporting.
+- Failed Apply uses strict rollback. If an original button cannot be restored,
+  its backup stays available for Undo instead of falsely reporting completion.
+- Adds regression tests for unavailable original items, pets and equipment sets.
+- Keeps physical key counts separate from available attacks in Rogue labels.
+- One installable build on combined; actual WoW client checks remain open.
+
 0.3.0-astra — 26 October 2026
 
 - Adds San'layn and Deathbringer Blood layouts for Yipyep's Shed Assymetry.
@@ -22,6 +32,21 @@
 - Binding changes refresh the open preview. No new bindings or automatic casts.
 - Macro bodies, placements, damage priorities and Undo behavior are unchanged.
 - Separate Astra test build from main; live WoW testing remains outstanding.
+
+0.2.2-claude — 25 October 2026 (claude branch)
+
+- Undo restores everything it can. An item, battle pet or equipment set that is
+  no longer available is cleared and named in chat, instead of stopping Undo
+  half-way and leaving it stuck. Toys are picked up from the toy box if needed.
+- Messages name the bar and slot (for example "Action Bar 2 slot 3") and the
+  kind of action in words. Alt conflicts show the binding's in-game name.
+- Action Bar 2 is listed on one chat line after Apply and in preview.
+- /tor status shows the specialization by name and the saved setup's state in
+  words. Remaining internal wording ("policy", "routine class buttons",
+  "tested module", "remains passive", "prerequisites") is gone from player text.
+- The unused IsPlayerSpell and GetActionBarPage fallbacks are removed; the tests
+  keep both globals absent.
+- Macros, slot layout and the simulated priorities are unchanged.
 
 0.2.1 — 25 October 2026
 

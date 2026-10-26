@@ -1,8 +1,8 @@
 ## Interface: 120105
 ## Title: The One To Rule Them All
 ## Notes: Reversible action-bar setup for Rogue and Blood Death Knight. No combat automation.
-## Author: Astra
-## Version: 0.3.0-astra
+## Author: Astra, Claude
+## Version: 0.3.1-combined
 ## OptionalDeps: AstraRogueSetup, AstraSubSetup
 ## SavedVariablesPerCharacter: TheOneToRuleThemAllDB
 

@@ -79,20 +79,20 @@ local function build(mode,api,layout,enforce)
             main[3].displayText = name(196819) .. " / " .. name(441423)
             lines = {
                 "1 Builder; 2 Storm; 3 Eviscerate/Coup; 4 AoE; 5 Secret Technique; 6 Dance+Blades; 7 Kick; 8 " .. (mode=="sub" and "Goremaw" or "Feint") .. "; 9 Vanish.",
-                (mode=="sub" and "Seven" or "Six") .. " routine class buttons, plus items. Separate Dance and Blades remain on bar 2.",
+                (mode=="sub" and "Seven" or "Six") .. " attack keys, plus items. Dance and Blades also have their own buttons on Action Bar 2.",
             }
             if goreBurst then
                 lines = {
                     "1 Builder; 2 Storm; 3 Eviscerate/Coup; 4 AoE; 5 Secret Technique; 6 Dance+Blades+Goremaw; 7 Kick; 8 Feint; 9 Vanish.",
-                    "Six routine class buttons, plus items. Goremaw remains in the burst macro; separate Dance and Blades remain on bar 2.",
+                    "Six attack keys, plus items. Goremaw is in the burst macro; Dance and Blades also have their own buttons on Action Bar 2.",
                     "Establish Slice and Dice before the first planned burst. A later press can use Goremaw while Dance is already active; do not spam this as a rotation button.",
                 }
             end
         end
         if goreBurst then
-            lines[#lines+1]="After Slice and Dice is active, use the burst key when Goremaw is ready and for normal Dance windows. Goremaw has no separate button in this policy."
+            lines[#lines+1]="After Slice and Dice is active, use the burst key when Goremaw is ready and for normal Dance windows. Goremaw has no button of its own in this layout."
         end
-        if mode=="sublite" then lines[#lines+1]="Goremaw is not bound by this lighter policy; its talent remains in the reference build." end
+        if mode=="sublite" then lines[#lines+1]="This lighter layout leaves Goremaw off the bars; keep the talent as in TALENTS.txt." end
         utility = {185313,121471,1784,1966,31224,5277,185311,2983,36554,2094,408,57934}
     else
         hero,label = 452536,"Fatebound Assassination"
@@ -113,10 +113,10 @@ local function build(mode,api,layout,enforce)
         else
             main = {sp(1329),sp(51723),sp(32645),sp(1247227),sp(703),sp(1943),sp(1766),sp(385627),sp(360194)}
             lines = {"1 Mutilate; 2 Fan; 3 Envenom; 4 Crimson Tempest; 5 Garrote; 6 Rupture; 7 Kick; 8 Kingsbane; 9 Deathmark.",
-                "Eight routine class buttons, plus items. Crimson Tempest generates/spreads bleeds; Envenom remains the spender."}
+                "Eight attack keys, plus items. Crimson Tempest generates/spreads bleeds; Envenom remains the spender."}
         end
         utility = {1856,5938,1784,1966,31224,5277,185311,2983,36554,2094,408,57934}
-        lines[#lines+1]="Vanish and Shiv remain on bar 2. Tea is not bound; this policy assumes its automatic talent use."
+        lines[#lines+1]="Vanish and Shiv are on Action Bar 2. Tea has no button; its talent uses it automatically."
     end
     if enforce then
         check(known(hero),"Missing " .. name(hero) .. ". Load a compatible " .. label .. " talent loadout first.")
@@ -136,7 +136,7 @@ end
 
 -- Selected six-key policy. Keep the earlier "sub" profile ID unchanged so
 -- saved choices and the seven-key comparison remain unambiguous.
-A.RegisterProfile({id="subburst",class="ROGUE",spec=261,specName="Subtlety",label="Trickster Subtlety - coupled Goremaw burst",requiredPage=1,blockedWhileStealthed=true,
+A.RegisterProfile({id="subburst",class="ROGUE",spec=261,specName="Subtlety",label="Trickster Subtlety - Goremaw on the burst key",requiredPage=1,blockedWhileStealthed=true,
     evidence=SUB_BURST_EVIDENCE,
     layouts={standard={description="6 rotation keys; Goremaw in the burst macro"},compact={description="4 rotation keys plus Alt; 6 action choices",altSlots={1,2}}},
     recommendedWhen=function(api)
@@ -145,9 +145,9 @@ A.RegisterProfile({id="subburst",class="ROGUE",spec=261,specName="Subtlety",labe
     end,
     build=function(api,layout,enforce) return build("subburst",api,layout,enforce) end})
 for _, row in ipairs({
-    {id="sub",label="Trickster Subtlety - seven action choices",spec=261,specName="Subtlety",normal="7 rotation keys; separate ST/AoE",compact="5 rotation keys with Alt+1/2; 7 action choices",evidence=SUB_EVIDENCE},
-    {id="sublite",label="Trickster Subtlety - six action choices",spec=261,specName="Subtlety",normal="6 rotation keys; Goremaw omitted",compact="4 rotation keys with Alt+1/2; 6 action choices",evidence=SUB_EVIDENCE},
-    {id="assa",label="Fatebound Assassination - relaxed spend",spec=259,specName="Assassination",normal="8 rotation keys",compact="6 rotation keys with Alt+1/2; 8 action choices",evidence=ASSA_EVIDENCE},
+    {id="sub",label="Trickster Subtlety - seven attacks",spec=261,specName="Subtlety",normal="7 rotation keys; separate ST/AoE",compact="5 rotation keys with Alt+1/2; 7 action choices",evidence=SUB_EVIDENCE},
+    {id="sublite",label="Trickster Subtlety - six attacks, no Goremaw",spec=261,specName="Subtlety",normal="6 rotation keys; Goremaw omitted",compact="4 rotation keys with Alt+1/2; 6 action choices",evidence=SUB_EVIDENCE},
+    {id="assa",label="Fatebound Assassination - calmer pace",spec=259,specName="Assassination",normal="8 rotation keys",compact="6 rotation keys with Alt+1/2; 8 action choices",evidence=ASSA_EVIDENCE},
 }) do
     local mode=row.id
     A.RegisterProfile({id=mode,class="ROGUE",spec=row.spec,specName=row.specName,label=row.label,requiredPage=1,blockedWhileStealthed=true,

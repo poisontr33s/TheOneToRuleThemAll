@@ -1,4 +1,4 @@
-THE ONE TO RULE THEM ALL — 0.3.0-astra
+THE ONE TO RULE THEM ALL — 0.3.1-combined
 26. oktober 2026 · Retail 12.1.5
 
 Pakken inneholder Rogue og Blood Death Knight. Yipyep har egne San'layn- og
@@ -99,6 +99,13 @@ Etter fullført Undo blir samme backup sperret mot ny gjenoppretting.
 Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
 En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
 velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
+Er en gjenstand, et battle pet eller et equipment set fra det gamle oppsettet
+borte når du bruker Undo, blir plassen tom. Resten gjenopprettes, og chatten
+sier hvilke plasser det gjelder.
+
+Hvis Apply feiler, forsøkes full tilbakeføring. Kan en gammel knapp ikke
+gjenopprettes, beholdes backupen og du får beskjed om å bruke /tor undo.
+Det meldes ikke at alt er gjenopprettet når tilbakeføringen er ufullstendig.
 
 OPPDATERING FRA EN TIDLIGERE VERSJON
 
@@ -108,7 +115,8 @@ Ved bytte av profil/layout bruker du først Undo i opprinnelig loadout.
 
 FØRSTE TEST I WOW — ROGUE
 
-Åpne /tor på Ickalore. Kontroller at profilen og plassene stemmer før Apply.
+Åpne /tor på Rogue-karakteren din. Kontroller at profilen og plassene stemmer
+før Apply.
 Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
 deretter burst på en treningsdukke. Test også Undo når du er ute av kamp og
 Stealth. På en alt uten modul skal vinduet vise at ingen profil er tilgjengelig.
