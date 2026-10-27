@@ -1,38 +1,24 @@
 # TheOneToRuleThemAll
 
-WoW Retail addon for action-bar layouts and macros.
+WoW Retail action-bar setup. The complete Method.gg Mythic+ version is on
+[`astra`](https://github.com/poisontr33s/TheOneToRuleThemAll/tree/astra).
 
-[Download a build](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Amain) · [Setup and Undo](TheOneToRuleThemAll/START-HERE.txt)
+[Download the current build](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra) · [Current setup instructions](https://github.com/poisontr33s/TheOneToRuleThemAll/blob/astra/TheOneToRuleThemAll/START-HERE.txt)
 
-Version includes; Standard and Compact layouts; Compact uses manual Alt modifiers.
+Main still contains the earlier Rogue version. The new class layouts move
+here after acceptance in WoW. Claude's later review is separate.
 
-Place addon-folder under `_retail_/Interface/AddOns/`.
+Open `/tor` outside combat and Stealth. Review slots before **Apply layout**,
+then `/reload`. Use `/tor undo` to restore the previous buttons.
+Keep SavedVariables when replacing the addon folder.
 
-Select the matching [talents](TheOneToRuleThemAll/TALENTS.txt).
+[Working rules](AGENTS.md) · [Gem and enchant template](tools/class_data/gear.json)
 
-Open `/tor` outside combat and Stealth.
+Keep changes small and text short. Test actual behavior in WoW;
+passing local checks alone does not establish that it works in the client.
 
-Review slots before **Apply layout**, then `/reload`. Use `/tor undo` to restore.
-
-Read [Working rules](AGENTS.md) before changing any code; short text + tests for failure risk. 
-
-Functionality must be tried in WoW.
-
-Current dev. follow Method.gg — Mythic+ expanding class-cover on `astra`.
-
-Approved changes can reach `main` without waiting for Claude.
-
-Claude contributes on `claude`; reviewed work can later enter `combined`.
-
-Addon changes will enter `main/origin` after the in-game functionality solidified.
-
-Version hasn't been verified in WoW client yet.
-
-Python 3 + Lua 5.4 shared library installed:
-
+For the source on this branch, install Python 3 and a Lua 5.4 shared library:
 ```sh
 python3 TheOneToRuleThemAll/validation/run_lua_tests.py
 python3 tools/package_addon.py
 ```
-
-[Code contract](TheOneToRuleThemAll/EXTENDING.txt) · [Changes](TheOneToRuleThemAll/CHANGELOG.txt) · [Playing notes](TheOneToRuleThemAll/PLAY-GUIDE.txt)

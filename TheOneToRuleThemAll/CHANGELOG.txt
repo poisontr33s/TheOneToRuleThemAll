@@ -1,29 +1,6 @@
-0.2.1 — 25 October 2026
+Main — 27 October 2026
 
-- Uses C_SpecializationInfo; obsolete global functions are absent from the tests.
-- Removes unsupported flyout handling. Setup rejects an affected flyout before
-  picking up existing macros or placing actions.
-- Simulation/model text appears only under Show details, not in Apply chat.
-- Lists every affected Bar 2 slot and localized ability, and explains what
-  existing keys will cast after Apply. This appears in the window and chat.
-- Uses localized class names, Status and previous setup in the player interface.
-- Frame mocks accept only the nine supported events. 136/136 mock tests pass.
-- The companion research archive now contains this same 0.2.1 addon. Simulation
-  data and the 0.1.0 comparison report retain their original historical results.
-
-0.2.0 — 25 October 2026
-
-- /tor opens a setup panel with profile/layout preview, readiness, Apply and Undo.
-- /tor check inspects prerequisites without touching bars, macros or saved data.
-- Repeated Undo no longer replays a restored snapshot over later manual changes.
-- New snapshots also guard the selected saved talent loadout and Starter Build
-  status. Older snapshots remain recoverable with the limitation shown explicitly.
-- Existing Subtlety and Assassination policies/macros are unchanged. Other classes
-  remain passive; no additional DPS gain or new class support is claimed.
-- Validation uses mock WoW APIs/widgets. Live rendering and casting remain untested.
-
-0.1.0 — initial Rogue release
-
-- Reversible profile setup, character-scoped macros and per-character backups.
-- Standard and Compact layouts; native Rogue Stealth/Dance bar mirroring.
-- Fixed-gear Rogue comparisons supplied in the separate simulation report.
+- Removed retired personal talent, play-guide and gear documents.
+- Saved the agreed gem/enchant template in tools/class_data/gear.json.
+- Pointed current downloads and class instructions to astra.
+- Runtime remains 0.2.1 pending acceptance of the new class version in WoW.
