@@ -10,7 +10,7 @@ Place addon-folder under `_retail_/Interface/AddOns/`.
 
 Select the matching [talents](TheOneToRuleThemAll/TALENTS.txt).
 
-Open `/tor` outside combat.
+Open `/tor` outside combat. (In Stealth for Rogue and Druid)
 
 Review slots before **Apply layout**, then `/reload`. Use `/tor undo` to restore.
 
