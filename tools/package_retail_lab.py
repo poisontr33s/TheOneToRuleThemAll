@@ -13,7 +13,8 @@ from lab import MAIN, PROBE, source_files
 
 def build():
     files = {name: (LAB / name).read_bytes()
-             for name in ("lab.py", "windows.py", "desk.html", "Start-Lab.cmd", "README.md")}
+             for name in ("lab.py", "deployment.py", "windows.py", "desk.html", "Start-Lab.cmd",
+                          "Status-Lab.cmd", "Restore-Lab.cmd", "README.md")}
     files.update({"payload/" + MAIN + "/" + name: data
                   for name, data in source_files(ROOT / MAIN).items()})
     files.update({"addon/" + PROBE + "/" + name: data

@@ -11,13 +11,15 @@ import os
 from pathlib import Path
 import re
 import secrets
-import shutil
+import stat
 import subprocess
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
 import webbrowser
+
+import deployment
 
 
 HERE = Path(__file__).resolve().parent
@@ -66,7 +68,8 @@ def source_files(folder):
         if "validation" in relative.parts or any(part.startswith(".") for part in relative.parts):
             continue
         if file.is_file() and file.suffix.lower() in {".lua", ".toc", ".txt"}:
-            if file.is_symlink() or not file.resolve().is_relative_to(folder.resolve()):
+            no_links(file, folder)
+            if not file.resolve().is_relative_to(folder.resolve()):
                 raise ValueError("Linked addon source files are not supported.")
             files[relative.as_posix()] = file.read_bytes()
     if folder.name + ".toc" not in files:
@@ -88,77 +91,45 @@ def source_digest(files):
 
 def no_links(path, boundary):
     current = path
-    while current != boundary:
-        if current.is_symlink() or (hasattr(current, "is_junction") and current.is_junction()):
-            raise ValueError(f"Refusing to install through a link: {current}")
+    while True:
+        try:
+            attributes = current.lstat()
+        except FileNotFoundError:
+            attributes = None
+        if attributes and (stat.S_ISLNK(attributes.st_mode) or
+                getattr(attributes, "st_file_attributes", 0) & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 1024)):
+            raise ValueError(f"Refusing to use a linked path: {current}")
+        if current == boundary:
+            break
         if current.parent == current:
             raise ValueError("Installation path is outside the selected client.")
         current = current.parent
 
 
+def _ensure_wow_closed():
+    if wow_running():
+        raise ValueError("Close WoW before installing or restoring addon folders.")
+
+
 def install_addons(client, state_dir, main_source, probe_source):
     main_files, probe_files = source_files(main_source), source_files(probe_source)
-    digest = source_digest(main_files)
-    deployment_id = secrets.token_hex(16)
-    header = ('TheOneToRuleThemAllClientTestDeployment = { id = "' + deployment_id
-              + '", source_sha256 = "' + digest + '" }\n').encode("ascii")
-    probe_files["ClientTest.lua"] = header + probe_files["ClientTest.lua"]
-    addons = client / "Interface" / "AddOns"
-    no_links(addons, client)
-    addons.mkdir(parents=True, exist_ok=True)
-    backup_root = client / "WTF" / "TORClientLabBackups" / deployment_id
-    no_links(backup_root, client)
-    staged, installed, moved = {}, [], []
-    try:
-        for name, files in ((MAIN, main_files), (PROBE, probe_files)):
-            target = addons / name
-            no_links(target, client)
-            staging = addons / (".tor-lab-" + deployment_id + "-" + name)
-            staging.mkdir()
-            staged[name] = staging
-            for relative, data in files.items():
-                output = staging / relative
-                output.parent.mkdir(parents=True, exist_ok=True)
-                output.write_bytes(data)
-                if output.read_bytes() != data:
-                    raise OSError("Written addon bytes did not match the source.")
-        for name in (MAIN, PROBE):
-            target = addons / name
-            if target.exists():
-                backup_root.mkdir(parents=True, exist_ok=True)
-                target.rename(backup_root / name)
-                moved.append(name)
-            staged[name].rename(target)
-            installed.append(name)
-        manifest = {"schema": 1, "deployment_id": deployment_id, "source_sha256": digest,
-                    "installed_at": time.time(), "client": str(client),
-                    "backup": str(backup_root) if moved else None,
-                    "files": {addon + "/" + name: hashlib.sha256(data).hexdigest()
-                              for addon, files in ((MAIN, main_files), (PROBE, probe_files))
-                              for name, data in files.items()}}
-        state_dir.mkdir(parents=True, exist_ok=True)
-        temporary = state_dir / "deployment.tmp"
-        temporary.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-        temporary.replace(state_dir / "deployment.json")
-        return manifest
-    except Exception:
-        # If either installation fails, put both original addon folders back.
-        for name in reversed(installed):
-            shutil.rmtree(addons / name)
-        for name in reversed(moved):
-            (backup_root / name).rename(addons / name)
-        raise
-    finally:
-        for staging in staged.values():
-            if staging.exists():
-                shutil.rmtree(staging)
+    return deployment.install(client, state_dir, main_files, probe_files,
+                              source_digest(main_files), _ensure_wow_closed)
+
+
+def deployment_status(client, state_dir, deployment_id=None):
+    return deployment.status(client, state_dir, deployment_id)
+
+
+def restore_addons(client, state_dir, deployment_id=None):
+    return deployment.restore(client, state_dir, _ensure_wow_closed, deployment_id)
 
 
 def verify_install(client, manifest):
     errors = []
     files = manifest.get("files")
     required = {MAIN + "/" + MAIN + ".toc", PROBE + "/" + PROBE + ".toc", PROBE + "/ClientTest.lua"}
-    if (manifest.get("schema") != 1 or not isinstance(files, dict) or not required <= files.keys()
+    if (manifest.get("schema") not in (1, 2) or not isinstance(files, dict) or not required <= files.keys()
             or not re.fullmatch(r"[a-f0-9]{32}", str(manifest.get("deployment_id", "")))
             or not re.fullmatch(r"[a-f0-9]{64}", str(manifest.get("source_sha256", "")))):
         return ["Missing or invalid deployment manifest. Install the lab build again."]
@@ -349,37 +320,75 @@ def wow_running():
                                 text=True, check=True, timeout=15,
                                 creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     except (OSError, subprocess.SubprocessError) as error:
-        raise RuntimeError("Could not establish whether WoW is closed. No addon files were changed.") from error
-    return any(row and row[0].lower() in {"wow.exe", "wowt.exe"} for row in csv.reader(result.stdout.splitlines()))
+        raise RuntimeError("Could not establish whether WoW is closed. Keep WoW closed before retrying.") from error
+    rows = [row for row in csv.reader(result.stdout.splitlines()) if row]
+    if not rows or any(len(row) < 2 or not row[1].strip().isdigit() for row in rows):
+        raise RuntimeError("Could not read the Windows process list. Keep WoW closed before retrying.")
+    return any(row[0].lower() in {"wow.exe", "wowt.exe"} for row in rows)
 
 
-def main():
+def print_deployment_status(result):
+    labels = {
+        "not_installed": "No test installation found.",
+        "installed": "Test build installed. Original addon folders can be restored.",
+        "restore_pending": "Restore was interrupted. Close WoW and run --restore again.",
+        "install_pending": "Installation was interrupted. Close WoW and run --restore to recover.",
+        "restored": "Original addon folders restored. Test files and saved settings were kept.",
+        "legacy": "Older installation: automatic restoration is unavailable.",
+        "blocked": "Restoration is blocked. No files were changed.",
+    }
+    if result.get("already_restored"):
+        print("This deployment was already restored. Current addon folders were left as they are.")
+    else:
+        print(labels.get(result["state"], result["state"]))
+    if result.get("deployment_id"):
+        print("Deployment: " + result["deployment_id"])
+    for error in result.get("errors", []):
+        print(error)
+
+
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--wow-path", type=Path, help="World of Warcraft, _retail_, or _ptr_ folder")
-    parser.add_argument("--install", action="store_true", help="Install this source build; back up existing addon folders")
+    operation = parser.add_mutually_exclusive_group()
+    operation.add_argument("--install", action="store_true", help="Install this source build; back up existing addon folders")
+    operation.add_argument("--restore", action="store_true", help="Restore the original addon folders; keep saved settings and test files")
+    operation.add_argument("--status", action="store_true", help="Inspect installation and backup integrity without writing files")
+    parser.add_argument("--deployment", help="Inspect or restore a specific deployment shown by --status")
     parser.add_argument("--port", type=int, default=0, help="Local port (default: pick an available port)")
     parser.add_argument("--no-browser", action="store_true")
-    args = parser.parse_args()
-    if os.name != "nt":
+    args = parser.parse_args(argv)
+    if args.install and args.deployment:
+        parser.error("--deployment selects an existing installation; use it with --status or --restore.")
+    if os.name != "nt" and not args.status:
         parser.error("This bridge needs Windows with the real WoW client. It does not simulate a client.")
-    import windows
     client = client_directory(args.wow_path) if args.wow_path else find_client()
     if not client:
         typed = input("WoW installation folder: ").strip().strip('"')
         client = client_directory(typed)
-    executable = client / ("WowT.exe" if client.name.lower() == "_ptr_" else "Wow.exe")
-    windows.configure(str(executable))
     state_dir = HERE / "state"
+    if args.status:
+        result = deployment_status(client, state_dir, args.deployment)
+        print_deployment_status(result)
+        return 1 if result["state"] in {"blocked", "legacy"} else 0
+    if args.restore:
+        print_deployment_status(restore_addons(client, state_dir, args.deployment))
+        return 0
     if args.install:
-        if wow_running():
-            raise ValueError("Close WoW before installing the test build, then run Start-Lab again.")
         main_source = HERE / "payload" / MAIN
         if not main_source.is_dir():
             main_source = HERE.parents[1] / MAIN
         manifest = install_addons(client, state_dir, main_source, HERE / "addon" / PROBE)
-        print("Installed the source build and its client test. Existing addon folders were backed up; saved settings were kept.")
+        print("Test build ready. Original addon folders and saved settings were kept. --restore puts the original folders back.")
     else:
-        manifest = json.loads((state_dir / "deployment.json").read_text(encoding="utf-8"))
+        result = deployment_status(client, state_dir, args.deployment)
+        if result["state"] not in {"installed", "legacy"}:
+            print_deployment_status(result)
+            raise ValueError("No intact active test build is available for this desk.")
+        manifest = result["manifest"]
+    import windows
+    executable = client / ("WowT.exe" if client.name.lower() == "_ptr_" else "Wow.exe")
+    windows.configure(str(executable))
     errors = verify_install(client, manifest)
     if errors:
         raise ValueError("\n".join(errors))
@@ -402,7 +411,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        raise SystemExit(main() or 0)
     except (OSError, ValueError, RuntimeError) as error:
         print("Cannot start the test desk: " + str(error))
         raise SystemExit(1)

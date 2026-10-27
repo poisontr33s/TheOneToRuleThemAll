@@ -42,6 +42,9 @@ class WindowFixture:
 
 class InstallTests(unittest.TestCase):
     def setUp(self):
+        closed = patch("lab.wow_running", return_value=False)
+        closed.start()
+        self.addCleanup(closed.stop)
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
