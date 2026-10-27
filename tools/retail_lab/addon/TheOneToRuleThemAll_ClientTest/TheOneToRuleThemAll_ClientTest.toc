@@ -1,0 +1,9 @@
+## Interface: 120105
+## Title: The One — Client Test
+## Notes: Optional, player-started checks in the actual Retail client.
+## Author: Astra
+## Version: 1
+## RequiredDeps: TheOneToRuleThemAll
+## SavedVariablesPerCharacter: TheOneToRuleThemAllClientTestDB, TheOneToRuleThemAllClientTestReport
+
+ClientTest.lua

@@ -68,6 +68,12 @@ protected actions and macro casting have **not yet been verified in WoW**.
 The checks above remain open until performed in the client. A passing CI run
 means the code tests and packaging passed; it does not mark these checks complete.
 
+The optional [Retail test desk](tools/retail_lab/README.md) packages this unchanged
+addon with a Windows browser bridge and a companion for observing Apply, reload
+and Undo inside the real client. It is a separate ZIP in the same build artifacts.
+The desk itself still needs Windows/in-game acceptance; its transport and file
+checks do not count as that acceptance.
+
 ## Shared development
 
 This repository is the source for changes by Astra, Claude and the owner.

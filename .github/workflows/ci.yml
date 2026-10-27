@@ -26,8 +26,14 @@ jobs:
       - name: Run addon tests
         run: python3 TheOneToRuleThemAll/validation/run_lua_tests.py
 
+      - name: Check the optional client test desk
+        run: python3 -m unittest discover -s tools/retail_lab -p 'test_*.py' -v
+
       - name: Build installable addon
         run: python3 tools/package_addon.py
+
+      - name: Package the optional client test desk
+        run: python3 tools/package_retail_lab.py
 
       - name: Upload installable ZIP
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
