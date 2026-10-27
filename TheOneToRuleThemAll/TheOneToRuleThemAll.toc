@@ -1,11 +1,15 @@
 ## Interface: 120105
 ## Title: The One To Rule Them All
-## Notes: Reversible, modular action-bar and macro setup. Rogue profiles included. No combat automation.
-## Author: Astra
-## Version: 0.2.1
+## Notes: Method Mythic+ talent references and reversible action-bar setup.
+## Author: Astra, Claude
+## Version: 0.4.1-astra
 ## OptionalDeps: AstraRogueSetup, AstraSubSetup
 ## SavedVariablesPerCharacter: TheOneToRuleThemAllDB
 
 Core.lua
-Modules/Rogue.lua
+NativeBar.lua
+StandardData.lua
+Modules/Standard.lua
+Controls.lua
+TalentBrowser.lua
 UI.lua

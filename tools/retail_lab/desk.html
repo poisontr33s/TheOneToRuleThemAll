@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The One · Retail-lab</title>
+<style nonce="NONCE">
+  :root { color-scheme: dark; font: 16px/1.5 system-ui,sans-serif; background:#101713; color:#e4ece6 }
+  body { max-width:1400px; margin:0 auto; padding:24px }
+  h1 { font-size:1.65rem; margin:0 0 6px; letter-spacing:-.04em }
+  p { margin:0 0 18px; color:#b4c8ba }
+  nav { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 }
+  button { font:inherit; padding:10px 15px; border:1px solid #41614b; border-radius:8px; background:#213b2b; color:#f0f5f1; cursor:pointer }
+  button:hover { background:#2d513a }
+  button:disabled { opacity:.45; cursor:wait }
+  #status { min-height:25px; color:#e7d795; white-space:pre-wrap }
+  #screen { display:block; max-width:100%; height:auto; cursor:crosshair; border:1px solid #41614b; border-radius:8px }
+  #screen[hidden] { display:none }
+  #empty { padding:70px 20px; text-align:center; background:#18261e; border-radius:8px; color:#a6bdae }
+  section { margin-top:24px; padding:20px; border:1px solid #314e3b; border-radius:8px }
+  h2 { font-size:1.1rem; margin:0 0 8px }
+  pre { white-space:pre-wrap; word-break:break-word; font-size:13px; color:#bed6c5; max-height:480px; overflow:auto }
+  small { color:#a6bdae }
+</style>
+<h1>The One · Retail-lab</h1>
+<p>Se og bruk den ekte addon-en i WoW. Logg inn selv, og stå trygt utenfor kamp.</p>
+<nav aria-label="WoW-handlinger">
+  <button id="capture">Vis WoW</button>
+  <button data-action="tor">Åpne addon</button>
+  <button data-action="talents">Mythic+-talenter</button>
+  <button data-action="test">Åpne klienttest</button>
+  <button data-action="escape">Escape</button>
+  <button data-action="reload">Reload og lagre</button>
+</nav>
+<div id="status" role="status">Start WoW og logg inn. Trykk deretter «Vis WoW».</div>
+<div id="empty">Her vises et skjermbilde av WoW-vinduet ditt.</div>
+<img id="screen" alt="Gjeldende skjermbilde fra WoW. Klikk for å trykke samme sted i spillet." hidden>
+<small>Et klikk i bildet trykker samme sted i WoW. Ta et nytt bilde hvis spillet har endret seg.</small>
+<section>
+  <h2>Det spillet har registrert</h2>
+  <p id="report-status">Ingen klientobservasjon er lest ennå.</p>
+  <button id="reports">Les lagret resultat</button>
+  <pre id="report" hidden></pre>
+  <small>Apply og Undo startes fra testpanelet i WoW. Reload lagrer resultatet. Utseende og faktisk casting må fortsatt observeres.</small>
+</section>
+<script nonce="NONCE">
+  const token = location.pathname.split('/').filter(Boolean)[0];
+  const base = '/' + token + '/';
+  const screen = document.getElementById('screen');
+  const status = document.getElementById('status');
+  let capture = null, imageUrl = null, busy = false;
+  async function request(path, data) {
+    const options = data === undefined ? {} : {
+      method:'POST', headers:{'Content-Type':'application/json','X-Lab-Token':token}, body:JSON.stringify(data)
+    };
+    const response = await fetch(base + path, options);
+    if (!response.ok) {
+      const failure = await response.json();
+      throw new Error(failure.error || 'Forespørselen ble avvist.');
+    }
+    return response;
+  }
+  async function showScreen() {
+    capture = null;
+    const response = await request('capture', {});
+    const blob = await response.blob();
+    const captureId = response.headers.get('X-Capture-ID');
+    const state = await (await request('state')).json();
+    if (imageUrl) URL.revokeObjectURL(imageUrl);
+    imageUrl = URL.createObjectURL(blob);
+    screen.src = imageUrl;
+    await screen.decode();
+    capture = {id:captureId};
+    screen.hidden = false;
+    document.getElementById('empty').hidden = true;
+    status.textContent = state.source_errors.length ? state.source_errors.join('\n') : 'WoW er klart. Klikk på en knapp i bildet, eller åpne klienttesten.';
+  }
+  async function run(operation) {
+    if (busy) return;
+    busy = true;
+    document.querySelectorAll('button').forEach(button => button.disabled = true);
+    try { await operation(); }
+    catch (error) { capture = null; status.textContent = error.message; }
+    finally { busy = false; document.querySelectorAll('button').forEach(button => button.disabled = false); }
+  }
+  document.getElementById('capture').addEventListener('click', () => run(showScreen));
+  document.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => run(async () => {
+    await request('action', {action:button.dataset.action});
+    await new Promise(resolve => setTimeout(resolve, button.dataset.action === 'reload' ? 1800 : 300));
+    await showScreen();
+  })));
+  screen.addEventListener('click', event => run(async () => {
+    if (!capture) throw new Error('Ta et nytt bilde før du klikker.');
+    const rect = screen.getBoundingClientRect();
+    const x = Math.floor((event.clientX - rect.left) * screen.naturalWidth / rect.width);
+    const y = Math.floor((event.clientY - rect.top) * screen.naturalHeight / rect.height);
+    await request('action', {action:'click', capture_id:capture.id, x, y});
+    capture = null;
+    await new Promise(resolve => setTimeout(resolve, 300));
+    await showScreen();
+  }));
+  document.getElementById('reports').addEventListener('click', () => run(async () => {
+    const result = await (await request('reports')).json();
+    const output = document.getElementById('report');
+    if (!result.reports.length) {
+      output.hidden = true;
+      document.getElementById('report-status').textContent = 'Ingen lagret observasjon fra denne installasjonen. Åpne klienttesten i WoW og bruk Reload for å lagre.';
+      return;
+    }
+    document.getElementById('report-status').textContent = 'Lest fra spillets lagrede testresultat. Fasen under viser hvor langt testen faktisk kom.';
+    output.textContent = JSON.stringify(result.reports.map(entry => entry.report), null, 2);
+    output.hidden = false;
+  }));
+</script>
+</html>

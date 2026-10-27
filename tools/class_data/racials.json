@@ -1,0 +1,230 @@
+{
+  "checked": "2026-10-27",
+  "sources": [
+    "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+  ],
+  "spells": [
+    {
+      "name": "Will to Survive",
+      "ids": [
+        59752
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Blood Fury",
+      "ids": [
+        33697,
+        33702,
+        20572
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Stoneform",
+      "ids": [
+        20594
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Shadowmeld",
+      "ids": [
+        58984
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Will of the Forsaken",
+      "ids": [
+        7744
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Cannibalize",
+      "ids": [
+        20577
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "War Stomp",
+      "ids": [
+        20549
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Escape Artist",
+      "ids": [
+        20589
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Berserking",
+      "ids": [
+        26297
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Rocket Jump",
+      "ids": [
+        69070
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Rocket Barrage",
+      "ids": [
+        69041
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Arcane Torrent",
+      "ids": [
+        202719,
+        129597,
+        28730,
+        50613,
+        232633,
+        25046,
+        80483,
+        155145,
+        69179
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Gift of the Naaru",
+      "ids": [
+        121093,
+        416250,
+        59548,
+        59547,
+        59545,
+        59544,
+        370626,
+        59543,
+        59542,
+        28880
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Fireblood",
+      "ids": [
+        265221
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Bag of Tricks",
+      "ids": [
+        312411
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Ancestral Call",
+      "ids": [
+        274738
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Hyper Organic Light Originator",
+      "ids": [
+        312924
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Wing Buffet",
+      "ids": [
+        357214
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Azerite Surge",
+      "ids": [
+        436344
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Thorn Bloom",
+      "ids": [
+        1237885
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Darkflight",
+      "ids": [
+        68992
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Quaking Palm",
+      "ids": [
+        107079
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Arcane Pulse",
+      "ids": [
+        260364
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Bull Rush",
+      "ids": [
+        255654
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Spatial Rift",
+      "ids": [
+        256948
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Light's Judgment",
+      "ids": [
+        255647
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Regeneratin'",
+      "ids": [
+        291944
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Pterrordax Swoop",
+      "ids": [
+        281954
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    },
+    {
+      "name": "Haymaker",
+      "ids": [
+        287712
+      ],
+      "source": "https://github.com/simulationcraft/simc/blob/426ad85ecb1c5d9a1af166931478dabf29b42fdd/engine/dbc/generated/racial_spells.inc"
+    }
+  ]
+}

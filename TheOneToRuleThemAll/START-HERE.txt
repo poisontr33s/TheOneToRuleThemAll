@@ -1,132 +1,63 @@
-THE ONE TO RULE THEM ALL — 0.2.1
-25. oktober 2026 · Retail 12.1.5
+THE ONE TO RULE THEM ALL — 0.4.1-astra
+27. oktober 2026 · Retail 12.1.5
 
-Første utgave inneholder Rogue-oppsett. Kjernen kan få egne klassemoduler.
-Andre klasser og Outlaw har ikke et ferdig knappeoppsett i denne pakken.
+Method Mythic+ er talentgrunnlaget. Faste knappeplasser for alle specs,
+med egne plasser til aktive racials. Custom-bygg er bevart i repoet.
+Dette er Astras utviklingsutgave, før Claude og godkjenning i WoW.
 
-INSTALLASJON
+KOM I GANG
 
-1. Pakk ut mappen TheOneToRuleThemAll i:
-   World of Warcraft\_retail_\Interface\AddOns\
-   Sluttstien skal være:
-   ...\AddOns\TheOneToRuleThemAll\TheOneToRuleThemAll.toc
+Lukk WoW og erstatt TheOneToRuleThemAll i:
+World of Warcraft\_retail_\Interface\AddOns\
+Behold SavedVariables, der din tidligere setup er lagret.
 
-2. Aktiver The One To Rule Them All i WoW. Importer riktig talentkode fra
-   TALENTS.txt. Addon-en importerer ikke talenter og bytter ikke gear.
+Åpne /tor. Mythic+ talents viser Method-koder for din spec.
+Kopier en kode og importer den i WoWs talentvindu. Referansene viser
+kildelenke, patch og dato; de oppdateres med nye addon-utgaver.
 
-3. Stå utenfor kamp og Stealth, på hovedlinjens side 1, med tom musepeker.
-   Åpne oppsettvinduet:
+Gå av mounten og ut av kamp, Stealth og Shadow Dance. Bruk hovedlinjens
+vanlige side, med tom musepeker. Druid bruker riktig form: Moonkin for
+Balance, Cat for Feral, Bear for Guardian og caster for Restoration.
+Se gjennom plassene og trykk Apply layout. Skriv deretter /reload.
 
-   /tor
+Hovedlinjen får kjerneevner, Bar 2 utility, og Bar 3 ekstra evner.
+Aktive racials får Bar 3 plass 10–12. Ulærte valgfrie evner lar plassen
+stå urørt. Bare hovedlinjen i gjeldende form endres. Rogue beholder sin
+Stealth-linje. Slå på Bar 2 og 3 i Options hvis de er skjult.
 
-   På kompatibel Subtlety velges subburst som utgangspunkt. Se gjennom
-   Standard eller Compact og trykk Apply layout når du vil legge det inn.
-   Å åpne vinduet eller velge forhåndsvisning flytter ingen knapper.
-   Dance, Blades og Goremaw deler én makro. Les PLAY-GUIDE.txt for bruken.
+Dine eksisterende taster vises ved evnene og beholder bindingene sine.
+Healer kan velge Mouseover: gyldig vennlig mål under pekeren, ellers
+vanlig mål. Makroene bruker klientens språk. Talenter og gear endres ikke.
 
-4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 i Options
-   hvis den er skjult. Dine eksisterende keybindings blir beholdt.
+ANGRE ELLER BYTTE
 
-Vil du først se oppsettet: /tor preview subburst
-Direkte installasjon som før: /tor subburst
-Vil du ha færre talltaster: /tor subburst compact
-Compact bruker fire offensive talltaster pluss Alt. Alt+1 velger AoE-builder;
-Alt+2 velger AoE-finisher. Du velger dette selv. Det reduserer ikke antall
-evner eller antall kast. Addon-en stopper hvis Alt-kombinasjonene kolliderer
-med andre keybindings. Bruk standardoppsettet hvis Alt blir mer bryderi.
+Bruk /tor undo utenfor kamp, med samme spec, talent-loadout og form som
+ved Apply. Tidligere knapper og tomme plasser gjenopprettes. Det erstatter
+også manuelle endringer du har gjort på de berørte plassene etterpå.
+Genererte makroer beholdes. Bruk Undo før et nytt oppsett legges inn.
+
+Mangler en gammel gjenstand, makro eller annen knapp, beholdes backupen.
+Gjør originalen tilgjengelig og prøv Undo igjen. Ufullstendig tilbakeføring
+blokkerer ny Apply. En backup fra de tidligere custom-profilene kan også
+brukes selv om profilene ikke lenger er med i pakken.
+
+Brukte du AstraRogueSetup eller AstraSubSetup, bruk deres Undo først.
+De har egne backups. Ikke slett SavedVariables eller gamle makroer som
+trengs for å få det opprinnelige oppsettet tilbake.
 
 KOMMANDOER
 
-/tor                              Åpner/lukker oppsettvinduet
-/tor help                         Viser kommandohjelp
-/tor list                         Viser inkluderte profiler
-/tor status                       Viser versjon og backupstatus
-/tor check [profil] [compact]     Sjekker forutsetninger uten å endre noe
-/tor preview <profil> [compact]   Viser oppsett uten å endre noe
-/tor apply <profil> [compact]     Legger inn oppsett
-/tor <profil> [compact]           Kortform av apply
-/tor undo                         Gjenoppretter de berørte knappene
+/tor                              Oppsettvindu
+/tor talents                      Method Mythic+-koder
+/tor list                         Profiler for din spec
+/tor status                       Versjon og tidligere setup
+/tor check [profil] [layout]       Sjekk uten endringer
+/tor preview <profil> [layout]    Forhåndsvisning
+/tor apply <profil> [layout]      Legg inn oppsett
+/tor undo                         Hent tilbake tidligere knapper
 
-Profiler:
-subburst  Ny seks-knappers Sub med Goremaw i burst-makroen
-sub       Tidligere sju-knappers Sub med separat Goremaw
-sublite   Seks-knappers Sub som utelater Goremaw-bruk
-assa      Roligere Fatebound Assassination, åtte offensive evner
+PRØV DET I SPILLET
 
-Alle har standard- og compact-layout. Alle Sub-profiler bruker den samme
-talentkoden. «Sublite» og «subburst» er forskjellige skadeprioriteringer:
-bare subburst beholder Goremaw i skadeplanen.
-
-HVA SOM FLYTTES
-
-Hovedlinjens plasser 1–9, Rogue Stealth/Dance-linjens plasser 1–9 og lærte
-utilities på Action Bar 2. Plass 10–12 og andre bars blir beholdt.
-Vinduet og chatten viser hver berørt plass på Action Bar 2 og evnen som
-legges der. Tastene du har bundet til disse plassene, kaster de nye evnene
-etter Apply. Selve tastebindingene blir ikke endret.
-I compact-oppsettene ligger Kick på 7, Feint på 8 og Vanish på 9.
-Standard Assassination trenger plass 8–9 til Kingsbane og Deathmark;
-Feint og Vanish ligger da på bar 2.
-
-Makroene bruker navnene fra din spillklient. Eksisterende makroer med samme
-navn og annet innhold overskrives ikke. Tre makroplasser trengs for Sub;
-compact Assassination trenger to. Standard Assassination trenger ingen.
-On-use-trinkets, poisons, Shroud og situasjonsutility kommer i tillegg.
-Behold dem på tilgjengelige plasser. De legges ikke automatisk i burst-makroen.
-
-UNDO OG BYTTE
-
-Velg samme spec og talent-loadout som da du la inn oppsettet. Gå ut av kamp
-og Stealth, tilbake til side 1, og skriv /tor undo. Deretter kan du velge
-en ny profil eller layout. Ny setup er blokkert mens en backup er aktiv.
-Undo gjenoppretter også opprinnelig tomme plasser. Manuelle endringer du
-gjorde på disse plassene etter setup erstattes av backupen.
-Genererte makroer beholdes. Ikke slett/rediger gamle makroer som undo trenger.
-Etter fullført Undo blir samme backup sperret mot ny gjenoppretting.
-Nye backups registrerer valgt lagret talent-loadout og Starter Build-status.
-En gammel 0.1.0-backup kan fortsatt gjenopprettes, men mangler disse feltene;
-velg selv det opprinnelige talent-loadoutet før du bruker Undo på den.
-
-OPPDATERING FRA 0.1.0 ELLER 0.2.0
-
-Lukk WoW, og erstatt addon-mappen med denne utgaven. Behold SavedVariables.
-En aktiv backup følger med videre; du trenger ikke legge inn oppsettet igjen.
-Ved bytte av profil/layout bruker du først Undo i opprinnelig loadout.
-
-FØRSTE TEST I WOW
-
-Åpne /tor på Ickalore. Kontroller at profilen og plassene stemmer før Apply.
-Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
-deretter burst på en treningsdukke. Test også Undo når du er ute av kamp og
-Stealth. På en alt uten modul skal vinduet vise at ingen profil er tilgjengelig.
-Plassnummer i forhåndsvisningen er action-bar-plasser; dine faktiske taster
-er keybindings du allerede har satt opp i WoW.
-
-Hvis du tidligere brukte AstraRogueSetup eller AstraSubSetup og vil bevare
-tilgangen til det opprinnelige oppsettet, bruk den gamle addon-ens undo først:
-/astrarogue undo eller /astrasub undo i det opprinnelige talent-loadoutet.
-The One endrer ikke deres backups. Hvis det gamle addon-et er deaktivert,
-kan The One ikke lese dets SavedVariables; følg dette steget manuelt.
-
-Etter setup kan The One deaktiveres; de vanlige knappene og makroene består.
-Behold filene og SavedVariables for å kunne bruke undo senere.
-
-HVA «TESTET» BETYR
-
-Simuleringene gjelder den oppgitte gear-malen og skadeprioriteten. Addon-en
-sjekker at nødvendige evner/hero-talenter er lært, men verifiserer ikke at
-hele talentkoden eller gear er identisk med simuleringen. Den vurderer ikke
-kampfakta for deg og velger ikke neste angrep. Du trykker alle handlinger.
-
-Lua-tester med mockede WoW-API-er dekker plassering, undo, lokalisering,
-bindingskonflikter, loadout-bytte og vinduets knappehandlinger. validation/
-inneholder detaljene. Innlasting, visuell layout og makrokasting er ennå ikke
-prøvd i en live WoW-klient. 0.2.x endrer oppsettbetjening og gjenoppretting;
-skadeprioriteten og de tidligere simresultatene er uendret.
-
-Hvis en berørt plass inneholder en flyout (en knapp som åpner flere evner),
-stopper oppsettet før noe flyttes. Flytt den til en uberørt linje og prøv igjen.
-Detaljer om simulering og referansegear vises bare med Show details i vinduet.
-
-Rapporten forklarer skadeforskjellene og begrensningene. GEAR-LOCK.txt viser
-den nye faste malen. Tidligere Astra-resultater brukte en annen gear-mal.
+Etter Apply og /reload: prøv evnene, procs og eventuelle mouseover-makroer.
+Prøv deretter Undo og se at de opprinnelige knappene kommer tilbake.
+Kodekontroll er gjennomført, men oppsettet er ennå ikke godkjent i WoW.

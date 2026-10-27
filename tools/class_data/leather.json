@@ -1,0 +1,2842 @@
+[
+  {
+    "id": "standard-balance",
+    "class": "DRUID",
+    "spec": 102,
+    "specName": "Balance",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/balance-druid",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Elune’s Chosen - Single Target",
+        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMDwsMzMzMYYGjZWmhxMWYZmlZGjZ2wAgx2yMDGz2IwEAAAgFzMzMD2MMGzAAYmBLDA",
+        "content": "raid",
+        "hero": "Elune's Chosen"
+      },
+      {
+        "label": "Stacked Cleave - Elune’s Chosen",
+        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMDwswMzMYYGjZWmZxMzYhlZWGjZGLYYAGbbzMYMbjATAAAAWMzMzMYzYGjZAAMzADA",
+        "content": "raid",
+        "hero": "Elune's Chosen"
+      },
+      {
+        "label": "Spread Cleave - Keeper of the Grove",
+        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMD8AmFzMzMYYGjZWGbzYGbsMzyYmZGLYYAGgltxGmmZWGBAAAYzMzMzgNDMmBwMDAMA",
+        "content": "raid",
+        "hero": "Keeper of the Grove"
+      },
+      {
+        "label": "Mythic+ - Elune’s Chosen",
+        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNMmZgxsMzMzMLMgxMLzsYMzswyMLjxMjNMAYstNzgxsNCMBAAAYhZmZGsZMjxAAwMDWGA",
+        "content": "dungeon",
+        "hero": "Elune's Chosen"
+      }
+    ],
+    "main": [
+      {
+        "id": 190984,
+        "name": "Wrath",
+        "required": true
+      },
+      {
+        "id": 194153,
+        "name": "Starfire",
+        "required": true
+      },
+      {
+        "id": 8921,
+        "name": "Moonfire",
+        "required": true
+      },
+      {
+        "id": 93402,
+        "name": "Sunfire",
+        "required": false
+      },
+      {
+        "id": 78674,
+        "name": "Starsurge",
+        "required": true
+      },
+      {
+        "id": 191034,
+        "name": "Starfall",
+        "required": false
+      },
+      {
+        "id": 194223,
+        "name": "Celestial Alignment",
+        "required": false,
+        "alternatives": [
+          102560
+        ]
+      },
+      {
+        "id": 78675,
+        "name": "Solar Beam",
+        "required": false
+      },
+      {
+        "id": 274281,
+        "name": "New Moon",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 22812,
+        "name": "Barkskin",
+        "required": false
+      },
+      {
+        "id": 22842,
+        "name": "Frenzied Regeneration",
+        "required": false
+      },
+      {
+        "id": 20484,
+        "name": "Rebirth",
+        "required": false,
+        "helpful": true,
+        "targetDead": true
+      },
+      {
+        "id": 2782,
+        "name": "Remove Corruption",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 2908,
+        "name": "Soothe",
+        "required": false
+      },
+      {
+        "id": 132469,
+        "name": "Typhoon",
+        "required": false
+      },
+      {
+        "id": 102793,
+        "name": "Ursol's Vortex",
+        "required": false
+      },
+      {
+        "id": 102401,
+        "name": "Wild Charge",
+        "required": false
+      },
+      {
+        "id": 106898,
+        "name": "Stampeding Roar",
+        "required": false
+      },
+      {
+        "id": 29166,
+        "name": "Innervate",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 8936,
+        "name": "Regrowth",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 33786,
+        "name": "Cyclone",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 205636,
+        "name": "Force of Nature",
+        "required": false
+      },
+      {
+        "id": 202770,
+        "name": "Fury of Elune",
+        "required": false
+      },
+      {
+        "id": 391528,
+        "name": "Convoke the Spirits",
+        "required": false
+      },
+      {
+        "id": 1261867,
+        "name": "Heart of the Wild",
+        "required": false
+      },
+      {
+        "id": 1126,
+        "name": "Mark of the Wild",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 768,
+        "name": "Cat Form",
+        "required": false
+      },
+      {
+        "id": 5487,
+        "name": "Bear Form",
+        "required": false
+      },
+      {
+        "id": 783,
+        "name": "Travel Form",
+        "required": false
+      },
+      {
+        "id": 24858,
+        "name": "Moonkin Form",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Published raid and Mythic+ builds retain their hero-tree choices.",
+      "New Moon stays on one native button through its Half Moon and Full Moon stages.",
+      "Apply the Balance layout in Moonkin Form; the engine verifies its current native page."
+    ],
+    "spellSources": {
+      "190984": "https://www.method.gg/guides/balance-druid/talents",
+      "194153": "https://www.method.gg/guides/balance-druid/talents",
+      "8921": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "93402": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "78674": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "191034": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "194223": "https://www.method.gg/guides/balance-druid/talents",
+      "102560": "https://www.method.gg/guides/balance-druid/talents",
+      "78675": "https://www.method.gg/guides/balance-druid/talents",
+      "274281": "https://www.method.gg/guides/balance-druid/talents",
+      "22812": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "22842": "https://www.method.gg/guides/balance-druid/talents",
+      "20484": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2782": "https://www.method.gg/guides/balance-druid/talents",
+      "2908": "https://www.method.gg/guides/feral-druid/talents",
+      "132469": "https://www.method.gg/guides/balance-druid/talents",
+      "102793": "https://www.method.gg/guides/feral-druid/talents",
+      "102401": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "106898": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "29166": "https://www.method.gg/guides/balance-druid/talents",
+      "8936": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "33786": "https://www.method.gg/guides/balance-druid/talents",
+      "205636": "https://www.method.gg/guides/balance-druid/talents",
+      "202770": "https://www.method.gg/guides/balance-druid/talents",
+      "391528": "https://www.method.gg/guides/balance-druid/talents",
+      "1261867": "https://www.method.gg/guides/balance-druid/talents",
+      "1126": "https://www.method.gg/guides/guardian-druid",
+      "768": "https://www.method.gg/guides/feral-druid/talents",
+      "5487": "https://www.method.gg/guides/balance-druid/talents",
+      "783": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "24858": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation"
+    },
+    "formSpellIDs": [
+      768,
+      5487,
+      783,
+      24858
+    ],
+    "requiredForm": 24858
+  },
+  {
+    "id": "standard-feral",
+    "class": "DRUID",
+    "spec": 103,
+    "specName": "Feral",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/feral-druid",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Single Target: Druid of the Claw",
+        "code": "CcGADBD3hSPCL9Y9gz68WcKvMAAAAAAwghxYmZmxsxDsMz2MzMmZGAAAAWCmNYMzomxsMzMzMGzYGAAAAAAgBAAAQzsMLzMzACsAmZAWMDGAAAzshB",
+        "content": "raid",
+        "hero": "Druid of the Claw"
+      },
+      {
+        "label": "Single Target: Wildstalker",
+        "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAwYMDGzMjxstMPwyYbmZGzMDAAAALBzGMmZUzYWmZmZGjZMDAAAAAAwAAAAoZWmlZmZmlZWaWmZZDMzAsYGMAAmZwMbYA",
+        "content": "raid",
+        "hero": "Wildstalker"
+      },
+      {
+        "label": "Mythic+: Druid of the Claw Convoke + Rake",
+        "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmZ2MzMzMGzmx2YbGzMmZAAAAYJY2M8AmZUzYWMzMzsMm5BMAAAAAAADAAAgmZZWmZmBEYBmZGgFGMAAAmZDD",
+        "content": "dungeon",
+        "hero": "Druid of the Claw"
+      },
+      {
+        "label": "Mythic+: Druid of the Claw Incarn + Swipe",
+        "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZ2YGzMzMzmx2MLzYm5BmZAAAAYJY2MMmZUzYWMzMzsMmhBAAAAAAYAAAA0MLzyMzMgALgZGgFzgBAAwMbYA",
+        "content": "dungeon",
+        "hero": "Druid of the Claw"
+      },
+      {
+        "label": "Mythic+: Wildstalker",
+        "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmZ2YmZmxY2M2mZZGzMmZAAAAYJY2MMmZUzYWMzMzsMmhBAAAAAAYAAAAEAMLzs0sMzyGYmBYxMYAAMzAgB",
+        "content": "dungeon",
+        "hero": "Wildstalker"
+      }
+    ],
+    "main": [
+      {
+        "id": 5221,
+        "name": "Shred",
+        "required": true
+      },
+      {
+        "id": 1822,
+        "name": "Rake",
+        "required": true
+      },
+      {
+        "id": 1079,
+        "name": "Rip",
+        "required": true
+      },
+      {
+        "id": 22568,
+        "name": "Ferocious Bite",
+        "required": true
+      },
+      {
+        "id": 213764,
+        "name": "Swipe",
+        "required": false
+      },
+      {
+        "id": 285381,
+        "name": "Primal Wrath",
+        "required": false
+      },
+      {
+        "id": 5217,
+        "name": "Tiger's Fury",
+        "required": true
+      },
+      {
+        "id": 106951,
+        "name": "Berserk",
+        "required": false,
+        "alternatives": [
+          102543
+        ]
+      },
+      {
+        "id": 274837,
+        "name": "Feral Frenzy",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 106839,
+        "name": "Skull Bash",
+        "required": false
+      },
+      {
+        "id": 22570,
+        "name": "Maim",
+        "required": false
+      },
+      {
+        "id": 22812,
+        "name": "Barkskin",
+        "required": false
+      },
+      {
+        "id": 61336,
+        "name": "Survival Instincts",
+        "required": false
+      },
+      {
+        "id": 22842,
+        "name": "Frenzied Regeneration",
+        "required": false
+      },
+      {
+        "id": 20484,
+        "name": "Rebirth",
+        "required": false,
+        "helpful": true,
+        "targetDead": true
+      },
+      {
+        "id": 2782,
+        "name": "Remove Corruption",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 2908,
+        "name": "Soothe",
+        "required": false
+      },
+      {
+        "id": 102401,
+        "name": "Wild Charge",
+        "required": false
+      },
+      {
+        "id": 106898,
+        "name": "Stampeding Roar",
+        "required": false
+      },
+      {
+        "id": 8936,
+        "name": "Regrowth",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 1850,
+        "name": "Dash",
+        "required": false,
+        "alternatives": [
+          252216
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 391528,
+        "name": "Convoke the Spirits",
+        "required": false
+      },
+      {
+        "id": 8921,
+        "name": "Moonfire",
+        "required": false
+      },
+      {
+        "id": 1261867,
+        "name": "Heart of the Wild",
+        "required": false
+      },
+      {
+        "id": 1126,
+        "name": "Mark of the Wild",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 768,
+        "name": "Cat Form",
+        "required": false
+      },
+      {
+        "id": 5487,
+        "name": "Bear Form",
+        "required": false
+      },
+      {
+        "id": 783,
+        "name": "Travel Form",
+        "required": false
+      },
+      {
+        "id": 5215,
+        "name": "Prowl",
+        "required": false
+      },
+      {
+        "id": 102793,
+        "name": "Ursol's Vortex",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Brutal Slash, cat Thrash and Adaptive Swarm were removed in Midnight; these are not assigned.",
+      "Ravage and other temporary replacements use their native base buttons.",
+      "Apply the melee layout only with the engine checking the actual current form and action page.",
+      "Swipe uses the shared spellbook base; WoW supplies its Cat Form version."
+    ],
+    "spellSources": {
+      "5221": "https://www.method.gg/guides/feral-druid/talents",
+      "1822": "https://www.method.gg/guides/feral-druid/talents",
+      "1079": "https://www.method.gg/guides/feral-druid/talents",
+      "22568": "https://www.method.gg/guides/feral-druid/talents",
+      "285381": "https://www.method.gg/guides/feral-druid/talents",
+      "5217": "https://www.method.gg/guides/feral-druid/talents",
+      "106951": "https://www.method.gg/guides/feral-druid/talents",
+      "102543": "https://www.method.gg/guides/feral-druid/talents",
+      "274837": "https://www.method.gg/guides/feral-druid/talents",
+      "106839": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "22570": "https://www.method.gg/guides/feral-druid/talents",
+      "22812": "https://www.method.gg/guides/feral-druid/playstyle-and-rotation",
+      "61336": "https://www.method.gg/guides/feral-druid/talents",
+      "22842": "https://www.method.gg/guides/feral-druid/talents",
+      "20484": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2782": "https://www.method.gg/guides/feral-druid/talents",
+      "2908": "https://www.method.gg/guides/feral-druid/talents",
+      "102401": "https://www.method.gg/guides/feral-druid/talents",
+      "106898": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "8936": "https://www.method.gg/guides/feral-druid/talents",
+      "1850": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "252216": "https://www.method.gg/guides/feral-druid/talents",
+      "391528": "https://www.method.gg/guides/feral-druid/talents",
+      "8921": "https://www.method.gg/guides/feral-druid/talents",
+      "1261867": "https://www.method.gg/guides/feral-druid/talents",
+      "1126": "https://www.method.gg/guides/guardian-druid",
+      "768": "https://www.method.gg/guides/feral-druid/talents",
+      "5487": "https://www.method.gg/guides/feral-druid/talents",
+      "783": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "5215": "https://www.method.gg/guides/feral-druid/playstyle-and-rotation",
+      "102793": "https://www.method.gg/guides/feral-druid/talents",
+      "213764": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/sc_druid.cpp"
+    },
+    "formSpellIDs": [
+      768,
+      5487,
+      783,
+      24858
+    ],
+    "requiredForm": 768
+  },
+  {
+    "id": "standard-guardian",
+    "class": "DRUID",
+    "spec": 104,
+    "specName": "Guardian",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/guardian-druid",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Elune’s Chosen (Mythic+)",
+        "code": "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmxsYmZMziZxMmZZZgZzwoJamZWmZmZmlxMMAAAAAgZsZALbzMYMLDgpAAAAbYmHAYxMYALWAYmBwA",
+        "content": "dungeon",
+        "hero": "Elune's Chosen"
+      },
+      {
+        "label": "Elune’s Chosen (Raid)",
+        "code": "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmhFzYMzmZZGMLLDMbMGNRzMzyMzMzYMjZAAAAAAzYZGwy2MDGz2AYKAAAwGmxAWMDGwiltBYmBwA",
+        "content": "raid",
+        "hero": "Elune's Chosen"
+      }
+    ],
+    "main": [
+      {
+        "id": 33917,
+        "name": "Mangle",
+        "required": true
+      },
+      {
+        "id": 77758,
+        "name": "Thrash",
+        "required": true
+      },
+      {
+        "id": 8921,
+        "name": "Moonfire",
+        "required": true
+      },
+      {
+        "id": 213764,
+        "name": "Swipe",
+        "required": false
+      },
+      {
+        "id": 192081,
+        "name": "Ironfur",
+        "required": true
+      },
+      {
+        "id": 22842,
+        "name": "Frenzied Regeneration",
+        "required": true
+      },
+      {
+        "id": 6807,
+        "name": "Maul",
+        "required": false
+      },
+      {
+        "id": 400254,
+        "name": "Raze",
+        "required": false
+      },
+      {
+        "id": 50334,
+        "name": "Berserk",
+        "required": false,
+        "alternatives": [
+          102558
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 106839,
+        "name": "Skull Bash",
+        "required": false
+      },
+      {
+        "id": 6795,
+        "name": "Growl",
+        "required": false
+      },
+      {
+        "id": 22812,
+        "name": "Barkskin",
+        "required": false
+      },
+      {
+        "id": 61336,
+        "name": "Survival Instincts",
+        "required": false
+      },
+      {
+        "id": 20484,
+        "name": "Rebirth",
+        "required": false,
+        "helpful": true,
+        "targetDead": true
+      },
+      {
+        "id": 2782,
+        "name": "Remove Corruption",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 2908,
+        "name": "Soothe",
+        "required": false
+      },
+      {
+        "id": 99,
+        "name": "Incapacitating Roar",
+        "required": false
+      },
+      {
+        "id": 132469,
+        "name": "Typhoon",
+        "required": false
+      },
+      {
+        "id": 102793,
+        "name": "Ursol's Vortex",
+        "required": false
+      },
+      {
+        "id": 102401,
+        "name": "Wild Charge",
+        "required": false
+      },
+      {
+        "id": 106898,
+        "name": "Stampeding Roar",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 204066,
+        "name": "Lunar Beam",
+        "required": false
+      },
+      {
+        "id": 200851,
+        "name": "Rage of the Sleeper",
+        "required": false
+      },
+      {
+        "id": 80313,
+        "name": "Pulverize",
+        "required": false
+      },
+      {
+        "id": 155835,
+        "name": "Bristling Fur",
+        "required": false
+      },
+      {
+        "id": 8936,
+        "name": "Regrowth",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 1126,
+        "name": "Mark of the Wild",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 5487,
+        "name": "Bear Form",
+        "required": false
+      },
+      {
+        "id": 768,
+        "name": "Cat Form",
+        "required": false
+      },
+      {
+        "id": 1261867,
+        "name": "Heart of the Wild",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Method currently publishes Elune's Chosen builds for raid and Mythic+; no invented Druid of the Claw import is supplied.",
+      "Regrowth without a Dream of Cenarius proc and Heart of the Wild can leave Bear Form. They remain separate, deliberate buttons.",
+      "The active Bear Form page must be verified before applying."
+    ],
+    "spellSources": {
+      "33917": "https://www.method.gg/guides/guardian-druid/talents",
+      "77758": "https://www.method.gg/guides/guardian-druid/talents",
+      "8921": "https://www.method.gg/guides/guardian-druid/talents",
+      "213764": "https://www.method.gg/guides/guardian-druid/playstyle-and-rotation",
+      "192081": "https://www.method.gg/guides/guardian-druid/playstyle-and-rotation",
+      "22842": "https://www.method.gg/guides/guardian-druid/talents",
+      "6807": "https://www.method.gg/guides/guardian-druid/talents",
+      "400254": "https://www.method.gg/guides/guardian-druid/talents",
+      "50334": "https://www.method.gg/guides/guardian-druid/playstyle-and-rotation",
+      "102558": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "106839": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "6795": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "22812": "https://www.method.gg/guides/guardian-druid/playstyle-and-rotation",
+      "61336": "https://www.method.gg/guides/guardian-druid/playstyle-and-rotation",
+      "20484": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2782": "https://www.method.gg/guides/balance-druid/talents",
+      "2908": "https://www.method.gg/guides/feral-druid/talents",
+      "99": "https://www.method.gg/guides/balance-druid/talents",
+      "132469": "https://www.method.gg/guides/guardian-druid/talents",
+      "102793": "https://www.method.gg/guides/guardian-druid/talents",
+      "102401": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "106898": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "204066": "https://www.method.gg/guides/guardian-druid/talents",
+      "200851": "https://www.method.gg/guides/guardian-druid",
+      "80313": "https://www.method.gg/guides/guardian-druid",
+      "155835": "https://www.method.gg/guides/guardian-druid/talents",
+      "8936": "https://www.method.gg/guides/guardian-druid/talents",
+      "1126": "https://www.method.gg/guides/guardian-druid",
+      "5487": "https://www.method.gg/guides/guardian-druid/talents",
+      "768": "https://www.method.gg/guides/guardian-druid/talents",
+      "1261867": "https://www.method.gg/guides/guardian-druid/talents"
+    },
+    "formSpellIDs": [
+      768,
+      5487,
+      783,
+      24858
+    ],
+    "requiredForm": 5487
+  },
+  {
+    "id": "standard-restoration-druid",
+    "class": "DRUID",
+    "spec": 105,
+    "specName": "Restoration",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/restoration-druid",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Raid: Wildstalker (Best)",
+        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAYMmZZmZMzMmthHYYmNjtxMAAAAAAAAAAYZQzmZMNzYYMLzMzMDDzAAAAAAAAAAIAAgZbmlmtZ2sxYmBmBoZAAmZAYA",
+        "content": "raid",
+        "hero": "Wildstalker"
+      },
+      {
+        "label": "Raid: Keeper of the Grove",
+        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAMjxMbzMjZmxsN8AzYGGbMDAAAAAAAAAAWG0sZGTzMGGzyMzMzwwMAAAAAAAAw2yYDTzMLDAAQALMmZwMDQzAgZGAwA",
+        "content": "raid",
+        "hero": "Keeper of the Grove"
+      },
+      {
+        "label": "Mythic+: Wildstalker (Best)",
+        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAMMmZZMjZmxsN8ADzsYsZbGAAAAAAAAAAsMoZbGmmZMwsYmZmZZGegBAAAAgBAYGAACAAY2mZrZbmFbMzMwMzCoZAAmZAYA",
+        "content": "dungeon",
+        "hero": "Wildstalker"
+      },
+      {
+        "label": "Mythic+:  Keeper of the Grove",
+        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAMMmZZMjZmxsN8AMzsYsYbGAAAAAAAAAAsYoZbGmmBwsYmZmZxwDMAAAAAMAAzA22GLYamZZAAACYhZmZGmZ2ANDAmZAADA",
+        "content": "dungeon",
+        "hero": "Keeper of the Grove"
+      }
+    ],
+    "main": [
+      {
+        "id": 774,
+        "name": "Rejuvenation",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 8936,
+        "name": "Regrowth",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 33763,
+        "name": "Lifebloom",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 48438,
+        "name": "Wild Growth",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 18562,
+        "name": "Swiftmend",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 145205,
+        "name": "Efflorescence",
+        "required": false
+      },
+      {
+        "id": 102342,
+        "name": "Ironbark",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 740,
+        "name": "Tranquility",
+        "required": false
+      },
+      {
+        "id": 132158,
+        "name": "Nature's Swiftness",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 22812,
+        "name": "Barkskin",
+        "required": false
+      },
+      {
+        "id": 88423,
+        "name": "Nature's Cure",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 20484,
+        "name": "Rebirth",
+        "required": false,
+        "helpful": true,
+        "targetDead": true
+      },
+      {
+        "id": 29166,
+        "name": "Innervate",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 106898,
+        "name": "Stampeding Roar",
+        "required": false
+      },
+      {
+        "id": 102401,
+        "name": "Wild Charge",
+        "required": false
+      },
+      {
+        "id": 132469,
+        "name": "Typhoon",
+        "required": false
+      },
+      {
+        "id": 102793,
+        "name": "Ursol's Vortex",
+        "required": false
+      },
+      {
+        "id": 2908,
+        "name": "Soothe",
+        "required": false
+      },
+      {
+        "id": 5211,
+        "name": "Mighty Bash",
+        "required": false
+      },
+      {
+        "id": 768,
+        "name": "Cat Form",
+        "required": false
+      },
+      {
+        "id": 5487,
+        "name": "Bear Form",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 391528,
+        "name": "Convoke the Spirits",
+        "required": false,
+        "alternatives": [
+          33891
+        ]
+      },
+      {
+        "id": 1261867,
+        "name": "Heart of the Wild",
+        "required": false
+      },
+      {
+        "id": 1126,
+        "name": "Mark of the Wild",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 8921,
+        "name": "Moonfire",
+        "required": false
+      },
+      {
+        "id": 93402,
+        "name": "Sunfire",
+        "required": false
+      },
+      {
+        "id": 5176,
+        "name": "Wrath",
+        "required": false
+      },
+      {
+        "id": 1822,
+        "name": "Rake",
+        "required": false
+      },
+      {
+        "id": 1079,
+        "name": "Rip",
+        "required": false
+      },
+      {
+        "id": 783,
+        "name": "Travel Form",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Convoke the Spirits and Incarnation: Tree of Life share the published choice slot.",
+      "Standard uses native heal buttons; Mouseover is an explicit optional layout.",
+      "The caster healing page and Cat Form combat page are different contexts."
+    ],
+    "spellSources": {
+      "774": "https://www.method.gg/guides/restoration-druid/talents",
+      "8936": "https://www.method.gg/guides/restoration-druid/talents",
+      "33763": "https://www.method.gg/guides/restoration-druid/talents",
+      "48438": "https://www.method.gg/guides/restoration-druid/talents",
+      "18562": "https://www.method.gg/guides/restoration-druid/talents",
+      "145205": "https://www.method.gg/guides/restoration-druid/talents",
+      "102342": "https://www.method.gg/guides/restoration-druid/talents",
+      "740": "https://www.method.gg/guides/restoration-druid/talents",
+      "132158": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "22812": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "88423": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "20484": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "29166": "https://www.method.gg/guides/restoration-druid/talents",
+      "106898": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "102401": "https://www.method.gg/guides/restoration-druid/talents",
+      "132469": "https://www.method.gg/guides/restoration-druid/talents",
+      "102793": "https://www.method.gg/guides/restoration-druid/talents",
+      "2908": "https://www.method.gg/guides/feral-druid/talents",
+      "5211": "https://www.method.gg/guides/feral-druid/talents",
+      "768": "https://www.method.gg/guides/restoration-druid/talents",
+      "5487": "https://www.method.gg/guides/restoration-druid/talents",
+      "391528": "https://www.method.gg/guides/restoration-druid/talents",
+      "33891": "https://www.method.gg/guides/restoration-druid/talents",
+      "1261867": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
+      "1126": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "8921": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "93402": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "5176": "https://www.method.gg/guides/restoration-druid/talents",
+      "1822": "https://www.method.gg/guides/restoration-druid/playstyle-and-rotation",
+      "1079": "https://www.method.gg/guides/restoration-druid/talents",
+      "783": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "formSpellIDs": [
+      768,
+      5487,
+      783,
+      24858
+    ],
+    "requiredForm": 0
+  },
+  {
+    "id": "standard-brewmaster",
+    "class": "MONK",
+    "spec": 268,
+    "specName": "Brewmaster",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/brewmaster-monk",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Raid Standard / Defensive (Shado-pan) - Recommended",
+        "code": "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAwMbbGzwYWmxGzMjBAAAAAAYZBzEzMwMMzGDmZmZY2GmxMLPALbPwy2sNmBAAshAAAMbzSzMzsxwGAzMMNGAAwA",
+        "content": "raid",
+        "hero": "Shado-Pan"
+      },
+      {
+        "label": "Raid Advanced / Offensive (Shado-pan)",
+        "code": "CwQAQnG51S19isUJoJoTeJ/IKDAAAwMLbGzYGWmxGmZMAAAAAAALLYEzMwMM2MjxMzMDz2YmxMLYZz22YGzCAAsNLTLz2MLDAwsNLNzMziZYDMzMzw0YAAAD",
+        "content": "raid",
+        "hero": "Shado-Pan"
+      },
+      {
+        "label": "Raid Defensive (Master of Harmony)",
+        "code": "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAgZbzYGGz2M2YmZMAAAAAAALLYEzMwMM2MjxMzMDz2YmxMLYZb22mthZBAAWmlplZbmlBAACghNwMDYaMAAgB",
+        "content": "raid",
+        "hero": "Master of Harmony"
+      },
+      {
+        "label": "Mythic+ Standard (Shado-Pan) - Recommended",
+        "code": "CwQAQnG51S19isUJoJoTeJ/IKDAAAgZbzYGGzyMzGzMjBAAAAAAYZBzEzMwMM2MMmZmZY2YmxYZYZ7BW2mNMLAAwGCAAwsNLNzMzGDbAMzw0YAAAD",
+        "content": "dungeon",
+        "hero": "Shado-Pan"
+      },
+      {
+        "label": "Mythic+ (Master of Harmony)",
+        "code": "CwQAQnG51S19isUJoJoTeJ/IKDAAAgZbzYGGzyMzGzMjBAAAAAAYZBzEzMwMM2MMmZmZY2YmxYZYZ7BW2mNMLAAwysMtMbzsMAAz2s0MzMbMsBmZmZYaMAAgB",
+        "content": "dungeon",
+        "hero": "Master of Harmony"
+      }
+    ],
+    "main": [
+      {
+        "id": 121253,
+        "name": "Keg Smash",
+        "required": true
+      },
+      {
+        "id": 100784,
+        "name": "Blackout Kick",
+        "required": true
+      },
+      {
+        "id": 100780,
+        "name": "Tiger Palm",
+        "required": false
+      },
+      {
+        "id": 115181,
+        "name": "Breath of Fire",
+        "required": false
+      },
+      {
+        "id": 119582,
+        "name": "Purifying Brew",
+        "required": true
+      },
+      {
+        "id": 322507,
+        "name": "Celestial Brew",
+        "required": false,
+        "alternatives": [
+          1241059
+        ]
+      },
+      {
+        "id": 101546,
+        "name": "Spinning Crane Kick",
+        "required": false
+      },
+      {
+        "id": 322101,
+        "name": "Expel Harm",
+        "required": false
+      },
+      {
+        "id": 322109,
+        "name": "Touch of Death",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 116705,
+        "name": "Spear Hand Strike",
+        "required": false
+      },
+      {
+        "id": 119381,
+        "name": "Leg Sweep",
+        "required": false
+      },
+      {
+        "id": 115078,
+        "name": "Paralysis",
+        "required": false
+      },
+      {
+        "id": 116844,
+        "name": "Ring of Peace",
+        "required": false
+      },
+      {
+        "id": 115203,
+        "name": "Fortifying Brew",
+        "required": false
+      },
+      {
+        "id": 109132,
+        "name": "Roll",
+        "required": false
+      },
+      {
+        "id": 116841,
+        "name": "Tiger's Lust",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 218164,
+        "name": "Detox",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 116670,
+        "name": "Vivify",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 101643,
+        "name": "Transcendence",
+        "required": false
+      },
+      {
+        "id": 119996,
+        "name": "Transcendence: Transfer",
+        "required": false
+      },
+      {
+        "id": 115546,
+        "name": "Provoke",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 132578,
+        "name": "Invoke Niuzao, the Black Ox",
+        "required": false
+      },
+      {
+        "id": 325153,
+        "name": "Exploding Keg",
+        "required": false
+      },
+      {
+        "id": 115399,
+        "name": "Black Ox Brew",
+        "required": false
+      },
+      {
+        "id": 123986,
+        "name": "Chi Burst",
+        "required": false
+      },
+      {
+        "id": 116847,
+        "name": "Rushing Jade Wind",
+        "required": false
+      },
+      {
+        "id": 115315,
+        "name": "Summon Black Ox Statue",
+        "required": false
+      }
+    ],
+    "notes": [
+      "The guide provides defensive and offensive raid options as well as both hero trees for Mythic+.",
+      "Purifying Brew and Celestial Brew stay on separate buttons; no automatic brew stacking.",
+      "Celestial Infusion is the choice replacement for Celestial Brew.",
+      "Tiger Palm is optional because Press the Advantage replaces it with a passive."
+    ],
+    "spellSources": {
+      "121253": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "100784": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "100780": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "115181": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "119582": "https://www.method.gg/guides/brewmaster-monk/playstyle-and-rotation",
+      "322507": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "1241059": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "101546": "https://www.method.gg/guides/brewmaster-monk/playstyle-and-rotation",
+      "322101": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/monk/sc_monk.cpp",
+      "322109": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "116705": "https://www.method.gg/guides/mistweaver-monk",
+      "119381": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115078": "https://www.method.gg/guides/mistweaver-monk",
+      "116844": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "115203": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "109132": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "116841": "https://www.method.gg/guides/mistweaver-monk",
+      "218164": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "116670": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "101643": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "119996": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115546": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "132578": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "325153": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "115399": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "123986": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "116847": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "115315": "https://www.method.gg/guides/brewmaster-monk/talents"
+    }
+  },
+  {
+    "id": "standard-mistweaver",
+    "class": "MONK",
+    "spec": 270,
+    "specName": "Mistweaver",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/mistweaver-monk",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Raid (Conduit of the Celestials) - Preferred",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAghx2MwmFzYmZbGbYmZYmlttZGLMjmxMgBDGWmZmZYWGMYxEAAAAABYxyMLz2MDAAMgBYGwYYsMZMDA",
+        "content": "raid",
+        "hero": "Conduit of the Celestials"
+      },
+      {
+        "label": "Raid (Conduit of the Celestials - Sheilun's Gift",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAghx2MLDbWMjZmtZstsMjZYmlttZGLMjmxMgBDGWmZmZYWGMMLmAAAAAIALWmZZ2mZAAgBAYGwYYsIjZA",
+        "content": "raid",
+        "hero": "Conduit of the Celestials"
+      },
+      {
+        "label": "Raid (Master of Harmony)",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM2mB2sYGzMbzYDzMDzsstMzYhZ0MmBMYwYWmZmZY2GmhZZmAAAAAz20ysNzysBAAAAwMzAADwiMAA",
+        "content": "raid",
+        "hero": "Master of Harmony"
+      },
+      {
+        "label": "Mythic+ (Conduit of the Celestials) - Preferred",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWmZZYxixMzsZsssND2Mz22yMjFmRzYGwgBjZZmZmhZbYGmlZCAAAAgAsYbmlZbmBAAAGgZADwiMmBA",
+        "content": "dungeon",
+        "hero": "Conduit of the Celestials"
+      },
+      {
+        "label": "Mythic+ (Conduit of the Celestials) - Damage Oriented",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgxMWGLjZz2MmZsYstsNjZ2Mz2yyMjFmRzYGwgBDLzMzMMbYGmlZCAAAAgAsYbmlZbmBAAAAMDYMwiMmBA",
+        "content": "dungeon",
+        "hero": "Conduit of the Celestials"
+      },
+      {
+        "label": "Mythic+ (Master of Harmony)",
+        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM2mZZYxixMzsZsssND2Mzy2yMjFmRzYGwgBjZZmZmhZbYGmlZCAAAAMbTLz2MLzGAAAAAzMDAMALyAA",
+        "content": "dungeon",
+        "hero": "Master of Harmony"
+      }
+    ],
+    "main": [
+      {
+        "id": 115151,
+        "name": "Renewing Mist",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 116670,
+        "name": "Vivify",
+        "required": true,
+        "alternatives": [
+          399491
+        ],
+        "helpful": true
+      },
+      {
+        "id": 124682,
+        "name": "Enveloping Mist",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 115175,
+        "name": "Soothing Mist",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 107428,
+        "name": "Rising Sun Kick",
+        "required": false,
+        "alternatives": [
+          467307
+        ]
+      },
+      {
+        "id": 116680,
+        "name": "Thunder Focus Tea",
+        "required": false
+      },
+      {
+        "id": 100780,
+        "name": "Tiger Palm",
+        "required": true
+      },
+      {
+        "id": 100784,
+        "name": "Blackout Kick",
+        "required": true
+      },
+      {
+        "id": 101546,
+        "name": "Spinning Crane Kick",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 116849,
+        "name": "Life Cocoon",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 115310,
+        "name": "Revival",
+        "required": false,
+        "alternatives": [
+          388615
+        ]
+      },
+      {
+        "id": 322118,
+        "name": "Invoke Yu'lon, the Jade Serpent",
+        "required": false,
+        "alternatives": [
+          325197
+        ]
+      },
+      {
+        "id": 115294,
+        "name": "Mana Tea",
+        "required": false
+      },
+      {
+        "id": 443028,
+        "name": "Celestial Conduit",
+        "required": false
+      },
+      {
+        "id": 115450,
+        "name": "Detox",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 115203,
+        "name": "Fortifying Brew",
+        "required": false
+      },
+      {
+        "id": 109132,
+        "name": "Roll",
+        "required": false
+      },
+      {
+        "id": 116841,
+        "name": "Tiger's Lust",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 115078,
+        "name": "Paralysis",
+        "required": false
+      },
+      {
+        "id": 119381,
+        "name": "Leg Sweep",
+        "required": false
+      },
+      {
+        "id": 116844,
+        "name": "Ring of Peace",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 101643,
+        "name": "Transcendence",
+        "required": false
+      },
+      {
+        "id": 119996,
+        "name": "Transcendence: Transfer",
+        "required": false
+      },
+      {
+        "id": 198898,
+        "name": "Song of Chi-Ji",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Sheilun's Gift replaces Vivify; Rushing Wind Kick replaces Rising Sun Kick when chosen.",
+      "Revival/Restoral and the two celestial summons are talent choices, not combined cooldown macros.",
+      "Diffuse Magic is passive in Midnight. Spear Hand Strike, Expel Harm and Chi Burst were removed from Mistweaver."
+    ],
+    "spellSources": {
+      "115151": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "116670": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "399491": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "124682": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "115175": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "107428": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "467307": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "116680": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "100780": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "100784": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "101546": "https://www.method.gg/guides/mistweaver-monk",
+      "116849": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "115310": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "388615": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "322118": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "325197": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115294": "https://www.method.gg/guides/mistweaver-monk",
+      "443028": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "115450": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115203": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "109132": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "116841": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115078": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "119381": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "116844": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "101643": "https://www.method.gg/guides/mistweaver-monk/talents",
+      "119996": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "198898": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-windwalker",
+    "class": "MONK",
+    "spec": 269,
+    "specName": "Windwalker",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/windwalker-monk",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Shado-Pan Single Target",
+        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYw2MmhlZGbzAAAAAAAAAAAAsMMaGzAGwMGmZmZY2GmhZZmAAWMz2MDzMzMAA2AgZZWamZmFAMwMDAjlBiB8B",
+        "content": "raid",
+        "hero": "Shado-Pan"
+      },
+      {
+        "label": "Shado-Pan Mythic+",
+        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYAMGbzMz2MAAAAAAAAAAAALDz0MmhhBMMMzMzwsNMDzyDMBAsYmtZmxMzMDAgNAYWmlmZmZBADMzAwYZgYAD",
+        "content": "dungeon",
+        "hero": "Shado-Pan"
+      },
+      {
+        "label": "Conduit Single Target",
+        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYM2GmhlZmZbGAAAAAAAAAAAglhRzYGwAmxwMzMDz2wMMLzEAwiZ2mZGzMzMAAWMzysNmgAAwAYGgxyAxMzs5BA",
+        "content": "raid",
+        "hero": "Conduit of the Celestials"
+      },
+      {
+        "label": "Conduit Mythic+",
+        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYMgxYZmx2MAAAAAAAAAAAALDz0MmhhBMMMzMzwsxMDzyDMBAswsNmxMzMDAgFzsMbjJIAgZMAmBYsMQMzMbG",
+        "content": "dungeon",
+        "hero": "Conduit of the Celestials"
+      }
+    ],
+    "main": [
+      {
+        "id": 100780,
+        "name": "Tiger Palm",
+        "required": true
+      },
+      {
+        "id": 100784,
+        "name": "Blackout Kick",
+        "required": true
+      },
+      {
+        "id": 107428,
+        "name": "Rising Sun Kick",
+        "required": true
+      },
+      {
+        "id": 113656,
+        "name": "Fists of Fury",
+        "required": true
+      },
+      {
+        "id": 101546,
+        "name": "Spinning Crane Kick",
+        "required": false
+      },
+      {
+        "id": 152175,
+        "name": "Whirling Dragon Punch",
+        "required": false
+      },
+      {
+        "id": 392983,
+        "name": "Strike of the Windlord",
+        "required": false
+      },
+      {
+        "id": 1249625,
+        "name": "Zenith",
+        "required": false
+      },
+      {
+        "id": 322109,
+        "name": "Touch of Death",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 116705,
+        "name": "Spear Hand Strike",
+        "required": false
+      },
+      {
+        "id": 119381,
+        "name": "Leg Sweep",
+        "required": false
+      },
+      {
+        "id": 115078,
+        "name": "Paralysis",
+        "required": false
+      },
+      {
+        "id": 116844,
+        "name": "Ring of Peace",
+        "required": false
+      },
+      {
+        "id": 115203,
+        "name": "Fortifying Brew",
+        "required": false
+      },
+      {
+        "id": 109132,
+        "name": "Roll",
+        "required": false
+      },
+      {
+        "id": 116841,
+        "name": "Tiger's Lust",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 218164,
+        "name": "Detox",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 116670,
+        "name": "Vivify",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 101643,
+        "name": "Transcendence",
+        "required": false
+      },
+      {
+        "id": 119996,
+        "name": "Transcendence: Transfer",
+        "required": false
+      },
+      {
+        "id": 122470,
+        "name": "Touch of Karma",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 123904,
+        "name": "Invoke Xuen, the White Tiger",
+        "required": false
+      },
+      {
+        "id": 443028,
+        "name": "Celestial Conduit",
+        "required": false
+      },
+      {
+        "id": 101545,
+        "name": "Flying Serpent Kick",
+        "required": false
+      },
+      {
+        "id": 1217413,
+        "name": "Slicing Winds",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Zenith replaces the old Storm, Earth, and Fire cooldown in the current guide.",
+      "Invoke Xuen and Celestial Conduit are conditional Conduit of the Celestials buttons.",
+      "Rushing Wind Kick temporarily overrides Rising Sun Kick; no separate proc-only button is assigned."
+    ],
+    "spellSources": {
+      "100780": "https://www.method.gg/guides/windwalker-monk/talents",
+      "100784": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "107428": "https://www.method.gg/guides/windwalker-monk/talents",
+      "113656": "https://www.method.gg/guides/windwalker-monk/talents",
+      "101546": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "152175": "https://www.method.gg/guides/windwalker-monk/talents",
+      "392983": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "1249625": "https://www.method.gg/guides/windwalker-monk/talents",
+      "322109": "https://www.method.gg/guides/brewmaster-monk",
+      "116705": "https://www.method.gg/guides/mistweaver-monk",
+      "119381": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "115078": "https://www.method.gg/guides/windwalker-monk/talents",
+      "116844": "https://www.method.gg/guides/windwalker-monk/talents",
+      "115203": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "109132": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "116841": "https://www.method.gg/guides/mistweaver-monk",
+      "218164": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "116670": "https://www.method.gg/guides/brewmaster-monk/talents",
+      "101643": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "119996": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
+      "122470": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "123904": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "443028": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "101545": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
+      "1217413": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-havoc",
+    "class": "DEMONHUNTER",
+    "spec": 577,
+    "specName": "Havoc",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/havoc-demon-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Fel-Scarred - Single Target",
+        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYAzMz2MmZmxMzkxMDAAAAAAY2MmtZYmxyMzYZm5BmZWmZWGjB2mFzYY200wMjhNAAAAAAAAmZwAAAAwA",
+        "content": "raid",
+        "hero": "Fel-Scarred"
+      },
+      {
+        "label": "Fel-Scarred - Raid Cleave (Recommended)",
+        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYmZGzMz2MmZmxMzkxMDAAAAAAY2MmtZYmBPwMWmZegZYmxYWGYbWMjhZTTjZmxwGAAAAAAAAzMYAAAAYA",
+        "content": "raid",
+        "hero": "Fel-Scarred"
+      },
+      {
+        "label": "Fel-Scarred - Mythic+ (Recommended)",
+        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYmZGzMz2MmZmxMzkxMDAAAAAAY2MmtZYmBmxyMzDMDzMGzyAbziZMMbaaMzMG2AAAAGAAAAzMYAAAAYA",
+        "content": "dungeon",
+        "hero": "Fel-Scarred"
+      },
+      {
+        "label": "Aldrachi Reaver - Raid",
+        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYgZmZ2mxMzMmZmMmZAAAAAAAzmxsNDzMz2MzYZmxMWmZYmlZ2mBDjlNmkxMjhFAAAAAAAwMDwAAAAwA",
+        "content": "raid",
+        "hero": "Aldrachi Reaver"
+      },
+      {
+        "label": "Aldrachi Reaver - Mythic+",
+        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYGMzMz2MmZmxMzkxMDAAAAAAY2MmtZYmZ2mZGLzMmhZGmZZmtZwwYbjJZMzYYBAAAAAAAMzAMAAAAM",
+        "content": "dungeon",
+        "hero": "Aldrachi Reaver"
+      }
+    ],
+    "main": [
+      {
+        "id": 162794,
+        "name": "Chaos Strike",
+        "required": true
+      },
+      {
+        "id": 188499,
+        "name": "Blade Dance",
+        "required": true
+      },
+      {
+        "id": 198013,
+        "name": "Eye Beam",
+        "required": true
+      },
+      {
+        "id": 258920,
+        "name": "Immolation Aura",
+        "required": false
+      },
+      {
+        "id": 232893,
+        "name": "Felblade",
+        "required": false
+      },
+      {
+        "id": 191427,
+        "name": "Metamorphosis",
+        "required": false
+      },
+      {
+        "id": 370965,
+        "name": "The Hunt",
+        "required": false
+      },
+      {
+        "id": 342817,
+        "name": "Glaive Tempest",
+        "required": false
+      },
+      {
+        "id": 258860,
+        "name": "Essence Break",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 183752,
+        "name": "Disrupt",
+        "required": false
+      },
+      {
+        "id": 195072,
+        "name": "Fel Rush",
+        "required": false
+      },
+      {
+        "id": 198793,
+        "name": "Vengeful Retreat",
+        "required": false
+      },
+      {
+        "id": 198589,
+        "name": "Blur",
+        "required": false
+      },
+      {
+        "id": 196555,
+        "name": "Netherwalk",
+        "required": false
+      },
+      {
+        "id": 196718,
+        "name": "Darkness",
+        "required": false
+      },
+      {
+        "id": 179057,
+        "name": "Chaos Nova",
+        "required": false
+      },
+      {
+        "id": 217832,
+        "name": "Imprison",
+        "required": false
+      },
+      {
+        "id": 278326,
+        "name": "Consume Magic",
+        "required": false
+      },
+      {
+        "id": 207684,
+        "name": "Sigil of Misery",
+        "required": false
+      },
+      {
+        "id": 131347,
+        "name": "Glide",
+        "required": false
+      },
+      {
+        "id": 185123,
+        "name": "Throw Glaive",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 162243,
+        "name": "Demon's Bite",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Annihilation, Death Sweep, Abyssal Gaze and other temporary transformations use their native base buttons.",
+      "Demon's Bite remains optional because Demon Blades replaces its active generation.",
+      "Movement and defensive cooldowns stay separate from offensive buttons."
+    ],
+    "spellSources": {
+      "162794": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "188499": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "198013": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "258920": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "232893": "https://www.method.gg/guides/havoc-demon-hunter/playstyle-and-rotation",
+      "191427": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "370965": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "342817": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "258860": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "183752": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "195072": "https://www.method.gg/guides/havoc-demon-hunter/playstyle-and-rotation",
+      "198793": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "198589": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "196555": "https://www.method.gg/guides/havoc-demon-hunter/playstyle-and-rotation",
+      "196718": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "179057": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "217832": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "278326": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "207684": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "185123": "https://www.method.gg/guides/havoc-demon-hunter/talents",
+      "162243": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    }
+  },
+  {
+    "id": "standard-vengeance",
+    "class": "DEMONHUNTER",
+    "spec": 581,
+    "specName": "Vengeance",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/vengeance-demon-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Annihilator (Raid)",
+        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMzMjMzMYWMzMjBjZGzYGzMDzMzM2MzsNGAAAAAAAIgZmxGAAAAGMmZmZ2abmZGAYAAAAMA",
+        "content": "raid",
+        "hero": "Annihilator"
+      },
+      {
+        "label": "Aldrachi (Raid)",
+        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMzMjMzMYWMzMjBjZGzYGzMDzMzM2MzsNGAAAAwsNDGGLLMhhZmxCAAAAGMAEgZGgBAAAwA",
+        "content": "raid",
+        "hero": "Aldrachi Reaver"
+      },
+      {
+        "label": "Annihilator (Mythic+)",
+        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMMzkZmB2MjZwMjZGzMzMzYwMzM2YmtxwAAAAAAAIgZmZ2AAAAwAzMzMzWbzMzAADAAAgB",
+        "content": "dungeon",
+        "hero": "Annihilator"
+      },
+      {
+        "label": "Aldrachi Reaver (Mythic+)",
+        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMMzkZmB2MjZwMjZGzMzMzYwMzM2YmtxwAAAAwsNDGGLLMhhZmZWAAAAwADgAMzAMAAAAG",
+        "content": "dungeon",
+        "hero": "Aldrachi Reaver"
+      }
+    ],
+    "main": [
+      {
+        "id": 263642,
+        "name": "Fracture",
+        "required": false,
+        "alternatives": [
+          203782
+        ]
+      },
+      {
+        "id": 228477,
+        "name": "Soul Cleave",
+        "required": true
+      },
+      {
+        "id": 247454,
+        "name": "Spirit Bomb",
+        "required": false
+      },
+      {
+        "id": 258920,
+        "name": "Immolation Aura",
+        "required": false
+      },
+      {
+        "id": 204596,
+        "name": "Sigil of Flame",
+        "required": false
+      },
+      {
+        "id": 212084,
+        "name": "Fel Devastation",
+        "required": false
+      },
+      {
+        "id": 203720,
+        "name": "Demon Spikes",
+        "required": true
+      },
+      {
+        "id": 204021,
+        "name": "Fiery Brand",
+        "required": false
+      },
+      {
+        "id": 162264,
+        "name": "Metamorphosis",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 183752,
+        "name": "Disrupt",
+        "required": false
+      },
+      {
+        "id": 189110,
+        "name": "Infernal Strike",
+        "required": false
+      },
+      {
+        "id": 185245,
+        "name": "Torment",
+        "required": false
+      },
+      {
+        "id": 179057,
+        "name": "Chaos Nova",
+        "required": false
+      },
+      {
+        "id": 217832,
+        "name": "Imprison",
+        "required": false
+      },
+      {
+        "id": 278326,
+        "name": "Consume Magic",
+        "required": false
+      },
+      {
+        "id": 202137,
+        "name": "Sigil of Silence",
+        "required": false
+      },
+      {
+        "id": 207684,
+        "name": "Sigil of Misery",
+        "required": false
+      },
+      {
+        "id": 202138,
+        "name": "Sigil of Chains",
+        "required": false
+      },
+      {
+        "id": 196718,
+        "name": "Darkness",
+        "required": false
+      },
+      {
+        "id": 185123,
+        "name": "Throw Glaive",
+        "required": false
+      },
+      {
+        "id": 232893,
+        "name": "Felblade",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 207407,
+        "name": "Soul Carver",
+        "required": false
+      },
+      {
+        "id": 390163,
+        "name": "Sigil of Spite",
+        "required": false
+      },
+      {
+        "id": 131347,
+        "name": "Glide",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Raid and Mythic+ imports include both Annihilator and Aldrachi Reaver.",
+      "Soul Cleave and Spirit Bomb remain separate spenders.",
+      "Defensive cooldowns and Infernal Strike are never coupled to damage casts."
+    ],
+    "spellSources": {
+      "263642": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "203782": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "228477": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "247454": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "258920": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
+      "204596": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
+      "212084": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
+      "203720": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "204021": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "162264": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "183752": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "189110": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "185245": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "179057": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "217832": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "278326": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "202137": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "207684": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "202138": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "196718": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "185123": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "232893": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
+      "207407": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
+      "390163": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents"
+    }
+  },
+  {
+    "id": "standard-devourer",
+    "class": "DEMONHUNTER",
+    "spec": 1480,
+    "specName": "Devourer",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/devourer-demon-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-18",
+    "builds": [
+      {
+        "label": "Void-Scarred Single Target",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZMzMDzsMzYsptFAEwAYMzMbzMTz2MbzMMmxA",
+        "content": "raid",
+        "hero": "Void-Scarred"
+      },
+      {
+        "label": "Void-Scarred Raid Cleave",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZGjNtsAgAGAjZmZbmZa2mZzMjxMGA",
+        "content": "raid",
+        "hero": "Void-Scarred"
+      },
+      {
+        "label": "Annihilator Raid Cleave / Mythic+ (Recommended)",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMzMzMDzsYGjFZhZmZmt2mZmBwwAQgHYMDjZA",
+        "content": "dungeon",
+        "hero": "Annihilator"
+      },
+      {
+        "label": "Void-Scarred Mythic+",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZYsplFAEwAYMzMbzMTz2MbzMDmxA",
+        "content": "dungeon",
+        "hero": "Void-Scarred"
+      },
+      {
+        "label": "Annihilator Single Target (Recommended)",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMjZmZGzsYGjFtswMzMzWbzMzAYGDABegxghB",
+        "content": "raid",
+        "hero": "Annihilator"
+      },
+      {
+        "label": "Annihilator Raid Cleave / Mythic+ (Recommended)",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMzMzMDzsYGjFZhZmZmt2mZmBwwAQgHYMDjZA",
+        "content": "raid",
+        "hero": "Annihilator"
+      }
+    ],
+    "main": [
+      {
+        "id": 473662,
+        "name": "Consume",
+        "required": true
+      },
+      {
+        "id": 1226019,
+        "name": "Reap",
+        "required": true
+      },
+      {
+        "id": 473728,
+        "name": "Void Ray",
+        "required": true
+      },
+      {
+        "id": 1217605,
+        "name": "Void Metamorphosis",
+        "required": true
+      },
+      {
+        "id": 1221150,
+        "name": "Collapsing Star",
+        "required": false
+      },
+      {
+        "id": 1241937,
+        "name": "Soul Immolation",
+        "required": false
+      },
+      {
+        "id": 1245412,
+        "name": "Voidblade",
+        "required": false
+      },
+      {
+        "id": 1246167,
+        "name": "The Hunt",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 183752,
+        "name": "Disrupt",
+        "required": false
+      },
+      {
+        "id": 1234796,
+        "name": "Shift",
+        "required": false
+      },
+      {
+        "id": 198793,
+        "name": "Vengeful Retreat",
+        "required": false
+      },
+      {
+        "id": 198589,
+        "name": "Blur",
+        "required": false
+      },
+      {
+        "id": 196718,
+        "name": "Darkness",
+        "required": false
+      },
+      {
+        "id": 278326,
+        "name": "Consume Magic",
+        "required": false
+      },
+      {
+        "id": 217832,
+        "name": "Imprison",
+        "required": false
+      },
+      {
+        "id": 179057,
+        "name": "Chaos Nova",
+        "required": false
+      },
+      {
+        "id": 207684,
+        "name": "Sigil of Misery",
+        "required": false
+      },
+      {
+        "id": 185123,
+        "name": "Throw Glaive",
+        "required": false
+      },
+      {
+        "id": 131347,
+        "name": "Glide",
+        "required": false
+      }
+    ],
+    "extra": [],
+    "notes": [
+      "Devour, Cull, Eradicate, Pierce the Veil, Hungering Slash and related temporary replacements use native base buttons.",
+      "Voidblade and The Hunt are optional Void-Scarred actions.",
+      "The shared Annihilator cleave code is explicitly published for both raid cleave and Mythic+."
+    ],
+    "spellSources": {
+      "473662": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "1226019": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "473728": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "1217605": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/sc_demon_hunter.cpp",
+      "1221150": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/sc_demon_hunter.cpp",
+      "1241937": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "1245412": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "1246167": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "183752": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "1234796": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "198793": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "198589": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "196718": "https://www.method.gg/guides/devourer-demon-hunter/playstyle-and-rotation",
+      "278326": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "217832": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "179057": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "207684": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
+      "185123": "https://www.method.gg/guides/devourer-demon-hunter/talents",
+      "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents"
+    }
+  },
+  {
+    "id": "standard-assassination",
+    "class": "ROGUE",
+    "spec": 259,
+    "specName": "Assassination",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/assassination-rogue",
+    "patch": "12.1.5",
+    "updated": "2026-10-18",
+    "builds": [
+      {
+        "label": "Raid Build",
+        "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlxsZwAAAAAAzygtZAAAAAAttNzMzMzMGLzMzsNzyMz8AjxMjxYmZmxAYgFYGjGzGIbDYzAgZmBD",
+        "content": "raid",
+        "hero": "Deathstalker"
+      },
+      {
+        "label": "Pure Single Target Build",
+        "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlxsNDGAAAAAYWGsNDAAAAAottZmZmZmxYZmZmtZWmZmZMjZMGzMGGADsAzY0Y2AZbAbGAMzMYA",
+        "content": "raid",
+        "hero": "Deathstalker"
+      },
+      {
+        "label": "Mythic+ / Open World",
+        "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlZmFDAAAAAAzygtZAAAAAAttNzMzMzMGLzMzsNzyMz8AmxMjxMmZMGADsAzY0YWAZbAbGAMzMDfA",
+        "content": "dungeon",
+        "hero": "Deathstalker"
+      }
+    ],
+    "main": [
+      {
+        "id": 1329,
+        "name": "Mutilate",
+        "required": true
+      },
+      {
+        "id": 703,
+        "name": "Garrote",
+        "required": true
+      },
+      {
+        "id": 1943,
+        "name": "Rupture",
+        "required": true
+      },
+      {
+        "id": 32645,
+        "name": "Envenom",
+        "required": true
+      },
+      {
+        "id": 51723,
+        "name": "Fan of Knives",
+        "required": false
+      },
+      {
+        "id": 1247227,
+        "name": "Crimson Tempest",
+        "required": false
+      },
+      {
+        "id": 360194,
+        "name": "Deathmark",
+        "required": false
+      },
+      {
+        "id": 385627,
+        "name": "Kingsbane",
+        "required": false
+      },
+      {
+        "id": 8676,
+        "name": "Ambush",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 1766,
+        "name": "Kick",
+        "required": false
+      },
+      {
+        "id": 2094,
+        "name": "Blind",
+        "required": false
+      },
+      {
+        "id": 408,
+        "name": "Kidney Shot",
+        "required": false
+      },
+      {
+        "id": 1966,
+        "name": "Feint",
+        "required": false
+      },
+      {
+        "id": 31224,
+        "name": "Cloak of Shadows",
+        "required": false
+      },
+      {
+        "id": 5277,
+        "name": "Evasion",
+        "required": false
+      },
+      {
+        "id": 185311,
+        "name": "Crimson Vial",
+        "required": false
+      },
+      {
+        "id": 1856,
+        "name": "Vanish",
+        "required": false
+      },
+      {
+        "id": 2983,
+        "name": "Sprint",
+        "required": false
+      },
+      {
+        "id": 36554,
+        "name": "Shadowstep",
+        "required": false
+      },
+      {
+        "id": 5938,
+        "name": "Shiv",
+        "required": false
+      },
+      {
+        "id": 1784,
+        "name": "Stealth",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 1833,
+        "name": "Cheap Shot",
+        "required": false
+      },
+      {
+        "id": 6770,
+        "name": "Sap",
+        "required": false
+      },
+      {
+        "id": 2823,
+        "name": "Deadly Poison",
+        "required": false
+      },
+      {
+        "id": 3408,
+        "name": "Crippling Poison",
+        "required": false
+      },
+      {
+        "id": 381637,
+        "name": "Atrophic Poison",
+        "required": false
+      },
+      {
+        "id": 5761,
+        "name": "Numbing Poison",
+        "required": false
+      },
+      {
+        "id": 8679,
+        "name": "Wound Poison",
+        "required": false
+      }
+    ],
+    "notes": [
+      "The guide publishes Deathstalker defaults and discusses Fatebound without a separate import.",
+      "Crimson Tempest is the current bleed-spreading generator, not its previous finisher version.",
+      "Passive Thistle Tea is not assigned as a button."
+    ],
+    "spellSources": {
+      "1329": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "703": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "1943": "https://www.method.gg/guides/assassination-rogue/talents",
+      "32645": "https://www.method.gg/guides/assassination-rogue/talents",
+      "51723": "https://www.method.gg/guides/assassination-rogue/talents",
+      "1247227": "https://www.method.gg/guides/assassination-rogue/talents",
+      "360194": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "385627": "https://www.method.gg/guides/assassination-rogue/talents",
+      "8676": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "1766": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2094": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "1966": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "31224": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "5277": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "185311": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "1856": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "2983": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "36554": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "5938": "https://www.method.gg/guides/assassination-rogue",
+      "1784": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "1833": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "6770": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2823": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "3408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "381637": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "5761": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "blockedWhileStealthed": true
+  },
+  {
+    "id": "standard-outlaw",
+    "class": "ROGUE",
+    "spec": 260,
+    "specName": "Outlaw",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/outlaw-rogue",
+    "patch": "12.1.5",
+    "updated": "2026-10-18",
+    "builds": [
+      {
+        "label": "Trickster Single Target",
+        "code": "CQQAAAAAAAAAAAAAAAAAAAAAAAgx2MMzMmZmtZmZmZMmF4BmZbaZw2MAAAAAAbbzMzwMzMziZmZbAAAAYmBAjZxwQGYWYhWYjBYmBDMA",
+        "content": "raid",
+        "hero": "Trickster"
+      },
+      {
+        "label": "Trickster Cleave",
+        "code": "CQQAAAAAAAAAAAAAAAAAAAAAAAgx2MMzMjZmtZmZMzMzsAmZbaZw2MAAAAAAbbzMzwMzMziZmZbAAAAYmBAjZxwQGYWYhWYjBYmBDMA",
+        "content": "dungeon",
+        "hero": "Trickster"
+      }
+    ],
+    "main": [
+      {
+        "id": 1752,
+        "name": "Sinister Strike",
+        "required": true
+      },
+      {
+        "id": 185763,
+        "name": "Pistol Shot",
+        "required": true
+      },
+      {
+        "id": 2098,
+        "name": "Dispatch",
+        "required": true
+      },
+      {
+        "id": 315341,
+        "name": "Between the Eyes",
+        "required": false
+      },
+      {
+        "id": 13877,
+        "name": "Blade Flurry",
+        "required": false
+      },
+      {
+        "id": 13750,
+        "name": "Adrenaline Rush",
+        "required": false
+      },
+      {
+        "id": 51690,
+        "name": "Killing Spree",
+        "required": false
+      },
+      {
+        "id": 315508,
+        "name": "Roll the Bones",
+        "required": false
+      },
+      {
+        "id": 381989,
+        "name": "Keep It Rolling",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 1766,
+        "name": "Kick",
+        "required": false
+      },
+      {
+        "id": 2094,
+        "name": "Blind",
+        "required": false
+      },
+      {
+        "id": 408,
+        "name": "Kidney Shot",
+        "required": false
+      },
+      {
+        "id": 1966,
+        "name": "Feint",
+        "required": false
+      },
+      {
+        "id": 31224,
+        "name": "Cloak of Shadows",
+        "required": false
+      },
+      {
+        "id": 5277,
+        "name": "Evasion",
+        "required": false
+      },
+      {
+        "id": 185311,
+        "name": "Crimson Vial",
+        "required": false
+      },
+      {
+        "id": 1856,
+        "name": "Vanish",
+        "required": false
+      },
+      {
+        "id": 2983,
+        "name": "Sprint",
+        "required": false
+      },
+      {
+        "id": 195457,
+        "name": "Grappling Hook",
+        "required": false
+      },
+      {
+        "id": 5938,
+        "name": "Shiv",
+        "required": false
+      },
+      {
+        "id": 1784,
+        "name": "Stealth",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 271877,
+        "name": "Blade Rush",
+        "required": false
+      },
+      {
+        "id": 1277933,
+        "name": "Preparation",
+        "required": false
+      },
+      {
+        "id": 5171,
+        "name": "Slice and Dice",
+        "required": false
+      },
+      {
+        "id": 1833,
+        "name": "Cheap Shot",
+        "required": false
+      },
+      {
+        "id": 6770,
+        "name": "Sap",
+        "required": false
+      },
+      {
+        "id": 315584,
+        "name": "Instant Poison",
+        "required": false
+      },
+      {
+        "id": 3408,
+        "name": "Crippling Poison",
+        "required": false
+      },
+      {
+        "id": 381637,
+        "name": "Atrophic Poison",
+        "required": false
+      },
+      {
+        "id": 8679,
+        "name": "Wound Poison",
+        "required": false
+      }
+    ],
+    "notes": [
+      "The published Trickster cleave build is the guide's dungeon setup.",
+      "Preparation is a separate cooldown reset button. Coup de Grace uses the Dispatch override."
+    ],
+    "spellSources": {
+      "1752": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "185763": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "2098": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "315341": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "13877": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "13750": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "51690": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "315508": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "381989": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "1766": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2094": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "1966": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "31224": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "5277": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "185311": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "1856": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
+      "2983": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "195457": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "5938": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "1784": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "271877": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "1277933": "https://www.method.gg/guides/outlaw-rogue/talents",
+      "5171": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "1833": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "6770": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "315584": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "3408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "381637": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "blockedWhileStealthed": true
+  },
+  {
+    "id": "standard-subtlety",
+    "class": "ROGUE",
+    "spec": 261,
+    "specName": "Subtlety",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/subtlety-rogue",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Trickster Single target",
+        "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbbjxMjZgZmZGzMbzYGbbzMzMzMjBjZ2GAAAAGMGwY2MMwAziWoFbYGwMDmxA",
+        "content": "raid",
+        "hero": "Trickster"
+      },
+      {
+        "label": "Trickster Bursty (Good for Coiled Altar / Ulatek)",
+        "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbLjxMjZgZmZGzMbzYGbbzMzMzMjBjZ2GAAAAGMGwYWMMwAziWoFbYGwMDmxA",
+        "content": "raid",
+        "hero": "Trickster"
+      },
+      {
+        "label": "Trickster M+",
+        "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbLjxMjZMMzMzwMbzYGbbzMzMzMjBjZ2GAAAAGMGwYWMMwAziWoFbYGwMDmxA",
+        "content": "dungeon",
+        "hero": "Trickster"
+      }
+    ],
+    "main": [
+      {
+        "id": 53,
+        "name": "Backstab",
+        "required": true
+      },
+      {
+        "id": 185438,
+        "name": "Shadowstrike",
+        "required": true
+      },
+      {
+        "id": 196819,
+        "name": "Eviscerate",
+        "required": true
+      },
+      {
+        "id": 197835,
+        "name": "Shuriken Storm",
+        "required": false
+      },
+      {
+        "id": 319175,
+        "name": "Black Powder",
+        "required": false
+      },
+      {
+        "id": 185313,
+        "name": "Shadow Dance",
+        "required": false
+      },
+      {
+        "id": 121471,
+        "name": "Shadow Blades",
+        "required": false
+      },
+      {
+        "id": 280719,
+        "name": "Secret Technique",
+        "required": false
+      },
+      {
+        "id": 426591,
+        "name": "Goremaw's Bite",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 1766,
+        "name": "Kick",
+        "required": false
+      },
+      {
+        "id": 2094,
+        "name": "Blind",
+        "required": false
+      },
+      {
+        "id": 408,
+        "name": "Kidney Shot",
+        "required": false
+      },
+      {
+        "id": 1966,
+        "name": "Feint",
+        "required": false
+      },
+      {
+        "id": 31224,
+        "name": "Cloak of Shadows",
+        "required": false
+      },
+      {
+        "id": 5277,
+        "name": "Evasion",
+        "required": false
+      },
+      {
+        "id": 185311,
+        "name": "Crimson Vial",
+        "required": false
+      },
+      {
+        "id": 1856,
+        "name": "Vanish",
+        "required": false
+      },
+      {
+        "id": 2983,
+        "name": "Sprint",
+        "required": false
+      },
+      {
+        "id": 36554,
+        "name": "Shadowstep",
+        "required": false
+      },
+      {
+        "id": 5938,
+        "name": "Shiv",
+        "required": false
+      },
+      {
+        "id": 1784,
+        "name": "Stealth",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 1833,
+        "name": "Cheap Shot",
+        "required": false
+      },
+      {
+        "id": 6770,
+        "name": "Sap",
+        "required": false
+      },
+      {
+        "id": 315584,
+        "name": "Instant Poison",
+        "required": false
+      },
+      {
+        "id": 3408,
+        "name": "Crippling Poison",
+        "required": false
+      },
+      {
+        "id": 381637,
+        "name": "Atrophic Poison",
+        "required": false
+      },
+      {
+        "id": 5761,
+        "name": "Numbing Poison",
+        "required": false
+      },
+      {
+        "id": 8679,
+        "name": "Wound Poison",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Rupture, Symbols of Death and Flagellation were removed from the spec; they are not assigned.",
+      "Coup de Grace uses the Eviscerate override. Shadow Dance and Shadow Blades remain separate buttons.",
+      "Only published Trickster imports are included; Deathstalker discussion is not converted into a guessed build."
+    ],
+    "spellSources": {
+      "53": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "185438": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "196819": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "197835": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "319175": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "185313": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "121471": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "280719": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "426591": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "1766": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "2094": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "1966": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "31224": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "5277": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "185311": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
+      "1856": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "2983": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "36554": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
+      "5938": "https://www.method.gg/guides/assassination-rogue",
+      "1784": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "1833": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "6770": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "315584": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "3408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "381637": "https://www.method.gg/guides/subtlety-rogue/talents",
+      "5761": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "blockedWhileStealthed": true
+  }
+]

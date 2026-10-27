@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.2.1", profiles = {} }
+TheOneToRuleThemAll = { version = "0.4.1-astra", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -22,6 +22,23 @@ local function specID()
     local s = C_SpecializationInfo.GetSpecialization()
     return s and C_SpecializationInfo.GetSpecializationInfo(s)
 end
+local function specText()
+    local _, name = C_SpecializationInfo.GetSpecializationInfo(C_SpecializationInfo.GetSpecialization())
+    return name or "unknown specialization"
+end
+local KIND_TEXT = {spell="a spell", item="an item", macro="a macro", flyout="a spell flyout",
+    summonmount="a mount", summonpet="a battle pet", equipmentset="an equipment set",
+    outfit="a transmog outfit", companion="a companion"}
+local function kindText(kind) return KIND_TEXT[kind] or "an action the addon cannot restore" end
+-- Players see bar positions, not raw action-slot numbers.
+local function slotText(slot)
+    if slot >= 1 and slot <= 12 then return "main bar slot " .. slot end
+    if slot >= 49 and slot <= 60 then return "Action Bar 3 slot " .. (slot - 48) end
+    if slot >= 61 and slot <= 72 then return "Action Bar 2 slot " .. (slot - 60) end
+    if slot >= 73 and slot <= 84 and classID() == "ROGUE" then return "Stealth bar slot " .. (slot - 72) end
+    return "action slot " .. slot
+end
+local function capitalized(text) return (text:gsub("^%l", string.upper)) end
 local function configID()
     return C_ClassTalents and C_ClassTalents.GetActiveConfigID() or 0
 end
@@ -43,21 +60,19 @@ local function fullLoadoutIdentity(backup)
     return identity and identity.savedConfig ~= nil and identity.starter ~= nil
 end
 local LEGACY_UNDO = "This previous setup was saved without full loadout information. Select the original talent loadout before Undo; the addon cannot fully check it."
-local function page()
-    if C_ActionBar and C_ActionBar.GetActionBarPage then return C_ActionBar.GetActionBarPage() end
-    return GetActionBarPage()
-end
+local function page() return C_ActionBar.GetActionBarPage() end
 local function guard(context)
     check(not InCombatLockdown(), "Leave combat first; nothing changed.")
     check(not GetCursorInfo(), "Put down the item/spell on your cursor first; nothing changed.")
     if context then
-        check(classID() == context.class, "No matching tested module for your current class. This profile belongs to " .. className(context.class) .. "; nothing changed.")
+        check(classID() == context.class, "This profile is for " .. className(context.class) .. "; nothing changed.")
         if context.spec then
             check(specID() == context.spec, "Select " .. (context.specName or tostring(context.spec)) .. " first; nothing changed.")
         end
         if context.blockedWhileStealthed then
             check(not IsStealthed(), "Leave Stealth first; nothing changed.")
         end
+        if context.nativeMainBar or context.nativeBar then A.CheckNativeContext(context) end
         if context.requiredPage then
             check(page() == context.requiredPage, "Switch the main bar to page " .. context.requiredPage .. " (normally Shift+1 for page 1), then try again.")
         end
@@ -72,11 +87,7 @@ local function resolved(id)
     return C_Spell.GetOverrideSpell and C_Spell.GetOverrideSpell(id) or id
 end
 local function learned(id)
-    local s = resolved(id)
-    if C_SpellBook and C_SpellBook.IsSpellKnown then
-        return C_SpellBook.IsSpellKnown(id) or C_SpellBook.IsSpellKnown(s)
-    end
-    return IsPlayerSpell(id) or IsPlayerSpell(s)
+    return C_SpellBook.IsSpellKnown(id) or C_SpellBook.IsSpellKnown(resolved(id))
 end
 A.api = {
     check = check, spellName = spellName, learned = learned, resolved = resolved,
@@ -86,8 +97,7 @@ A.api = {
     end,
 }
 
--- Modules register one profile per supported policy, with separate layouts.
--- Nothing is selected by class automatically; users choose the named profile.
+-- A profile supplies the button layout for one specialization.
 function A.RegisterProfile(profile)
     check(type(profile) == "table" and type(profile.id) == "string" and profile.id:match("^[a-z][a-z0-9_-]*$"), "Invalid profile ID.")
     check(not A.profiles[profile.id], "Duplicate profile ID: " .. profile.id)
@@ -97,7 +107,7 @@ function A.RegisterProfile(profile)
 end
 local function profileFor(id)
     local p = A.profiles[id]
-    check(p, "No tested profile named '" .. tostring(id) .. "'. Use /tor list. Nothing changed.")
+    check(p, "No profile named '" .. tostring(id) .. "'. Use /tor list. Nothing changed.")
     return p
 end
 local function capacities()
@@ -174,7 +184,7 @@ local function checkBindings(profile, layout)
                 local chord = "ALT-" .. key
                 local bound = GetBindingAction(chord, true)
                 check(not bound or bound == "" or bound == action,
-                    chord .. " is bound to " .. tostring(bound) .. ". Clear that conflicting binding or use the standard layout; no bindings were changed.")
+                    chord .. " is bound to " .. tostring(_G["BINDING_NAME_" .. tostring(bound)] or bound) .. ". Clear that conflicting binding or use the standard layout; no bindings were changed.")
             end
         end
     end
@@ -201,11 +211,14 @@ local function supportedStoredAction(kind)
         or (kind == "equipmentset" and C_EquipmentSet and C_EquipmentSet.PickupEquipmentSet)
         or (kind == "summonpet" and C_PetJournal and C_PetJournal.PickupPet)
 end
+local function unsupportedText(slot, kind)
+    return capitalized(slotText(slot)) .. " holds " .. kindText(kind) .. ", which Undo cannot put back. Move it to a bar this layout does not change, then try again."
+end
 local function checkExistingAction(slot)
     local kind, id, subtype = GetActionInfo(slot)
     if not kind then return end
     if isAssisted(slot,id,subtype) then assistedSpell(); return end
-    check(kind == "macro" or supportedStoredAction(kind), "Slot " .. slot .. " has unsupported action '" .. tostring(kind) .. "'. Move it to an untouched bar and retry.")
+    check(kind == "macro" or supportedStoredAction(kind), unsupportedText(slot, kind))
 end
 local function capture(slot)
     local kind, id, subtype = GetActionInfo(slot)
@@ -235,7 +248,7 @@ local function capture(slot)
         check(cursorKind == "macro" and not GetCursorInfo(), "Could not safely save the previous macro in slot " .. slot)
         return macroRecord(index)
     end
-    check(supportedStoredAction(kind), "Slot " .. slot .. " has unsupported action '" .. tostring(kind) .. "'. Move it to an untouched bar and retry.")
+    check(supportedStoredAction(kind), unsupportedText(slot, kind))
     return {kind=kind, id=id, subtype=subtype}
 end
 local function matches(slot, action)
@@ -250,7 +263,10 @@ local function matches(slot, action)
     if action.kind == "spell" then return kind == "spell" and (id == action.id or resolved(id) == resolved(action.id)) end
     return kind == action.kind and id == action.id
 end
-local function place(slot, action)
+-- Items, battle pets and equipment sets can disappear after setup. During Undo
+-- such a slot is cleared and reported instead of stopping Undo half-way.
+local MAY_BE_GONE = {item=true, equipmentset=true, summonpet=true}
+local function place(slot, action, allowGone)
     check(not InCombatLockdown(), "Combat started; try /tor undo when it ends.")
     check(not GetCursorInfo(), "Cursor is occupied; setup stopped to preserve it.")
     if action.kind == "empty" then
@@ -262,14 +278,22 @@ local function place(slot, action)
             local i = findMacro(action)
             check(i, "Saved macro '" .. action.name .. "' was removed or edited. Restore that macro before undo.")
             PickupMacro(i)
-        elseif action.kind == "item" then C_Item.PickupItem(action.id)
+        elseif action.kind == "item" then
+            C_Item.PickupItem(action.id)
+            -- Toys are not in the bags; the toy box can still pick them up.
+            if not GetCursorInfo() and PlayerHasToy(action.id) then C_ToyBox.PickupToyBoxItem(action.id) end
         elseif action.kind == "equipmentset" then C_EquipmentSet.PickupEquipmentSet(action.id)
         elseif action.kind == "summonpet" then C_PetJournal.PickupPet(action.id)
         else error("Cannot restore action type " .. tostring(action.kind),0) end
-        check(GetCursorInfo(), "Could not pick up " .. action.kind .. " for slot " .. slot)
+        if not GetCursorInfo() and allowGone and MAY_BE_GONE[action.kind] then
+            if GetActionInfo(slot) then PickupAction(slot); ClearCursor() end
+            check(not GetActionInfo(slot), "Could not clear " .. slotText(slot) .. ".")
+            return false
+        end
+        check(GetCursorInfo(), "Could not pick up " .. kindText(action.kind) .. " for " .. slotText(slot) .. ".")
         PlaceAction(slot); ClearCursor()
     end
-    check(matches(slot,action), "Placement verification failed in slot " .. slot)
+    check(matches(slot,action), "Could not confirm the new action in " .. slotText(slot) .. ".")
 end
 local function checkContext(backup)
     check(backup and backup.version == 1, "No previous setup is available to restore.")
@@ -288,18 +312,59 @@ local function checkRestore(backup)
     checkContext(backup)
     for _, row in ipairs(backup.rows) do
         check(row.action.kind == "macro" or row.action.kind == "empty" or row.action.kind == "assisted" or supportedStoredAction(row.action.kind),
-            "Cannot restore action type '" .. tostring(row.action.kind) .. "' in slot " .. row.slot .. "; nothing changed.")
+            "The saved setup has " .. kindText(row.action.kind) .. " in " .. slotText(row.slot) .. ", which this version cannot restore; nothing changed.")
         if row.action.kind == "macro" then check(findMacro(row.action), "Original macro '" .. row.action.name .. "' has changed. Restore it before undo.") end
     end
 end
-local function restore(backup)
+-- Only an explicit Undo may clear unavailable originals. Automatic rollback
+-- must keep the backup open if it cannot put every original button back.
+local function restore(backup, allowGone)
     checkRestore(backup)
-    for _, row in ipairs(backup.rows) do place(row.slot,row.action) end
-    backup.state = "restored"
+    local gone = {}
+    for _, row in ipairs(backup.rows) do
+        -- A failed Apply may not have touched this slot. Keep an original
+        -- item/pet/set button that is still there, even if pickup now fails.
+        if not (MAY_BE_GONE[row.action.kind] and matches(row.slot,row.action)) then
+            if place(row.slot,row.action,allowGone) == false then gone[#gone+1] = row end
+        end
+    end
+    backup.state = #gone > 0 and "needs-undo" or "restored"
+    return gone
+end
+local function storedText(action)
+    if action.kind == "item" then
+        return C_Item.GetItemNameByID(action.id) or ("item " .. tostring(action.id))
+    elseif action.kind == "equipmentset" then
+        local ok, name = pcall(C_EquipmentSet.GetEquipmentSetInfo, action.id)
+        return ok and name or kindText(action.kind)
+    end
+    return kindText(action.kind)
+end
+-- Returns the full chat message and a short version for the panel's status line.
+local function undoNote(gone)
+    if #gone == 0 then
+        local done = "Original bars restored. Generated macros kept."
+        return done, done
+    end
+    local parts = {}
+    for _, row in ipairs(gone) do parts[#parts+1] = slotText(row.slot) .. " (" .. storedText(row.action) .. ")" end
+    return "Undo incomplete: " .. table.concat(parts, ", ") .. " unavailable; "
+        .. (#gone == 1 and "that slot is" or "those slots are") .. " now empty. Backup kept. Run /tor undo again when available.",
+        "Undo incomplete: " .. #gone .. (#gone == 1 and " slot is" or " slots are") .. " still missing. Backup kept; retry /tor undo when available. See chat."
+end
+local function layoutNames(profile)
+    local names = {}
+    for name in pairs(profile.layouts) do names[#names+1] = name end
+    table.sort(names, function(a,b)
+        if a == "standard" then return b ~= "standard" end
+        if b == "standard" then return false end
+        return a < b
+    end)
+    return names
 end
 local function layoutFor(profile, layout)
     layout = layout or "standard"
-    check(profile.layouts[layout], "Unknown layout '" .. layout .. "'. Use standard or compact.")
+    check(profile.layouts[layout], "Unknown layout '" .. layout .. "'. Available for this profile: " .. table.concat(layoutNames(profile), ", ") .. ".")
     return layout
 end
 local function describe(profile, layout, plan)
@@ -311,11 +376,12 @@ local function describe(profile, layout, plan)
     end
     if #bar2 > 0 then
         table.sort(bar2,function(a,b) return a.slot < b.slot end)
-        say("Action Bar 2: after Apply, your existing keys for these slots will cast the listed abilities.")
+        local parts = {}
         for _, row in ipairs(bar2) do
             local name = row.action.kind == "macro" and row.action.name .. " (macro)" or spellName(row.action.id)
-            say("Action Bar 2 slot " .. (row.slot - 60) .. ": " .. name)
+            parts[#parts+1] = (row.slot - 60) .. " " .. name
         end
+        say("Action Bar 2 after Apply: " .. table.concat(parts, ", ") .. ". Keys you have bound to these slots will cast them.")
     end
 end
 local function preview(id, requestedLayout)
@@ -348,6 +414,7 @@ local function apply(id, requestedLayout)
     local state = db()
     local backup = {version=1,mode=id,layout=layout,class=p.class,spec=specID(),config=configID(),loadout=loadoutIdentity(),requiredPage=p.requiredPage,
         blockedWhileStealthed=p.blockedWhileStealthed,state="pending",rows={}}
+    if p.nativeMainBar then backup.nativeBar = A.CheckNativeContext(p) end
     for _, row in ipairs(plan.rows) do backup.rows[#backup.rows+1] = {slot=row.slot,action=capture(row.slot)} end
     state.backup = backup
     local ok, problem = pcall(function()
@@ -369,26 +436,28 @@ local function apply(id, requestedLayout)
     backup.state = "applied"
     say("Setup verified: " .. #plan.rows .. " action slots. Existing keybindings preserved.")
     describe(p,layout,plan)
-    if #(plan.skipped or {}) > 0 then say("Unlearned utilities left untouched: " .. table.concat(plan.skipped,", ")) end
-    say("/tor undo restores your previous setup. Generated macros are kept. Enable Action Bar 2 if hidden; /reload saves your previous setup to disk.")
+    if #(plan.skipped or {}) > 0 then say("Unavailable optional abilities left untouched: " .. table.concat(plan.skipped,", ")) end
+    local bars = p.nativeMainBar and "Action Bars 2 and 3" or "Action Bar 2"
+    say("/tor undo restores your previous setup. Generated macros are kept. Enable " .. bars .. " if hidden; /reload saves your previous setup to disk.")
 end
 local function listProfiles()
     local ids = {}; for id in pairs(A.profiles) do ids[#ids+1]=id end; table.sort(ids)
     local matched = false
     for _, id in ipairs(ids) do
         local p = A.profiles[id]
-        say(id .. " - " .. p.label .. " (" .. className(p.class) .. "; standard/compact)")
+        say(id .. " - " .. p.label .. " (" .. className(p.class) .. "; " .. table.concat(layoutNames(p), "/") .. ")")
         if p.class == classID() and p.spec == specID() then matched = true end
     end
-    if not matched then say("No tested profile is currently included for your class/spec. No automatic fallback is applied.") end
+    if not matched then say("No profile is included for your class and specialization yet.") end
 end
+local STATE_TEXT = {applied="active", restored="already restored", pending="not finished", ["needs-undo"]="needs Undo"}
 local function status()
-    say("The One To Rule Them All " .. A.version .. "; class " .. className() .. ", spec " .. tostring(specID()))
+    say("The One To Rule Them All " .. A.version .. " - " .. className() .. ", " .. specText())
     local b = TheOneToRuleThemAllDB and TheOneToRuleThemAllDB.backup
-    if b then say("Previous setup: " .. tostring(b.mode) .. " / " .. tostring(b.layout) .. " / " .. tostring(b.state) .. ". /tor undo requires the original spec and loadout.")
-    else say("No previous setup is saved. Use /tor list and /tor preview <profile> [standard|compact].") end
+    if b then say("Previous setup from " .. tostring(b.mode) .. " (" .. tostring(b.layout) .. "): " .. (STATE_TEXT[b.state] or tostring(b.state)) .. ". /tor undo needs the original specialization and talent loadout.")
+    else say("No previous setup is saved. Use /tor list and /tor preview <profile> [layout].") end
     if b and b.state ~= "restored" and not fullLoadoutIdentity(b) then say(LEGACY_UNDO) end
-    say("Placement compatibility is checked at setup; the current talent code, equipment and set bonuses are not verified.")
+    say("Setup checks that the required abilities are learned. It does not check your full talent build, gear or set bonuses.")
 end
 
 -- Returns a fresh view of the current character without changing saved data,
@@ -414,11 +483,11 @@ function A.Inspect(id, requestedLayout)
     end)
     if not id then view.selectedId = view.profiles[1] and view.profiles[1].id end
     local ok, problem = pcall(function()
-        check(view.selectedId, "No tested profile is currently included for your class/spec.")
+        check(view.selectedId, "No profile is included for your class and specialization yet.")
         local p = profileFor(view.selectedId)
         view.profile = p
         view.layout = layoutFor(p,requestedLayout)
-        check(p.class == view.class and p.spec == view.spec, "The selected profile does not match your current class/spec; nothing changed.")
+        check(p.class == view.class and p.spec == view.spec, "The selected profile does not match your current class and specialization; nothing changed.")
         view.plan = p.build(A.api,view.layout,false)
         validatePlan(view.plan)
         preparePlan(p,view.layout)
@@ -443,50 +512,60 @@ function A.Inspect(id, requestedLayout)
 end
 
 local function help()
-    say("/tor opens the panel; /tor list; /tor status; /tor check [profile] [standard|compact]; /tor preview <profile> [standard|compact]; /tor apply <profile> [standard|compact]; /tor undo.")
+    say("/tor opens the panel; /tor talents; /tor list; /tor status; /tor check [profile] [layout]; /tor preview <profile> [layout]; /tor apply <profile> [layout]; /tor undo.")
     for id,p in pairs(A.profiles) do
         if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
             local valid, compatible = pcall(p.recommendedWhen,A.api)
-            if valid and compatible then say("Recommended starting profile: /tor " .. id .. ". Add compact for the optional Alt layout.") end
+            if valid and compatible then
+                say("Compatible starting profile: /tor " .. id .. "." .. (p.layouts.compact and " Add compact for the optional Alt layout." or ""))
+            end
         end
     end
-    say("Setup installs buttons and native macros. You choose and press every combat action; talents, keybindings and gear are untouched.")
+    say("Setup places abilities and standard WoW macros on your bars. You choose and press every combat action; talents, keybindings and gear are untouched.")
 end
 
 SLASH_THEONETORULETHEMALL1 = "/tor"
 SLASH_THEONETORULETHEMALL2 = "/theone"
+-- Returns ok, problem and, after Undo, a short result line for the panel.
 function A.Execute(message)
     local args = {}; for word in (message or ""):lower():gmatch("%S+") do args[#args+1]=word end
+    local note
     local ok, problem = pcall(function()
         local cmd = args[1]
         if not cmd or cmd == "ui" then
             check(#args<=1,"Use /tor ui.")
             if type(A.TogglePanel) == "function" then A.TogglePanel() else help() end
+        elseif cmd == "talents" then
+            check(#args<=2,"Use /tor talents [profile].")
+            check(type(A.ShowTalentBuilds) == "function", "Talent references are unavailable.")
+            A.ShowTalentBuilds(args[2])
         elseif cmd == "help" then check(#args==1,"Use /tor help."); help()
         elseif cmd == "list" then check(#args==1,"Use /tor list."); listProfiles()
         elseif cmd == "status" then check(#args==1,"Use /tor status."); status()
         elseif cmd == "check" then
-            check(#args<=3,"Use /tor check [profile] [standard|compact].")
+            check(#args<=3,"Use /tor check [profile] [layout].")
             local view = A.Inspect(args[2],args[3])
             say("Check: " .. tostring(view.selectedId or "no matching profile") .. " / " .. view.layout)
-            say(view.canApply and "Apply ready: prerequisites passed; placement is verified only when you apply." or "Apply blocked: " .. view.applyReason)
+            say(view.canApply and "Ready to apply. Each slot is checked again when you apply." or "Cannot apply: " .. view.applyReason)
             say(view.canUndo and "Undo ready: your previous setup can be restored." or "Undo unavailable: " .. view.undoReason)
             if view.legacyUndo then say(view.legacyUndo) end
-            say("Read-only check: no bars, macros, bindings or saved data changed.")
+            say("Check only: nothing was changed.")
         elseif cmd == "preview" or cmd == "apply" then
-            check(args[2] and #args<=3,"Use /tor " .. cmd .. " <profile> [standard|compact].")
+            check(args[2] and #args<=3,"Use /tor " .. cmd .. " <profile> [layout].")
             if cmd == "preview" then preview(args[2],args[3]) else apply(args[2],args[3]) end
         elseif cmd == "undo" then
             check(#args==1,"Use /tor undo.")
             local state = TheOneToRuleThemAllDB
             check(not state or state.version == 1,"Unknown saved-data version; nothing changed.")
             local b = state and state.backup
-            checkContext(b); guard(b); restore(b)
-            say("Original bars restored. Generated macros kept.")
-        elseif cmd and A.profiles[cmd] then check(#args<=2,"Use /tor <profile> [standard|compact]."); apply(cmd,args[2])
+            checkContext(b); guard(b)
+            local full
+            full, note = undoNote(restore(b,true))
+            say(full)
+        elseif cmd and A.profiles[cmd] then check(#args<=2,"Use /tor <profile> [layout]."); apply(cmd,args[2])
         else help() end
     end)
     if not ok then say(tostring(problem)) end
-    return ok, problem
+    return ok, problem, note
 end
 SlashCmdList.THEONETORULETHEMALL = A.Execute
