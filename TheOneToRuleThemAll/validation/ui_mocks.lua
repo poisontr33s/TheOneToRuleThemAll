@@ -7,7 +7,7 @@ local knownEvents = {
     PLAYER_REGEN_DISABLED=true, PLAYER_REGEN_ENABLED=true,
     PLAYER_SPECIALIZATION_CHANGED=true, PLAYER_TALENT_UPDATE=true,
     ACTIONBAR_PAGE_CHANGED=true, UPDATE_STEALTH=true, UPDATE_MACROS=true,
-    UPDATE_BINDINGS=true, CURSOR_CHANGED=true,
+    UPDATE_BINDINGS=true, CURSOR_CHANGED=true, UPDATE_SHAPESHIFT_FORM=true,
 }
 return function(state)
     for _, name in ipairs(previousNames) do _G[name] = nil end
@@ -62,7 +62,10 @@ return function(state)
             self.scripts.OnClick(self,button or "LeftButton")
         end
     end
-    function methods:SetText(text) self.text=tostring(text or "") end
+    function methods:SetText(text)
+        self.text=tostring(text or "")
+        if self.kind=="EditBox" and self.scripts.OnTextChanged then self.scripts.OnTextChanged(self,false) end
+    end
     function methods:GetText() return self.text end
     function methods:GetStringHeight()
         local lines=0
@@ -94,12 +97,23 @@ return function(state)
     function methods:GetHighlightTexture() return self.highlight end
     function methods:StartMoving() self.moving=true end
     function methods:StopMovingOrSizing() self.moving=false end
+    function methods:SetFocus()
+        local changed=not self.focused; self.focused=true
+        if changed and self.scripts.OnEditFocusGained then self.scripts.OnEditFocusGained(self) end
+    end
+    function methods:ClearFocus()
+        local changed=self.focused; self.focused=false
+        if changed and self.scripts.OnEditFocusLost then self.scripts.OnEditFocusLost(self) end
+    end
+    function methods:HighlightText(first,last) self.highlighted={first or 0,last} end
+    function methods:SetCursorPosition(position) self.cursorPosition=position end
     for _, method in ipairs({"SetFrameStrata","SetClampedToScreen","SetMovable",
         "EnableMouse","RegisterForDrag","EnableMouseWheel","SetNormalFontObject",
         "SetHighlightFontObject","SetDisabledFontObject","SetColorTexture",
         "SetVertexColor","SetFontObject","SetJustifyH","SetJustifyV","SetTextColor",
         "SetWordWrap","SetNonSpaceWrap","SetSpacing","SetAlpha","SetFont",
-        "SetTexture","SetDrawLayer","SetBackdrop","SetBackdropColor","SetBackdropBorderColor"}) do
+        "SetTexture","SetDrawLayer","SetBackdrop","SetBackdropColor","SetBackdropBorderColor",
+        "SetAutoFocus","SetMultiLine","SetMaxLetters","SetTextInsets"}) do
         methods[method]=function(self,...) self["mock_"..method]={...} end
     end
     UIParent=region("Frame","UIParent",nil)

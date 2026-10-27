@@ -4,7 +4,7 @@ local A = TheOneToRuleThemAll
 local EVENTS = {
     "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED", "PLAYER_SPECIALIZATION_CHANGED",
     "PLAYER_TALENT_UPDATE", "ACTIONBAR_PAGE_CHANGED", "UPDATE_STEALTH", "UPDATE_MACROS",
-    "UPDATE_BINDINGS", "CURSOR_CHANGED",
+    "UPDATE_BINDINGS", "CURSOR_CHANGED", "UPDATE_SHAPESHIFT_FORM",
 }
 local function heading(text) return "|cff91c7ad" .. text .. "|r" end
 local function label(parent, font, width)
@@ -105,22 +105,28 @@ local function previewText(panel, snapshot)
     end
     if snapshot.legacyUndo then lines[#lines+1] = snapshot.legacyUndo end
     lines[#lines+1] = "\n" .. heading("Main bar - keys for this preview")
-    lines[#lines+1] = "Keys shown use WoW's built-in action bars on main-bar page 1. Custom action-bar addons may use other bindings."
-    local main, bar2, bar2Slots, stealth, other = {}, {}, {}, {}, {}
+    lines[#lines+1] = "Keys shown use WoW's built-in action bars. Custom action-bar addons may use other bindings."
+    local main, bar2, bar3, bar2Slots, bar3Slots, stealth, other = {}, {}, {}, {}, {}, {}, {}
+    local formMain = false
     for _, row in ipairs(plan.rows or {}) do
-        if row.slot >= 1 and row.slot <= 12 then
+        if row.mainButton or (row.slot >= 1 and row.slot <= 12) then
             main[#main+1] = row
+            if row.mainButton and row.slot > 12 then formMain = true end
         elseif row.slot >= 61 and row.slot <= 72 then
             bar2[#bar2+1] = row
             bar2Slots[#bar2Slots+1] = row.slot - 60
+        elseif row.slot >= 49 and row.slot <= 60 then
+            bar3[#bar3+1] = row
+            bar3Slots[#bar3Slots+1] = row.slot - 48
         elseif snapshot.class == "ROGUE" and row.slot >= 73 and row.slot <= 84 then
             stealth[#stealth+1] = row.slot - 72
         else
             other[#other+1] = row.slot
         end
     end
-    table.sort(main, function(a,b) return a.slot < b.slot end)
-    for _, row in ipairs(main) do appendControl(lines, row, profile, row.slot) end
+    table.sort(main, function(a,b) return (a.mainButton or a.slot) < (b.mainButton or b.slot) end)
+    for _, row in ipairs(main) do appendControl(lines, row, profile, row.mainButton or row.slot) end
+    if formMain then lines[#lines+1] = "Apply changes the main buttons in your selected form only." end
     lines[#lines+1] = "Key assignments stay the same; Apply replaces the abilities in the listed slots."
     if #bar2 > 0 then
         lines[#lines+1] = "\n" .. heading("Action Bar 2")
@@ -130,17 +136,27 @@ local function previewText(panel, snapshot)
             appendControl(lines, row, profile, row.slot - 60)
         end
     end
+    if #bar3 > 0 then
+        lines[#lines+1] = "\n" .. heading("Action Bar 3")
+        lines[#lines+1] = "Your existing keys for these Action Bar 3 slots will cast the abilities listed below after Apply."
+        table.sort(bar3, function(a,b) return a.slot < b.slot end)
+        for _, row in ipairs(bar3) do appendControl(lines, row, profile, row.slot - 48) end
+    end
     lines[#lines+1] = "\n" .. heading("Using this layout")
     lines[#lines+1] = "Numbers in these notes identify slots. Use each slot's bound key."
     if profile.layouts[snapshot.layout].altSlots then
         lines[#lines+1] = "Hold Alt with that key for an alternate action."
     end
+    if snapshot.layout == "mouseover" then
+        lines[#lines+1] = "Friendly spells use a valid friendly mouseover; otherwise they keep normal targeting."
+    end
     for _, line in ipairs(plan.lines or {}) do lines[#lines+1] = line end
     lines[#lines+1] = "\n" .. heading("Other affected bars")
     if #bar2 > 0 then lines[#lines+1] = "Action Bar 2: slots " .. ranges(bar2Slots) .. ". Enable it in WoW Options if hidden." end
+    if #bar3 > 0 then lines[#lines+1] = "Action Bar 3: slots " .. ranges(bar3Slots) .. ". Enable it in WoW Options if hidden." end
     if #stealth > 0 then lines[#lines+1] = "Rogue Stealth / Dance bar: slots " .. ranges(stealth) .. "." end
     if #other > 0 then lines[#lines+1] = "Additional action slots: " .. ranges(other) .. "." end
-    if #bar2 + #stealth + #other == 0 then lines[#lines+1] = "No additional bars." end
+    if #bar2 + #bar3 + #stealth + #other == 0 then lines[#lines+1] = "No additional bars." end
     if #(plan.skipped or {}) > 0 then
         lines[#lines+1] = "Unlearned utilities left untouched: " .. table.concat(plan.skipped, ", ") .. "."
     end
@@ -185,6 +201,7 @@ local function refresh(panel, resetScroll)
         end
     end
     local ok, snapshot = pcall(A.Inspect, panel.selectedId, panel.layout)
+    panel.talentsButton:SetEnabled(type(A.HasTalentReference) == "function" and A.HasTalentReference(panel.selectedId) or false)
     if not ok then
         panel.applyButton:SetEnabled(false)
         panel.undoButton:SetEnabled(false)
@@ -204,9 +221,11 @@ local function refresh(panel, resetScroll)
         panel.profilePrev:SetEnabled(#(snapshot.profiles or {}) > 1)
         panel.profileNext:SetEnabled(#(snapshot.profiles or {}) > 1)
         panel.standardButton:SetText(panel.layout == "standard" and "Standard (selected)" or "Standard")
-        panel.compactButton:SetText(panel.layout == "compact" and "Compact (selected)" or "Compact")
+        panel.alternateLayout = profile and profile.layouts.mouseover and "mouseover" or "compact"
+        local alternateName = panel.alternateLayout == "mouseover" and "Mouseover" or "Compact"
+        panel.compactButton:SetText(alternateName .. (panel.layout == panel.alternateLayout and " (selected)" or ""))
         panel.standardButton:SetEnabled(profile and profile.layouts and profile.layouts.standard ~= nil or false)
-        panel.compactButton:SetEnabled(profile and profile.layouts and profile.layouts.compact ~= nil or false)
+        panel.compactButton:SetEnabled(profile and profile.layouts and profile.layouts[panel.alternateLayout] ~= nil or false)
         panel.detailsButton:SetText(panel.details and "Hide details" or "Show details")
         panel.detailsButton:SetEnabled(snapshot.plan ~= nil and not panel.guide)
         panel.guideButton:SetText(panel.guide and "Back to setup" or "Play guide")
@@ -316,12 +335,14 @@ local function createPanel()
     panel.undoWarning = label(panel, "GameFontHighlightSmall", 670)
     panel.undoWarning:SetPoint("BOTTOMLEFT", 20, 54)
     panel.undoWarning:SetHeight(24)
-    panel.applyButton = button(panel, "Apply layout", 150)
+    panel.applyButton = button(panel, "Apply layout", 140)
     panel.applyButton:SetPoint("BOTTOMLEFT", 20, 18)
-    panel.undoButton = button(panel, "Undo setup", 150)
+    panel.undoButton = button(panel, "Undo setup", 130)
     panel.undoButton:SetPoint("LEFT", panel.applyButton, "RIGHT", 10, 0)
-    panel.guideButton = button(panel, "Play guide", 150)
+    panel.guideButton = button(panel, "Play guide", 130)
     panel.guideButton:SetPoint("LEFT", panel.undoButton, "RIGHT", 10, 0)
+    panel.talentsButton = button(panel, "Talent builds", 130)
+    panel.talentsButton:SetPoint("LEFT", panel.guideButton, "RIGHT", 10, 0)
     panel.closeButton = button(panel, "Close", 100)
     panel.closeButton:SetPoint("BOTTOMRIGHT", -20, 18)
     panel.layout, panel.details = "standard", false
@@ -331,7 +352,9 @@ local function createPanel()
         if #profiles == 0 then return end
         local current = 1
         for i, profile in ipairs(profiles) do if profile.id == panel.selectedId then current = i; break end end
-        panel.selectedId = profiles[((current - 1 + direction) % #profiles) + 1].id
+        local selected = profiles[((current - 1 + direction) % #profiles) + 1]
+        panel.selectedId = selected.id
+        if not selected.layouts[panel.layout] then panel.layout = "standard" end
         panel.lastError, panel.lastMessage = nil, nil
         refresh(panel, true)
     end
@@ -342,13 +365,16 @@ local function createPanel()
         refresh(panel, true)
     end)
     panel.compactButton:SetScript("OnClick", function()
-        panel.layout, panel.lastError, panel.lastMessage = "compact", nil, nil
+        panel.layout, panel.lastError, panel.lastMessage = panel.alternateLayout or "compact", nil, nil
         refresh(panel, true)
     end)
     panel.detailsButton:SetScript("OnClick", function() panel.details = not panel.details; refresh(panel) end)
     panel.guideButton:SetScript("OnClick", function()
         panel.guide = not panel.guide
         refresh(panel, true)
+    end)
+    panel.talentsButton:SetScript("OnClick", function()
+        if type(A.ShowTalentBuilds) == "function" then A.ShowTalentBuilds(panel.selectedId) end
     end)
     panel.refreshButton:SetScript("OnClick", function() panel.lastError, panel.lastMessage = nil, nil; refresh(panel) end)
     panel.applyButton:SetScript("OnClick", function()

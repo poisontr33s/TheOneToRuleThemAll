@@ -1,9 +1,10 @@
-THE ONE TO RULE THEM ALL — 0.3.3-combined
+THE ONE TO RULE THEM ALL — 0.4.0-combined
 27. oktober 2026 · Retail 12.1.5
 
-Pakken inneholder Rogue og Blood Death Knight. Yipyep har egne San'layn- og
-Deathbringer-profiler for Shed Assymetry; se BLOOD-SETUP.txt for knappene.
-Andre klasser, andre DK-specs og Outlaw har ikke et knappeoppsett her.
+Pakken har Standard-oppsett for alle 40 specs i 13 klasser. De opprinnelige
+Rogue-oppsettene og Yipyeps San'layn/Deathbringer for Shed Assymetry er beholdt
+som egne profiler. Se BLOOD-SETUP.txt for de tilpassede Blood-knappene.
+combined er utgaven vi prøver i spillet. main venter på godkjenningen din der.
 
 INSTALLASJON
 
@@ -12,15 +13,20 @@ INSTALLASJON
    Sluttstien skal være:
    ...\AddOns\TheOneToRuleThemAll\TheOneToRuleThemAll.toc
 
-2. Aktiver The One To Rule Them All i WoW. Velg loadoutet du vil bruke;
-   referansekodene står i TALENTS.txt. Blood bruker ditt eksisterende
-   Shed Assymetry-loadout. Addon-en importerer ikke talenter eller bytter gear.
+2. Aktiver The One To Rule Them All i WoW. Velg loadoutet du vil bruke.
+   Talent builds eller /tor talents viser Method-kodene for din spec, med
+   kildelenke, patch og dato. Velg kode, kopier med Ctrl+C og importer den
+   selv i talentvinduet hvis du vil. TALENTS.txt beholder de opprinnelige
+   Rogue-kodene. Custom Blood bruker ditt eksisterende Shed Assymetry-loadout.
+   Addon-en importerer ikke talenter eller bytter gear.
 
-3. Stå utenfor kamp og Stealth, på hovedlinjens side 1, med tom musepeker.
+3. Stå av mounten, utenfor kamp, Stealth og Shadow Dance, på hovedlinjens side 1, med tom musepeker.
    Åpne oppsettvinduet:
 
    /tor
 
+   Standard Balance krever Moonkin Form, Feral Cat Form, Guardian Bear Form og Restoration Druid
+   caster form. Oppsettet endrer bare hovedlinjen i formen du bruker.
    På kompatibel Subtlety vises subburst som utgangspunkt. Blood starter
    forhåndsvisningen med profilen som passer hero-treet ditt. Se gjennom
    oppsettet og trykk Apply layout når du vil legge det inn.
@@ -28,15 +34,17 @@ INSTALLASJON
    Ved hver evne vises tastene du allerede har bundet i WoW. Compact viser
    Alt-kombinasjonene for disse tastene. En plass uten tast merkes som ubundet.
    Makroknappene viser evnenavn, for eksempel Backstab og Shadowstrike.
-   Rogue har Standard og Compact; Blood har Standard med separate evner.
+   Custom Rogue har Standard og Compact; custom Blood har separate evner.
+   De nye Standard-profilene bruker vanlige evneknapper. Healere kan velge
+   Mouseover: vennlige evner bruker et gyldig mouseover-mål, ellers vanlig mål.
    Rogue: Dance, Blades og Goremaw deler én makro i subburst. Se PLAY-GUIDE.txt.
    For subburst og assa kan du trykke Play guide eller skrive /tor guide for
    å lese spilleprioriteten i spillet sammen med tastene i forhåndsvisningen.
    Subburst viser både presis og enklere prioritet, med hele burst-timingen.
    Back to setup går tilbake til oppsettet. Lesing flytter ingen knapper.
 
-4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 i Options
-   hvis den er skjult. Dine eksisterende keybindings blir beholdt.
+4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 og 3 i
+   Options hvis de er skjult. Dine eksisterende keybindings blir beholdt.
 
 Vil du først se oppsettet: /tor preview subburst
 Direkte installasjon som før: /tor subburst
@@ -51,13 +59,14 @@ KOMMANDOER
 
 /tor                              Åpner/lukker oppsettvinduet
 /tor guide                        Åpner spillekort for subburst eller assa
+/tor talents [profil]             Viser Method-koder for manuell kopiering
 /tor help                         Viser kommandohjelp
 /tor list                         Viser inkluderte profiler
 /tor status                       Viser versjon og backupstatus
-/tor check [profil] [compact]     Sjekker forutsetninger uten å endre noe
-/tor preview <profil> [compact]   Viser oppsett uten å endre noe
-/tor apply <profil> [compact]     Legger inn oppsett
-/tor <profil> [compact]           Kortform av apply
+/tor check [profil] [layout]     Sjekker forutsetninger uten å endre noe
+/tor preview <profil> [layout]   Viser oppsett uten å endre noe
+/tor apply <profil> [layout]     Legger inn oppsett
+/tor <profil> [layout]           Kortform av apply
 /tor undo                         Gjenoppretter de berørte knappene
 
 Profiler:
@@ -67,15 +76,22 @@ sublite   Seks-knappers Sub som utelater Goremaw-bruk
 assa      Roligere Fatebound Assassination, åtte offensive evner
 blood-sanlayn       Blood med San'layn, Shed Assymetry
 blood-deathbringer  Samme Blood-knapper, med separat Reaper's Mark
+standard-*         Egne Standard-profiler for hver spec; velg dem i /tor
 
-Rogue har standard- og compact-layout. Blood har bare standard.
-Alle Sub-profiler bruker den samme
+Custom Rogue har standard- og compact-layout. Custom Blood har bare standard.
+Alle de opprinnelige Sub-profilene bruker den samme
 talentkoden. «Sublite» og «subburst» er forskjellige skadeprioriteringer:
 bare subburst beholder Goremaw i skadeplanen.
 
 HVA SOM FLYTTES
 
-Hovedlinjens plasser 1–9 og lærte utilities på Action Bar 2. Rogue speiler
+Nye Standard-profiler plasserer kjernen på hovedlinjen, utility på Bar 2 og
+ekstra evner på Bar 3. Lærte racial-evner får Bar 3 plass 10–12. Ulærte
+valgfrie talenter lar plassen stå urørt. Standard Rogue legges inn utenfor
+Stealth og endrer ikke Stealth-linjen. Ingen prioritet velger angrep for deg.
+
+De opprinnelige profilene bruker hovedlinjens plasser 1–9 og lærte utilities
+på Action Bar 2. Custom Rogue speiler
 også sine plasser 1–9 til Stealth/Dance-linjen. Blood gjør ingen slik speiling;
 ulærte valgfrie evner lar sin plass stå urørt. Hovedlinjens 10–12 beholdes.
 Vinduet og chatten viser hver berørt plass på Action Bar 2 og evnen som
@@ -94,7 +110,7 @@ Blood lager ingen makroer og krever ingen ledige makroplasser.
 
 UNDO OG BYTTE
 
-Velg samme spec og talent-loadout som da du la inn oppsettet. Gå ut av kamp
+Velg samme spec, talent-loadout og form som da du la inn oppsettet. Gå ut av kamp
 og Stealth, tilbake til side 1, og skriv /tor undo. Deretter kan du velge
 en ny profil eller layout. Ny setup er blokkert mens en backup er aktiv.
 Undo gjenoppretter også opprinnelig tomme plasser. Manuelle endringer du
@@ -126,9 +142,10 @@ FØRSTE TEST I WOW — ROGUE
 før Apply.
 Etter vellykket setup og /reload: prøv builder i vanlig tilstand og Stealth,
 deretter burst på en treningsdukke. Test også Undo når du er ute av kamp og
-Stealth. På en alt uten modul skal vinduet vise at ingen profil er tilgjengelig.
+Stealth. På en annen klasse skal dens egne Standard-profiler vises, uten at
+åpning av vinduet endrer noe. Standard Rogue speiler ikke Stealth-linjen.
 Plassnummer i forhåndsvisningen er action-bar-plasser. Tastene som vises,
-hentes fra WoWs innebygde linjer, på hovedlinjens side 1. Bruker du et annet
+hentes fra WoWs innebygde linjer og den valgte formen. Bruker du et annet
 action-bar-addon med egne bindinger, må du kontrollere tastene der.
 Endrer du bindinger mens vinduet er åpent, oppdateres tastevisningen.
 
@@ -165,6 +182,11 @@ inneholder detaljene. Innlasting, visuell layout og makrokasting er ennå ikke
 prøvd i en live WoW-klient. Blood-utgaven installerer separate knapper for
 talentgrunnlaget ditt; den hevder ingen ny DPS- eller overlevelsesgevinst.
 Rogue-skadeprioriteten og de tidligere simresultatene er uendret.
+Standard-profilene dekker alle specs med Method 12.1.5 som talentreferanse;
+de er manuelle knappeoppsett, ikke optimalisering av alle talentkombinasjoner.
+Prøv evnene, eventuelle procs og Undo på hver karakter du tar i bruk.
+Kildedata og de opprinnelige filene sjekkes mot lagrede hashverdier. Det
+beskytter innholdet mot utilsiktede endringer, men erstatter ikke prøving i WoW.
 
 Hvis en berørt plass inneholder en flyout (en knapp som åpner flere evner),
 stopper oppsettet før noe flyttes. Flytt den til en uberørt linje og prøv igjen.

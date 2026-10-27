@@ -1,14 +1,18 @@
 ## Interface: 120105
 ## Title: The One To Rule Them All
-## Notes: Reversible action-bar setup for Rogue and Blood Death Knight. No combat automation.
+## Notes: Reversible action-bar setup for every Retail class. No combat automation.
 ## Author: Astra, Claude
-## Version: 0.3.3-combined
+## Version: 0.4.0-combined
 ## OptionalDeps: AstraRogueSetup, AstraSubSetup
 ## SavedVariablesPerCharacter: TheOneToRuleThemAllDB
 
 Core.lua
+NativeBar.lua
+StandardData.lua
 Modules/Rogue.lua
 Modules/DeathKnight.lua
+Modules/Standard.lua
 Controls.lua
 PlayGuideData.lua
+TalentBrowser.lua
 UI.lua

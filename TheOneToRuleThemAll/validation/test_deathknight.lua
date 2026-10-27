@@ -39,7 +39,7 @@ return function(c)
             S.slots[1]={kind="macro",id=121}
             local before=capture()
             local view=A.Inspect()
-            expect(view.selectedId==profile.id and view.canApply and #view.profiles==2)
+            expect(view.selectedId==profile.id and view.canApply and #view.profiles==3)
             expect(view.layout=="standard" and view.plan and not view.canUndo)
             expect(A.Execute("preview "..profile.id))
             unchanged(before)

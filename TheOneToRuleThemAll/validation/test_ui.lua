@@ -32,6 +32,15 @@ return function(c)
         -- change between an earlier readiness check and command execution.
         button:GetScript("OnClick")(button,"LeftButton")
     end
+    local function nightborneRacials()
+        -- The legacy spell mock starts with all spells learned. Standard
+        -- profiles need the actual one-race condition for their preview.
+        for _, racial in ipairs(c.addon().racialDefinitions or {}) do
+            for _, id in ipairs(racial.ids) do
+                if id ~= 260364 then c.state().unlearned[id]=true end
+            end
+        end
+    end
     test("UI is lazy and does not create a panel or touch bars on addon load",function()
         local S=c.state()
         expect(c.addon().panel==nil and #S.frames==1)
@@ -215,7 +224,8 @@ return function(c)
         S.class="MAGE"; S.spec=62; local before=baseline()
         directClick(p.applyButton)
         unchanged(before)
-        expect(not p.applyButton:IsEnabled())
+        expect(p.selectedId=="standard-arcane-mage" and p.snapshot.profile.class=="MAGE")
+        expect(p.snapshot.profile.spec==62 and p.applyButton:IsEnabled())
     end)
     test("UI combat and spec events refresh readiness without applying a profile",function()
         local S=c.state(); local p=open(); local before=baseline()
@@ -224,8 +234,10 @@ return function(c)
         S.combat=false; S.dispatchUIEvent("PLAYER_REGEN_ENABLED")
         expect(p.applyButton:IsEnabled())
         S.class="DEATHKNIGHT"; S.spec=252
+        nightborneRacials()
         S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
-        expect(not p.applyButton:IsEnabled() and #p.snapshot.profiles==0)
+        expect(#p.snapshot.profiles==1 and p.snapshot.profile.class=="DEATHKNIGHT")
+        expect(p.snapshot.profile.spec==252 and p.snapshot.plan)
         unchanged(before)
     end)
     test("UI missing required ability blocks Apply without discarding preview",function()
@@ -424,13 +436,36 @@ return function(c)
         {"Death Knight","DEATHKNIGHT",252}, {"Evoker","EVOKER",1468},
         {"Mage","MAGE",62}, {"Priest","PRIEST",256}, {"Outlaw","ROGUE",260},
     }) do
-        test("UI remains passive on unsupported "..alt[1],function()
-            local S=c.state(); S.class=alt[2]; S.spec=alt[3]
+        test("UI previews "..alt[1].." without writes while combat blocks Apply",function()
+            local S=c.state(); S.class=alt[2]; S.spec=alt[3]; S.combat=true
+            nightborneRacials()
             local before=baseline(); local p=open()
-            expect(#p.snapshot.profiles==0 and not p.applyButton:IsEnabled())
+            expect(#p.snapshot.profiles>=1 and p.snapshot.plan and not p.applyButton:IsEnabled())
+            expect(p.snapshot.profile.class==S.class and p.snapshot.profile.spec==S.spec)
             expect(not p.undoButton:IsEnabled())
             click(p.applyButton); click(p.refreshButton)
             unchanged(before)
         end)
     end
+    test("UI stays passive for an unknown specialization",function()
+        local S=c.state(); S.class="MAGE"; S.spec=999999
+        local before=baseline(); local p=open()
+        expect(#p.snapshot.profiles==0 and not p.applyButton:IsEnabled() and not p.talentsButton:IsEnabled())
+        click(p.applyButton); click(p.refreshButton)
+        unchanged(before)
+    end)
+    test("Healer Mouseover preview is explicit and preserves the standard layout",function()
+        local S=c.state(); S.class="PRIEST"; S.spec=257
+        nightborneRacials()
+        local before=baseline(); local p=open()
+        expect(p.layout=="standard" and p.compactButton:IsEnabled())
+        expect(p.compactButton:GetText()=="Mouseover")
+        click(p.compactButton)
+        expect(p.layout=="mouseover" and p.compactButton:GetText()=="Mouseover (selected)")
+        expect(p.previewText:GetText():find("valid friendly mouseover",1,true))
+        expect(#p.snapshot.plan.macros>0)
+        click(p.standardButton)
+        expect(p.layout=="standard" and #p.snapshot.plan.macros==0)
+        unchanged(before)
+    end)
 end

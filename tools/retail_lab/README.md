@@ -10,10 +10,18 @@ On Windows, with Python 3.10+ and WoW already installed:
 - The launcher finds WoW or asks for its installation folder. It installs the
   exact packaged addon and the test companion, backing up previous addon folders
   under `WTF/TORClientLabBackups`. Existing SavedVariables are kept.
-- Start WoW, enable both addons and log in on the intended Rogue or Blood DK.
-  Stand safely outside combat and Stealth, with an empty cursor and bar page 1.
+- Start WoW, enable both addons and log in on the class you want to test.
+  Choose its profile in `/tor`, outside combat with an empty cursor and bar
+  page 1. Standard Feral requires Cat Form, Guardian Bear Form and Restoration
+  Druid caster form. Leave Stealth on Rogue.
 - Use the browser desk to open the client test. Begin, Apply, Reload, then Undo
   are separate explicit clicks. Reload again to save the final observation.
+
+The 0.4.0 Standard profiles cover all 40 specializations. Check the current
+form's main buttons, Bar 2 utilities and Bar 3 extras/racials on each character
+you test. Return to the same form and loadout before Undo. Custom Rogue
+Stealth/Dance mirrors and custom Blood layouts keep their original behavior.
+The talent browser only copies Method reference codes; it does not import them.
 
 The desk is accessible only on this Windows machine through its private local
 link. An agent connected to that machine's browser can operate the desk. A cloud
@@ -36,6 +44,8 @@ and source hash, so old character results cannot approve a new build. The Lua
 report is decoded as data, never executed. Native widget creation, spell/item
 observations and core-confirmed macro restoration are reported separately.
 Rendering quality and actual casting remain unverified until observed in game.
+One successful character does not approve all classes or talent combinations.
+Keep combined as the candidate until the owner accepts its in-game results.
 
 Windows capture/input and the companion's in-game behavior require a real client
 session for acceptance. Transport/installer checks do not count as that test.

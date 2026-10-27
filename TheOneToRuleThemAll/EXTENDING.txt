@@ -8,6 +8,25 @@ Modules/DeathKnight.lua owns the Blood spell buttons and hero requirements.
 It uses base Heart Strike and Marrowrend IDs so temporary combat replacements
 are not captured as permanent action-bar assignments.
 
+StandardData.lua is generated from tools/class_data/*.json. Edit the source
+records, then run python3 tools/generate_standard_profiles.py. --check verifies
+that the generated file matches. Records keep guide URLs, update dates, exact
+talent imports and fixed ability positions; the generator records their hashes.
+Modules/Standard.lua turns those records into separate standard-* profiles.
+Do not replace the custom Rogue/Blood modules with generated definitions.
+tools/check_foundation.py checks those preserved files against recorded hashes.
+An intentional foundation change needs review; do not refresh the hashes just
+to make an unexpected difference pass.
+
+Standard profiles use native base spells, skip unlearned optional abilities,
+and reserve Bar 3 slots 10–12 for learned racial abilities. Healer Mouseover
+is a separate, explicit layout. NativeBar.lua verifies the visible native
+main bar and required form before placement, and saves the form for Undo.
+Balance requires Moonkin, Feral Cat, Guardian Bear and Restoration Druid caster form. Standard
+Rogue changes only its normal main bar outside Stealth/Shadow Dance. A row's mainButton
+identifies its visible main-bar button even when the physical slot is on a
+form page; UI and key descriptions must preserve that distinction.
+
 To add a module, load its Lua file after Core.lua in the .toc and call
 TheOneToRuleThemAll.RegisterProfile with:
 
@@ -29,6 +48,8 @@ A.Execute is the single guarded command path used by slash and panel actions.
 The panel's events refresh presentation only while the panel is visible.
 Controls.lua reads native keybindings for the preview; it never changes them.
 Unmapped bars are identified rather than assigned guessed keys.
+TalentBrowser.lua is a separate read-only window over standardDefinitions.
+It offers exact-code copying and source links; talent imports stay manual.
 
 All writes occur on an explicit out-of-combat setup/undo command or click. Modules must
 not add combat-event decision logic, timer-driven rotation selection, gear
@@ -37,6 +58,10 @@ Do not infer a class's bars, forms, hero replacements or spell overrides from
 the Rogue module. A new class needs its own checked placement and undo tests.
 
 EVIDENCE REQUIRED FOR A RELEASED POLICY
+
+The Standard profiles are button arrangements with published references, not
+new optimized combat policies. The requirements below apply when proposing
+new priorities, coupled casts or performance claims.
 
 - Current spell and talent data, legal talent code, eligible hero tree.
 - Fixed reference gear appropriate to armor, primary stat and weapon rules.
@@ -62,13 +87,14 @@ EVIDENCE REQUIRED FOR A RELEASED POLICY
 
 CURRENT COVERAGE
 
-Native setup: Trickster Subtlety, Fatebound Assassination, San'layn Blood and
-Deathbringer Blood. Blood is a setup-only layout for Shed Assymetry, with no
-new optimized policy or survival claim. It uses Standard only; profile layouts
-are optional individually and the UI/command help must reflect that.
+Native Standard setup: 40 specializations, 13 classes, with Method 12.1.5
+talent references. Existing custom Trickster Subtlety, Fatebound Assassination,
+San'layn Blood and Deathbringer Blood remain independent. Custom Blood is a
+setup-only layout for Shed Assymetry, with no new optimized policy or survival
+claim. Layouts are optional per profile; the UI and command help must match.
 Simulation research: all six eligible Rogue spec/hero pairs, with bounded
 talent and policy candidates. This is not every mathematically possible
 talent combination and does not prove a global optimum.
-Other class/spec profiles: not implemented or benchmarked in this version.
-The generic registry is validated with a synthetic non-Rogue test module;
-that test is not a playable or optimized Mage profile.
+The all-class expansion has no live-client acceptance or exhaustive build
+comparison yet. Placement tests and valid import headers do not establish
+rotation quality, survivability or correct casting in the actual client.

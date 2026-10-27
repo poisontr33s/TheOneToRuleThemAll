@@ -153,7 +153,7 @@ return function(c)
     end)
     test("controls unknown slots and malformed rows do not invent supported bindings", function()
         local A = c.addon()
-        for _, slot in ipairs({0, 13, 60, 85, 1.5, "1"}) do
+        for _, slot in ipairs({0, 13, 48, 85, 1.5, "1"}) do
             local result = A.ControlInfo({slot=slot, action={kind="spell", id=1766}}, {class="ROGUE"})
             expect(result.keysText == "Check your action-bar addon")
         end

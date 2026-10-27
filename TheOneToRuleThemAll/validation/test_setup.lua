@@ -42,6 +42,7 @@ local function reset()
     UnitRace=function() return S.race,S.race end
     InCombatLockdown=function() return S.combat end
     IsStealthed=function() return S.stealth end
+    IsMounted=function() return false end
     C_ClassTalents={GetActiveConfigID=function() return S.config end,
       GetLastSelectedSavedConfigID=function(spec) assert(spec==S.spec); return S.savedConfig end,
       GetStarterBuildActive=function() return S.starter end}
@@ -130,7 +131,23 @@ local function reset()
       _G[n]=function() S.bindingCalls=S.bindingCalls+1; error("Binding mutation is forbidden") end
     end
     installUIMocks(S)
+    C_ActionBar.HasVehicleActionBar=function() return false end
+    C_ActionBar.HasOverrideActionBar=function() return false end
+    C_ActionBar.HasTempShapeshiftActionBar=function() return false end
+    C_ActionBar.IsPossessBarVisible=function() return false end
+    C_ActionBar.HasBonusActionBar=function() return false end
+    C_PetBattles={IsInBattle=function() return false end}
+    GetShapeshiftForm=function() return 0 end
+    GetNumShapeshiftForms=function() return 0 end
+    GetShapeshiftFormInfo=function() return nil end
+    NUM_ACTIONBAR_BUTTONS=12
+    for button=1,9 do _G["ActionButton"..button]={CalculateAction=function() return button end} end
+    C_Spell.IsSpellPassive=function() return false end
     loadAddon()
+    -- The default fixture is one Nightborne, not every playable race at once.
+    for _, racial in ipairs(TheOneToRuleThemAll.racialDefinitions or {}) do
+        for _, id in ipairs(racial.ids) do if id~=260364 then S.unlearned[id]=true end end
+    end
 end
 local function command(s) SlashCmdList.THEONETORULETHEMALL(s) end
 local function messageContains(s)
@@ -869,6 +886,9 @@ dofile(addonDir .. "/validation/test_core_v2.lua")(ctx)
 dofile(addonDir .. "/validation/test_controls.lua")(ctx)
 dofile(addonDir .. "/validation/test_ui.lua")(ctx)
 dofile(addonDir .. "/validation/test_deathknight.lua")(ctx)
+dofile(addonDir .. "/validation/test_talent_browser.lua")(ctx)
+dofile(addonDir .. "/validation/test_native_bar.lua")(ctx)
+dofile(addonDir .. "/validation/test_standard.lua")(ctx)
 TOR_TEST_TOTAL=total; TOR_TEST_FAILED=failed
 realPrint(string.format("RESULT: %d tests, %d passed, %d failed",total,total-failed,failed))
 assert(failed==0,"Mock tests failed")

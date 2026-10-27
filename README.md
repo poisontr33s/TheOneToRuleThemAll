@@ -1,13 +1,19 @@
 # TheOneToRuleThemAll
 
-**The One To Rule Them All** is a World of Warcraft Retail addon that installs
-Rogue and Blood Death Knight action-bar layouts, with an option to restore the
-previous setup. Current addon version: **0.3.3-combined**, targeting Retail **12.1.5**.
+**The One To Rule Them All** is a World of Warcraft Retail addon with reversible
+action-bar layouts for all **40 specializations across 13 classes**, alongside
+the original custom Rogue and Blood Death Knight setups.
+Current addon version: **0.4.0-combined**, targeting Retail **12.1.5**.
 
 [![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=combined)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Acombined)
 
 Open `/tor` to preview a layout, check what will change, apply it, or undo it.
 Every combat action is chosen and pressed by the player.
+
+**Talent builds** or `/tor talents` opens the bundled Method references for your
+specialization. Choose a published build, copy its exact code, and import it in
+WoW's talent window if you want it. Each reference keeps its guide link, patch
+and update date. Browsing never changes your talents or applies a layout.
 
 For SubBurst and Fatebound Assassination, **Play guide** in that panel or
 `/tor guide` opens the original playing priorities alongside the selected
@@ -23,6 +29,23 @@ bindings. Opening the preview does not assign keys or move buttons.
 
 ## Included profiles
 
+The `standard-*` profiles cover every specialization, including Outlaw,
+Devourer, all healers and all tanks. They place learned core abilities on the
+main bar, utility on Bar 2, and additional abilities on Bar 3. Learned racial
+abilities use Bar 3 slots 10–12. Unlearned optional talents leave their slots
+untouched. The layout keeps native base spell buttons through temporary procs;
+it does not choose attacks or rank your talent combinations.
+
+Healers can explicitly select **Mouseover** instead of **Standard**: friendly
+spells use a valid mouseover, otherwise their normal target. Standard uses
+individual spell buttons. Feral setup requires Cat Form, Guardian requires
+Bear Form, and Restoration Druid requires caster form. Only the selected
+form's main bar changes. Standard Rogue setup requires leaving Stealth/Shadow Dance and
+changes the normal main bar; the original custom Rogue profiles below still
+include their separate Stealth/Dance mirrors.
+
+The custom foundations remain separate:
+
 | Profile | Specialization | Layout |
 | --- | --- | --- |
 | `subburst` | Trickster Subtlety | Six offensive choices, with Dance/Blades/Goremaw sharing one macro |
@@ -32,13 +55,12 @@ bindings. Opening the preview does not assign keys or move buttons.
 | `blood-sanlayn` | San'layn Blood | Yipyep's Shed Assymetry: separate core attacks, DRW, movement and defensives |
 | `blood-deathbringer` | Deathbringer Blood | Same Blood layout, with Reaper's Mark on Bar 2 slot 11 |
 
-Rogue profiles have Standard and Compact layouts. Compact uses manual Alt modifiers.
-Blood profiles use Standard with individual spell buttons and the character's
+The custom Rogue profiles have Standard and Compact layouts. Compact uses manual
+Alt modifiers. The custom Blood profiles use Standard with individual spell buttons and the character's
 existing talent loadout. The preview starts with the compatible hero profile;
 applying it is manual. No trinkets, talents or keys are changed. Unlearned optional
 abilities leave their slots untouched. Read [BLOOD-SETUP.txt](TheOneToRuleThemAll/BLOOD-SETUP.txt)
 for the exact slots and the San'layn/Deathbringer switch sequence.
-Other classes, other DK specializations and Outlaw remain passive.
 
 ## Install and test in WoW
 
@@ -47,17 +69,18 @@ Other classes, other DK specializations and Outlaw remain passive.
    changes from `astra` and `claude`; `main` is the previous shared baseline.
 2. With WoW closed, extract the `TheOneToRuleThemAll` folder into
    `World of Warcraft/_retail_/Interface/AddOns/`. Keep existing SavedVariables.
-3. Select your intended talent loadout; reference codes are in
-   [TALENTS.txt](TheOneToRuleThemAll/TALENTS.txt). For Blood, keep the matching
-   Shed Assymetry loadout you already use.
-4. Outside combat and Stealth, on main-bar page 1 with an empty cursor, open `/tor`.
-   Review the main bar and every affected Bar 2 slot before clicking **Apply layout**.
+3. Select your intended talent loadout. `/tor talents` shows the bundled Method
+   references; [TALENTS.txt](TheOneToRuleThemAll/TALENTS.txt) retains the original
+   custom Rogue codes. For custom Blood, keep your matching Shed Assymetry loadout.
+4. Outside combat, on main-bar page 1 with an empty cursor, open `/tor`.
+   Dismount, use the required Druid form and leave Stealth/Shadow Dance on Rogue. Review the main bar
+   and every affected Bar 2 and Bar 3 slot before clicking **Apply layout**.
 5. After successful setup, use `/reload`, then try the buttons on a training dummy.
    On Blood, check Heart Strike/Vampiric Strike or Marrowrend/Exterminate through
    a proc, plus the separate movement and defensive buttons. On Rogue, check
    the builder in and out of Stealth, burst, and Compact's manual Alt choices.
-6. Leave combat and return to the original specialization/loadout and main-bar
-   page 1. Use `/tor undo` and check that your previous buttons return.
+6. Leave combat and return to the original specialization/loadout, form and
+   main-bar page 1. Use `/tor undo` and check that your previous buttons return.
 
 Existing keys keep their bindings, but will cast the new abilities placed in their
 slots. Read [START-HERE.txt](TheOneToRuleThemAll/START-HERE.txt) for upgrade details
@@ -88,8 +111,9 @@ restoration keeps the backup available, whether it follows failed Apply or
 explicit Undo. Setup stays blocked until the original buttons are restored.
 Unavailable originals are reported so Undo can be retried after recovery.
 
-Use a pull request from `combined` to `main` for the shared release. Record the
-code checks and actual in-game results separately. CI does not merge branches.
+`combined` remains the candidate to try in game. Promote it to `main` only after
+the owner confirms it works there; this expansion does not change `main`.
+Record code checks and actual in-game results separately. CI does not merge branches.
 
 Use Git to fetch source changes. ZIP files are installation builds, so source code
 does not need to be passed between chats. A local clone contains the addon in the
@@ -102,6 +126,8 @@ Requires Python 3 and a Lua 5.4 shared library. On Ubuntu:
 ```sh
 sudo apt-get update
 sudo apt-get install -y liblua5.4-0
+python3 tools/generate_standard_profiles.py --check
+python3 tools/check_foundation.py
 python3 TheOneToRuleThemAll/validation/run_lua_tests.py
 python3 tools/package_addon.py
 ```
@@ -114,15 +140,26 @@ tests are kept beside the addon under `validation/`.
 `python3 tools/sync_play_guide.py` to update the Lua copy WoW loads. The tests
 check that the loaded text matches the source exactly.
 
+Standard class and racial data lives in `tools/class_data/*.json`. Edit those
+reviewed records, then run `python3 tools/generate_standard_profiles.py` to
+update `StandardData.lua`. The generator checks coverage, spell records and
+talent-code specialization headers, and records source-file hashes. `--check`
+rejects a stale generated file; it does not test a build in WoW.
+`python3 tools/check_foundation.py` checks the recorded hashes of the original
+custom modules and source guides, so an accidental rewrite fails validation.
+
 ## Simulation scope
 
 The current Rogue policies retain the original fixed-gear study described in
 [GEAR-LOCK.txt](TheOneToRuleThemAll/GEAR-LOCK.txt) and the playing guide.
-The Blood module installs the user's existing custom talent foundation as a
+The custom Blood module installs the user's existing custom talent foundation as a
 button layout. It has no automatic priorities or coupled casts and makes no
 new DPS or survivability claim. Earlier Blood DPS simulations do not validate
 tank survivability. Both hero variants retain manual Death Strike, DRW and
 defensive timing. The addon does not validate the full talent code.
+The all-class Standard layouts are manual button setups with published Method
+12.1.5 references. They have not been tested in the live client or optimized
+for every race, hero tree and talent combination.
 The full research archive remains a separate historical artifact and is not
 required to test or package this addon. This repository does not contain its raw
 simulation runs.

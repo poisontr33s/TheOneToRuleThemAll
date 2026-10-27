@@ -1,0 +1,1865 @@
+[
+  {
+    "id": "standard-beast-mastery",
+    "class": "HUNTER",
+    "spec": 253,
+    "specName": "Beast Mastery",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/beast-mastery-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Pack Leader — single target",
+        "content": "raid",
+        "hero": "Pack Leader",
+        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGGzsMzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAgZAAAYMzMDYmNCDzCYbAYA"
+      },
+      {
+        "label": "Pack Leader — Mythic+",
+        "content": "dungeon",
+        "hero": "Pack Leader",
+        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYGPwMzsMzwMzMjZGMzYmhZGzMzYbmZYMDLDNDAAAAAAAAmHYMzAmZjAmFw2AwA"
+      },
+      {
+        "label": "Dark Ranger — single target",
+        "content": "raid",
+        "hero": "Dark Ranger",
+        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsBZsAAgZMjZWMDzYmxMMzYYGzMjZMDzMjZMDGaGAAAAwMAAAMzMzgZGQYYWAbDAD"
+      },
+      {
+        "label": "Dark Ranger — Mythic+",
+        "content": "dungeon",
+        "hero": "Dark Ranger",
+        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsBZsAAgZGzMziZYGmxMjZmZYGzMjZmZsNzMMmhlhmBAAAAMDAAAzDMmZYmBEwsA2GAA"
+      }
+    ],
+    "main": [
+      {
+        "id": 34026,
+        "name": "Kill Command",
+        "required": true
+      },
+      {
+        "id": 193455,
+        "name": "Cobra Shot",
+        "required": true
+      },
+      {
+        "id": 217200,
+        "name": "Barbed Shot",
+        "required": true
+      },
+      {
+        "id": 1264359,
+        "name": "Wild Thrash",
+        "required": false
+      },
+      {
+        "id": 19574,
+        "name": "Bestial Wrath",
+        "required": false
+      },
+      {
+        "id": 466930,
+        "name": "Black Arrow",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 147362,
+        "name": "Counter Shot",
+        "required": false
+      },
+      {
+        "id": 109304,
+        "name": "Exhilaration",
+        "required": false
+      },
+      {
+        "id": 186265,
+        "name": "Aspect of the Turtle",
+        "required": false
+      },
+      {
+        "id": 264735,
+        "name": "Survival of the Fittest",
+        "required": false
+      },
+      {
+        "id": 781,
+        "name": "Disengage",
+        "required": true
+      },
+      {
+        "id": 186257,
+        "name": "Aspect of the Cheetah",
+        "required": true
+      },
+      {
+        "id": 5384,
+        "name": "Feign Death",
+        "required": true
+      },
+      {
+        "id": 187650,
+        "name": "Freezing Trap",
+        "required": true
+      },
+      {
+        "id": 19577,
+        "name": "Intimidation",
+        "required": false
+      },
+      {
+        "id": 109248,
+        "name": "Binding Shot",
+        "required": false
+      },
+      {
+        "id": 19801,
+        "name": "Tranquilizing Shot",
+        "required": false
+      },
+      {
+        "id": 34477,
+        "name": "Misdirection",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 257284,
+        "name": "Hunter's Mark",
+        "required": true
+      },
+      {
+        "id": 53480,
+        "name": "Roar of Sacrifice",
+        "required": false
+      },
+      {
+        "id": 199483,
+        "name": "Camouflage",
+        "required": false
+      },
+      {
+        "id": 5116,
+        "name": "Concussive Shot",
+        "required": false
+      },
+      {
+        "id": 187698,
+        "name": "Tar Trap",
+        "required": false
+      },
+      {
+        "id": 883,
+        "name": "Call Pet 1",
+        "required": false
+      },
+      {
+        "id": 136,
+        "name": "Mend Pet",
+        "required": false
+      },
+      {
+        "id": 982,
+        "name": "Revive Pet",
+        "required": false
+      },
+      {
+        "id": 2641,
+        "name": "Dismiss Pet",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Wild Thrash occupies the AoE position. Bestial Wrath remains a native button so Wailing Arrow can replace it in game.",
+      "Pack Leader and Dark Ranger imports are alternatives; choose and import a build manually."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/beast-mastery-hunter/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-marksmanship",
+    "class": "HUNTER",
+    "spec": 254,
+    "specName": "Marksmanship",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/marksmanship-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Sentinel — single target",
+        "content": "raid",
+        "hero": "Sentinel",
+        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwCMwMGzYZAMD2AAAAAAAAAzYGzwMmZGzgx0MGM2WmZmZmZmZmFmZZwMAAg5BmZGDgZajhBYjZ2mxA"
+      },
+      {
+        "label": "Sentinel — raid cleave",
+        "content": "raid",
+        "hero": "Sentinel",
+        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwCMwMGzYZAMD2AAAAAAAAAzYGzwMmZGzgx0MGMbbbzMzMzMzMzCzsMMDAAw8AzMDAmpNGGgNmZbGD"
+      },
+      {
+        "label": "Sentinel — Mythic+",
+        "content": "dungeon",
+        "hero": "Sentinel",
+        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwGMwMGNWGAzgNAAAAAAAAwMmZmhZMzMmBjpZMYW22mZmZmZmZmFmZZYGAAg5BGzAgZabDGgNmZbGD"
+      },
+      {
+        "label": "Dark Ranger — single target",
+        "content": "raid",
+        "hero": "Dark Ranger",
+        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAYzsMwAmgZYbAzCAAAAAAAAYGzYGmxMzYGMmmxgx2yMzMzMzMzswMLDGAAg5BmZGzMzACDDwGzsNjB"
+      },
+      {
+        "label": "Dark Ranger — Mythic+",
+        "content": "dungeon",
+        "hero": "Dark Ranger",
+        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAYzsMwAmgZYLwsAAAAAAAAAmxMzMMjZmxMYMNjBzymZMzMzMzMLMzywMAAAzDMmxMzMgsBDwGzsNjB"
+      }
+    ],
+    "main": [
+      {
+        "id": 19434,
+        "name": "Aimed Shot",
+        "required": true
+      },
+      {
+        "id": 257044,
+        "name": "Rapid Fire",
+        "required": true
+      },
+      {
+        "id": 185358,
+        "name": "Arcane Shot",
+        "required": true
+      },
+      {
+        "id": 257620,
+        "name": "Multi-Shot",
+        "required": true
+      },
+      {
+        "id": 56641,
+        "name": "Steady Shot",
+        "required": true
+      },
+      {
+        "id": 212431,
+        "name": "Explosive Shot",
+        "required": false
+      },
+      {
+        "id": 260243,
+        "name": "Volley",
+        "required": false
+      },
+      {
+        "id": 288613,
+        "name": "Trueshot",
+        "required": false
+      },
+      {
+        "id": 53351,
+        "name": "Kill Shot",
+        "required": false,
+        "alternatives": [
+          466930
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 147362,
+        "name": "Counter Shot",
+        "required": false
+      },
+      {
+        "id": 109304,
+        "name": "Exhilaration",
+        "required": false
+      },
+      {
+        "id": 186265,
+        "name": "Aspect of the Turtle",
+        "required": false
+      },
+      {
+        "id": 264735,
+        "name": "Survival of the Fittest",
+        "required": false
+      },
+      {
+        "id": 781,
+        "name": "Disengage",
+        "required": true
+      },
+      {
+        "id": 186257,
+        "name": "Aspect of the Cheetah",
+        "required": true
+      },
+      {
+        "id": 5384,
+        "name": "Feign Death",
+        "required": true
+      },
+      {
+        "id": 187650,
+        "name": "Freezing Trap",
+        "required": true
+      },
+      {
+        "id": 19577,
+        "name": "Intimidation",
+        "required": false
+      },
+      {
+        "id": 109248,
+        "name": "Binding Shot",
+        "required": false
+      },
+      {
+        "id": 19801,
+        "name": "Tranquilizing Shot",
+        "required": false
+      },
+      {
+        "id": 34477,
+        "name": "Misdirection",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 257284,
+        "name": "Hunter's Mark",
+        "required": true
+      },
+      {
+        "id": 53480,
+        "name": "Roar of Sacrifice",
+        "required": false
+      },
+      {
+        "id": 199483,
+        "name": "Camouflage",
+        "required": false
+      },
+      {
+        "id": 5116,
+        "name": "Concussive Shot",
+        "required": false
+      },
+      {
+        "id": 187698,
+        "name": "Tar Trap",
+        "required": false
+      },
+      {
+        "id": 466904,
+        "name": "Harrier's Cry",
+        "required": true
+      }
+    ],
+    "notes": [
+      "Multi-Shot uses the current Marksmanship spellbook ID. Trueshot and Kill Shot stay native for their hero replacements.",
+      "Arcane Shot and Multi-Shot have separate positions because both are usable in the same build."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/marksmanship-hunter/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-survival",
+    "class": "HUNTER",
+    "spec": 255,
+    "specName": "Survival",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/survival-hunter",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Pack Leader — single target",
+        "content": "raid",
+        "hero": "Pack Leader",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWIbwMM0glZMzMmZWGAAAAAAmxMmZZbGjZMDeATzAAAAMAYGLLzMzixMjxMDgZ2AmFjhxmBA"
+      },
+      {
+        "label": "Pack Leader — Mythic+",
+        "content": "dungeon",
+        "hero": "Pack Leader",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWILwMM0gFzMzMzMWGAAAAAAmxMzMLbzYMjZwYaGAAAgBAPwYZZm5BWYmZwYMgZ2AYGjZmNDA"
+      },
+      {
+        "label": "Sentinel — single target",
+        "content": "raid",
+        "hero": "Sentinel",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWgNYGGawyMmZGzMLDAAAAAAzYGzssNjxMmBPgpZAAAAGAMjllZmZxYmxYmZAmZDYYMM2MAA"
+      },
+      {
+        "label": "Sentinel — Mythic+",
+        "content": "dungeon",
+        "hero": "Sentinel",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMWgBmxYGLDgZC2mZmZmZMbzDAAAAAAYGzMzYbGjZMDGTzAAAAMAwYZZmxCmZmxYmBgZsBGjZmNDA"
+      }
+    ],
+    "main": [
+      {
+        "id": 259489,
+        "name": "Kill Command",
+        "required": true
+      },
+      {
+        "id": 186270,
+        "name": "Raptor Strike",
+        "required": true
+      },
+      {
+        "id": 259495,
+        "name": "Wildfire Bomb",
+        "required": true
+      },
+      {
+        "id": 1261193,
+        "name": "Boomstick",
+        "required": false
+      },
+      {
+        "id": 1250646,
+        "name": "Takedown",
+        "required": false
+      },
+      {
+        "id": 203415,
+        "name": "Fury of the Eagle",
+        "required": false
+      },
+      {
+        "id": 190925,
+        "name": "Harpoon",
+        "required": true
+      },
+      {
+        "id": 193265,
+        "name": "Hatchet Toss",
+        "required": true
+      }
+    ],
+    "utility": [
+      {
+        "id": 187707,
+        "name": "Muzzle",
+        "required": false
+      },
+      {
+        "id": 109304,
+        "name": "Exhilaration",
+        "required": false
+      },
+      {
+        "id": 186265,
+        "name": "Aspect of the Turtle",
+        "required": false
+      },
+      {
+        "id": 264735,
+        "name": "Survival of the Fittest",
+        "required": false
+      },
+      {
+        "id": 781,
+        "name": "Disengage",
+        "required": true
+      },
+      {
+        "id": 186257,
+        "name": "Aspect of the Cheetah",
+        "required": true
+      },
+      {
+        "id": 5384,
+        "name": "Feign Death",
+        "required": true
+      },
+      {
+        "id": 187650,
+        "name": "Freezing Trap",
+        "required": true
+      },
+      {
+        "id": 19577,
+        "name": "Intimidation",
+        "required": false
+      },
+      {
+        "id": 109248,
+        "name": "Binding Shot",
+        "required": false
+      },
+      {
+        "id": 19801,
+        "name": "Tranquilizing Shot",
+        "required": false
+      },
+      {
+        "id": 34477,
+        "name": "Misdirection",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 257284,
+        "name": "Hunter's Mark",
+        "required": true
+      },
+      {
+        "id": 53480,
+        "name": "Roar of Sacrifice",
+        "required": false
+      },
+      {
+        "id": 199483,
+        "name": "Camouflage",
+        "required": false
+      },
+      {
+        "id": 186289,
+        "name": "Aspect of the Eagle",
+        "required": true
+      },
+      {
+        "id": 187698,
+        "name": "Tar Trap",
+        "required": false
+      },
+      {
+        "id": 883,
+        "name": "Call Pet 1",
+        "required": false
+      },
+      {
+        "id": 136,
+        "name": "Mend Pet",
+        "required": false
+      },
+      {
+        "id": 982,
+        "name": "Revive Pet",
+        "required": false
+      },
+      {
+        "id": 2641,
+        "name": "Dismiss Pet",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Raptor Strike stays native for Raptor Swipe. Takedown stays native for Moonlight Chakram.",
+      "Method still mentions Flamefang Pitch 1251592, absent from the pinned current spell and talent tables. It is excluded until the sources agree."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/survival-hunter/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-elemental",
+    "class": "SHAMAN",
+    "spec": 262,
+    "specName": "Elemental",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/elemental-shaman",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Farseer — single target",
+        "content": "raid",
+        "hero": "Farseer",
+        "code": "CYQALMl7AwW51MWzGneuHE3tPCAAAAzMbbzMmZmZZbZMMjBAAAAsYmNYADY2YCZWAgZbmZGjtlZajZmFWmZmZMDWGWMzwMLDAYYAMzYYYA"
+      },
+      {
+        "label": "Farseer — raid cleave",
+        "content": "raid",
+        "hero": "Farseer",
+        "code": "CYQALMl7AwW51MWzGneuHE3tPCAAAAzMbbzMGjZZbZMmhZAAAAgFzsBDYAzGTIzCAMbzMzYstMTbMzglZmZGzglZmlhxMzCAwwAYmxwwA"
+      },
+      {
+        "label": "Farseer — Mythic+",
+        "content": "dungeon",
+        "hero": "Farseer",
+        "code": "CYQALMl7AwW51MWzGneuHE3tPCAAAAzMbbzMGjZZbZMmhZAAAAgFzsBDYAzGTIzCAMLzMzYstYajZmtxyMzMjhFLzMLDjZmFAgBAmZMMMA"
+      }
+    ],
+    "main": [
+      {
+        "id": 188196,
+        "name": "Lightning Bolt",
+        "required": true
+      },
+      {
+        "id": 51505,
+        "name": "Lava Burst",
+        "required": true
+      },
+      {
+        "id": 470057,
+        "name": "Voltaic Blaze",
+        "required": false,
+        "alternatives": [
+          470411
+        ]
+      },
+      {
+        "id": 117014,
+        "name": "Elemental Blast",
+        "required": false,
+        "alternatives": [
+          8042
+        ]
+      },
+      {
+        "id": 188443,
+        "name": "Chain Lightning",
+        "required": false
+      },
+      {
+        "id": 61882,
+        "name": "Earthquake",
+        "required": false,
+        "alternatives": [
+          462620
+        ]
+      },
+      {
+        "id": 191634,
+        "name": "Stormkeeper",
+        "required": false
+      },
+      {
+        "id": 114050,
+        "name": "Ascendance",
+        "required": false
+      },
+      {
+        "id": 443454,
+        "name": "Ancestral Swiftness",
+        "required": false,
+        "alternatives": [
+          378081
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 57994,
+        "name": "Wind Shear",
+        "required": false
+      },
+      {
+        "id": 108271,
+        "name": "Astral Shift",
+        "required": false
+      },
+      {
+        "id": 198103,
+        "name": "Earth Elemental",
+        "required": false
+      },
+      {
+        "id": 51886,
+        "name": "Cleanse Spirit",
+        "required": false
+      },
+      {
+        "id": 2645,
+        "name": "Ghost Wolf",
+        "required": true
+      },
+      {
+        "id": 192063,
+        "name": "Gust of Wind",
+        "required": false,
+        "alternatives": [
+          58875
+        ]
+      },
+      {
+        "id": 192058,
+        "name": "Capacitor Totem",
+        "required": false
+      },
+      {
+        "id": 192077,
+        "name": "Wind Rush Totem",
+        "required": false
+      },
+      {
+        "id": 383013,
+        "name": "Poison Cleansing Totem",
+        "required": false,
+        "alternatives": [
+          8143
+        ]
+      },
+      {
+        "id": 2825,
+        "name": "Bloodlust",
+        "required": false,
+        "alternatives": [
+          32182
+        ]
+      },
+      {
+        "id": 79206,
+        "name": "Spiritwalker's Grace",
+        "required": false
+      },
+      {
+        "id": 974,
+        "name": "Earth Shield",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 198067,
+        "name": "Fire Elemental",
+        "required": false,
+        "alternatives": [
+          192249
+        ]
+      },
+      {
+        "id": 8004,
+        "name": "Healing Surge",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 51490,
+        "name": "Thunderstorm",
+        "required": true
+      },
+      {
+        "id": 51514,
+        "name": "Hex",
+        "required": false
+      },
+      {
+        "id": 370,
+        "name": "Purge",
+        "required": false,
+        "alternatives": [
+          378773
+        ]
+      },
+      {
+        "id": 51485,
+        "name": "Earthgrab Totem",
+        "required": false,
+        "alternatives": [
+          2484
+        ]
+      },
+      {
+        "id": 196840,
+        "name": "Frost Shock",
+        "required": false
+      },
+      {
+        "id": 462854,
+        "name": "Skyfury",
+        "required": true
+      },
+      {
+        "id": 192106,
+        "name": "Lightning Shield",
+        "required": true
+      }
+    ],
+    "notes": [
+      "Earth Shock/Elemental Blast and both Earthquake versions share their choice-node positions.",
+      "Ascendance uses the Elemental cast ID from current talent data, correcting the guide's older hyperlink."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/elemental-shaman/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-enhancement",
+    "class": "SHAMAN",
+    "spec": 263,
+    "specName": "Enhancement",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/enhancement-shaman",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Stormbringer — single target",
+        "content": "raid",
+        "hero": "Stormbringer",
+        "code": "CcQAAAAAAAAAAAAAAAAAAAAAAMzMzgZmZmZmhZmZAAAAAAAAA2AsZGDLkFYGGawCAz2MmxYZZGbMzsNWmZmZYsMGAAzwYmhZCMzgBjB"
+      },
+      {
+        "label": "Stormbringer — Mythic+",
+        "content": "dungeon",
+        "hero": "Stormbringer",
+        "code": "CcQAAAAAAAAAAAAAAAAAAAAAAMzMzgZmZmZmhZmZAAAAAAAAA2AsZGDbkFYGGawCAz2MmxYZZGbMzYsMzMzMGLjBAwMMmZYEYmBDGDA"
+      }
+    ],
+    "main": [
+      {
+        "id": 17364,
+        "name": "Stormstrike",
+        "required": true
+      },
+      {
+        "id": 60103,
+        "name": "Lava Lash",
+        "required": true
+      },
+      {
+        "id": 188196,
+        "name": "Lightning Bolt",
+        "required": true
+      },
+      {
+        "id": 188443,
+        "name": "Chain Lightning",
+        "required": false
+      },
+      {
+        "id": 470057,
+        "name": "Voltaic Blaze",
+        "required": false,
+        "alternatives": [
+          470411
+        ]
+      },
+      {
+        "id": 187874,
+        "name": "Crash Lightning",
+        "required": false
+      },
+      {
+        "id": 114051,
+        "name": "Ascendance",
+        "required": false,
+        "alternatives": [
+          384352
+        ]
+      },
+      {
+        "id": 197214,
+        "name": "Sundering",
+        "required": false
+      },
+      {
+        "id": 444995,
+        "name": "Surging Totem",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 57994,
+        "name": "Wind Shear",
+        "required": false
+      },
+      {
+        "id": 108271,
+        "name": "Astral Shift",
+        "required": false
+      },
+      {
+        "id": 198103,
+        "name": "Earth Elemental",
+        "required": false
+      },
+      {
+        "id": 51886,
+        "name": "Cleanse Spirit",
+        "required": false
+      },
+      {
+        "id": 2645,
+        "name": "Ghost Wolf",
+        "required": true
+      },
+      {
+        "id": 192063,
+        "name": "Gust of Wind",
+        "required": false,
+        "alternatives": [
+          58875
+        ]
+      },
+      {
+        "id": 192058,
+        "name": "Capacitor Totem",
+        "required": false
+      },
+      {
+        "id": 192077,
+        "name": "Wind Rush Totem",
+        "required": false
+      },
+      {
+        "id": 383013,
+        "name": "Poison Cleansing Totem",
+        "required": false,
+        "alternatives": [
+          8143
+        ]
+      },
+      {
+        "id": 2825,
+        "name": "Bloodlust",
+        "required": false,
+        "alternatives": [
+          32182
+        ]
+      },
+      {
+        "id": 79206,
+        "name": "Spiritwalker's Grace",
+        "required": false
+      },
+      {
+        "id": 974,
+        "name": "Earth Shield",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 8004,
+        "name": "Healing Surge",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 5394,
+        "name": "Healing Stream Totem",
+        "required": false
+      },
+      {
+        "id": 51514,
+        "name": "Hex",
+        "required": false
+      },
+      {
+        "id": 370,
+        "name": "Purge",
+        "required": false,
+        "alternatives": [
+          378773
+        ]
+      },
+      {
+        "id": 51485,
+        "name": "Earthgrab Totem",
+        "required": false,
+        "alternatives": [
+          2484
+        ]
+      },
+      {
+        "id": 196884,
+        "name": "Feral Lunge",
+        "required": true
+      },
+      {
+        "id": 462854,
+        "name": "Skyfury",
+        "required": true
+      },
+      {
+        "id": 192106,
+        "name": "Lightning Shield",
+        "required": true
+      },
+      {
+        "id": 196840,
+        "name": "Frost Shock",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Lightning Bolt stays native for Tempest. Ascendance replaces Doom Winds in its position when learned.",
+      "Method publishes Stormbringer imports for this patch; optional Totemic buttons remain available for an existing custom talent selection.",
+      "Sundering stays native for Primordial Storm."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/enhancement-shaman/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-restoration-shaman",
+    "class": "SHAMAN",
+    "spec": 264,
+    "specName": "Restoration",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/restoration-shaman",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Totemic — raid",
+        "content": "raid",
+        "hero": "Totemic",
+        "code": "CgQAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAzMzsssNzMzYMzYmBjFYDmxmGbDgZgNzgBLjZmpZbZmZxMmF2m5BmZMYWGAAAYmZwMDAMYG"
+      },
+      {
+        "label": "Farseer — raid",
+        "content": "raid",
+        "hero": "Farseer",
+        "code": "CgQAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAzMzsssNjZGjxYmhZWMzGMgBMbMBGLmhZYWGzMTz2yMziZMbsMjZGDmlBAAAmZGAMzADmB"
+      },
+      {
+        "label": "Totemic — Mythic+",
+        "content": "dungeon",
+        "hero": "Totemic",
+        "code": "CgQAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAzMzsstMzMzMjZGjZgFYDmxiGbDIzAbMzMY2mZMa2WmZ2MjZhFjZGDLzyAAAAzMDmZAgBzA"
+      }
+    ],
+    "main": [
+      {
+        "id": 61295,
+        "name": "Riptide",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 77472,
+        "name": "Healing Wave",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 1064,
+        "name": "Chain Heal",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 444995,
+        "name": "Surging Totem",
+        "required": false,
+        "alternatives": [
+          73920
+        ]
+      },
+      {
+        "id": 5394,
+        "name": "Healing Stream Totem",
+        "required": false
+      },
+      {
+        "id": 73685,
+        "name": "Unleash Life",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 443454,
+        "name": "Ancestral Swiftness",
+        "required": false,
+        "alternatives": [
+          378081
+        ]
+      },
+      {
+        "id": 98008,
+        "name": "Spirit Link Totem",
+        "required": false
+      },
+      {
+        "id": 108280,
+        "name": "Healing Tide Totem",
+        "required": false,
+        "alternatives": [
+          114052
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 57994,
+        "name": "Wind Shear",
+        "required": false
+      },
+      {
+        "id": 108271,
+        "name": "Astral Shift",
+        "required": false
+      },
+      {
+        "id": 198103,
+        "name": "Earth Elemental",
+        "required": false
+      },
+      {
+        "id": 77130,
+        "name": "Purify Spirit",
+        "required": false
+      },
+      {
+        "id": 2645,
+        "name": "Ghost Wolf",
+        "required": true
+      },
+      {
+        "id": 192063,
+        "name": "Gust of Wind",
+        "required": false,
+        "alternatives": [
+          58875
+        ]
+      },
+      {
+        "id": 192058,
+        "name": "Capacitor Totem",
+        "required": false
+      },
+      {
+        "id": 192077,
+        "name": "Wind Rush Totem",
+        "required": false
+      },
+      {
+        "id": 383013,
+        "name": "Poison Cleansing Totem",
+        "required": false,
+        "alternatives": [
+          8143
+        ]
+      },
+      {
+        "id": 2825,
+        "name": "Bloodlust",
+        "required": false,
+        "alternatives": [
+          32182
+        ]
+      },
+      {
+        "id": 79206,
+        "name": "Spiritwalker's Grace",
+        "required": false
+      },
+      {
+        "id": 974,
+        "name": "Earth Shield",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 188196,
+        "name": "Lightning Bolt",
+        "required": true
+      },
+      {
+        "id": 188443,
+        "name": "Chain Lightning",
+        "required": false
+      },
+      {
+        "id": 470411,
+        "name": "Flame Shock",
+        "required": true
+      },
+      {
+        "id": 51505,
+        "name": "Lava Burst",
+        "required": false
+      },
+      {
+        "id": 462603,
+        "name": "Downpour",
+        "required": false
+      },
+      {
+        "id": 51514,
+        "name": "Hex",
+        "required": false
+      },
+      {
+        "id": 370,
+        "name": "Purge",
+        "required": false,
+        "alternatives": [
+          378773
+        ]
+      },
+      {
+        "id": 462854,
+        "name": "Skyfury",
+        "required": true
+      },
+      {
+        "id": 52127,
+        "name": "Water Shield",
+        "required": true
+      }
+    ],
+    "notes": [
+      "Surging Totem replaces Healing Rain; Healing Stream Totem stays native for Stormstream Totem.",
+      "Healing Wave replaces Healing Surge. Healing Tide Totem and Ascendance share their current choice-node position.",
+      "Downpour uses the cast spell rather than the passive talent linked by the guide."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/restoration-shaman/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-devastation",
+    "class": "EVOKER",
+    "spec": 1467,
+    "specName": "Devastation",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/devastation-evoker",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Scalecommander — single target",
+        "content": "raid",
+        "hero": "Scalecommander",
+        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMDMDzwMgBjZaMzMNjx2wMzMzMzMzAmZmxYmZZmZgBGD2glxox2AYGA2wMYmBDD"
+      },
+      {
+        "label": "Scalecommander — Mythic+",
+        "content": "dungeon",
+        "hero": "Scalecommander",
+        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZAMzwMwMYMTjZmpZmZ2mhZmZmZmZGwMzMGzMLzMDMwYwGsMGN2GAzAwGGYmBDD"
+      },
+      {
+        "label": "Flameshaper — single target",
+        "content": "raid",
+        "hero": "Flameshaper",
+        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMDmZYGzMgBjZamZmJzM2GmZGmZmZGwMmxYmZZmZwMwMmBWALgZYCsBWGGAzMDD"
+      },
+      {
+        "label": "Flameshaper — Mythic+",
+        "content": "dungeon",
+        "hero": "Flameshaper",
+        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMjZGzMgBjZamZmJzM2mxMzwYmZGwMmxYmZZmZwMwMmBWALgZYCsBWGGAzMDD"
+      }
+    ],
+    "main": [
+      {
+        "id": 361469,
+        "name": "Living Flame",
+        "required": true
+      },
+      {
+        "id": 356995,
+        "name": "Disintegrate",
+        "required": true
+      },
+      {
+        "id": 357208,
+        "name": "Fire Breath",
+        "required": true
+      },
+      {
+        "id": 359073,
+        "name": "Eternity Surge",
+        "required": false
+      },
+      {
+        "id": 357211,
+        "name": "Pyre",
+        "required": false
+      },
+      {
+        "id": 362969,
+        "name": "Azure Strike",
+        "required": true
+      },
+      {
+        "id": 375087,
+        "name": "Dragonrage",
+        "required": false
+      },
+      {
+        "id": 357210,
+        "name": "Deep Breath",
+        "required": true
+      },
+      {
+        "id": 370553,
+        "name": "Tip the Scales",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 351338,
+        "name": "Quell",
+        "required": false
+      },
+      {
+        "id": 363916,
+        "name": "Obsidian Scales",
+        "required": false
+      },
+      {
+        "id": 374227,
+        "name": "Zephyr",
+        "required": false
+      },
+      {
+        "id": 358267,
+        "name": "Hover",
+        "required": true
+      },
+      {
+        "id": 370665,
+        "name": "Rescue",
+        "required": false
+      },
+      {
+        "id": 365585,
+        "name": "Expunge",
+        "required": false
+      },
+      {
+        "id": 374251,
+        "name": "Cauterizing Flame",
+        "required": false
+      },
+      {
+        "id": 372048,
+        "name": "Oppressing Roar",
+        "required": false
+      },
+      {
+        "id": 360806,
+        "name": "Sleep Walk",
+        "required": false
+      },
+      {
+        "id": 358385,
+        "name": "Landslide",
+        "required": false
+      },
+      {
+        "id": 368970,
+        "name": "Tail Swipe",
+        "required": true
+      },
+      {
+        "id": 374968,
+        "name": "Time Spiral",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 390386,
+        "name": "Fury of the Aspects",
+        "required": true
+      },
+      {
+        "id": 369459,
+        "name": "Source of Magic",
+        "required": false
+      },
+      {
+        "id": 364342,
+        "name": "Blessing of the Bronze",
+        "required": true
+      },
+      {
+        "id": 355913,
+        "name": "Emerald Blossom",
+        "required": true
+      },
+      {
+        "id": 360995,
+        "name": "Verdant Embrace",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 406732,
+        "name": "Spatial Paradox",
+        "required": false
+      },
+      {
+        "id": 361227,
+        "name": "Return",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Azure Strike stays native for Azure Sweep; empowered spells retain the game's charging behavior.",
+      "Renewing Blaze is passive and is not installed as a button. Tail Swipe is a class button; Wing Buffet comes from the racial catalog."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/devastation-evoker/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-preservation",
+    "class": "EVOKER",
+    "spec": 1468,
+    "specName": "Preservation",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/preservation-evoker",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Flameshaper — Mythic+ through +11",
+        "content": "dungeon",
+        "hero": "Flameshaper",
+        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmZ2WmZGDjxsMDw2wAAAzYGzYMMTMmBAAAMzMTzYmZmZZMDAMmBWAbgZYCZjxmhZAmZYA"
+      },
+      {
+        "label": "Flameshaper — Mythic+ +12 and higher",
+        "content": "dungeon",
+        "hero": "Flameshaper",
+        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmZ2WGzYYMPwsZGw2wAAAzYGzYmhZiZmBAAAMzMTGzMjZZMDAMmBWAbgZYCZzM2MMDwMDD"
+      },
+      {
+        "label": "Chronowarden — Mythic+",
+        "content": "dungeon",
+        "hero": "Chronowarden",
+        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMz2yMYYmxsZGjx2wAAAzYGzYMMTMmBAAAMzMTzYmZmZZMDAAjZsxCMwMaohhFYmZGAGA"
+      },
+      {
+        "label": "Flameshaper — raid",
+        "content": "raid",
+        "hero": "Flameshaper",
+        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMDmZMYGzmhZmZbYAAgZMjZwYGZmZAAAAmZmJzYmxYmZAwMmBWALgZYCZzwmhBwMzYA"
+      },
+      {
+        "label": "Chronowarden — raid",
+        "content": "raid",
+        "hero": "Chronowarden",
+        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmZwMjBzY2MMzMbYAAgZMjBzYGZmZAAAAmZmJzYmxsNzMAYgxM2YBGYGN0gxCMmZAGD"
+      }
+    ],
+    "main": [
+      {
+        "id": 364343,
+        "name": "Echo",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 366155,
+        "name": "Reversion",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 360995,
+        "name": "Verdant Embrace",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 355936,
+        "name": "Dream Breath",
+        "required": true
+      },
+      {
+        "id": 373861,
+        "name": "Temporal Anomaly",
+        "required": false
+      },
+      {
+        "id": 355913,
+        "name": "Emerald Blossom",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 370537,
+        "name": "Stasis",
+        "required": false,
+        "alternatives": [
+          359816
+        ]
+      },
+      {
+        "id": 363534,
+        "name": "Rewind",
+        "required": false
+      },
+      {
+        "id": 370553,
+        "name": "Tip the Scales",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 360823,
+        "name": "Naturalize",
+        "required": false
+      },
+      {
+        "id": 363916,
+        "name": "Obsidian Scales",
+        "required": false
+      },
+      {
+        "id": 374227,
+        "name": "Zephyr",
+        "required": false
+      },
+      {
+        "id": 358267,
+        "name": "Hover",
+        "required": true
+      },
+      {
+        "id": 370665,
+        "name": "Rescue",
+        "required": false
+      },
+      {
+        "id": 357170,
+        "name": "Time Dilation",
+        "required": false
+      },
+      {
+        "id": 374251,
+        "name": "Cauterizing Flame",
+        "required": false
+      },
+      {
+        "id": 372048,
+        "name": "Oppressing Roar",
+        "required": false
+      },
+      {
+        "id": 360806,
+        "name": "Sleep Walk",
+        "required": false
+      },
+      {
+        "id": 358385,
+        "name": "Landslide",
+        "required": false
+      },
+      {
+        "id": 368970,
+        "name": "Tail Swipe",
+        "required": true
+      },
+      {
+        "id": 374968,
+        "name": "Time Spiral",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 361469,
+        "name": "Living Flame",
+        "required": true
+      },
+      {
+        "id": 357208,
+        "name": "Fire Breath",
+        "required": true
+      },
+      {
+        "id": 356995,
+        "name": "Disintegrate",
+        "required": true
+      },
+      {
+        "id": 362969,
+        "name": "Azure Strike",
+        "required": true
+      },
+      {
+        "id": 390386,
+        "name": "Fury of the Aspects",
+        "required": true
+      },
+      {
+        "id": 369459,
+        "name": "Source of Magic",
+        "required": false
+      },
+      {
+        "id": 364342,
+        "name": "Blessing of the Bronze",
+        "required": true
+      },
+      {
+        "id": 406732,
+        "name": "Spatial Paradox",
+        "required": false
+      },
+      {
+        "id": 361178,
+        "name": "Mass Return",
+        "required": true
+      }
+    ],
+    "notes": [
+      "Dream Breath, Fire Breath and Temporal Anomaly remain native. The optional mouseover setting only changes targeted healing buttons.",
+      "Reversion remains native by default for Merithra's Blessing. Stasis and Dream Flight share a talent choice.",
+      "Preservation has Naturalize instead of the damage specializations' interrupt position."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/preservation-evoker/playstyle-and-rotation"
+    }
+  },
+  {
+    "id": "standard-augmentation",
+    "class": "EVOKER",
+    "spec": 1473,
+    "specName": "Augmentation",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/augmentation-evoker",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Chronowarden — single target",
+        "content": "raid",
+        "hero": "Chronowarden",
+        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhxMYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGjZGAYA"
+      },
+      {
+        "label": "Chronowarden — Mythic+",
+        "content": "dungeon",
+        "hero": "Chronowarden",
+        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhZGYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGzMzAAD"
+      },
+      {
+        "label": "Scalecommander — single target",
+        "content": "raid",
+        "hero": "Scalecommander",
+        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbjZmxyMYmlZMzMmBAAAAAAAAzMMmBjpGzMzAAAAgZMjxMzyYmBmZzYwCsMGGbDgZQshxAzMAG"
+      },
+      {
+        "label": "Scalecommander — Mythic+",
+        "content": "dungeon",
+        "hero": "Scalecommander",
+        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbjZmxyMYmtZMzMmBAAAAAAAAmhHYGYM1YmZGAAAAMzMjxMz2YmBmZzYwCsMGGbDgZQshxMYmBDG"
+      }
+    ],
+    "main": [
+      {
+        "id": 361469,
+        "name": "Living Flame",
+        "required": true
+      },
+      {
+        "id": 395160,
+        "name": "Eruption",
+        "required": true
+      },
+      {
+        "id": 357208,
+        "name": "Fire Breath",
+        "required": true
+      },
+      {
+        "id": 396286,
+        "name": "Upheaval",
+        "required": false
+      },
+      {
+        "id": 395152,
+        "name": "Ebon Might",
+        "required": true
+      },
+      {
+        "id": 409311,
+        "name": "Prescience",
+        "required": false
+      },
+      {
+        "id": 403631,
+        "name": "Breath of Eons",
+        "required": false
+      },
+      {
+        "id": 370553,
+        "name": "Tip the Scales",
+        "required": false
+      },
+      {
+        "id": 404977,
+        "name": "Time Skip",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 351338,
+        "name": "Quell",
+        "required": false
+      },
+      {
+        "id": 363916,
+        "name": "Obsidian Scales",
+        "required": false
+      },
+      {
+        "id": 374227,
+        "name": "Zephyr",
+        "required": false
+      },
+      {
+        "id": 358267,
+        "name": "Hover",
+        "required": true
+      },
+      {
+        "id": 370665,
+        "name": "Rescue",
+        "required": false
+      },
+      {
+        "id": 365585,
+        "name": "Expunge",
+        "required": false
+      },
+      {
+        "id": 374251,
+        "name": "Cauterizing Flame",
+        "required": false
+      },
+      {
+        "id": 372048,
+        "name": "Oppressing Roar",
+        "required": false
+      },
+      {
+        "id": 360806,
+        "name": "Sleep Walk",
+        "required": false
+      },
+      {
+        "id": 358385,
+        "name": "Landslide",
+        "required": false
+      },
+      {
+        "id": 368970,
+        "name": "Tail Swipe",
+        "required": true
+      },
+      {
+        "id": 374968,
+        "name": "Time Spiral",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 360827,
+        "name": "Blistering Scales",
+        "required": false
+      },
+      {
+        "id": 390386,
+        "name": "Fury of the Aspects",
+        "required": true
+      },
+      {
+        "id": 369459,
+        "name": "Source of Magic",
+        "required": false
+      },
+      {
+        "id": 364342,
+        "name": "Blessing of the Bronze",
+        "required": true
+      },
+      {
+        "id": 355913,
+        "name": "Emerald Blossom",
+        "required": true
+      },
+      {
+        "id": 360995,
+        "name": "Verdant Embrace",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 403264,
+        "name": "Black Attunement",
+        "required": false
+      },
+      {
+        "id": 403265,
+        "name": "Bronze Attunement",
+        "required": false
+      },
+      {
+        "id": 406732,
+        "name": "Spatial Paradox",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Prescience, Blistering Scales and both attunements are separate native buttons. The layout never chooses buff recipients.",
+      "Living Flame remains native for Chrono Flames; empowered spells retain the game's charging behavior."
+    ],
+    "spellSources": {
+      "classSpells": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/class_spells.inc",
+      "talents": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
+      "layout": "https://www.method.gg/guides/augmentation-evoker/playstyle-and-rotation"
+    }
+  }
+]

@@ -1,3 +1,19 @@
+0.4.0-combined — 27 October 2026
+
+- Adds separate Standard profiles for all 40 specializations across 13 classes,
+  with learned core, utility and additional buttons. Racial abilities use
+  Bar 3 slots 10–12; unlearned optional abilities leave their positions alone.
+- Adds /tor talents and Talent builds: exact Method 12.1.5 imports, guide
+  links and dates. Copying a reference never imports it or changes a layout.
+- Healers may select Mouseover explicitly. Druid setup checks the required
+  form and only changes its native main bar. Standard Rogue leaves its
+  Stealth bar alone; the custom Rogue mirrors remain as before.
+- Preserves the original Rogue policies, Blood custom foundations and source
+  guides. New Standard profiles make no DPS or survival improvement claim.
+- Generated class data is checked against its source records. Mock tests
+  cover placement and recovery; actual Retail acceptance remains pending.
+  combined is the candidate; main is unchanged until owner approval in game.
+
 0.3.3-combined — 27 October 2026
 
 - Adds Play guide in /tor and /tor guide for SubBurst and Fatebound

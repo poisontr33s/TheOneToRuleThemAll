@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.3.3-combined", profiles = {} }
+TheOneToRuleThemAll = { version = "0.4.0-combined", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -33,6 +33,7 @@ local function kindText(kind) return KIND_TEXT[kind] or "an action the addon can
 -- Players see bar positions, not raw action-slot numbers.
 local function slotText(slot)
     if slot >= 1 and slot <= 12 then return "main bar slot " .. slot end
+    if slot >= 49 and slot <= 60 then return "Action Bar 3 slot " .. (slot - 48) end
     if slot >= 61 and slot <= 72 then return "Action Bar 2 slot " .. (slot - 60) end
     if slot >= 73 and slot <= 84 and classID() == "ROGUE" then return "Stealth bar slot " .. (slot - 72) end
     return "action slot " .. slot
@@ -71,6 +72,7 @@ local function guard(context)
         if context.blockedWhileStealthed then
             check(not IsStealthed(), "Leave Stealth first; nothing changed.")
         end
+        if context.nativeMainBar or context.nativeBar then A.CheckNativeContext(context) end
         if context.requiredPage then
             check(page() == context.requiredPage, "Switch the main bar to page " .. context.requiredPage .. " (normally Shift+1 for page 1), then try again.")
         end
@@ -106,7 +108,7 @@ function A.RegisterProfile(profile)
 end
 local function profileFor(id)
     local p = A.profiles[id]
-    check(p, "No tested profile named '" .. tostring(id) .. "'. Use /tor list. Nothing changed.")
+    check(p, "No profile named '" .. tostring(id) .. "'. Use /tor list. Nothing changed.")
     return p
 end
 local function capacities()
@@ -413,6 +415,7 @@ local function apply(id, requestedLayout)
     local state = db()
     local backup = {version=1,mode=id,layout=layout,class=p.class,spec=specID(),config=configID(),loadout=loadoutIdentity(),requiredPage=p.requiredPage,
         blockedWhileStealthed=p.blockedWhileStealthed,state="pending",rows={}}
+    if p.nativeMainBar then backup.nativeBar = A.CheckNativeContext(p) end
     for _, row in ipairs(plan.rows) do backup.rows[#backup.rows+1] = {slot=row.slot,action=capture(row.slot)} end
     state.backup = backup
     local ok, problem = pcall(function()
@@ -434,8 +437,9 @@ local function apply(id, requestedLayout)
     backup.state = "applied"
     say("Setup verified: " .. #plan.rows .. " action slots. Existing keybindings preserved.")
     describe(p,layout,plan)
-    if #(plan.skipped or {}) > 0 then say("Unlearned utilities left untouched: " .. table.concat(plan.skipped,", ")) end
-    say("/tor undo restores your previous setup. Generated macros are kept. Enable Action Bar 2 if hidden; /reload saves your previous setup to disk.")
+    if #(plan.skipped or {}) > 0 then say("Unavailable optional abilities left untouched: " .. table.concat(plan.skipped,", ")) end
+    local bars = p.nativeMainBar and "Action Bars 2 and 3" or "Action Bar 2"
+    say("/tor undo restores your previous setup. Generated macros are kept. Enable " .. bars .. " if hidden; /reload saves your previous setup to disk.")
 end
 local function listProfiles()
     local ids = {}; for id in pairs(A.profiles) do ids[#ids+1]=id end; table.sort(ids)
@@ -452,7 +456,7 @@ local function status()
     say("The One To Rule Them All " .. A.version .. " - " .. className() .. ", " .. specText())
     local b = TheOneToRuleThemAllDB and TheOneToRuleThemAllDB.backup
     if b then say("Previous setup from " .. tostring(b.mode) .. " (" .. tostring(b.layout) .. "): " .. (STATE_TEXT[b.state] or tostring(b.state)) .. ". /tor undo needs the original specialization and talent loadout.")
-    else say("No previous setup is saved. Use /tor list and /tor preview <profile> [standard|compact].") end
+    else say("No previous setup is saved. Use /tor list and /tor preview <profile> [layout].") end
     if b and b.state ~= "restored" and not fullLoadoutIdentity(b) then say(LEGACY_UNDO) end
     say("Setup checks that the required abilities are learned. It does not check your full talent build, gear or set bonuses.")
 end
@@ -509,7 +513,7 @@ function A.Inspect(id, requestedLayout)
 end
 
 local function help()
-    say("/tor opens the panel; /tor guide; /tor list; /tor status; /tor check [profile] [standard|compact]; /tor preview <profile> [standard|compact]; /tor apply <profile> [standard|compact]; /tor undo.")
+    say("/tor opens the panel; /tor guide; /tor talents; /tor list; /tor status; /tor check [profile] [layout]; /tor preview <profile> [layout]; /tor apply <profile> [layout]; /tor undo.")
     for id,p in pairs(A.profiles) do
         if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
             local valid, compatible = pcall(p.recommendedWhen,A.api)
@@ -536,11 +540,15 @@ function A.Execute(message)
             check(#args==1,"Use /tor guide.")
             check(type(A.ShowGuide) == "function", "Play guide unavailable; open /tor instead.")
             A.ShowGuide()
+        elseif cmd == "talents" then
+            check(#args<=2,"Use /tor talents [profile].")
+            check(type(A.ShowTalentBuilds) == "function", "Talent references are unavailable.")
+            A.ShowTalentBuilds(args[2])
         elseif cmd == "help" then check(#args==1,"Use /tor help."); help()
         elseif cmd == "list" then check(#args==1,"Use /tor list."); listProfiles()
         elseif cmd == "status" then check(#args==1,"Use /tor status."); status()
         elseif cmd == "check" then
-            check(#args<=3,"Use /tor check [profile] [standard|compact].")
+            check(#args<=3,"Use /tor check [profile] [layout].")
             local view = A.Inspect(args[2],args[3])
             say("Check: " .. tostring(view.selectedId or "no matching profile") .. " / " .. view.layout)
             say(view.canApply and "Ready to apply. Each slot is checked again when you apply." or "Cannot apply: " .. view.applyReason)
@@ -548,7 +556,7 @@ function A.Execute(message)
             if view.legacyUndo then say(view.legacyUndo) end
             say("Check only: nothing was changed.")
         elseif cmd == "preview" or cmd == "apply" then
-            check(args[2] and #args<=3,"Use /tor " .. cmd .. " <profile> [standard|compact].")
+            check(args[2] and #args<=3,"Use /tor " .. cmd .. " <profile> [layout].")
             if cmd == "preview" then preview(args[2],args[3]) else apply(args[2],args[3]) end
         elseif cmd == "undo" then
             check(#args==1,"Use /tor undo.")
@@ -559,7 +567,7 @@ function A.Execute(message)
             local full
             full, note = undoNote(restore(b,true))
             say(full)
-        elseif cmd and A.profiles[cmd] then check(#args<=2,"Use /tor <profile> [standard|compact]."); apply(cmd,args[2])
+        elseif cmd and A.profiles[cmd] then check(#args<=2,"Use /tor <profile> [layout]."); apply(cmd,args[2])
         else help() end
     end)
     if not ok then say(tostring(problem)) end
