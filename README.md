@@ -20,7 +20,9 @@ Functionality must be tried in WoW.
 
 Current dev. follow Method.gg — Mythic+ expanding class-cover on `astra`.
 
-Claude contributes on `claude`; improved work  enters `combined` branch.
+Approved changes can reach `main` without waiting for Claude.
+
+Claude contributes on `claude`; reviewed work can later enter `combined`.
 
 Addon changes will enter `main/origin` after the in-game functionality solidified.
 
