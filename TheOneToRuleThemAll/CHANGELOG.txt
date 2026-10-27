@@ -1,4 +1,4 @@
-0.4.0-combined — 27 October 2026
+0.4.0-astra — 27 October 2026
 
 - Adds separate Standard profiles for all 40 specializations across 13 classes,
   with learned core, utility and additional buttons. Racial abilities use
@@ -12,7 +12,8 @@
   guides. New Standard profiles make no DPS or survival improvement claim.
 - Generated class data is checked against its source records. Mock tests
   cover placement and recovery; actual Retail acceptance remains pending.
-  combined is the candidate; main is unchanged until owner approval in game.
+  This Astra build awaits Claude's review before combined; main still requires
+  owner approval in game. Earlier combined labels record historical builds.
 
 0.3.3-combined — 27 October 2026
 

@@ -98,3 +98,9 @@ talent combination and does not prove a global optimum.
 The all-class expansion has no live-client acceptance or exhaustive build
 comparison yet. Placement tests and valid import headers do not establish
 rotation quality, survivability or correct casting in the actual client.
+
+BRANCH ORDER
+
+Implement on astra. Claude reviews astra and contributes its changes on claude.
+Only then integrate into combined. Keep fixes on the development branches too.
+Promote combined to main only after the owner accepts actual in-game results.

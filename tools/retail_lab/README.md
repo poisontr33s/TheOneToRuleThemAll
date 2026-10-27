@@ -45,7 +45,8 @@ report is decoded as data, never executed. Native widget creation, spell/item
 observations and core-confirmed macro restoration are reported separately.
 Rendering quality and actual casting remain unverified until observed in game.
 One successful character does not approve all classes or talent combinations.
-Keep combined as the candidate until the owner accepts its in-game results.
+This Astra development package awaits Claude's review before entering combined.
+Promote combined to main only after the owner accepts its in-game results.
 
 Windows capture/input and the companion's in-game behavior require a real client
 session for acceptance. Transport/installer checks do not count as that test.

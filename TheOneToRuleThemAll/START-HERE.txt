@@ -1,10 +1,11 @@
-THE ONE TO RULE THEM ALL — 0.4.0-combined
+THE ONE TO RULE THEM ALL — 0.4.0-astra
 27. oktober 2026 · Retail 12.1.5
 
 Pakken har Standard-oppsett for alle 40 specs i 13 klasser. De opprinnelige
 Rogue-oppsettene og Yipyeps San'layn/Deathbringer for Shed Assymetry er beholdt
 som egne profiler. Se BLOOD-SETUP.txt for de tilpassede Blood-knappene.
-combined er utgaven vi prøver i spillet. main venter på godkjenningen din der.
+Dette er Astras utviklingsutgave. Claude skal gjennomgå og forbedre den før
+endringene går til combined. main venter til combined er godkjent i spillet.
 
 INSTALLASJON
 

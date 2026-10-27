@@ -2,7 +2,7 @@
 ## Title: The One To Rule Them All
 ## Notes: Reversible action-bar setup for every Retail class. No combat automation.
 ## Author: Astra, Claude
-## Version: 0.4.0-combined
+## Version: 0.4.0-astra
 ## OptionalDeps: AstraRogueSetup, AstraSubSetup
 ## SavedVariablesPerCharacter: TheOneToRuleThemAllDB
 

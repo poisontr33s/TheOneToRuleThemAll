@@ -3,9 +3,9 @@
 **The One To Rule Them All** is a World of Warcraft Retail addon with reversible
 action-bar layouts for all **40 specializations across 13 classes**, alongside
 the original custom Rogue and Blood Death Knight setups.
-Current addon version: **0.4.0-combined**, targeting Retail **12.1.5**.
+Current addon version: **0.4.0-astra**, targeting Retail **12.1.5**.
 
-[![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=combined)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Acombined)
+[![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=astra)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra)
 
 Open `/tor` to preview a layout, check what will change, apply it, or undo it.
 Every combat action is chosen and pressed by the player.
@@ -65,8 +65,8 @@ for the exact slots and the San'layn/Deathbringer switch sequence.
 ## Install and test in WoW
 
 1. Open the latest successful [Test and package run](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml)
-   for `combined` and download its addon ZIP artifact. It contains the integrated
-   changes from `astra` and `claude`; `main` is the previous shared baseline.
+   for `astra` and download its addon ZIP artifact. This is a development build
+   awaiting Claude's review; it is not the reviewed combined candidate.
 2. With WoW closed, extract the `TheOneToRuleThemAll` folder into
    `World of Warcraft/_retail_/Interface/AddOns/`. Keep existing SavedVariables.
 3. Select your intended talent loadout. `/tor talents` shows the bundled Method
@@ -100,10 +100,13 @@ checks do not count as that acceptance.
 ## Shared development
 
 This repository is the source for changes by Astra, Claude and the owner.
-`astra` and `claude` are the development branches. `combined` brings their
-reviewed improvements together for one installable build. Merge commits retain
-both source histories. Fix integration problems on `combined`, and bring later
-source changes in explicitly after reviewing their diff.
+Astra implements on `astra`. Claude reviews that branch and makes its review
+changes on `claude`. Only after that round do the reviewed changes enter
+`combined`. This includes fixes and follow-up work: Astra does not develop
+straight on `combined`. Merge commits preserve both contributions.
+
+This all-class build is on `astra`, awaiting Claude. The earlier combined
+merge is a historical baseline; its ancestry alone does not prove approval.
 
 This build combines Astra's key preview and Blood profiles with Claude's clearer
 messages, Toy Box support and missing-button handling during Undo. Incomplete
@@ -111,8 +114,8 @@ restoration keeps the backup available, whether it follows failed Apply or
 explicit Undo. Setup stays blocked until the original buttons are restored.
 Unavailable originals are reported so Undo can be retried after recovery.
 
-`combined` remains the candidate to try in game. Promote it to `main` only after
-the owner confirms it works there; this expansion does not change `main`.
+`combined` is the candidate to try in game after Claude's review round.
+Promote it to `main` only after the owner confirms it works there.
 Record code checks and actual in-game results separately. CI does not merge branches.
 
 Use Git to fetch source changes. ZIP files are installation builds, so source code
