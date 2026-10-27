@@ -1,3 +1,14 @@
+0.3.3-combined — 27 October 2026
+
+- Adds Play guide in /tor and /tor guide for SubBurst and Fatebound
+  Assassination, with the selected layout's actual keys and Compact Alt choices.
+- The text is embedded verbatim from the original PLAY-GUIDE.txt. SubBurst
+  includes both precise and easier core rules and the complete burst timing.
+- The guide is read-only; return to setup before using the panel's Apply or
+  Undo buttons. Existing macros, talent references and layouts are unchanged.
+- Reopening the guide after reload uses the applied supported layout. Source
+  consistency and callback checks pass; actual WoW rendering remains untested.
+
 0.3.2-combined — 26 October 2026
 
 - Restores the original full-restoration requirement for completing Undo.

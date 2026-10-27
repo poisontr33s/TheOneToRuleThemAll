@@ -1,5 +1,5 @@
-THE ONE TO RULE THEM ALL — 0.3.2-combined
-26. oktober 2026 · Retail 12.1.5
+THE ONE TO RULE THEM ALL — 0.3.3-combined
+27. oktober 2026 · Retail 12.1.5
 
 Pakken inneholder Rogue og Blood Death Knight. Yipyep har egne San'layn- og
 Deathbringer-profiler for Shed Assymetry; se BLOOD-SETUP.txt for knappene.
@@ -30,6 +30,10 @@ INSTALLASJON
    Makroknappene viser evnenavn, for eksempel Backstab og Shadowstrike.
    Rogue har Standard og Compact; Blood har Standard med separate evner.
    Rogue: Dance, Blades og Goremaw deler én makro i subburst. Se PLAY-GUIDE.txt.
+   For subburst og assa kan du trykke Play guide eller skrive /tor guide for
+   å lese spilleprioriteten i spillet sammen med tastene i forhåndsvisningen.
+   Subburst viser både presis og enklere prioritet, med hele burst-timingen.
+   Back to setup går tilbake til oppsettet. Lesing flytter ingen knapper.
 
 4. Når «Setup verified» vises, skriv /reload. Slå på Action Bar 2 i Options
    hvis den er skjult. Dine eksisterende keybindings blir beholdt.
@@ -46,6 +50,7 @@ med andre keybindings. Bruk standardoppsettet hvis Alt blir mer bryderi.
 KOMMANDOER
 
 /tor                              Åpner/lukker oppsettvinduet
+/tor guide                        Åpner spillekort for subburst eller assa
 /tor help                         Viser kommandohjelp
 /tor list                         Viser inkluderte profiler
 /tor status                       Viser versjon og backupstatus

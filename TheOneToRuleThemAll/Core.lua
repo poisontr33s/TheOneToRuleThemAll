@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.3.2-combined", profiles = {} }
+TheOneToRuleThemAll = { version = "0.3.3-combined", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -509,7 +509,7 @@ function A.Inspect(id, requestedLayout)
 end
 
 local function help()
-    say("/tor opens the panel; /tor list; /tor status; /tor check [profile] [standard|compact]; /tor preview <profile> [standard|compact]; /tor apply <profile> [standard|compact]; /tor undo.")
+    say("/tor opens the panel; /tor guide; /tor list; /tor status; /tor check [profile] [standard|compact]; /tor preview <profile> [standard|compact]; /tor apply <profile> [standard|compact]; /tor undo.")
     for id,p in pairs(A.profiles) do
         if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
             local valid, compatible = pcall(p.recommendedWhen,A.api)
@@ -532,6 +532,10 @@ function A.Execute(message)
         if not cmd or cmd == "ui" then
             check(#args<=1,"Use /tor ui.")
             if type(A.TogglePanel) == "function" then A.TogglePanel() else help() end
+        elseif cmd == "guide" then
+            check(#args==1,"Use /tor guide.")
+            check(type(A.ShowGuide) == "function", "Play guide unavailable; open /tor instead.")
+            A.ShowGuide()
         elseif cmd == "help" then check(#args==1,"Use /tor help."); help()
         elseif cmd == "list" then check(#args==1,"Use /tor list."); listProfiles()
         elseif cmd == "status" then check(#args==1,"Use /tor status."); status()

@@ -2,12 +2,19 @@
 
 **The One To Rule Them All** is a World of Warcraft Retail addon that installs
 Rogue and Blood Death Knight action-bar layouts, with an option to restore the
-previous setup. Current addon version: **0.3.2-combined**, targeting Retail **12.1.5**.
+previous setup. Current addon version: **0.3.3-combined**, targeting Retail **12.1.5**.
 
 [![Test and package](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml/badge.svg?branch=combined)](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Acombined)
 
 Open `/tor` to preview a layout, check what will change, apply it, or undo it.
 Every combat action is chosen and pressed by the player.
+
+For SubBurst and Fatebound Assassination, **Play guide** in that panel or
+`/tor guide` opens the original playing priorities alongside the selected
+layout's actual keys. SubBurst includes both the precise and easier core rules
+with the complete burst timing. Return to setup to apply or undo a layout.
+The guide's comparisons refer to the original reference model, not a new live
+measurement. Other profiles do not inherit these priorities.
 
 The preview shows your existing keys alongside the abilities, including Compact
 Alt combinations and unbound slots. Macro buttons describe the abilities they
@@ -96,6 +103,10 @@ python3 tools/package_addon.py
 GitHub Actions runs those checks on pushes and pull requests and produces the ZIP.
 Generated test summaries and ZIPs are not committed. The action-bar and macro
 tests are kept beside the addon under `validation/`.
+
+`PLAY-GUIDE.txt` remains the playing-guide source. After editing it, run
+`python3 tools/sync_play_guide.py` to update the Lua copy WoW loads. The tests
+check that the loaded text matches the source exactly.
 
 ## Simulation scope
 
