@@ -24,11 +24,7 @@ local function build(definition, api, layout, enforce)
         api.check(type(C_Spell.IsSpellPassive) == "function", "Spellbook data is unavailable; reopen your spellbook and try again.")
     end
     local first = nativeOK and native.first or 1
-    local plan = {rows={},macros={},skipped={},lines={
-        "Main bar: core abilities. Bar 2: utility. Bar 3: extra spells and racials.",
-        "Unlearned optional spells leave their slots unchanged.",
-        "Only the current form's main bar changes.",
-    }}
+    local plan = {rows={},macros={},skipped={},lines={}}
     if not nativeOK then plan.lines[#plan.lines+1] = tostring(native) end
     for _, note in ipairs(definition.notes or {}) do plan.lines[#plan.lines+1] = note end
 
@@ -46,7 +42,7 @@ local function build(definition, api, layout, enforce)
             local condition = entry.targetDead and "dead" or "nodead"
             action = api.macro("TOR" .. definition.spec .. "H" .. slot,
                 "#showtooltip\n/cast [@mouseover,help," .. condition .. "] [] " .. api.spellName(id))
-            action.displayText = api.spellName(id) .. " (mouseover, otherwise normal target)"
+            action.displayText = api.spellName(id) .. " (mouseover)"
             plan.macros[#plan.macros+1] = action
         end
         plan.rows[#plan.rows+1] = {slot=slot,mainButton=mainButton,action=action}

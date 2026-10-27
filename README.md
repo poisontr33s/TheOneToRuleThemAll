@@ -1,7 +1,7 @@
 # TheOneToRuleThemAll
 
 WoW Retail action-bar setup for every class, based on Method.gg Mythic+ builds.
-**0.4.1-astra · Retail 12.1.5 · awaiting Claude review and in-game acceptance.**
+**0.4.2-astra · Retail 12.1.5 · awaiting Claude review and in-game acceptance.**
 
 [Download a build](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra) · [Setup and Undo](TheOneToRuleThemAll/START-HERE.txt)
 
@@ -12,7 +12,6 @@ in WoW. Review the buttons before **Apply layout**; use `/tor undo` to restore t
 Core spells use the main bar, utility Bar 2, and extras Bar 3. Active racials
 have reserved slots. Healers can choose Mouseover. Existing keys and gear stay.
 Method references update with addon releases. Talents are imported manually.
-Custom profiles and research are preserved in the repo, outside the install ZIP.
 
 Read [Working rules](AGENTS.md) before changing code: small readable changes,
 short plain text, and tests for real failure risks. Functionality must be tried in WoW.

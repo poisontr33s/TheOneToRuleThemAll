@@ -1,3 +1,10 @@
+0.4.2-astra — 27 October 2026
+
+- Shows each ability and its keys on one line in the preview.
+- Removes repeated explanations and shortens setup instructions.
+- Keeps every affected slot, form warning and recovery message visible.
+- Claude review and WoW acceptance are still pending.
+
 0.4.1-astra — 27 October 2026
 
 - Uses Method Mythic+ references as the standard; raid imports stay in source.

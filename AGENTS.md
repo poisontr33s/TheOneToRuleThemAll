@@ -8,6 +8,6 @@
 - Use plain language. Include only what the reader needs to act or understand.
 - Test concrete failure risks, especially placement and recovery. Avoid tests that merely repeat the implementation.
 - Passing mocks does not prove correct behavior in WoW. Keep actual client checks separate.
-- Preserve original custom profiles and research; they are outside current development.
+- Keep personal builds and research out of public commits and packages; preserve private originals separately.
 - Develop addon changes on astra. Claude reviews and contributes on claude before integration into combined.
 - Promote addon changes to main only after the owner accepts combined in WoW.

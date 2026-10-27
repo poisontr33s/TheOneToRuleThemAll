@@ -66,17 +66,20 @@ return function(c)
         expect(p.statusText:GetText():find("previous setup",1,true))
         click(p.undoButton);plainText()
     end)
-    test("UI previews each localized Bar2 assignment and warns what existing keys will cast",function()
+    test("UI pairs each localized Bar2 assignment with its key before Apply",function()
         local S=c.state()
         local ids={185313,121471,1784,1966,31224,5277,185311,2983,36554,2094,408,57934}
-        for i,id in ipairs(ids) do S.names[id]="Local utility "..i end
+        for i,id in ipairs(ids) do
+            S.names[id]="Local utility "..i
+            S.bindingKeys["MULTIACTIONBAR1BUTTON"..i]={"F"..i}
+        end
         S.unlearned[2983]=true
         local before=baseline();local p=open()
         local text=p.previewText:GetText()
-        local section=text:match("Action Bar 2(.-)Using this layout")
-        expect(section and section:find("existing keys",1,true) and section:find("will cast",1,true))
+        local section=text:match("Action Bar 2(.-)Notes")
+        expect(section and text:find("Apply replaces the listed abilities; your keys stay the same.",1,true))
         for i in ipairs(ids) do
-            if i~=8 then expect(section:find("Slot "..i.."   Local utility "..i,1,true),"Missing utility slot "..i) end
+            if i~=8 then expect(section:find("Slot "..i.."   Local utility "..i.."   — Keys: F"..i,1,true),"Missing utility slot "..i) end
         end
         expect(not section:find("Slot 8   Local utility 8",1,true))
         unchanged(before)
@@ -116,12 +119,12 @@ return function(c)
         S.names[53]="Local builder"; S.names[185438]="Local stealth builder"
         local before=baseline();local p=open()
         local text=p.previewText:GetText()
-        local main=text:match("Main bar %- keys for this preview(.-)Action Bar 2")
-        local bar2=text:match("Action Bar 2(.-)Using this layout")
+        local main=text:match("Main bar(.-)Action Bar 2")
+        local bar2=text:match("Action Bar 2(.-)Notes")
         expect(main and main:find("Local builder",1,true) and main:find("Local stealth builder",1,true))
         expect(main:find("Keys: Q",1,true) and not main:find("TOR Builder",1,true))
         expect(bar2 and bar2:find("Shadow Dance",1,true) and bar2:find("F",1,true))
-        expect(text:find("Custom action-bar addons",1,true))
+        expect(text:find("Check other action-bar addons separately.",1,true))
         unchanged(before)
     end)
     test("UI binding event refreshes displayed main and utility keys without applying",function()
@@ -132,8 +135,8 @@ return function(c)
         S.bindingKeys.MULTIACTIONBAR1BUTTON1={"T"}
         S.dispatchUIEvent("UPDATE_BINDINGS")
         local text=p.previewText:GetText()
-        local main=text:match("Main bar %- keys for this preview(.-)Action Bar 2")
-        local bar2=text:match("Action Bar 2(.-)Using this layout")
+        local main=text:match("Main bar(.-)Action Bar 2")
+        local bar2=text:match("Action Bar 2(.-)Notes")
         expect(main:find("Keys: E",1,true) and not main:find("Keys: Q",1,true))
         expect(bar2:find("Keys: T",1,true) and not bar2:find("Keys: F",1,true))
         unchanged(before)
@@ -153,7 +156,7 @@ return function(c)
         local S=c.state();S.bindingKeys.ACTIONBUTTON1={}
         local before=baseline();local p=open()
         local text=p.previewText:GetText()
-        local keys=text:match("Slot 1   [^\n]+\n    Keys: ([^\n]+)")
+        local keys=text:match("Slot 1   [^\n]+   — Keys: ([^\n]+)")
         expect(keys and keys:lower():find("unbound",1,true))
         expect(keys~="1")
         unchanged(before)

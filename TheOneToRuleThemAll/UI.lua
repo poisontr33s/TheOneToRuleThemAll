@@ -44,8 +44,7 @@ local function ranges(slots)
 end
 local function appendControl(lines, row, profile, number)
     local info = A.ControlInfo(row, profile)
-    lines[#lines+1] = "Slot " .. number .. "   " .. info.actionText
-    lines[#lines+1] = "    Keys: " .. info.keysText
+    lines[#lines+1] = "Slot " .. number .. "   " .. info.actionText .. "   — Keys: " .. info.keysText
     if info.altKeysText then lines[#lines+1] = "    Alt: " .. info.altKeysText end
 end
 local function previewText(panel, snapshot)
@@ -55,7 +54,6 @@ local function previewText(panel, snapshot)
     end
     if not snapshot.plan then
         lines[#lines+1] = snapshot.applyReason or "No compatible profile is included for this class and specialization."
-        lines[#lines+1] = "\nThe addon does not change your bars automatically."
         if snapshot.backup then lines[#lines+1] = "\nUndo: " .. (snapshot.undoReason or "Available for the saved setup.") end
         return table.concat(lines, "\n")
     end
@@ -67,9 +65,10 @@ local function previewText(panel, snapshot)
         lines[#lines+1] = snapshot.canUndo and "Undo is available." or ("Undo: " .. tostring(snapshot.undoReason))
     end
     if snapshot.legacyUndo then lines[#lines+1] = snapshot.legacyUndo end
-    lines[#lines+1] = "\n" .. heading("Main bar - keys for this preview")
-    lines[#lines+1] = "Keys shown use WoW's built-in action bars. Custom action-bar addons may use other bindings."
-    local main, bar2, bar3, bar2Slots, bar3Slots, stealth, other = {}, {}, {}, {}, {}, {}, {}
+    lines[#lines+1] = "Apply replaces the listed abilities; your keys stay the same."
+    lines[#lines+1] = "Keys use WoW bindings. Check other action-bar addons separately."
+    lines[#lines+1] = "\n" .. heading("Main bar")
+    local main, bar2, bar3, stealth, other = {}, {}, {}, {}, {}
     local formMain = false
     for _, row in ipairs(plan.rows or {}) do
         if row.mainButton or (row.slot >= 1 and row.slot <= 12) then
@@ -77,10 +76,8 @@ local function previewText(panel, snapshot)
             if row.mainButton and row.slot > 12 then formMain = true end
         elseif row.slot >= 61 and row.slot <= 72 then
             bar2[#bar2+1] = row
-            bar2Slots[#bar2Slots+1] = row.slot - 60
         elseif row.slot >= 49 and row.slot <= 60 then
             bar3[#bar3+1] = row
-            bar3Slots[#bar3Slots+1] = row.slot - 48
         elseif snapshot.class == "ROGUE" and row.slot >= 73 and row.slot <= 84 then
             stealth[#stealth+1] = row.slot - 72
         else
@@ -90,10 +87,8 @@ local function previewText(panel, snapshot)
     table.sort(main, function(a,b) return (a.mainButton or a.slot) < (b.mainButton or b.slot) end)
     for _, row in ipairs(main) do appendControl(lines, row, profile, row.mainButton or row.slot) end
     if formMain then lines[#lines+1] = "Apply changes the main buttons in your selected form only." end
-    lines[#lines+1] = "Key assignments stay the same; Apply replaces the abilities in the listed slots."
     if #bar2 > 0 then
         lines[#lines+1] = "\n" .. heading("Action Bar 2")
-        lines[#lines+1] = "Your existing keys for these Action Bar 2 slots will cast the abilities listed below after Apply."
         table.sort(bar2, function(a,b) return a.slot < b.slot end)
         for _, row in ipairs(bar2) do
             appendControl(lines, row, profile, row.slot - 60)
@@ -101,12 +96,10 @@ local function previewText(panel, snapshot)
     end
     if #bar3 > 0 then
         lines[#lines+1] = "\n" .. heading("Action Bar 3")
-        lines[#lines+1] = "Your existing keys for these Action Bar 3 slots will cast the abilities listed below after Apply."
         table.sort(bar3, function(a,b) return a.slot < b.slot end)
         for _, row in ipairs(bar3) do appendControl(lines, row, profile, row.slot - 48) end
     end
-    lines[#lines+1] = "\n" .. heading("Using this layout")
-    lines[#lines+1] = "Numbers in these notes identify slots. Use each slot's bound key."
+    lines[#lines+1] = "\n" .. heading("Notes")
     if profile.layouts[snapshot.layout].altSlots then
         lines[#lines+1] = "Hold Alt with that key for an alternate action."
     end
@@ -114,14 +107,11 @@ local function previewText(panel, snapshot)
         lines[#lines+1] = "Friendly spells use a valid friendly mouseover; otherwise they keep normal targeting."
     end
     for _, line in ipairs(plan.lines or {}) do lines[#lines+1] = line end
-    lines[#lines+1] = "\n" .. heading("Other affected bars")
-    if #bar2 > 0 then lines[#lines+1] = "Action Bar 2: slots " .. ranges(bar2Slots) .. ". Enable it in WoW Options if hidden." end
-    if #bar3 > 0 then lines[#lines+1] = "Action Bar 3: slots " .. ranges(bar3Slots) .. ". Enable it in WoW Options if hidden." end
+    if #bar2 + #bar3 > 0 then lines[#lines+1] = "Show hidden bars in WoW Options." end
     if #stealth > 0 then lines[#lines+1] = "Rogue Stealth / Dance bar: slots " .. ranges(stealth) .. "." end
     if #other > 0 then lines[#lines+1] = "Additional action slots: " .. ranges(other) .. "." end
-    if #bar2 + #bar3 + #stealth + #other == 0 then lines[#lines+1] = "No additional bars." end
     if #(plan.skipped or {}) > 0 then
-        lines[#lines+1] = "Unlearned utilities left untouched: " .. table.concat(plan.skipped, ", ") .. "."
+        lines[#lines+1] = "Not learned; slots unchanged: " .. table.concat(plan.skipped, ", ") .. "."
     end
     if panel.details then
         local evidence = profile and profile.evidence
