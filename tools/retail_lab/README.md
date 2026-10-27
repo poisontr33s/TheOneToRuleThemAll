@@ -22,8 +22,7 @@ On Windows, with Python 3.10+ and WoW already installed:
 
 The Method Mythic+ profiles cover all 40 specializations. Check the current
 form's main buttons, Bar 2 utilities and Bar 3 extras/racials on each character
-you test. Return to the same form and loadout before Undo. Custom profiles are
-archived in the repository and excluded from the lab payload too.
+you test. Return to the same form and loadout before Undo.
 The talent browser copies Method Mythic+ codes; it does not import them.
 
 The desk is accessible only on this Windows machine through its private local

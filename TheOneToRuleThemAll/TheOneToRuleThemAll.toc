@@ -2,7 +2,7 @@
 ## Title: The One To Rule Them All
 ## Notes: Method Mythic+ talent references and reversible action-bar setup.
 ## Author: Astra, Claude
-## Version: 0.4.2-astra
+## Version: 0.5.0-astra
 ## OptionalDeps: AstraRogueSetup, AstraSubSetup
 ## SavedVariablesPerCharacter: TheOneToRuleThemAllDB
 

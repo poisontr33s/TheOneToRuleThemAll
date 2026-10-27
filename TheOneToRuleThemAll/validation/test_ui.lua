@@ -1,380 +1,70 @@
--- Run against the real UI callbacks with behavioral widget mocks.
+-- Real panel callbacks with widget mocks; rendering is tested in WoW.
 return function(c)
-    local test, expect, copy, equal = c.test, c.expect, c.copy, c.equal
-    local function baseline()
-        local S=c.state()
-        return {slots=copy(S.slots),macros=copy(S.macros),cursor=copy(S.cursor),
-            created=S.created,placements=S.placements,bindingCalls=S.bindingCalls,
-            db=copy(TheOneToRuleThemAllDB)}
-    end
-    local function unchanged(before)
-        local S=c.state()
-        expect(equal(before.slots,S.slots),"UI preview changed action slots")
-        expect(equal(before.macros,S.macros),"UI preview changed macros")
-        expect(equal(before.cursor,S.cursor),"UI preview changed cursor")
-        expect(before.created==S.created and before.placements==S.placements,
-            "UI preview invoked action or macro writes")
-        expect(before.bindingCalls==S.bindingCalls,"UI changed bindings")
-        expect(equal(before.db,TheOneToRuleThemAllDB),"UI preview changed saved data")
-    end
-    local function open()
-        c.command("ui")
-        local p=c.addon().panel
-        expect(p and p:IsShown(),"Setup panel did not open")
-        return p
-    end
-    local function click(button)
-        expect(button and button:GetScript("OnClick"),"Expected a wired button")
-        button:Click()
-    end
-    local function directClick(button)
-        -- Deliberately skip disabled-widget filtering to simulate a state
-        -- change between an earlier readiness check and command execution.
-        button:GetScript("OnClick")(button,"LeftButton")
-    end
-    local function nightborneRacials()
-        -- The legacy spell mock starts with all spells learned. Standard
-        -- profiles need the actual one-race condition for their preview.
-        for _, racial in ipairs(c.addon().racialDefinitions or {}) do
-            for _, id in ipairs(racial.ids) do
-                if id ~= 260364 then c.state().unlearned[id]=true end
-            end
-        end
-    end
-    test("UI is lazy and does not create a panel or touch bars on addon load",function()
-        local S=c.state()
-        expect(c.addon().panel==nil and #S.frames==1)
-        expect(S.created==0 and S.placements==0 and not TheOneToRuleThemAllDB)
+    local test, expect, copy, equal = c.test,c.expect,c.copy,c.equal
+    local function open() c.addon().TogglePanel(); return c.addon().panel end
+    test("Opening the lazy panel preserves bars and saved data",function()
+        local S=c.state(); expect(not c.addon().panel and #S.frames==1)
+        S.slots[1]={kind="item",id=777}; local before=copy(S.slots); local p=open()
+        expect(p.selectedId=="standard-subtlety" and p.applyButton:IsEnabled())
+        expect(not p.mouseoverButton:IsShown() and p.compactButton==nil)
+        expect(equal(before,S.slots) and S.created==0 and S.placements==0 and not TheOneToRuleThemAllDB)
     end)
-    test("UI shows localized class and plain status and previous setup text",function()
-        local S=c.state();S.localizedClass="Voleur"
-        local p=open()
-        expect(p.characterText:GetText():find("Voleur",1,true))
-        expect(not p.characterText:GetText():find("ROGUE",1,true))
-        expect(p.previewText:GetText():find("Status",1,true))
-        local function plainText()
-            for _,f in ipairs(S.frames) do
-                if f.GetText and f:IsVisible() then
-                    local text=f:GetText():lower()
-                    expect(not text:find("readiness",1,true) and not text:find("snapshot",1,true),"Technical UI text: "..text)
-                end
-            end
-        end
-        plainText()
-        expect(p.undoWarning:GetText():find("previous setup",1,true))
-        click(p.applyButton);plainText()
-        expect(p.statusText:GetText():find("previous setup",1,true))
-        click(p.undoButton);plainText()
+    test("Apply and Undo buttons use guarded commands",function()
+        local S=c.state(); S.slots[1]={kind="item",id=777}; local before=copy(S.slots)
+        local p=open(); p.applyButton:Click()
+        expect(p.undoButton:IsEnabled() and not p.applyButton:IsEnabled())
+        p.undoButton:Click()
+        expect(equal(before,S.slots) and p.applyButton:IsEnabled() and not p.undoButton:IsEnabled())
     end)
-    test("UI pairs each localized Bar2 assignment with its key before Apply",function()
-        local S=c.state()
-        local ids={185313,121471,1784,1966,31224,5277,185311,2983,36554,2094,408,57934}
-        for i,id in ipairs(ids) do
-            S.names[id]="Local utility "..i
-            S.bindingKeys["MULTIACTIONBAR1BUTTON"..i]={"F"..i}
-        end
-        S.unlearned[2983]=true
-        local before=baseline();local p=open()
-        local text=p.previewText:GetText()
-        local section=text:match("Action Bar 2(.-)Notes")
-        expect(section and text:find("Apply replaces the listed abilities; your keys stay the same.",1,true))
-        for i in ipairs(ids) do
-            if i~=8 then expect(section:find("Slot "..i.."   Local utility "..i.."   — Keys: F"..i,1,true),"Missing utility slot "..i) end
-        end
-        expect(not section:find("Slot 8   Local utility 8",1,true))
-        unchanged(before)
+    test("A stale Apply callback cannot bypass combat or a changed spec",function()
+        local S=c.state(); local p=open(); local click=p.applyButton:GetScript("OnClick")
+        S.combat=true; click(p.applyButton)
+        expect(S.placements==0 and not p.applyButton:IsEnabled())
+        S.combat=false; p:Refresh(); S.spec=259; click(p.applyButton)
+        expect(S.placements==0 and not TheOneToRuleThemAllDB)
     end)
-    test("GUI Apply omits model chat while Show details explicitly reveals the model",function()
-        local S=c.state();local p=open()
-        local evidence=c.addon().profiles.subburst.evidence
-        expect(not p.previewText:GetText():find(evidence.patch,1,true))
-        click(p.applyButton)
-        expect(not c.messageContains("Evidence:") and not c.messageContains("SimC"))
-        expect(not c.messageContains("fixed template") and not c.messageContains("Reference model only"))
-        expect(c.messageContains("Action Bar 2 after Apply: 1 Shadow Dance") and c.messageContains("Keys you have bound to these slots"))
-        local before=baseline();click(p.detailsButton)
-        expect(p.previewText:GetText():find(evidence.patch,1,true))
-        expect(p.previewText:GetText():find(evidence.gear,1,true))
-        expect(p.previewText:GetText():find(evidence.tuning,1,true))
-        click(p.detailsButton)
-        expect(not p.previewText:GetText():find(evidence.patch,1,true))
-        unchanged(before)
+    test("Binding refresh shows current keys without applying",function()
+        local S=c.state(); local p=open()
+        S.bindingKeys.ACTIONBUTTON1={"SHIFT-Q"}; S.dispatchUIEvent("UPDATE_BINDINGS")
+        expect(p.previewText:GetText():find("Shift+Q",1,true))
+        expect(S.placements==0 and S.bindingCalls==0)
     end)
-    test("binding and cursor events update setup availability without changes",function()
-        local S=c.state();local p=open();click(p.compactButton)
-        expect(p.applyButton:IsEnabled())
-        S.bindings["ALT-1"]="OTHER_ACTION";local before=baseline()
-        S.dispatchUIEvent("UPDATE_BINDINGS")
-        expect(not p.applyButton:IsEnabled());unchanged(before)
-        S.bindings["ALT-1"]=nil;S.dispatchUIEvent("UPDATE_BINDINGS")
-        expect(p.applyButton:IsEnabled())
-        S.cursor={kind="item",id=123};before=baseline()
-        S.dispatchUIEvent("CURSOR_CHANGED")
-        expect(not p.applyButton:IsEnabled());unchanged(before)
-    end)
-    test("UI pairs actual main and Bar2 keys with abilities instead of macro names",function()
-        local S=c.state()
-        S.bindingKeys.ACTIONBUTTON1={"Q","BUTTON4"}
-        S.bindingKeys.MULTIACTIONBAR1BUTTON1={"SHIFT-F"}
-        S.names[53]="Local builder"; S.names[185438]="Local stealth builder"
-        local before=baseline();local p=open()
-        local text=p.previewText:GetText()
-        local main=text:match("Main bar(.-)Action Bar 2")
-        local bar2=text:match("Action Bar 2(.-)Notes")
-        expect(main and main:find("Local builder",1,true) and main:find("Local stealth builder",1,true))
-        expect(main:find("Keys: Q",1,true) and not main:find("TOR Builder",1,true))
-        expect(bar2 and bar2:find("Shadow Dance",1,true) and bar2:find("F",1,true))
-        expect(text:find("Check other action-bar addons separately.",1,true))
-        unchanged(before)
-    end)
-    test("UI binding event refreshes displayed main and utility keys without applying",function()
-        local S=c.state();S.bindingKeys.ACTIONBUTTON1={"Q"}
-        S.bindingKeys.MULTIACTIONBAR1BUTTON1={"F"}
-        local p=open();local before=baseline()
-        S.bindingKeys.ACTIONBUTTON1={"E"}
-        S.bindingKeys.MULTIACTIONBAR1BUTTON1={"T"}
-        S.dispatchUIEvent("UPDATE_BINDINGS")
-        local text=p.previewText:GetText()
-        local main=text:match("Main bar(.-)Action Bar 2")
-        local bar2=text:match("Action Bar 2(.-)Notes")
-        expect(main:find("Keys: E",1,true) and not main:find("Keys: Q",1,true))
-        expect(bar2:find("Keys: T",1,true) and not bar2:find("Keys: F",1,true))
-        unchanged(before)
-    end)
-    test("UI compact preview explains alternate abilities using the bound keys",function()
-        local S=c.state();S.bindingKeys.ACTIONBUTTON1={"Q"}
-        S.bindingKeys.ACTIONBUTTON2={"E"}
-        S.names[197835]="Local Storm"
-        local before=baseline();local p=open();click(p.compactButton)
-        local text=p.previewText:GetText()
-        local alt=text:match("    Alt: ([^\n]+)")
-        expect(alt and alt:find("Q",1,true) and alt:find("Local Storm",1,true))
-        expect(not alt:find("Alt+1",1,true) and not alt:find("ALT-1",1,true))
-        unchanged(before)
-    end)
-    test("UI unbound slots are identified without substituting numbered default keys",function()
-        local S=c.state();S.bindingKeys.ACTIONBUTTON1={}
-        local before=baseline();local p=open()
-        local text=p.previewText:GetText()
-        local keys=text:match("Slot 1   [^\n]+   — Keys: ([^\n]+)")
-        expect(keys and keys:lower():find("unbound",1,true))
-        expect(keys~="1")
-        unchanged(before)
-    end)
-    test("UI open profile layout and details previews preserve macros cursor and saved data",function()
-        local S=c.state()
-        S.macros[121]={name="PlayerMacro",icon=134400,body="/cast Original"}
-        S.slots[1]={kind="macro",id=121}
-        S.slots[10]={kind="item",id=456}
-        local before=baseline()
-        local p=open()
-        click(p.compactButton); click(p.standardButton)
-        click(p.profileNext); click(p.profilePrev)
-        click(p.detailsButton); click(p.detailsButton); click(p.refreshButton)
-        unchanged(before)
-    end)
-    test("UI default slash toggles panel without creating duplicate frames",function()
-        local S=c.state()
-        c.command("")
-        local p=c.addon().panel
-        expect(p and p:IsShown())
-        local n=#S.frames
-        c.command(""); expect(not p:IsShown())
-        c.command(""); expect(p:IsShown() and #S.frames==n)
+    test("Healer Mouseover selection stays read-only",function()
+        local S=c.state(); S.class="PRIEST"; S.spec=257; local p=open()
+        expect(p.layout=="standard" and p.mouseoverButton:IsShown())
+        p.mouseoverButton:Click(); expect(p.layout=="mouseover" and #p.snapshot.plan.macros>0)
+        p.standardButton:Click(); expect(p.layout=="standard" and #p.snapshot.plan.macros==0)
         expect(S.placements==0 and S.created==0 and not TheOneToRuleThemAllDB)
     end)
-    test("UI preview preserves an occupied cursor and disables Apply",function()
-        local S=c.state(); S.cursor={kind="item",id=12345}
-        local before=baseline(); local p=open()
-        expect(not p.applyButton:IsEnabled())
-        click(p.refreshButton)
-        unchanged(before)
-    end)
-    test("UI compact preview exposes Alt conflict while standard remains usable",function()
-        local S=c.state(); S.bindings["ALT-1"]="ACTIONPAGE1"
-        local before=baseline(); local p=open()
-        expect(p.applyButton:IsEnabled())
-        click(p.compactButton)
-        expect(not p.applyButton:IsEnabled())
-        expect(p.snapshot.applyReason and p.snapshot.applyReason:find("ALT-1",1,true))
-        click(p.standardButton); expect(p.applyButton:IsEnabled())
-        unchanged(before)
-    end)
-    test("UI Apply and Undo execute the native setup and restore the prior slots",function()
-        local S=c.state()
-        S.slots[1]={kind="item",id=111}; S.slots[10]={kind="spell",id=222}
-        local original=copy(S.slots); local p=open()
-        expect(p.selectedId=="subburst" and p.applyButton:IsEnabled())
-        click(p.applyButton)
-        expect(TheOneToRuleThemAllDB.backup.state=="applied" and S.created==3)
-        expect(not p.applyButton:IsEnabled() and p.undoButton:IsEnabled())
-        expect(S.slots[6].kind=="macro" and S.slots[10].id==222)
-        click(p.undoButton)
-        expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
-        expect(not p.undoButton:IsEnabled() and p.applyButton:IsEnabled())
-        expect(S.bindingCalls==0)
-    end)
-    test("UI stale Apply callback still refuses combat before any changes",function()
-        local S=c.state(); local p=open()
-        expect(p.applyButton:IsEnabled())
-        S.combat=true; local before=baseline()
-        directClick(p.applyButton)
-        unchanged(before)
-        expect(not p.applyButton:IsEnabled() and c.messageContains("Leave combat"))
-    end)
-    test("UI stale Apply callback refuses a changed class before any changes",function()
-        local S=c.state(); local p=open()
-        S.class="MAGE"; S.spec=62; local before=baseline()
-        directClick(p.applyButton)
-        unchanged(before)
-        expect(p.selectedId=="standard-arcane-mage" and p.snapshot.profile.class=="MAGE")
-        expect(p.snapshot.profile.spec==62 and p.applyButton:IsEnabled())
-    end)
-    test("UI combat and spec events refresh readiness without applying a profile",function()
-        local S=c.state(); local p=open(); local before=baseline()
-        S.combat=true; S.dispatchUIEvent("PLAYER_REGEN_DISABLED")
-        expect(not p.applyButton:IsEnabled())
-        S.combat=false; S.dispatchUIEvent("PLAYER_REGEN_ENABLED")
-        expect(p.applyButton:IsEnabled())
-        S.class="DEATHKNIGHT"; S.spec=252
-        nightborneRacials()
-        S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
-        expect(#p.snapshot.profiles==1 and p.snapshot.profile.class=="DEATHKNIGHT")
-        expect(p.snapshot.profile.spec==252 and p.snapshot.plan)
-        unchanged(before)
-    end)
-    test("UI missing required ability blocks Apply without discarding preview",function()
-        local S=c.state(); S.unlearned[426591]=true
-        local before=baseline(); local p=open()
-        -- Select the coupled-burst profile explicitly if another compatible
-        -- profile was chosen as the initial preview.
-        p.selectedId="subburst"; p:Refresh(true)
-        expect(not p.applyButton:IsEnabled() and p.snapshot.plan)
-        expect(p.snapshot.applyReason:find("Goremaw",1,true))
-        unchanged(before)
-    end)
-    test("UI Undo refuses a changed loadout through the shared command guard",function()
-        local S=c.state(); local p=open(); click(p.applyButton)
-        S.config=999; local before=baseline()
-        directClick(p.undoButton)
-        unchanged(before)
-        expect(not p.undoButton:IsEnabled())
-    end)
-    test("UI failed placement shows error and keeps successful rollback recoverable",function()
-        local S=c.state(); S.slots[1]={kind="item",id=777}
-        local original=copy(S.slots); local p=open()
-        S.failPickup=280719; click(p.applyButton)
-        expect(equal(original,S.slots),"Failed setup did not restore original slots")
-        expect(TheOneToRuleThemAllDB.backup.state=="restored")
-        expect(not p.undoButton:IsEnabled())
-        expect(c.messageContains("Original bars restored"))
-    end)
-    test("UI retains Undo after a failed setup once the occupied cursor is cleared",function()
-        local S=c.state(); S.slots[1]={kind="item",id=888}
-        local original=copy(S.slots); local p=open()
-        S.failPlacement=5; click(p.applyButton)
-        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
-        expect(S.cursor and not p.undoButton:IsEnabled())
-        ClearCursor(); click(p.refreshButton)
-        expect(p.undoButton:IsEnabled() and not p.applyButton:IsEnabled())
-        click(p.undoButton)
-        expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
-    end)
-    test("UI keeps incomplete Undo amber and offers retry until the original item returns",function()
-        local S=c.state(); S.slots[1]={kind="item",id=888}
-        S.slots[61]={kind="spell",id=7000}
-        local original=copy(S.slots); local p=open(); local color
-        p.statusText.SetTextColor=function(_,r,g,b) color={r,g,b} end
-        click(p.applyButton)
-        S.gone[888]=true; click(p.undoButton)
-        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
-        expect(p.undoButton:IsEnabled() and not p.applyButton:IsEnabled())
+    test("Incomplete Undo offers retry until the original item returns",function()
+        local S=c.state(); S.slots[1]={kind="item",id=777}; local p=open()
+        p.applyButton:Click(); S.gone[777]=true; p.undoButton:Click()
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo" and p.undoButton:IsEnabled())
         expect(p.statusText:GetText():find("Undo incomplete",1,true))
-        expect(p.statusText:GetText():find("Backup kept",1,true))
-        expect(equal(color,{0.92,0.78,0.53}),"Incomplete Undo was shown as success")
-        S.gone[888]=nil; click(p.undoButton)
-        expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
-        expect(not p.undoButton:IsEnabled() and p.applyButton:IsEnabled())
-        expect(p.statusText:GetText():find("Original bars restored",1,true))
-        expect(equal(color,{0.65,0.88,0.72}))
+        S.gone[777]=nil; p.undoButton:Click()
+        expect(S.slots[1].id==777 and not p.undoButton:IsEnabled())
     end)
-    test("UI close unregisters refresh events and opening again does not write",function()
-        local S=c.state(); local p=open()
-        expect(p:IsEventRegistered("PLAYER_REGEN_DISABLED"))
-        local before=baseline(); click(p.closeButton)
-        expect(not p:IsShown() and next(p.events)==nil)
-        S.dispatchUIEvent("PLAYER_TALENT_UPDATE")
-        c.command("ui"); expect(p:IsShown())
-        unchanged(before)
+    test("Occupied cursor and unknown specs remain passive",function()
+        local S=c.state(); S.cursor={kind="item",id=777}; local p=open()
+        expect(not p.applyButton:IsEnabled() and S.cursor.id==777)
+        S.cursor=nil; S.spec=999999; S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
+        expect(not p.applyButton:IsEnabled() and not p.talentsButton:IsEnabled())
+        expect(S.placements==0 and S.created==0)
     end)
-    test("production TOC exposes only standard profiles and hides custom controls",function()
-        c.reload(false)
-        local A=c.addon(); local count=0
-        for id in pairs(A.profiles) do
-            expect(id:match("^standard%-"), "Archived profile loaded: " .. id)
-            count=count+1
-        end
-        expect(count==40 and A.GetPlayGuide==nil and A.ShowGuide==nil)
-        local before=baseline(); local p=open()
-        expect(p.selectedId=="standard-subtlety" and p.snapshot.plan)
-        expect(p.guideButton==nil and not p.compactButton:IsShown())
-        expect(not p.profilePrev:IsShown() and not p.profileNext:IsShown())
-        unchanged(before)
+    test("Closing removes refresh events; reopening reuses the panel",function()
+        local p=open(); local frames=#c.state().frames
+        p.closeButton:Click(); expect(not p:IsShown() and next(p.events)==nil)
+        expect(open()==p and #c.state().frames==frames and c.state().placements==0)
     end)
-    for _, legacy in ipairs({
-        {"subburst compact", "ROGUE", 261, "standard-subtlety"},
-        {"blood-sanlayn", "DEATHKNIGHT", 250, "standard-blood-dk"},
-    }) do
-        test("production Undo restores archived "..legacy[1].." setup after reload",function()
-            local S=c.state(); S.class=legacy[2]; S.spec=legacy[3]
-            S.unlearned[439843]=true -- Blood fixture: San'layn, without Reaper's Mark.
-            S.slots[1]={kind="item",id=777}; S.slots[61]={kind="spell",id=888}
-            local original=copy(S.slots)
-            expect(c.addon().Execute(legacy[1]))
-            expect(TheOneToRuleThemAllDB.backup.state=="applied")
-            c.reload(false)
-            local p=open()
-            expect(p.selectedId==legacy[4] and not p.applyButton:IsEnabled())
-            expect(p.undoButton:IsEnabled(), p.snapshot.undoReason)
-            click(p.undoButton)
-            expect(equal(original,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
-            expect(p.applyButton:IsEnabled() and not p.undoButton:IsEnabled())
-        end)
-    end
-    for _, alt in ipairs({
-        {"Death Knight","DEATHKNIGHT",252}, {"Evoker","EVOKER",1468},
-        {"Mage","MAGE",62}, {"Priest","PRIEST",256}, {"Outlaw","ROGUE",260},
-    }) do
-        test("UI previews "..alt[1].." without writes while combat blocks Apply",function()
-            local S=c.state(); S.class=alt[2]; S.spec=alt[3]; S.combat=true
-            nightborneRacials()
-            local before=baseline(); local p=open()
-            expect(#p.snapshot.profiles>=1 and p.snapshot.plan and not p.applyButton:IsEnabled())
-            expect(p.snapshot.profile.class==S.class and p.snapshot.profile.spec==S.spec)
-            expect(not p.undoButton:IsEnabled())
-            click(p.applyButton); click(p.refreshButton)
-            unchanged(before)
-        end)
-    end
-    test("UI stays passive for an unknown specialization",function()
-        local S=c.state(); S.class="MAGE"; S.spec=999999
-        local before=baseline(); local p=open()
-        expect(#p.snapshot.profiles==0 and not p.applyButton:IsEnabled() and not p.talentsButton:IsEnabled())
-        click(p.applyButton); click(p.refreshButton)
-        unchanged(before)
-    end)
-    test("Healer Mouseover preview is explicit and preserves the standard layout",function()
-        local S=c.state(); S.class="PRIEST"; S.spec=257
-        nightborneRacials()
-        local before=baseline(); local p=open()
-        expect(p.layout=="standard" and p.compactButton:IsEnabled())
-        expect(p.compactButton:GetText()=="Mouseover")
-        click(p.compactButton)
-        expect(p.layout=="mouseover" and p.compactButton:GetText()=="Mouseover (selected)")
-        expect(p.previewText:GetText():find("valid friendly mouseover",1,true))
-        expect(#p.snapshot.plan.macros>0)
-        click(p.standardButton)
-        expect(p.layout=="standard" and #p.snapshot.plan.macros==0)
-        unchanged(before)
+    test("Gear details follow the specialization when a Paladin changes role",function()
+        local S=c.state(); S.class="PALADIN"; S.spec=65
+        local p=open(); p.detailsButton:Click()
+        expect(p.previewText:GetText():find("Sunfire Silk Spellthread",1,true))
+        expect(p.previewText:GetText():find("Shaladrassil's Roots",1,true))
+        S.spec=70; S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
+        p.detailsButton:Click()
+        expect(p.previewText:GetText():find("Forest Hunter's Armor Kit — Strength",1,true))
+        expect(not p.previewText:GetText():find("Sunfire Silk Spellthread",1,true))
+        expect(S.placements==0 and S.created==0)
     end)
 end

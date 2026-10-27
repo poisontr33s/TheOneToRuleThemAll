@@ -371,6 +371,26 @@ return function(c)
         expect(not addon.Execute(def.id))
         unchanged(before)
     end)
+    test("Every racial spell variant stays in its reserved lane across class profiles", function()
+        for _, def in ipairs(A().standardDefinitions) do
+            for _, racial in ipairs(A().racialDefinitions) do
+                for _, racialID in ipairs(racial.ids) do
+                    local state,addon=fixture(def,racialID)
+                    local view=addon.Inspect(def.id)
+                    expect(view.canApply,view.applyReason)
+                    local rows=rowsBySlot(view.plan)
+                    expect(rows[58] and rows[58].action.id==racialID,def.id .. ": " .. racial.name)
+                    expect(not rows[59] and not rows[60] and state.placements==0)
+                end
+            end
+        end
+    end)
+    test("Outlaw uses the live Roll the Bones and Slice and Dice buttons", function()
+        local state,addon=fixture(definition("standard-outlaw"))
+        state.known[315508]=nil; state.known[5171]=nil
+        local rows=rowsBySlot(addon.Inspect("standard-outlaw").plan)
+        expect(rows[8].action.id==1214909 and rows[51].action.id==315496)
+    end)
     test("Undo requires the same native form page after a successful standard Apply", function()
         local def=definition("standard-feral")
         local state,addon=fixture(def)

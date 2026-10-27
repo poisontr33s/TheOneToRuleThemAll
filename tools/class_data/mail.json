@@ -10,22 +10,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Pack Leader — single target",
-        "content": "raid",
-        "hero": "Pack Leader",
-        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsAzwQDbAAYGGzsMzwMmZYYmxYmxMzYmZGmxYGzgx0MAAAAgZAAAYMzMDYmNCDzCYbAYA"
-      },
-      {
         "label": "Pack Leader — Mythic+",
         "content": "dungeon",
         "hero": "Pack Leader",
         "code": "C0PAAAAAAAAAAAAAAAAAAAAAAAMmxwCsBzwQDbAAYGPwMzsMzwMzMjZGMzYmhZGzMzYbmZYMDLDNDAAAAAAAAmHYMzAmZjAmFw2AwA"
-      },
-      {
-        "label": "Dark Ranger — single target",
-        "content": "raid",
-        "hero": "Dark Ranger",
-        "code": "C0PAAAAAAAAAAAAAAAAAAAAAAYzsNwAGwMsBZsAAgZMjZWMDzYmxMMzYYGzMjZMDzMjZMDGaGAAAAwMAAAMzMzgZGQYYWAbDAD"
       },
       {
         "label": "Dark Ranger — Mythic+",
@@ -185,7 +173,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/beast-mastery-hunter/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-marksmanship",
@@ -198,28 +187,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Sentinel — single target",
-        "content": "raid",
-        "hero": "Sentinel",
-        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwCMwMGzYZAMD2AAAAAAAAAzYGzwMmZGzgx0MGM2WmZmZmZmZmFmZZwMAAg5BmZGDgZajhBYjZ2mxA"
-      },
-      {
-        "label": "Sentinel — raid cleave",
-        "content": "raid",
-        "hero": "Sentinel",
-        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwCMwMGzYZAMD2AAAAAAAAAzYGzwMmZGzgx0MGMbbbzMzMzMzMzCzsMMDAAw8AzMDAmpNGGgNmZbGD"
-      },
-      {
         "label": "Sentinel — Mythic+",
         "content": "dungeon",
         "hero": "Sentinel",
         "code": "C4PAAAAAAAAAAAAAAAAAAAAAAwGMwMGNWGAzgNAAAAAAAAwMmZmhZMzMmBjpZMYW22mZmZmZmZmFmZZYGAAg5BGzAgZabDGgNmZbGD"
-      },
-      {
-        "label": "Dark Ranger — single target",
-        "content": "raid",
-        "hero": "Dark Ranger",
-        "code": "C4PAAAAAAAAAAAAAAAAAAAAAAYzsMwAmgZYbAzCAAAAAAAAYGzYGmxMzYGMmmxgx2yMzMzMzMzswMLDGAAg5BmZGzMzACDDwGzsNjB"
       },
       {
         "label": "Dark Ranger — Mythic+",
@@ -382,7 +353,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/marksmanship-hunter/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-survival",
@@ -395,22 +367,10 @@
     "updated": "2026-10-14",
     "builds": [
       {
-        "label": "Pack Leader — single target",
-        "content": "raid",
-        "hero": "Pack Leader",
-        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWIbwMM0glZMzMmZWGAAAAAAmxMmZZbGjZMDeATzAAAAMAYGLLzMzixMjxMDgZ2AmFjhxmBA"
-      },
-      {
         "label": "Sentinel — Mythic+",
         "content": "dungeon",
         "hero": "Sentinel",
         "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMWgBmxYGLDgZC2mZmZmZMbzDAAAAAAYGzMzYbGjZMDGTzAAAAMAwYZZmxCmZmxYmBgZsBGjZmNDA"
-      },
-      {
-        "label": "Sentinel — single target",
-        "content": "raid",
-        "hero": "Sentinel",
-        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWgNYGGawyMmZGzMLDAAAAAAzYGzssNjxMmBPgpZAAAAGAMjllZmZxYmxYmZAmZDYYMM2MAA"
       },
       {
         "label": "Pack Leader — Mythic+",
@@ -580,7 +540,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/survival-hunter/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-elemental",
@@ -592,18 +553,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Farseer — single target",
-        "content": "raid",
-        "hero": "Farseer",
-        "code": "CYQALMl7AwW51MWzGneuHE3tPCAAAAzMbbzMmZmZZbZMMjBAAAAsYmNYADY2YCZWAgZbmZGjtlZajZmFWmZmZMDWGWMzwMLDAYYAMzYYYA"
-      },
-      {
-        "label": "Farseer — raid cleave",
-        "content": "raid",
-        "hero": "Farseer",
-        "code": "CYQALMl7AwW51MWzGneuHE3tPCAAAAzMbbzMGjZZbZMmhZAAAAgFzsBDYAzGTIzCAMbzMzYstMTbMzglZmZGzglZmlhxMzCAwwAYmxwwA"
-      },
       {
         "label": "Farseer — Mythic+",
         "content": "dungeon",
@@ -808,7 +757,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/elemental-shaman/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-enhancement",
@@ -820,12 +770,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "Stormbringer — single target",
-        "content": "raid",
-        "hero": "Stormbringer",
-        "code": "CcQAAAAAAAAAAAAAAAAAAAAAAMzMzgZmZmZmhZmZAAAAAAAAA2AsZGDLkFYGGawCAz2MmxYZZGbMzsNWmZmZYsMGAAzwYmhZCMzgBjB"
-      },
       {
         "label": "Stormbringer — Mythic+",
         "content": "dungeon",
@@ -1022,7 +966,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/enhancement-shaman/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-restoration-shaman",
@@ -1034,18 +979,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-16",
     "builds": [
-      {
-        "label": "Totemic — raid",
-        "content": "raid",
-        "hero": "Totemic",
-        "code": "CgQAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAzMzsssNzMzYMzYmBjFYDmxmGbDgZgNzgBLjZmpZbZmZxMmF2m5BmZMYWGAAAYmZwMDAMYG"
-      },
-      {
-        "label": "Farseer — raid",
-        "content": "raid",
-        "hero": "Farseer",
-        "code": "CgQAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAAAzMzsssNjZGjxYmhZWMzGMgBMbMBGLmhZYWGzMTz2yMziZMbsMjZGDmlBAAAmZGAMzADmB"
-      },
       {
         "label": "Totemic — Mythic+",
         "content": "dungeon",
@@ -1245,7 +1178,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/restoration-shaman/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-devastation",
@@ -1258,22 +1192,10 @@
     "updated": "2026-10-16",
     "builds": [
       {
-        "label": "Scalecommander — single target",
-        "content": "raid",
-        "hero": "Scalecommander",
-        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMDMDzwMgBjZaMzMNjx2wMzMzMzMzAmZmxYmZZmZgBGD2glxox2AYGA2wMYmBDD"
-      },
-      {
         "label": "Scalecommander — Mythic+",
         "content": "dungeon",
         "hero": "Scalecommander",
         "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZAMzwMwMYMTjZmpZmZ2mhZmZmZmZGwMzMGzMLzMDMwYwGsMGN2GAzAwGGYmBDD"
-      },
-      {
-        "label": "Flameshaper — single target",
-        "content": "raid",
-        "hero": "Flameshaper",
-        "code": "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMDmZYGzMgBjZamZmJzM2GmZGmZmZGwMmxYmZZmZwMwMmBWALgZYCsBWGGAzMDD"
       },
       {
         "label": "Flameshaper — Mythic+",
@@ -1439,7 +1361,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/devastation-evoker/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-preservation",
@@ -1468,18 +1391,6 @@
         "content": "dungeon",
         "hero": "Chronowarden",
         "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMz2yMYYmxsZGjx2wAAAzYGzYMMTMmBAAAMzMTzYmZmZZMDAAjZsxCMwMaohhFYmZGAGA"
-      },
-      {
-        "label": "Flameshaper — raid",
-        "content": "raid",
-        "hero": "Flameshaper",
-        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMDmZMYGzmhZmZbYAAgZMjZwYGZmZAAAAmZmJzYmxYmZAwMmBWALgZYCZzwmhBwMzYA"
-      },
-      {
-        "label": "Chronowarden — raid",
-        "content": "raid",
-        "hero": "Chronowarden",
-        "code": "CwbBAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmZwMjBzY2MMzMbYAAgZMjBzYGZmZAAAAmZmJzYmxsNzMAYgxM2YBGYGN0gxCMmZAGD"
       }
     ],
     "main": [
@@ -1656,7 +1567,8 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/preservation-evoker/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-augmentation",
@@ -1669,22 +1581,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Chronowarden — single target",
-        "content": "raid",
-        "hero": "Chronowarden",
-        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhxMYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGjZGAYA"
-      },
-      {
         "label": "Chronowarden — Mythic+ high keys",
         "content": "dungeon",
         "hero": "Chronowarden",
         "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhZGYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGzMzAAD"
-      },
-      {
-        "label": "Scalecommander — single target",
-        "content": "raid",
-        "hero": "Scalecommander",
-        "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbjZmxyMYmlZMzMmBAAAAAAAAzMMmBjpGzMzAAAAgZMjxMzyYmBmZzYwCsMGGbDgZQshxAzMAG"
       },
       {
         "label": "Scalecommander — Mythic+ lower / weekly keys",
@@ -1860,6 +1760,7 @@
       "spellData": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "spellText": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/spelltext_data.inc",
       "layout": "https://www.method.gg/guides/augmentation-evoker/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   }
 ]

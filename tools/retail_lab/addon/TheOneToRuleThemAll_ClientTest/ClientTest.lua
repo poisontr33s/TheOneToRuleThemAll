@@ -335,7 +335,7 @@ end
 SLASH_TORCLIENTTEST1="/tortest"
 SlashCmdList.TORCLIENTTEST=function(message)
     local args={}; for word in (message or ""):gmatch("%S+") do args[#args+1]=word end
-    if #args>2 then print("/tortest [profil] [standard|compact]"); return end
+    if #args>2 then print("/tortest [profil] [standard|mouseover]"); return end
     requestedProfile,requestedLayout=args[1],args[2]
     if not db then print("The One-prøven er ikke ferdig lastet."); return end
     if not panel then panel=makePanel() end

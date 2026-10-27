@@ -55,22 +55,18 @@ end
 function A.ControlInfo(row, profile)
     row = type(row) == "table" and row or {}
     local action = type(row.action) == "table" and row.action or {}
-    local alternate = type(action.altDisplayText) == "string" and action.altDisplayText ~= "" and action.altDisplayText or nil
     local info = {actionText=actionText(action),keysText="Check your action-bar addon",unbound=false}
     local binding = bindingFor(row.slot, profile, row.mainButton)
     if not binding then
-        if alternate then info.altKeysText = "Check your action-bar addon — " .. alternate end
         return info
     end
     if type(GetBindingKey) ~= "function" then
         info.keysText = "Bindings unavailable"
-        if alternate then info.altKeysText = "Bindings unavailable — " .. alternate end
         return info
     end
     local ok, first, second = pcall(GetBindingKey, binding)
     if not ok then
         info.keysText = "Bindings unavailable"
-        if alternate then info.altKeysText = "Bindings unavailable — " .. alternate end
         return info
     end
     local keys, seen, returned = {}, {}, {first, second}
@@ -82,21 +78,8 @@ function A.ControlInfo(row, profile)
         end
     end
     info.unbound = #keys == 0
-    local ordinary, alternates, seenAlt = {}, {}, {}
-    for _, key in ipairs(keys) do
-        local hasAlt = key:find("ALT-", 1, true) ~= nil
-        if not alternate or not hasAlt then ordinary[#ordinary+1] = availableKeyText(key, binding) end
-        if alternate then
-            local chord = hasAlt and key or ("ALT-" .. key)
-            if not seenAlt[chord] then
-                alternates[#alternates+1] = availableKeyText(chord, binding)
-                seenAlt[chord] = true
-            end
-        end
-    end
-    info.keysText = #ordinary > 0 and table.concat(ordinary, " / ") or (info.unbound and "Unbound" or "No key without Alt")
-    if alternate then
-        info.altKeysText = (#alternates > 0 and table.concat(alternates, " / ") or "No bound key") .. " — " .. alternate
-    end
+    local labels = {}
+    for _, key in ipairs(keys) do labels[#labels+1] = availableKeyText(key, binding) end
+    info.keysText = #labels > 0 and table.concat(labels, " / ") or "Unbound"
     return info
 end

@@ -2,6 +2,17 @@
 -- Every action remains a normal player-pressed WoW button.
 local A = TheOneToRuleThemAll
 
+local function gearText(definition)
+    local gear = A.gearTemplate
+    local lines = {gear.quality .. ".", "Gems: " .. gear.gems}
+    for _, slot in ipairs({"head", "shoulders", "chest", "boots", "rings"}) do
+        lines[#lines+1] = slot:gsub("^%l", string.upper) .. ": " .. gear[slot]
+    end
+    lines[#lines+1] = "Legs: " .. gear.legs[definition.primaryStat]
+    lines[#lines+1] = "Fixed reference template. Equipment is not changed."
+    return table.concat(lines, "\n")
+end
+
 local function activeSpell(api, entry)
     local candidates = {entry.id}
     for _, id in ipairs(entry.alternatives or {}) do candidates[#candidates+1] = id end
@@ -77,7 +88,7 @@ for _, definition in ipairs(A.standardDefinitions) do
         requiredForm=definition.requiredForm,blockedWhileStealthed=definition.blockedWhileStealthed,
         evidence={
             patch=definition.patch .. "; Method guide updated " .. definition.updated,
-            gear="Equipment unchanged.",
+            gear=gearText(definition),
             tuning="Method Mythic+ talents; fixed button layout.",
             validation="WoW client testing pending.",
         },

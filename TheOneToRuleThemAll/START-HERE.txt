@@ -1,5 +1,5 @@
-THE ONE TO RULE THEM ALL — 0.4.2-astra
-Astras utviklingsutgave. Gjennomgang og godkjenning i WoW gjenstår.
+THE ONE TO RULE THEM ALL — 0.5.0-astra
+Samlet utgave for alle klasser. Prøving og godkjenning i WoW gjenstår.
 
 INSTALLER
 Lukk WoW. Legg addon-mappen i _retail_/Interface/AddOns/. Behold SavedVariables.
@@ -14,6 +14,7 @@ Aktive racials bruker Bar 3 plass 10–12. Slå på skjulte bars i Options.
 Ulærte valgfrie evner lar plassene stå urørt. Bare gjeldende forms hovedlinje endres.
 Rogue beholder Stealth-linjen. Tastene dine beholder bindingene sine.
 Healer kan velge Mouseover: gyldig vennlig mål under pekeren, ellers vanlig mål.
+Show details viser den faste gearmalen, med riktig pants-enchant for specen.
 
 ANGRE
 Bruk /tor undo utenfor kamp, i samme spec, talent-loadout, form og side som ved Apply.

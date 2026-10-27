@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the install ZIP after a successful test run; no research archive needed."""
+"""Build the install ZIP from the TOC and current instructions."""
 
 import hashlib
 import json

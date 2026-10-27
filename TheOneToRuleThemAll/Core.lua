@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.4.2-astra", profiles = {} }
+TheOneToRuleThemAll = { version = "0.5.0-astra", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -160,32 +160,6 @@ local function validatePlan(plan)
             check(declaredMacros[row.action], "Profile references a macro it did not declare; nothing changed.")
         else
             check(type(row.action.id) == "number" and row.action.id > 0, "Profile references an invalid spell; nothing changed.")
-        end
-    end
-end
-local function checkBindings(profile, layout)
-    local slots = profile.layouts[layout].altSlots
-    if not slots then return end
-    check(type(GetBindingAction) == "function" and type(GetBindingKey) == "function", "Cannot inspect Alt bindings; use the standard layout.")
-    for _, slot in ipairs(slots) do
-        local action = "ACTIONBUTTON" .. slot
-        local keys = {GetBindingKey(action)}
-        local hasBaseKey = false
-        for _, key in ipairs(keys) do
-            if not key:find("ALT-",1,true) then hasBaseKey = true end
-        end
-        check(hasBaseKey, "Action button " .. slot .. " needs a key without Alt for its ordinary action. Bind one in WoW or use the standard layout; no bindings were changed.")
-        -- Numeric defaults must also be free, even if the user uses a second key.
-        keys[#keys+1] = tostring(slot)
-        for _, key in ipairs(keys) do
-            -- The player's existing key may already include Shift or Ctrl.
-            -- Also accept an Alt chord explicitly bound to the same button.
-            if not key:find("ALT-",1,true) then
-                local chord = "ALT-" .. key
-                local bound = GetBindingAction(chord, true)
-                check(not bound or bound == "" or bound == action,
-                    chord .. " is bound to " .. tostring(_G["BINDING_NAME_" .. tostring(bound)] or bound) .. ". Clear that conflicting binding or use the standard layout; no bindings were changed.")
-            end
         end
     end
 end
@@ -401,7 +375,6 @@ local function preparePlan(p, layout)
     check(not state or not state.backup or state.backup.state == "restored", "A previous setup is already saved. Run /tor undo before another setup.")
     local plan = p.build(A.api,layout,true)
     validatePlan(plan)
-    checkBindings(p,layout)
     preflightMacros(plan.macros or {})
     -- Reject unsupported slots before inspecting any macro through the cursor.
     for _, row in ipairs(plan.rows) do checkExistingAction(row.slot) end
@@ -468,17 +441,11 @@ function A.Inspect(id, requestedLayout)
         selectedId=id,layout=requestedLayout or "standard",canApply=false,canUndo=false}
     for profileId,p in pairs(A.profiles) do
         if p.class == view.class and p.spec == view.spec then
-            local recommended = false
-            if type(p.recommendedWhen) == "function" then
-                local ok, value = pcall(p.recommendedWhen,A.api)
-                recommended = ok and not not value
-            end
             view.profiles[#view.profiles+1] = {id=profileId,label=p.label,specName=p.specName,
-                layouts=p.layouts,evidence=p.evidence,recommended=recommended}
+                layouts=p.layouts,evidence=p.evidence}
         end
     end
     table.sort(view.profiles,function(a,b)
-        if a.recommended ~= b.recommended then return a.recommended end
         return a.id < b.id
     end)
     if not id then view.selectedId = view.profiles[1] and view.profiles[1].id end
@@ -513,14 +480,6 @@ end
 
 local function help()
     say("/tor opens the panel; /tor talents; /tor list; /tor status; /tor check [profile] [layout]; /tor preview <profile> [layout]; /tor apply <profile> [layout]; /tor undo.")
-    for id,p in pairs(A.profiles) do
-        if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
-            local valid, compatible = pcall(p.recommendedWhen,A.api)
-            if valid and compatible then
-                say("Compatible starting profile: /tor " .. id .. "." .. (p.layouts.compact and " Add compact for the optional Alt layout." or ""))
-            end
-        end
-    end
     say("Setup places abilities and standard WoW macros on your bars. You choose and press every combat action; talents, keybindings and gear are untouched.")
 end
 

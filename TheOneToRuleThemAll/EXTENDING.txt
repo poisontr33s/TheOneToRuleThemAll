@@ -11,6 +11,7 @@ Keep code readable and player text short.
 
 GEAR TEMPLATE
 
+Source: tools/class_data/gear.json; shown under Show details for the current spec.
 Use the highest available quality for every gem and enchant.
 Normal sockets: Flawless Quick Lapis — Versatility first, Haste second.
 Head: Empowered Hex of Leeching — Leech.
@@ -34,13 +35,9 @@ TalentBrowser.lua copies published Mythic+ codes for manual import.
 Edit tools/class_data/*.json, then run:
 python3 tools/generate_standard_profiles.py
 
-The generator validates all specs and records source hashes. It includes
-only dungeon builds in StandardData.lua. Raid records remain in the source.
+The generator validates all specs and records source hashes. Only current
+Method Mythic+ builds belong in the source and StandardData.lua.
 The TOC determines which Lua files are loaded and packaged.
-
-Original Rogue/Blood modules and research notes are archived in place.
-They are not loaded or shipped. tools/check_foundation.py protects their
-original bytes. Do not change its hashes to hide an unintended rewrite.
 
 PLACEMENT
 

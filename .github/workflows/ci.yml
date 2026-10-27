@@ -26,9 +26,6 @@ jobs:
       - name: Check generated class and talent data
         run: python3 tools/generate_standard_profiles.py --check
 
-      - name: Check the preserved custom foundations
-        run: python3 tools/check_foundation.py
-
       - name: Run addon tests
         run: python3 TheOneToRuleThemAll/validation/run_lua_tests.py
 

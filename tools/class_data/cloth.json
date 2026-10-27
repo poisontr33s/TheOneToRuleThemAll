@@ -10,22 +10,10 @@
     "updated": "2026-10-16",
     "builds": [
       {
-        "label": "Spellslinger Pure Single Target Build",
-        "code": "C4DAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMDamxAAAwAAgAmZmZZZmJWAAYDzMzM2sMzMzyMGjZmBLMzMzMDAwAAAMzsAAmBADzMD",
-        "content": "raid",
-        "hero": "Spellslinger"
-      },
-      {
         "label": "Spellslinger Arcane Mythic+ / Raid Cleave Build",
         "code": "C4DAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMDamxAAAwAAgAmZmZZZmJWAAYbwMzwmlZMjZMmZmZGWYmZmZGAgBAAYmZDAMDAGmZG",
         "content": "dungeon",
         "hero": "Spellslinger"
-      },
-      {
-        "label": "Sunfury Single Target Build",
-        "code": "C4DAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMDamxAAAwAAmZmmlllZAgYDAgNMzMzYzyMzMLzYMmZGswMzMzMAADAAwAMzAmBADzMD",
-        "content": "raid",
-        "hero": "Sunfury"
       },
       {
         "label": "Sunfury Pure Raid Cleave / M+ Build",
@@ -179,7 +167,8 @@
       "https://www.method.gg/guides/arcane-mage/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-fire-mage",
@@ -191,12 +180,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Sunfury - with Season 2 Set Bonus",
-        "code": "C8DAAAAAAAAAAAAAAAAAAAAAAYGGLzMzswMzIzMGAAAGAwMz0sstMDAwmZmx2MzMzYBAAAAALmZmZAAgZMmZmZMzsMAMzQGjBMDjB",
-        "content": "raid",
-        "hero": "Sunfury"
-      },
       {
         "label": "Sunfury - with Season 2 Set Bonus",
         "code": "C8DAAAAAAAAAAAAAAAAAAAAAAYGGLzMzswMzIzMGAAAGAwMz0sstMDAwmZmx2MzMzYBAAAAALmZmZAAgZMmZmZMzsMAMzQGjBMDjB",
@@ -348,7 +331,8 @@
       "https://www.method.gg/guides/fire-mage/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-frost-mage",
@@ -361,22 +345,10 @@
     "updated": "2026-10-16",
     "builds": [
       {
-        "label": "Spellslinger Raid Build",
-        "code": "CAEAAAAAAAAAAAAAAAAAAAAAAMzwYZm5BmFMzEzMGzMzMziZmZMjZAAAgZmZWWmZaDAA2AAAALAstMmZmZY2GGzwCAAAzsBMTGDYGMMA",
-        "content": "raid",
-        "hero": "Spellslinger"
-      },
-      {
         "label": "Spellslinger Mythic+ Build",
         "code": "CAEAAAAAAAAAAAAAAAAAAAAAAMzwYZm5BmFMzEzMGzMzMziZmZMjZgAAAzMzssMz0GAAsBAAAWAYbZMzMzwsNMmhFAAAmZDYGGDYGMMA",
         "content": "dungeon",
         "hero": "Spellslinger"
-      },
-      {
-        "label": "Frostfire Raid Build",
-        "code": "CAEAAAAAAAAAAAAAAAAAAAAAAMzwYZm5BmFMzEzMGzMzMWMzMzMGzsMTzMLzCAAAaBAA2AAAALAstMmZmZYMjxM2WAAAAzMYGGDYghB",
-        "content": "raid",
-        "hero": "Frostfire"
       },
       {
         "label": "Frostfire Mythic+ Build",
@@ -534,7 +506,8 @@
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/sc_mage.cpp"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-discipline-priest",
@@ -546,18 +519,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "Raid Voidweaver (Recommended)",
-        "code": "CAQAAAAAAAAAAAAAAAAAAAAAAADsMmxywMYmhZzsNzMzMzMAAAAAAAAAAMDLzgZmZYGmBMNTzMYmBABwsNbbgxmBAgxYmxgZwMDmJYA",
-        "content": "raid",
-        "hero": "Voidweaver"
-      },
-      {
-        "label": "Raid Oracle",
-        "code": "CAQAAAAAAAAAAAAAAAAAAAAAAADsMGWmZmBDmZbmtZmZmxMDAAAAAAAAAgZYZGMzMDzwMgpZamBYmFMEGzyAMGsAAAjxMjBzAMzMTwA",
-        "content": "raid",
-        "hero": "Oracle"
-      },
       {
         "label": "Mythic+ Oracle (Recommended)",
         "code": "CAQAAAAAAAAAAAAAAAAAAAAAAADsMDWmZMPwMwMbzYmZmZMzAAAAAAAAAAYGWmBzMzgxMD2MNTMAzsghwYWGgxgFAAYMzMjBzAMzMTwM",
@@ -730,7 +691,8 @@
       "https://www.method.gg/guides/discipline-priest/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-holy-priest",
@@ -742,18 +704,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "Raid Oracle (Recommended)",
-        "code": "CEQAAAAAAAAAAAAAAAAAAAAAAADAAAAAAYBmZWGzMmZMMDzsMzYGAAAAzYWmBzMzwMMDgZqBwMLYIMmlBYMwiZmZBQzYMGDzMAzMzAD",
-        "content": "raid",
-        "hero": "Oracle"
-      },
-      {
-        "label": "Raid Archon",
-        "code": "CEQAAAAAAAAAAAAAAAAAAAAAAwYAAAAAAAgZmlxMjZmZYmZYZGmBAAAwMmlZwMzMMDzAYmaAgZWMTmFDAMGsZmZWA0MGjxwMz2yAMDMA",
-        "content": "raid",
-        "hero": "Archon"
-      },
       {
         "label": "Mythic+ Oracle (Recommended)",
         "code": "CEQAAAAAAAAAAAAAAAAAAAAAAwYAAAAAAAMzMmlxMjZGDzALzMzMAAAAGzsMzYmZmhhZGAzUAMzCGCjZbAGDsYMzCgmxMjxgZAmZmBGA",
@@ -933,7 +883,8 @@
       "https://www.method.gg/guides/holy-priest/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-shadow-priest",
@@ -946,22 +897,10 @@
     "updated": "2026-10-14",
     "builds": [
       {
-        "label": "Archon Raid",
-        "code": "CIQAAAAAAAAAAAAAAAAAAAAAAMMDDAAAAAAAAAAAAmZxMmZbmxMz2MGzw2MzYmZGbIzYxMNAzAMzmZY2MAkxYBAzMgxMzMmNmZbZAmBDA",
-        "content": "raid",
-        "hero": "Archon"
-      },
-      {
         "label": "Archon Mythic+",
         "code": "CIQAAAAAAAAAAAAAAAAAAAAAAMMDzAAAAAAAAAAAAwMLmxMbjxMzyMGzw2MzYmZGbIzYxMNAzAMzmZY2MAkxYBAzMgxMzMmNmZbZAmBDA",
         "content": "dungeon",
         "hero": "Archon"
-      },
-      {
-        "label": "Voidweaver Raid",
-        "code": "CIQAAAAAAAAAAAAAAAAAAAAAAMMjZGAAAAAAAAAAAAMLmxMbzMMz2MzYG2mZGzMzYDZGLmpBYmZGAIAz2stAmNGAYwYmZGz2YGMzgZwA",
-        "content": "raid",
-        "hero": "Voidweaver"
       },
       {
         "label": "Voidweaver Mythic+",
@@ -1133,7 +1072,8 @@
       "https://www.method.gg/guides/shadow-priest/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-affliction-warlock",
@@ -1146,22 +1086,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Single Target Soul Harvester",
-        "code": "CkQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjhZmZmlBAAYmZZ2mZmFzAAjttBGwAmhlADbDAAAzAAAYmZMjZGDDzYmZGDmZmBAYGYA",
-        "content": "raid",
-        "hero": "Soul Harvester"
-      },
-      {
         "label": "Multi Target / Mythic+ Soul Harvester (Recommended)",
         "code": "CkQAAAAAAAAAAAAAAAAAAAAAAwMMzoZzM2mZmZWGAAwMzsMbzMzyYAgx2yADYCmhtADbDAAAGAAAzMjZMzsNGzgZmZGDzMzAAMDMA",
         "content": "dungeon",
         "hero": "Soul Harvester"
-      },
-      {
-        "label": "Spread Multi Target Hellcaller",
-        "code": "CkQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjBzMmlBAAYmZZWmZmlxAAWgBmFjGzAysAWGAAAMAAwMDmZGzMMGmZmZmZGMzMzAAmBG",
-        "content": "raid",
-        "hero": "Hellcaller"
       }
     ],
     "main": [
@@ -1331,7 +1259,8 @@
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
       "https://www.method.gg/guides/destruction-warlock/playstyle-and-rotation"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-demonology-warlock",
@@ -1344,22 +1273,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Diabolist Single Target",
-        "code": "CoQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjxmZGzyAAAAAAAAGzYYBGYb0GNsYwMLzyMzMmBAmhZmZmZAGzYMbAAgZmZmZGzwyMGwA",
-        "content": "raid",
-        "hero": "Diabolist"
-      },
-      {
         "label": "Diabolist Mythic+/AoE/Raid Cleave",
         "code": "CoQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjxmZGzyAAAAAAAAGzYYBGYb0GNsYYmZZ2mZmxMAwMMmZmZAGzYMbAAgZmZmZGzwyMGwA",
         "content": "dungeon",
         "hero": "Diabolist"
-      },
-      {
-        "label": "Soul Harvester Single Target",
-        "code": "CoQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjxmZGzyAAAAAAAMWWGYADYGWCZsZwMLzyMzMmBAmhZmZAmZGzYMbAAgZmZmZGzwyMGwA",
-        "content": "raid",
-        "hero": "Soul Harvester"
       },
       {
         "label": "Soul Harvester Mythic+/AoE",
@@ -1530,7 +1447,8 @@
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
       "https://www.method.gg/guides/destruction-warlock/playstyle-and-rotation"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-destruction-warlock",
@@ -1543,28 +1461,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Hellcaller (Single Target)",
-        "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZxMzMLGjFzAAgZmxMzsZBGYWMaMDgZL2YAAgxAjNAgZGYmxMDAAAzMzAAwYYA",
-        "content": "raid",
-        "hero": "Hellcaller"
-      },
-      {
-        "label": "Hellcaller (Cleave)",
-        "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZbmZmZxYWWMDAAmxYmZ2sADMLGNmBwsFbMAAwYA2AAmZgZGzMAAAMzMDAAjhB",
-        "content": "raid",
-        "hero": "Hellcaller"
-      },
-      {
         "label": "Hellcaller (Mythic+)",
         "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZbmZmZxMzyyYAAwMGzMzmFYgZxoxMAmtYjBAAGzwAAgZGwMmZ2AAAMzMDAAMM",
         "content": "dungeon",
         "hero": "Hellcaller"
-      },
-      {
-        "label": "Diabolist (Single Target)",
-        "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZxMzMLGjFzAAgZmxMzsBGzYYhMw2wGNWYAAgxAjNAMzAYmxMDAAAzMzAAwYYA",
-        "content": "raid",
-        "hero": "Diabolist"
       },
       {
         "label": "Diabolist (AoE)",
@@ -1744,6 +1644,7 @@
       "https://www.method.gg/guides/destruction-warlock/talents",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
-    ]
+    ],
+    "primaryStat": "INTELLECT"
   }
 ]

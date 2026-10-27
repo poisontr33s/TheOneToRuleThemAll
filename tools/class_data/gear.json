@@ -1,0 +1,14 @@
+{
+  "quality": "Highest available quality for every gem and enchant",
+  "gems": "Flawless Quick Lapis — Versatility first, Haste second",
+  "head": "Empowered Hex of Leeching — Leech",
+  "shoulders": "Silvermoon's Mending — Leech",
+  "chest": "Mark of the Worldsoul — primary stat",
+  "boots": "Shaladrassil's Roots — Leech + Stamina",
+  "rings": "Silvermoon's Tenacity — Versatility on both rings",
+  "legs": {
+    "STRENGTH": "Forest Hunter's Armor Kit — Strength + Stamina",
+    "AGILITY": "Forest Hunter's Armor Kit — Agility + Stamina",
+    "INTELLECT": "Sunfire Silk Spellthread — Intellect + Stamina"
+  }
+}

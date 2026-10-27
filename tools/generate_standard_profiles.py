@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "tools" / "class_data"
 OUTPUT = ROOT / "TheOneToRuleThemAll" / "StandardData.lua"
-FILES = ("plate.json", "leather.json", "mail.json", "cloth.json", "racials.json")
+FILES = ("plate.json", "leather.json", "mail.json", "cloth.json", "racials.json", "gear.json")
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 ROSTER = {
     "DEATHKNIGHT": {250: "Blood", 251: "Frost", 252: "Unholy"},
@@ -34,6 +34,8 @@ ROSTER = {
 }
 TANKS = {66, 73, 104, 250, 268, 581}
 HEALERS = {65, 105, 256, 257, 264, 270, 1468}
+STRENGTH = {66, 70, 71, 72, 73, 250, 251, 252}
+INTELLECT = {62, 63, 64, 65, 102, 105, 256, 257, 258, 262, 264, 265, 266, 267, 270, 1467, 1468, 1473, 1480}
 
 
 def require(condition, message):
@@ -103,6 +105,8 @@ def validate_profile(profile, location):
     require(profile["specName"] == ROSTER[cls][spec], f"{location}: spec name does not match {spec}")
     role = "TANK" if spec in TANKS else "HEALER" if spec in HEALERS else "DAMAGER"
     require(profile["role"] == role, f"{location}: {spec} must have role {role}")
+    stat = "STRENGTH" if spec in STRENGTH else "INTELLECT" if spec in INTELLECT else "AGILITY"
+    require(profile.get("primaryStat") == stat, f"{location}: wrong primary stat for {spec}")
     require(re.fullmatch(r"\d+\.\d+\.\d+", profile["patch"]), f"{location}: invalid patch metadata")
     url(profile.get("guide"), location + ".guide")
     date(profile.get("updated"), location + ".updated")
@@ -112,7 +116,7 @@ def validate_profile(profile, location):
         require(isinstance(build, dict), f"{where}: expected a build object")
         for key in ("label", "hero"):
             text(build.get(key), where + "." + key)
-        require(build.get("content") in ("raid", "dungeon"), f"{where}: unknown content type")
+        require(build.get("content") == "dungeon", f"{where}: unknown content type")
         version, imported_spec = talent_header(build.get("code"), where + ".code")
         require(version == 2, f"{where}: unsupported talent serialization version {version}")
         require(imported_spec == spec, f"{where}: import belongs to spec {imported_spec}, expected {spec}")
@@ -212,12 +216,16 @@ def generate(source=SOURCE):
         if filename == "racials.json":
             validate_racials(data)
             racials = data
+        elif filename == "gear.json":
+            for key in ("quality", "gems", "head", "shoulders", "chest", "boots", "rings"):
+                text(data.get(key), "gear." + key)
+            for stat in ("STRENGTH", "AGILITY", "INTELLECT"):
+                text(data["legs"].get(stat), "gear.legs." + stat)
+            gear = data
         else:
             require(isinstance(data, list), f"{filename}: expected a profile array")
             for index, profile in enumerate(data):
                 validate_profile(profile, f"{filename}[{index}]")
-                # Keep other references in the source archive, outside the addon.
-                profile["builds"] = [build for build in profile["builds"] if build["content"] == "dungeon"]
                 profiles.append(profile)
     require(len({p['id'] for p in profiles}) == len(profiles), "Duplicate profile ID")
     require(len({p['spec'] for p in profiles}) == len(profiles), "Duplicate specialization")
@@ -232,7 +240,8 @@ def generate(source=SOURCE):
     metadata = {key: value for key, value in racials.items() if key != "spells"}
     return "\n".join(header) + "\nA.standardDefinitions = " + lua(profiles) + \
         "\n\nA.racialDefinitions = " + lua(racials["spells"]) + \
-        "\n\nA.racialMetadata = " + lua(metadata) + "\n"
+        "\n\nA.racialMetadata = " + lua(metadata) + \
+        "\n\nA.gearTemplate = " + lua(gear) + "\n"
 
 
 def main():

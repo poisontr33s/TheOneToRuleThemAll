@@ -10,24 +10,6 @@
     "updated": "2026-10-16",
     "builds": [
       {
-        "label": "Elune’s Chosen - Single Target",
-        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMDwsMzMzMYYGjZWmhxMWYZmlZGjZ2wAgx2yMDGz2IwEAAAgFzMzMD2MMGzAAYmBLDA",
-        "content": "raid",
-        "hero": "Elune's Chosen"
-      },
-      {
-        "label": "Stacked Cleave - Elune’s Chosen",
-        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMDwswMzMYYGjZWmZxMzYhlZWGjZGLYYAGbbzMYMbjATAAAAWMzMzMYzYGjZAAMzADA",
-        "content": "raid",
-        "hero": "Elune's Chosen"
-      },
-      {
-        "label": "Spread Cleave - Keeper of the Grove",
-        "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNjxMD8AmFzMzMYYGjZWGbzYGbsMzyYmZGLYYAGgltxGmmZWGBAAAYzMzMzgNDMmBwMDAMA",
-        "content": "raid",
-        "hero": "Keeper of the Grove"
-      },
-      {
         "label": "Mythic+ - Elune’s Chosen",
         "code": "CYGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWoMbNMmZgxsMzMzMLMgxMLzsYMzswyMLjxMjNMAYstNzgxsNCMBAAAYhZmZGsZMjxAAwMDWGA",
         "content": "dungeon",
@@ -243,7 +225,8 @@
       783,
       24858
     ],
-    "requiredForm": 24858
+    "requiredForm": 24858,
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-feral",
@@ -255,18 +238,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-16",
     "builds": [
-      {
-        "label": "Single Target: Druid of the Claw",
-        "code": "CcGADBD3hSPCL9Y9gz68WcKvMAAAAAAwghxYmZmxsxDsMz2MzMmZGAAAAWCmNYMzomxsMzMzMGzYGAAAAAAgBAAAQzsMLzMzACsAmZAWMDGAAAzshB",
-        "content": "raid",
-        "hero": "Druid of the Claw"
-      },
-      {
-        "label": "Single Target: Wildstalker",
-        "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAwYMDGzMjxstMPwyYbmZGzMDAAAALBzGMmZUzYWmZmZGjZMDAAAAAAwAAAAoZWmlZmZmlZWaWmZZDMzAsYGMAAmZwMbYA",
-        "content": "raid",
-        "hero": "Wildstalker"
-      },
       {
         "label": "Mythic+: Druid of the Claw Convoke + Rake",
         "code": "CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmZ2MzMzMGzmx2YbGzMmZAAAAYJY2M8AmZUzYWMzMzsMm5BMAAAAAAADAAAgmZZWmZmBEYBmZGgFGMAAAmZDD",
@@ -499,7 +470,8 @@
       783,
       24858
     ],
-    "requiredForm": 768
+    "requiredForm": 768,
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-guardian",
@@ -515,12 +487,6 @@
         "label": "Elune’s Chosen (Mythic+)",
         "code": "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmxsYmZMziZxMmZZZgZzwoJamZWmZmZmlxMMAAAAAgZsZALbzMYMLDgpAAAAbYmHAYxMYALWAYmBwA",
         "content": "dungeon",
-        "hero": "Elune's Chosen"
-      },
-      {
-        "label": "Elune’s Chosen (Raid)",
-        "code": "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZmhFzYMzmZZGMLLDMbMGNRzMzyMzMzYMjZAAAAAAzYZGwy2MDGz2AYKAAAwGmxAWMDGwiltBYmBwA",
-        "content": "raid",
         "hero": "Elune's Chosen"
       }
     ],
@@ -646,16 +612,6 @@
         "required": false
       },
       {
-        "id": 200851,
-        "name": "Rage of the Sleeper",
-        "required": false
-      },
-      {
-        "id": 80313,
-        "name": "Pulverize",
-        "required": false
-      },
-      {
         "id": 155835,
         "name": "Bristling Fur",
         "required": false
@@ -717,8 +673,6 @@
       "102401": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
       "106898": "https://www.method.gg/guides/balance-druid/playstyle-and-rotation",
       "204066": "https://www.method.gg/guides/guardian-druid/talents",
-      "200851": "https://www.method.gg/guides/guardian-druid",
-      "80313": "https://www.method.gg/guides/guardian-druid",
       "155835": "https://www.method.gg/guides/guardian-druid/talents",
       "8936": "https://www.method.gg/guides/guardian-druid/talents",
       "1126": "https://www.method.gg/guides/guardian-druid",
@@ -732,7 +686,8 @@
       783,
       24858
     ],
-    "requiredForm": 5487
+    "requiredForm": 5487,
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-restoration-druid",
@@ -744,18 +699,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "Raid: Wildstalker (Best)",
-        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAYMmZZmZMzMmthHYYmNjtxMAAAAAAAAAAYZQzmZMNzYYMLzMzMDDzAAAAAAAAAAIAAgZbmlmtZ2sxYmBmBoZAAmZAYA",
-        "content": "raid",
-        "hero": "Wildstalker"
-      },
-      {
-        "label": "Raid: Keeper of the Grove",
-        "code": "CkGAAAAAAAAAAAAAAAAAAAAAAMjxMbzMjZmxsN8AzYGGbMDAAAAAAAAAAWG0sZGTzMGGzyMzMzwwMAAAAAAAAw2yYDTzMLDAAQALMmZwMDQzAgZGAwA",
-        "content": "raid",
-        "hero": "Keeper of the Grove"
-      },
       {
         "label": "Mythic+: Wildstalker (Best)",
         "code": "CkGAAAAAAAAAAAAAAAAAAAAAAMMmZZMjZmxsN8ADzsYsZbGAAAAAAAAAAsMoZbGmmZMwsYmZmZZGegBAAAAgBAYGAACAAY2mZrZbmFbMzMwMzCoZAAmZAYA",
@@ -983,7 +926,8 @@
       783,
       24858
     ],
-    "requiredForm": 0
+    "requiredForm": 0,
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-brewmaster",
@@ -995,24 +939,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Raid Standard / Defensive (Shado-pan) - Recommended",
-        "code": "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAwMbbGzwYWmxGzMjBAAAAAAYZBzEzMwMMzGDmZmZY2GmxMLPALbPwy2sNmBAAshAAAMbzSzMzsxwGAzMMNGAAwA",
-        "content": "raid",
-        "hero": "Shado-Pan"
-      },
-      {
-        "label": "Raid Advanced / Offensive (Shado-pan)",
-        "code": "CwQAQnG51S19isUJoJoTeJ/IKDAAAwMLbGzYGWmxGmZMAAAAAAALLYEzMwMM2MjxMzMDz2YmxMLYZz22YGzCAAsNLTLz2MLDAwsNLNzMziZYDMzMzw0YAAAD",
-        "content": "raid",
-        "hero": "Shado-Pan"
-      },
-      {
-        "label": "Raid Defensive (Master of Harmony)",
-        "code": "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAgZbzYGGz2M2YmZMAAAAAAALLYEzMwMM2MjxMzMDz2YmxMLYZb22mthZBAAWmlplZbmlBAACghNwMDYaMAAgB",
-        "content": "raid",
-        "hero": "Master of Harmony"
-      },
       {
         "label": "Mythic+ Standard (Shado-Pan) - Recommended",
         "code": "CwQAQnG51S19isUJoJoTeJ/IKDAAAgZbzYGGzyMzGzMjBAAAAAAYZBzEzMwMM2MMmZmZY2YmxYZYZ7BW2mNMLAAwGCAAwsNLNzMzGDbAMzw0YAAAD",
@@ -1208,7 +1134,8 @@
       "123986": "https://www.method.gg/guides/brewmaster-monk/talents",
       "116847": "https://www.method.gg/guides/brewmaster-monk/talents",
       "115315": "https://www.method.gg/guides/brewmaster-monk/talents"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-mistweaver",
@@ -1220,24 +1147,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Raid (Conduit of the Celestials) - Preferred",
-        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAghx2MwmFzYmZbGbYmZYmlttZGLMjmxMgBDGWmZmZYWGMYxEAAAAABYxyMLz2MDAAMgBYGwYYsMZMDA",
-        "content": "raid",
-        "hero": "Conduit of the Celestials"
-      },
-      {
-        "label": "Raid (Conduit of the Celestials - Sheilun's Gift",
-        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAghx2MLDbWMjZmtZstsMjZYmlttZGLMjmxMgBDGWmZmZYWGMMLmAAAAAIALWmZZ2mZAAgBAYGwYYsIjZA",
-        "content": "raid",
-        "hero": "Conduit of the Celestials"
-      },
-      {
-        "label": "Raid (Master of Harmony)",
-        "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM2mB2sYGzMbzYDzMDzsstMzYhZ0MmBMYwYWmZmZY2GmhZZmAAAAAz20ysNzysBAAAAwMzAADwiMAA",
-        "content": "raid",
-        "hero": "Master of Harmony"
-      },
       {
         "label": "Mythic+ (Conduit of the Celestials) - Preferred",
         "code": "C4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWmZZYxixMzsZsssND2Mz22yMjFmRzYGwgBjZZmZmhZbYGmlZCAAAAgAsYbmlZbmBAAAGgZADwiMmBA",
@@ -1436,7 +1345,8 @@
       "101643": "https://www.method.gg/guides/mistweaver-monk/talents",
       "119996": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation",
       "198898": "https://www.method.gg/guides/mistweaver-monk/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-windwalker",
@@ -1449,22 +1359,10 @@
     "updated": "2026-10-14",
     "builds": [
       {
-        "label": "Shado-Pan Single Target",
-        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYw2MmhlZGbzAAAAAAAAAAAAsMMaGzAGwMGmZmZY2GmhZZmAAWMz2MDzMzMAA2AgZZWamZmFAMwMDAjlBiB8B",
-        "content": "raid",
-        "hero": "Shado-Pan"
-      },
-      {
         "label": "Shado-Pan Mythic+",
         "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYAMGbzMz2MAAAAAAAAAAAALDz0MmhhBMMMzMzwsNMDzyDMBAsYmtZmxMzMDAgNAYWmlmZmZBADMzAwYZgYAD",
         "content": "dungeon",
         "hero": "Shado-Pan"
-      },
-      {
-        "label": "Conduit Single Target",
-        "code": "C0QAAAAAAAAAAAAAAAAAAAAAAMzYM2GmhlZmZbGAAAAAAAAAAAglhRzYGwAmxwMzMDz2wMMLzEAwiZ2mZGzMzMAAWMzysNmgAAwAYGgxyAxMzs5BA",
-        "content": "raid",
-        "hero": "Conduit of the Celestials"
       },
       {
         "label": "Conduit Mythic+",
@@ -1638,7 +1536,8 @@
       "443028": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
       "101545": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation",
       "1217413": "https://www.method.gg/guides/windwalker-monk/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-havoc",
@@ -1651,28 +1550,10 @@
     "updated": "2026-10-16",
     "builds": [
       {
-        "label": "Fel-Scarred - Single Target",
-        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYAzMz2MmZmxMzkxMDAAAAAAY2MmtZYmxyMzYZm5BmZWmZWGjB2mFzYY200wMjhNAAAAAAAAmZwAAAAwA",
-        "content": "raid",
-        "hero": "Fel-Scarred"
-      },
-      {
-        "label": "Fel-Scarred - Raid Cleave (Recommended)",
-        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYmZGzMz2MmZmxMzkxMDAAAAAAY2MmtZYmBPwMWmZegZYmxYWGYbWMjhZTTjZmxwGAAAAAAAAzMYAAAAYA",
-        "content": "raid",
-        "hero": "Fel-Scarred"
-      },
-      {
         "label": "Fel-Scarred - Mythic+ (Recommended)",
         "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYmZGzMz2MmZmxMzkxMDAAAAAAY2MmtZYmBmxyMzDMDzMGzyAbziZMMbaaMzMG2AAAAGAAAAzMYAAAAYA",
         "content": "dungeon",
         "hero": "Fel-Scarred"
-      },
-      {
-        "label": "Aldrachi Reaver - Raid",
-        "code": "CEkAAAAAAAAAAAAAAAAAAAAAAYgZmZ2mxMzMmZmMmZAAAAAAAzmxsNDzMz2MzYZmxMWmZYmlZ2mBDjlNmkxMjhFAAAAAAAwMDwAAAAwA",
-        "content": "raid",
-        "hero": "Aldrachi Reaver"
       },
       {
         "label": "Aldrachi Reaver - Mythic+",
@@ -1825,7 +1706,8 @@
       "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents",
       "185123": "https://www.method.gg/guides/havoc-demon-hunter/talents",
       "162243": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-vengeance",
@@ -1837,18 +1719,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Annihilator (Raid)",
-        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMzMjMzMYWMzMjBjZGzYGzMDzMzM2MzsNGAAAAAAAIgZmxGAAAAGMmZmZ2abmZGAYAAAAMA",
-        "content": "raid",
-        "hero": "Annihilator"
-      },
-      {
-        "label": "Aldrachi (Raid)",
-        "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMzMjMzMYWMzMjBjZGzYGzMDzMzM2MzsNGAAAAwsNDGGLLMhhZmxCAAAAGMAEgZGgBAAAwA",
-        "content": "raid",
-        "hero": "Aldrachi Reaver"
-      },
       {
         "label": "Annihilator (Mythic+)",
         "code": "CUkAAAAAAAAAAAAAAAAAAAAAAAAMjZmZMMzkZmB2MjZwMjZGzMzMzYwMzM2YmtxwAAAAAAAIgZmZ2AAAAwAzMzMzWbzMzAADAAAgB",
@@ -2022,7 +1892,8 @@
       "207407": "https://www.method.gg/guides/vengeance-demon-hunter/playstyle-and-rotation",
       "390163": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
       "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents"
-    }
+    },
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-devourer",
@@ -2035,18 +1906,6 @@
     "updated": "2026-10-18",
     "builds": [
       {
-        "label": "Void-Scarred Single Target",
-        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZMzMDzsMzYsptFAEwAYMzMbzMTz2MbzMMmxA",
-        "content": "raid",
-        "hero": "Void-Scarred"
-      },
-      {
-        "label": "Void-Scarred Raid Cleave",
-        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZGjNtsAgAGAjZmZbmZa2mZzMjxMGA",
-        "content": "raid",
-        "hero": "Void-Scarred"
-      },
-      {
         "label": "Annihilator Raid Cleave / Mythic+ (Recommended)",
         "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMzMzMDzsYGjFZhZmZmt2mZmBwwAQgHYMDjZA",
         "content": "dungeon",
@@ -2057,18 +1916,6 @@
         "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZYsplFAEwAYMzMbzMTz2MbzMDmxA",
         "content": "dungeon",
         "hero": "Void-Scarred"
-      },
-      {
-        "label": "Annihilator Single Target (Recommended)",
-        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMjZmZGzsYGjFtswMzMzWbzMzAYGDABegxghB",
-        "content": "raid",
-        "hero": "Annihilator"
-      },
-      {
-        "label": "Annihilator Raid Cleave / Mythic+ (Recommended)",
-        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMzMzMDzsYGjFZhZmZmt2mZmBwwAQgHYMDjZA",
-        "content": "raid",
-        "hero": "Annihilator"
       }
     ],
     "main": [
@@ -2196,7 +2043,8 @@
       "207684": "https://www.method.gg/guides/vengeance-demon-hunter/talents",
       "185123": "https://www.method.gg/guides/devourer-demon-hunter/talents",
       "131347": "https://www.method.gg/guides/havoc-demon-hunter/talents"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-assassination",
@@ -2208,18 +2056,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-18",
     "builds": [
-      {
-        "label": "Raid Build",
-        "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlxsZwAAAAAAzygtZAAAAAAttNzMzMzMGLzMzsNzyMz8AjxMjxYmZmxAYgFYGjGzGIbDYzAgZmBD",
-        "content": "raid",
-        "hero": "Deathstalker"
-      },
-      {
-        "label": "Pure Single Target Build",
-        "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlxsNDGAAAAAYWGsNDAAAAAottZmZmZmxYZmZmtZWmZmZMjZMGzMGGADsAzY0Y2AZbAbGAMzMYA",
-        "content": "raid",
-        "hero": "Deathstalker"
-      },
       {
         "label": "Mythic+ / Open World",
         "code": "CMQAAAAAAAAAAAAAAAAAAAAAAYmlZmFDAAAAAAzygtZAAAAAAttNzMzMzMGLzMzsNzyMz8AmxMjxMmZMGADsAzY0YWAZbAbGAMzMDfA",
@@ -2408,7 +2244,8 @@
       "5761": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
     },
-    "blockedWhileStealthed": true
+    "blockedWhileStealthed": true,
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-outlaw",
@@ -2420,12 +2257,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-18",
     "builds": [
-      {
-        "label": "Trickster Single Target",
-        "code": "CQQAAAAAAAAAAAAAAAAAAAAAAAgx2MMzMmZmtZmZmZMmF4BmZbaZw2MAAAAAAbbzMzwMzMziZmZbAAAAYmBAjZxwQGYWYhWYjBYmBDMA",
-        "content": "raid",
-        "hero": "Trickster"
-      },
       {
         "label": "Trickster Cleave",
         "code": "CQQAAAAAAAAAAAAAAAAAAAAAAAgx2MMzMjZmtZmZMzMzsAmZbaZw2MAAAAAAbbzMzwMzMziZmZbAAAAYmBAjZxwQGYWYhWYjBYmBDMA",
@@ -2470,7 +2301,7 @@
         "required": false
       },
       {
-        "id": 315508,
+        "id": 1214909,
         "name": "Roll the Bones",
         "required": false
       },
@@ -2554,7 +2385,7 @@
         "required": false
       },
       {
-        "id": 5171,
+        "id": 315496,
         "name": "Slice and Dice",
         "required": false
       },
@@ -2601,7 +2432,6 @@
       "13877": "https://www.method.gg/guides/outlaw-rogue/talents",
       "13750": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
       "51690": "https://www.method.gg/guides/outlaw-rogue/talents",
-      "315508": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
       "381989": "https://www.method.gg/guides/outlaw-rogue/talents",
       "1766": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "2094": "https://www.method.gg/guides/subtlety-rogue/talents",
@@ -2617,15 +2447,17 @@
       "1784": "https://www.method.gg/guides/subtlety-rogue/playstyle-and-rotation",
       "271877": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
       "1277933": "https://www.method.gg/guides/outlaw-rogue/talents",
-      "5171": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
       "1833": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "6770": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "315584": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "3408": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "381637": "https://www.method.gg/guides/subtlety-rogue/talents",
-      "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+      "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "1214909": "https://www.wowhead.com/spell=1214909",
+      "315496": "https://www.wowhead.com/spell=315496"
     },
-    "blockedWhileStealthed": true
+    "blockedWhileStealthed": true,
+    "primaryStat": "AGILITY"
   },
   {
     "id": "standard-subtlety",
@@ -2637,18 +2469,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-16",
     "builds": [
-      {
-        "label": "Trickster Single target",
-        "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbbjxMjZgZmZGzMbzYGbbzMzMzMjBjZ2GAAAAGMGwY2MMwAziWoFbYGwMDmxA",
-        "content": "raid",
-        "hero": "Trickster"
-      },
-      {
-        "label": "Trickster Bursty (Good for Coiled Altar / Ulatek)",
-        "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbLjxMjZgZmZGzMbzYGbbzMzMzMjBjZ2GAAAAGMGwYWMMwAziWoFbYGwMDmxA",
-        "content": "raid",
-        "hero": "Trickster"
-      },
       {
         "label": "Trickster M+",
         "code": "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbLjxMjZMMzMzwMbzYGbbzMzMzMjBjZ2GAAAAGMGwYWMMwAziWoFbYGwMDmxA",
@@ -2837,6 +2657,7 @@
       "5761": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "8679": "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
     },
-    "blockedWhileStealthed": true
+    "blockedWhileStealthed": true,
+    "primaryStat": "AGILITY"
   }
 ]

@@ -10,18 +10,6 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Deathbringer Single Target",
-        "content": "raid",
-        "hero": "Deathbringer",
-        "code": "CoPAAAAAAAAAAAAAAAAAAAAAAwYWGzMmxMzMYbmZmmZZGjxMGAAAAwMzMzMzMDzYMAYMzMzAAAMmtBGwSwywEYYBwMmBAgZGAzYA"
-      },
-      {
-        "label": "San’layn Single Target",
-        "content": "raid",
-        "hero": "San'layn",
-        "code": "CoPAAAAAAAAAAAAAAAAAAAAAAwYWmZGmxMzMMbzMz0MbGzMmxAAAAAmZmZmZmZYGjBAjZmZGAAADMwMW0YZDklBsBYGzAAAmZghB"
-      },
-      {
         "label": "San’layn Mythic+",
         "content": "dungeon",
         "hero": "San'layn",
@@ -211,7 +199,8 @@
       "Gorefiend's Grasp": "https://www.method.gg/guides/blood-death-knight/talents",
       "Chains of Ice": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Control Undead": "https://www.method.gg/guides/blood-death-knight/talents"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-frost-dk",
@@ -223,12 +212,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "[Raid/Cleave] Breath of Sindragosa",
-        "content": "raid",
-        "hero": "Deathbringer",
-        "code": "CsPAAAAAAAAAAAAAAAAAAAAAAMAmZMjZAz2MzMzMLzMjMjxYYmxgZmZmZmZmZAAAAAAAAAYMbDMgFwywEyYBzMmZGYAYYmBYmBD"
-      },
       {
         "label": "[Mythic+] Frostbane",
         "content": "dungeon",
@@ -416,7 +399,8 @@
       "Reaper's Mark": "https://www.method.gg/guides/frost-death-knight/talents",
       "Death and Decay": "https://www.method.gg/guides/frost-death-knight/talents",
       "Soul Reaper": "https://www.method.gg/guides/frost-death-knight/talents"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-unholy-dk",
@@ -429,18 +413,6 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "[Raid] San’layn Single Target",
-        "content": "raid",
-        "hero": "San'layn",
-        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAwMjZMDDz2MzMTjZmxYGDAAAAAAAAzDMMGAsMDzsZmxMzYgBmxiGLbA2mYDAzAYmZmZMDmZwMzYA"
-      },
-      {
-        "label": "[Raid] Riders Single Target",
-        "content": "raid",
-        "hero": "Rider of the Apocalypse",
-        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAwMjZMDDz2MzMTzmZmZMjBAAAAAAAgZGmZAwyMmZ2mZGjZAbmFDDZgZjhGLAYGAGzMjZAmZmxYA"
-      },
-      {
         "label": "[Mythic+] San’layn Blightfall",
         "content": "dungeon",
         "hero": "San'layn",
@@ -448,21 +420,9 @@
       },
       {
         "label": "[Raid/Mythic+] Riders Cleave",
-        "content": "raid",
-        "hero": "Rider of the Apocalypse",
-        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAwMjZMDDz2MzMTzmZmZMjBAAAAAAAgZGGDAWmxMz2MzYMDYzsZYIDMbM0YBDYGAGzMjZAmZmxYA"
-      },
-      {
-        "label": "[Raid/Mythic+] Riders Cleave",
         "content": "dungeon",
         "hero": "Rider of the Apocalypse",
         "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAwMjZMDDz2MzMTzmZmZMjBAAAAAAAgZGGDAWmxMz2MzYMDYzsZYIDMbM0YBDYGAGzMjZAmZmxYA"
-      },
-      {
-        "label": "[Raid/Mythic+] Riders AoE",
-        "content": "raid",
-        "hero": "Rider of the Apocalypse",
-        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAYmhZMDDz2MzMTzmxMzMjBAAAAAAAgZGzYAwyMmZ2MzYMDYzsZYIDMbM0YBDYGAGzMjZAmZmxYA"
       },
       {
         "label": "[Raid/Mythic+] Riders AoE",
@@ -639,7 +599,8 @@
       "Death and Decay": "https://www.method.gg/guides/unholy-death-knight/talents",
       "Soul Reaper": "https://www.method.gg/guides/unholy-death-knight/playstyle-and-rotation",
       "Raise Dead": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-holy-paladin",
@@ -651,18 +612,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-13",
     "builds": [
-      {
-        "label": "Raid Build - Beacon of Virtue (Recommended)",
-        "content": "raid",
-        "hero": "Herald of the Sun",
-        "code": "CEEAAAAAAAAAAAAAAAAAAAAAAAAAALAwMAAw2MzMjZMzYxYmZYZwMLmpJGGzMDjZLDADAbgNWmxMLz2Mzs1AAAAsAGYzwYGDmBAwMDzYMaA"
-      },
-      {
-        "label": "Raid Build - Beacon of Faith",
-        "content": "raid",
-        "hero": "Herald of the Sun",
-        "code": "CEEAAAAAAAAAAAAAAAAAAAAAAAAAALAwMAAwyMzMjZ2mZmNYMsM2mZWMTTMMmZGGzWGAGA2AbsMjZWmtZmZrBAAAYBMwmhxMGYAAMzwMGjGA"
-      },
       {
         "label": "Mythic+ Build",
         "content": "dungeon",
@@ -860,7 +809,8 @@
       "Holy Bulwark": "https://www.method.gg/guides/holy-paladin/talents",
       "Intercession": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Devotion Aura": "https://www.method.gg/guides/holy-paladin/talents"
-    }
+    },
+    "primaryStat": "INTELLECT"
   },
   {
     "id": "standard-protection-paladin",
@@ -877,12 +827,6 @@
         "content": "dungeon",
         "hero": "Lightsmith",
         "code": "CIEAAAAAAAAAAAAAAAAAAAAAAsZsNLjZMzMzMLLjxYWmlZMAADAAAAAAaamZZmxMDzMbtBgBGwAbAAAEgZmltlWmZsYbBDAYGGDAmZAwMDyYB"
-      },
-      {
-        "label": "Lightsmith (Raid)",
-        "content": "raid",
-        "hero": "Lightsmith",
-        "code": "CIEAAAAAAAAAAAAAAAAAAAAAAsNDzyMzYmZmx2yYMLzithBAYAAAAAAQamZZmxMzYMbtBgBMwMYDAAgAMzsst0yMjFbbYAwYGGAwMDAmZQGL"
       }
     ],
     "main": [
@@ -1060,7 +1004,8 @@
       "Sentinel": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
       "Divine Toll": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
       "Holy Bulwark": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-retribution-paladin",
@@ -1073,34 +1018,10 @@
     "updated": "2026-10-13",
     "builds": [
       {
-        "label": "Templar Single Target (Raid)",
-        "content": "raid",
-        "hero": "Templar",
-        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAANbbzMzywMDAAAAAAzUmtZYmx2Y2GmZbGjxMDzYhtBAAkZm2mZ2mBAsBYAwYGGYGjZDbzghxMGMA"
-      },
-      {
-        "label": "Templar (Raid Cleave & Mythic+)",
-        "content": "raid",
-        "hero": "Templar",
-        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAwoZbbmZWGzMzAAAAAAYmyYGmZsNmthZ2mxYMGmxGbAAAZmptZmtZAAbAGAMmhBmxMzGWmBDjZMYA"
-      },
-      {
         "label": "Templar (Raid Cleave & Mythic+)",
         "content": "dungeon",
         "hero": "Templar",
         "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAwoZbbmZWGzMzAAAAAAYmyYGmZsNmthZ2mxYMGmxGbAAAZmptZmtZAAbAGAMmhBmxMzGWmBDjZMYA"
-      },
-      {
-        "label": "Herald of the Sun Single Target (Raid)",
-        "content": "raid",
-        "hero": "Herald of the Sun",
-        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAANbbzMzywMDAAAAAAzUmtZYmx2Y2GmZbGjxYYGLsNAMLz2Mzs1gAAAWAMAYMDDMjZmNgZmhxMGMA"
-      },
-      {
-        "label": "Herald of the Sun (Raid Cleave & Mythic+)",
-        "content": "raid",
-        "hero": "Herald of the Sun",
-        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAwoZbbmZWGzMzAAAAAAYmyYGmZsNmthZ2mxYMGmxCbAYWmtZmZrBBAAsAYAwYGGYGzMbAzMDjZMYA"
       },
       {
         "label": "Herald of the Sun (Raid Cleave & Mythic+)",
@@ -1282,7 +1203,8 @@
       "Divine Toll": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
       "Templar Strike": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
       "Devotion Aura": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-arms-warrior",
@@ -1295,34 +1217,10 @@
     "updated": "2026-10-25",
     "builds": [
       {
-        "label": "Slayer - Single Target",
-        "content": "raid",
-        "hero": "Slayer",
-        "code": "CcEAAAAAAAAAAAAAAAAAAAAAAAzMzsMzMmZGAAAghphZGzMWmZmZGMmZAAAAAMzyMDIMWWGYBMgZYCZGsBmZYsNwyMLDwMDAmhBA"
-      },
-      {
-        "label": "Slayer - Cleave",
-        "content": "raid",
-        "hero": "Slayer",
-        "code": "CcEAAAAAAAAAAAAAAAAAAAAAAAzMzsMz8AmZGAAAghphZGzMWmZmZGMmZAAAAAMWmZgJMWWGYBMgZYCZGsBmZYsNYWmZbAmZAwMMA"
-      },
-      {
         "label": "Slayer - AoE / Mythic+",
         "content": "dungeon",
         "hero": "Slayer",
         "code": "CcEASWsDSHNyPDXnbxuIhH3ZdjZmZmFzYmZGAAAghphZGzMWmZmZGMmZAAAAAMWmZgJMW2GYBMgZYCZGsBmZYsNYWmZbAmZAwMMA"
-      },
-      {
-        "label": "Colossus - Single Target",
-        "content": "raid",
-        "hero": "Colossus",
-        "code": "CcEAAAAAAAAAAAAAAAAAAAAAAAzMzsMzMmZAAAAMMNMGzwyMzMzwMmZAAAAAM2mZAZBYzMG2gBmRb0YwCYmBz2MYZmlBzMAgZGGA"
-      },
-      {
-        "label": "Colossus - Cleave",
-        "content": "raid",
-        "hero": "Colossus",
-        "code": "CcEAAAAAAAAAAAAAAAAAAAAAAAzMzsMzMmZAAAAMMNMGzwyMzMzwMmZAAAAAM2mZgJA2MjhNYgZ0GNGsAmZwsNDWmZbwMDAYmhBA"
       },
       {
         "label": "Colossus - AoE / Mythic+",
@@ -1523,7 +1421,8 @@
       "Shattering Throw": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-fury-warrior",
@@ -1536,34 +1435,10 @@
     "updated": "2026-10-25",
     "builds": [
       {
-        "label": "Slayer: Single Target",
-        "content": "raid",
-        "hero": "Slayer",
-        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDmx2yMzMzMmxMzMjZmZWmZGjZmthZGAAIGLLDsAmgZYCMDbAzMbMGAAMzYYMzMMYA"
-      },
-      {
-        "label": "Slayer: Cleave",
-        "content": "raid",
-        "hero": "Slayer",
-        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDmx2yMzMzMmxMzMjZMzyMzYMzsNmZGAAIGLLDsAmgZYCMDbAzMbMGAAMzYYMzMMYA"
-      },
-      {
         "label": "Slayer: AoE/Mythic+",
         "content": "dungeon",
         "hero": "Slayer",
         "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDmZ2WmZmZmxMmZMjZMzyMzYMzsNmZGAAIGLLDsAmgZYCMDbAmZjxAAgZGDzMzMMYA"
-      },
-      {
-        "label": "Mountain Thane: Single Target",
-        "content": "raid",
-        "hero": "Mountain Thane",
-        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDzMz2yMzMzMMmZmZMjZWmZGjZmlxMzAAAhB2glNjGzAysgZsAYGMGAMzAYYMzMMYA"
-      },
-      {
-        "label": "Mountain Thane: Cleave",
-        "content": "raid",
-        "hero": "Mountain Thane",
-        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDzMz2yMzMzMMmZmZMjZWmZGjZmlxMzAAAhB2glNjGzAysgZsAYGMGAMzAYYMzMMYA"
       },
       {
         "label": "Mountain Thane: AoE/Mythic+",
@@ -1752,7 +1627,8 @@
       "Shattering Throw": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "STRENGTH"
   },
   {
     "id": "standard-protection-warrior",
@@ -1764,18 +1640,6 @@
     "patch": "12.1.5",
     "updated": "2026-10-14",
     "builds": [
-      {
-        "label": "Raid Standard / Defensive - Recommended",
-        "content": "raid",
-        "hero": "Mountain Thane",
-        "code": "CkEAAAAAAAAAAAAAAAAAAAAAA0yAAAzMzwMzYGzmxsMjxY0wMDLzMzMDGzMAAAAYZMAzYAGYDWWMaMDgZLmZDzMmZwsBAzMAAMDMG"
-      },
-      {
-        "label": "Raid Advanced / Offensive",
-        "content": "raid",
-        "hero": "Mountain Thane",
-        "code": "CkEAAAAAAAAAAAAAAAAAAAAAA0yAAAzMjZmZmZGzmxsMjxY0wMDLzMzMDGzMAAAAYZAYGDwAbwyiRjZAMbxMbwMMDzsBAzMAAMDMG"
-      },
       {
         "label": "Mythic+ Standard",
         "content": "dungeon",
@@ -1971,6 +1835,7 @@
       "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
       "Piercing Howl": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
-    }
+    },
+    "primaryStat": "STRENGTH"
   }
 ]

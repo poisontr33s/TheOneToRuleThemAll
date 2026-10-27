@@ -45,7 +45,6 @@ end
 local function appendControl(lines, row, profile, number)
     local info = A.ControlInfo(row, profile)
     lines[#lines+1] = "Slot " .. number .. "   " .. info.actionText .. "   — Keys: " .. info.keysText
-    if info.altKeysText then lines[#lines+1] = "    Alt: " .. info.altKeysText end
 end
 local function previewText(panel, snapshot)
     local lines = {}
@@ -100,9 +99,6 @@ local function previewText(panel, snapshot)
         for _, row in ipairs(bar3) do appendControl(lines, row, profile, row.slot - 48) end
     end
     lines[#lines+1] = "\n" .. heading("Notes")
-    if profile.layouts[snapshot.layout].altSlots then
-        lines[#lines+1] = "Hold Alt with that key for an alternate action."
-    end
     if snapshot.layout == "mouseover" then
         lines[#lines+1] = "Friendly spells use a valid friendly mouseover; otherwise they keep normal targeting."
     end
@@ -167,19 +163,14 @@ local function refresh(panel, resetScroll)
         local className = UnitClass("player")
         panel.characterText:SetText(tostring(className or "Unknown class") .. " / " .. (profile and profile.specName or ("specialization " .. tostring(snapshot.spec or "unavailable"))))
         panel.profileText:SetText(profile and profile.label or "No supported profile for this specialization")
-        for _, control in ipairs({panel.profilePrev, panel.profileNext}) do
-            if #(snapshot.profiles or {}) > 1 then control:Show() else control:Hide() end
-        end
         panel.standardButton:SetText(panel.layout == "standard" and "Standard (selected)" or "Standard")
-        panel.alternateLayout = profile and profile.layouts.mouseover and "mouseover" or "compact"
-        local alternateName = panel.alternateLayout == "mouseover" and "Mouseover" or "Compact"
-        panel.compactButton:SetText(alternateName .. (panel.layout == panel.alternateLayout and " (selected)" or ""))
-        panel.standardButton:SetEnabled(profile and profile.layouts and profile.layouts.standard ~= nil or false)
-        local alternate = profile and profile.layouts[panel.alternateLayout]
-        panel.compactButton:SetEnabled(alternate ~= nil)
-        if alternate then panel.compactButton:Show() else panel.compactButton:Hide() end
+        panel.standardButton:SetEnabled(profile ~= nil)
+        panel.mouseoverButton:SetText(panel.layout == "mouseover" and "Mouseover (selected)" or "Mouseover")
+        local mouseover = profile and profile.layouts.mouseover
+        panel.mouseoverButton:SetEnabled(mouseover ~= nil)
+        if mouseover then panel.mouseoverButton:Show() else panel.mouseoverButton:Hide() end
         panel.detailsButton:ClearAllPoints()
-        panel.detailsButton:SetPoint("LEFT", alternate and panel.compactButton or panel.standardButton, "RIGHT", 8, 0)
+        panel.detailsButton:SetPoint("LEFT", mouseover and panel.mouseoverButton or panel.standardButton, "RIGHT", 8, 0)
         panel.detailsButton:SetText(panel.details and "Hide details" or "Show details")
         panel.detailsButton:SetEnabled(snapshot.plan ~= nil)
         panel.applyButton:SetEnabled(snapshot.canApply == true)
@@ -246,19 +237,15 @@ local function createPanel()
     version:SetText("v" .. A.version)
     panel.characterText = label(panel, "GameFontHighlightSmall", 660)
     panel.characterText:SetPoint("TOPLEFT", 20, -44)
-    panel.profilePrev = button(panel, "<", 32)
-    panel.profilePrev:SetPoint("TOPLEFT", 20, -76)
-    panel.profileNext = button(panel, ">", 32)
-    panel.profileNext:SetPoint("TOPRIGHT", -20, -76)
-    panel.profileText = label(panel, "GameFontNormal", 590)
-    panel.profileText:SetPoint("TOPLEFT", 64, -77)
+    panel.profileText = label(panel, "GameFontNormal", 660)
+    panel.profileText:SetPoint("TOPLEFT", 20, -77)
     panel.profileText:SetHeight(38)
     panel.standardButton = button(panel, "Standard", 155)
     panel.standardButton:SetPoint("TOPLEFT", 20, -123)
-    panel.compactButton = button(panel, "Compact", 155)
-    panel.compactButton:SetPoint("LEFT", panel.standardButton, "RIGHT", 8, 0)
+    panel.mouseoverButton = button(panel, "Mouseover", 155)
+    panel.mouseoverButton:SetPoint("LEFT", panel.standardButton, "RIGHT", 8, 0)
     panel.detailsButton = button(panel, "Show details", 125)
-    panel.detailsButton:SetPoint("LEFT", panel.compactButton, "RIGHT", 8, 0)
+    panel.detailsButton:SetPoint("LEFT", panel.mouseoverButton, "RIGHT", 8, 0)
     panel.refreshButton = button(panel, "Refresh", 100)
     panel.refreshButton:SetPoint("TOPRIGHT", -20, -123)
     panel.scroll = CreateFrame("ScrollFrame", nil, panel)
@@ -294,25 +281,12 @@ local function createPanel()
     panel.closeButton:SetPoint("BOTTOMRIGHT", -20, 18)
     panel.layout, panel.details = "standard", false
     panel.Refresh = refresh
-    local function choose(direction)
-        local profiles = panel.snapshot and panel.snapshot.profiles or {}
-        if #profiles == 0 then return end
-        local current = 1
-        for i, profile in ipairs(profiles) do if profile.id == panel.selectedId then current = i; break end end
-        local selected = profiles[((current - 1 + direction) % #profiles) + 1]
-        panel.selectedId = selected.id
-        if not selected.layouts[panel.layout] then panel.layout = "standard" end
-        panel.lastError, panel.lastMessage = nil, nil
-        refresh(panel, true)
-    end
-    panel.profilePrev:SetScript("OnClick", function() choose(-1) end)
-    panel.profileNext:SetScript("OnClick", function() choose(1) end)
     panel.standardButton:SetScript("OnClick", function()
         panel.layout, panel.lastError, panel.lastMessage = "standard", nil, nil
         refresh(panel, true)
     end)
-    panel.compactButton:SetScript("OnClick", function()
-        panel.layout, panel.lastError, panel.lastMessage = panel.alternateLayout or "compact", nil, nil
+    panel.mouseoverButton:SetScript("OnClick", function()
+        panel.layout, panel.lastError, panel.lastMessage = "mouseover", nil, nil
         refresh(panel, true)
     end)
     panel.detailsButton:SetScript("OnClick", function() panel.details = not panel.details; refresh(panel) end)
