@@ -25,10 +25,9 @@ local function build(definition, api, layout, enforce)
     end
     local first = nativeOK and native.first or 1
     local plan = {rows={},macros={},skipped={},lines={
-        "Standard buttons for your learned abilities. Each action is yours to choose and press.",
-        "Main bar: core abilities. Bar 2: utility. Bar 3: additional abilities and your racial buttons.",
-        "Missing optional talents leave their positions untouched. Talent builds opens the published Method imports.",
-        "This setup changes the current form's main bar only. Other form bars keep their existing buttons.",
+        "Main bar: core abilities. Bar 2: utility. Bar 3: extra spells and racials.",
+        "Unlearned optional spells leave their slots unchanged.",
+        "Only the current form's main bar changes.",
     }}
     if not nativeOK then plan.lines[#plan.lines+1] = tostring(native) end
     for _, note in ipairs(definition.notes or {}) do plan.lines[#plan.lines+1] = note end
@@ -78,13 +77,13 @@ for _, definition in ipairs(A.standardDefinitions) do
     end
     A.RegisterProfile({
         id=definition.id,class=definition.class,spec=definition.spec,specName=definition.specName,
-        label="Method reference — " .. definition.specName,requiredPage=1,nativeMainBar=true,
+        label="Method Mythic+ — " .. definition.specName,requiredPage=1,nativeMainBar=true,
         requiredForm=definition.requiredForm,blockedWhileStealthed=definition.blockedWhileStealthed,
         evidence={
             patch=definition.patch .. "; Method guide updated " .. definition.updated,
-            gear="Uses your existing gear; no equipment changes.",
-            tuning="Published Method talent references with a separate manual button layout; no new performance ranking.",
-            validation="Placement and recovery checked with mocked APIs. Actual Retail behavior still needs client testing.",
+            gear="Equipment unchanged.",
+            tuning="Method Mythic+ talents; fixed button layout.",
+            validation="WoW client testing pending.",
         },
         layouts=layouts,
         build=function(api,layout,enforce) return build(definition,api,layout,enforce) end,

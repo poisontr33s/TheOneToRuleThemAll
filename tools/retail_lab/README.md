@@ -20,11 +20,11 @@ On Windows, with Python 3.10+ and WoW already installed:
 - Use the browser desk to open the client test. Begin, Apply, Reload, then Undo
   are separate explicit clicks. Reload again to save the final observation.
 
-The 0.4.0 Standard profiles cover all 40 specializations. Check the current
+The Method Mythic+ profiles cover all 40 specializations. Check the current
 form's main buttons, Bar 2 utilities and Bar 3 extras/racials on each character
-you test. Return to the same form and loadout before Undo. Custom Rogue
-Stealth/Dance mirrors and custom Blood layouts keep their original behavior.
-The talent browser only copies Method reference codes; it does not import them.
+you test. Return to the same form and loadout before Undo. Custom profiles are
+archived in the repository and excluded from the lab payload too.
+The talent browser copies Method Mythic+ codes; it does not import them.
 
 The desk is accessible only on this Windows machine through its private local
 link. An agent connected to that machine's browser can operate the desk. A cloud
@@ -71,7 +71,7 @@ restore refuses those installations; their backups need manual inspection and
 restoration with WoW closed. Do not reinstall over them to create a new manifest.
 
 The bridge can capture the selected WoW window, click within a fresh screenshot,
-press Escape, or send `/tor`, `/tor guide`, `/tortest` and `/reload`. It cannot run
+press Escape, or send `/tor`, `/tor talents`, `/tortest` and `/reload`. It cannot run
 arbitrary commands or type account credentials. Use windowed or borderless WoW;
 capture/input are refused when the target cannot be verified. Do not cover WoW
 with another window or run WoW as administrator while the bridge is unelevated.

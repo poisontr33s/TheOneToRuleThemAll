@@ -23,7 +23,6 @@ local function reference(profileId)
             fallback = fallback or entry
         end
     end
-    -- A custom profile may browse the published reference for its own spec.
     -- An unknown explicit ID must not silently select a different profile.
     if profileId and not requested then
         return nil, "No Method reference is included for that profile."
@@ -93,7 +92,8 @@ local function refresh(panel)
     panel.reference = entry
     panel.builds = {}
     for _, build in ipairs(entry and entry.builds or {}) do
-        if type(build) == "table" and type(build.code) == "string" and build.code:find("%S") then
+        if type(build) == "table" and build.content == "dungeon" and
+            type(build.code) == "string" and build.code:find("%S") then
             panel.builds[#panel.builds + 1] = build
         end
     end
@@ -113,7 +113,7 @@ local function refresh(panel)
     end
     local metadata = {}
     if build and build.hero and build.hero ~= "" then metadata[#metadata + 1] = build.hero end
-    if build and build.content and build.content ~= "" then metadata[#metadata + 1] = build.content end
+    if build then metadata[#metadata + 1] = "Mythic+" end
     if entry.patch and entry.patch ~= "" then metadata[#metadata + 1] = "Guide patch " .. entry.patch end
     if entry.updated and entry.updated ~= "" then metadata[#metadata + 1] = "Updated " .. entry.updated end
     panel.metadataText:SetText(table.concat(metadata, " · "))
@@ -122,8 +122,8 @@ local function refresh(panel)
             "  (" .. panel.buildIndex .. "/" .. #panel.builds .. ")")
         panel.hint:SetText("Select the code, press Ctrl+C, then import it in WoW's talent window.")
     else
-        panel.buildText:SetText("No verified import code is included yet.")
-        panel.hint:SetText("Select the guide address below to find its published builds.")
+        panel.buildText:SetText("No Method Mythic+ code is included yet.")
+        panel.hint:SetText("Check the linked Method guide.")
     end
 end
 
@@ -144,11 +144,11 @@ local function createBrowser()
     background:SetColorTexture(0.035, 0.055, 0.05, 0.98)
     local title = label(panel, "GameFontNormalLarge", 640)
     title:SetPoint("TOPLEFT", 20, -18)
-    title:SetText("Method talent reference")
+    title:SetText("Method Mythic+")
     local description = label(panel, "GameFontHighlight", 640)
     description:SetPoint("TOPLEFT", 20, -50)
     description:SetHeight(38)
-    description:SetText("Browse published standard builds for this specialization. Importing a code is your choice; custom setups are kept until you change them.")
+    description:SetText("Published Mythic+ builds for your specialization. Copy a code to import in WoW's talent window.")
     panel.characterText = label(panel, "GameFontNormal", 640)
     panel.characterText:SetPoint("TOPLEFT", 20, -100)
     panel.previousButton = button(panel, "<", 32)

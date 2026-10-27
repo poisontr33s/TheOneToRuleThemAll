@@ -29,6 +29,8 @@ class RestoreTests(unittest.TestCase):
             (source / (source.name + ".toc")).write_bytes(b"## Interface: 120105\r\n")
         (self.main / "Core.lua").write_bytes(b"-- new addon\n")
         (self.probe / "ClientTest.lua").write_bytes(b"-- new companion\n")
+        (self.main / (lab.MAIN + ".toc")).write_bytes(b"## Interface: 120105\r\nCore.lua\r\n")
+        (self.probe / (lab.PROBE + ".toc")).write_bytes(b"## Interface: 120105\r\nClientTest.lua\r\n")
         self.state = self.root / "state"
         self.settings = self.client / "WTF" / "Account" / "OWNER" / "Realm" / "Character" / "SavedVariables"
         self.settings.mkdir(parents=True)

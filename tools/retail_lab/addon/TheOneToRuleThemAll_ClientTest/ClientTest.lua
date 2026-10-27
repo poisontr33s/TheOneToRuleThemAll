@@ -173,13 +173,6 @@ local function begin()
     A.panel:Refresh(true)
     r.checks.panel = {status=A.panel:IsShown() and A.panel:GetWidth() > 0 and A.panel:GetHeight() > 0 and "observed" or "failed",
         basis="Native frame exists, is shown and has nonzero dimensions; appearance is not verified."}
-    if A.GetPlayGuide and A.GetPlayGuide(r.profile) then
-        A.ShowGuide()
-        r.checks.guide = {status=A.panel.guide and A.panel:IsShown() and "observed" or "failed",
-            basis="Native guide view opened; rendered appearance is not verified."}
-    else
-        r.checks.guide = {status="not_applicable"}
-    end
     r.checks.read_only = {
         status=json(actions(view.plan.rows)) == json(r.original_actions)
             and originalMacros == json(macroRecords()) and originalDB == json(TheOneToRuleThemAllDB)

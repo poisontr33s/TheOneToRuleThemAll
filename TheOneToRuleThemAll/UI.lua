@@ -48,43 +48,6 @@ local function appendControl(lines, row, profile, number)
     lines[#lines+1] = "    Keys: " .. info.keysText
     if info.altKeysText then lines[#lines+1] = "    Alt: " .. info.altKeysText end
 end
-function A.GetPlayGuide(id)
-    local source = A.playGuideSource
-    if type(source) ~= "string" then return end
-    local start, finish
-    if id == "subburst" then
-        start = source:find("BEGYNN HER\n", 1, true)
-        finish = source:find("ASSASSINATION: NÅR ROLIGERE TEMPO BETYR MEST\n", 1, true)
-    elseif id == "assa" then
-        start = source:find("ASSASSINATION: NÅR ROLIGERE TEMPO BETYR MEST\n", 1, true)
-        finish = source:find("FELLES\n", 1, true)
-    end
-    local common = source:find("FELLES\n", 1, true)
-    local legacy = source:find("De gamle sub/sublite-layoutene", 1, true)
-    if start and finish and common and legacy then
-        return source:sub(start, finish - 1) .. source:sub(common, legacy - 1)
-    end
-end
-local function guideText(panel, snapshot)
-    local lines = {
-        heading("Play guide — " .. snapshot.profile.label),
-        "Read-only notes for the selected preview. Return to setup to apply a layout.",
-    }
-    if panel.lastError then lines[#lines+1] = "\n|cffff8888Last action stopped|r\n" .. panel.lastError end
-    if not snapshot.canApply then lines[#lines+1] = "\nSetup: " .. tostring(snapshot.applyReason) end
-    lines[#lines+1] = "\n" .. heading("Previewed keys")
-    lines[#lines+1] = "These are the selected layout's actions on your existing WoW bindings. Your bars may differ until you apply it."
-    local rows = {}
-    for _, row in ipairs(snapshot.plan.rows) do
-        if row.slot >= 1 and row.slot <= 12 then rows[#rows+1] = row end
-    end
-    table.sort(rows, function(a,b) return a.slot < b.slot end)
-    for _, row in ipairs(rows) do appendControl(lines, row, snapshot.profile, row.slot) end
-    lines[#lines+1] = "\n" .. heading("Original playing guide · 25 October 2026")
-    lines[#lines+1] = "The comparisons below describe the original reference model, not a current-live measurement. Slot numbers in the notes refer to the named layout; use the keys above."
-    lines[#lines+1] = "\n" .. A.GetPlayGuide(snapshot.selectedId)
-    return table.concat(lines, "\n")
-end
 local function previewText(panel, snapshot)
     local lines = {}
     if panel.lastError then
@@ -163,7 +126,7 @@ local function previewText(panel, snapshot)
     if panel.details then
         local evidence = profile and profile.evidence
         if evidence then
-            lines[#lines+1] = "\n" .. heading("Reference model")
+            lines[#lines+1] = "\n" .. heading("Source")
             for _, key in ipairs({"patch", "gear", "tuning", "validation"}) do
                 if evidence[key] then lines[#lines+1] = evidence[key] end
             end
@@ -195,7 +158,6 @@ local function refresh(panel, resetScroll)
         local currentSpec = index and C_SpecializationInfo.GetSpecializationInfo(index)
         if currentClass ~= panel.snapshot.class or currentSpec ~= panel.snapshot.spec then
             panel.selectedId, panel.layout, panel.details = nil, "standard", false
-            panel.guide = false
             panel.lastError, panel.lastMessage = nil, nil
             resetScroll = true
         end
@@ -205,7 +167,6 @@ local function refresh(panel, resetScroll)
     if not ok then
         panel.applyButton:SetEnabled(false)
         panel.undoButton:SetEnabled(false)
-        panel.guideButton:SetEnabled(false)
         panel.statusText:SetText("Preview unavailable. Use Refresh to try again.")
         panel.statusText:SetTextColor(1, 0.5, 0.5)
         panel.previewText:SetText(tostring(snapshot))
@@ -213,32 +174,30 @@ local function refresh(panel, resetScroll)
         panel.snapshot = snapshot
         panel.selectedId, panel.layout = snapshot.selectedId, snapshot.layout or "standard"
         local profile = snapshot.profile
-        local hasGuide = snapshot.plan ~= nil and A.GetPlayGuide(snapshot.selectedId) ~= nil
-        if not hasGuide then panel.guide = false end
         local className = UnitClass("player")
         panel.characterText:SetText(tostring(className or "Unknown class") .. " / " .. (profile and profile.specName or ("specialization " .. tostring(snapshot.spec or "unavailable"))))
         panel.profileText:SetText(profile and profile.label or "No supported profile for this specialization")
-        panel.profilePrev:SetEnabled(#(snapshot.profiles or {}) > 1)
-        panel.profileNext:SetEnabled(#(snapshot.profiles or {}) > 1)
+        for _, control in ipairs({panel.profilePrev, panel.profileNext}) do
+            if #(snapshot.profiles or {}) > 1 then control:Show() else control:Hide() end
+        end
         panel.standardButton:SetText(panel.layout == "standard" and "Standard (selected)" or "Standard")
         panel.alternateLayout = profile and profile.layouts.mouseover and "mouseover" or "compact"
         local alternateName = panel.alternateLayout == "mouseover" and "Mouseover" or "Compact"
         panel.compactButton:SetText(alternateName .. (panel.layout == panel.alternateLayout and " (selected)" or ""))
         panel.standardButton:SetEnabled(profile and profile.layouts and profile.layouts.standard ~= nil or false)
-        panel.compactButton:SetEnabled(profile and profile.layouts and profile.layouts[panel.alternateLayout] ~= nil or false)
+        local alternate = profile and profile.layouts[panel.alternateLayout]
+        panel.compactButton:SetEnabled(alternate ~= nil)
+        if alternate then panel.compactButton:Show() else panel.compactButton:Hide() end
+        panel.detailsButton:ClearAllPoints()
+        panel.detailsButton:SetPoint("LEFT", alternate and panel.compactButton or panel.standardButton, "RIGHT", 8, 0)
         panel.detailsButton:SetText(panel.details and "Hide details" or "Show details")
-        panel.detailsButton:SetEnabled(snapshot.plan ~= nil and not panel.guide)
-        panel.guideButton:SetText(panel.guide and "Back to setup" or "Play guide")
-        panel.guideButton:SetEnabled(hasGuide)
-        panel.applyButton:SetEnabled(snapshot.canApply == true and not panel.guide)
-        panel.undoButton:SetEnabled(snapshot.canUndo == true and not panel.guide)
-        panel.previewText:SetText(panel.guide and guideText(panel, snapshot) or previewText(panel, snapshot))
+        panel.detailsButton:SetEnabled(snapshot.plan ~= nil)
+        panel.applyButton:SetEnabled(snapshot.canApply == true)
+        panel.undoButton:SetEnabled(snapshot.canUndo == true)
+        panel.previewText:SetText(previewText(panel, snapshot))
         if panel.lastError then
             panel.statusText:SetText("Action stopped. Read the message at the top of the preview.")
             panel.statusText:SetTextColor(1, 0.5, 0.5)
-        elseif panel.guide then
-            panel.statusText:SetText("Play guide: read at your own pace. Return to setup to change bars.")
-            panel.statusText:SetTextColor(0.65, 0.88, 0.72)
         elseif panel.lastMessage then
             panel.statusText:SetText(panel.lastMessage)
             if snapshot.backup and snapshot.backup.state == "needs-undo" then
@@ -254,8 +213,8 @@ local function refresh(panel, resetScroll)
             panel.statusText:SetTextColor(0.92, 0.78, 0.53)
         end
         local activeBackup = snapshot.backup and snapshot.backup.state ~= "restored"
-        panel.undoWarning:SetText(panel.guide and "Reading this guide does not apply or undo a layout." or
-            (activeBackup and "Undo replaces your current actions in the saved slots." or "Apply replaces the previewed slots and saves your previous setup."))
+        panel.undoWarning:SetText(activeBackup and "Undo replaces your current actions in the saved slots." or
+            "Apply replaces the previewed slots and saves your previous setup.")
     end
     panel.content:SetHeight(math.max(panel.scroll:GetHeight(), panel.previewText:GetStringHeight() + 12))
     scrollTo(panel, resetScroll and 0 or panel.scroll:GetVerticalScroll())
@@ -339,10 +298,8 @@ local function createPanel()
     panel.applyButton:SetPoint("BOTTOMLEFT", 20, 18)
     panel.undoButton = button(panel, "Undo setup", 130)
     panel.undoButton:SetPoint("LEFT", panel.applyButton, "RIGHT", 10, 0)
-    panel.guideButton = button(panel, "Play guide", 130)
-    panel.guideButton:SetPoint("LEFT", panel.undoButton, "RIGHT", 10, 0)
-    panel.talentsButton = button(panel, "Talent builds", 130)
-    panel.talentsButton:SetPoint("LEFT", panel.guideButton, "RIGHT", 10, 0)
+    panel.talentsButton = button(panel, "Mythic+ talents", 130)
+    panel.talentsButton:SetPoint("LEFT", panel.undoButton, "RIGHT", 10, 0)
     panel.closeButton = button(panel, "Close", 100)
     panel.closeButton:SetPoint("BOTTOMRIGHT", -20, 18)
     panel.layout, panel.details = "standard", false
@@ -369,18 +326,14 @@ local function createPanel()
         refresh(panel, true)
     end)
     panel.detailsButton:SetScript("OnClick", function() panel.details = not panel.details; refresh(panel) end)
-    panel.guideButton:SetScript("OnClick", function()
-        panel.guide = not panel.guide
-        refresh(panel, true)
-    end)
     panel.talentsButton:SetScript("OnClick", function()
         if type(A.ShowTalentBuilds) == "function" then A.ShowTalentBuilds(panel.selectedId) end
     end)
     panel.refreshButton:SetScript("OnClick", function() panel.lastError, panel.lastMessage = nil, nil; refresh(panel) end)
     panel.applyButton:SetScript("OnClick", function()
-        if panel.selectedId and not panel.guide then execute(panel, "apply " .. panel.selectedId .. " " .. panel.layout) end
+        if panel.selectedId then execute(panel, "apply " .. panel.selectedId .. " " .. panel.layout) end
     end)
-    panel.undoButton:SetScript("OnClick", function() if not panel.guide then execute(panel, "undo") end end)
+    panel.undoButton:SetScript("OnClick", function() execute(panel, "undo") end)
     panel.closeButton:SetScript("OnClick", function() panel:Hide() end)
     panel.scrollUp:SetScript("OnClick", function() scrollTo(panel, panel.scroll:GetVerticalScroll() - 90) end)
     panel.scrollDown:SetScript("OnClick", function() scrollTo(panel, panel.scroll:GetVerticalScroll() + 90) end)
@@ -400,23 +353,4 @@ end
 function A.TogglePanel()
     if not A.panel then A.panel = createPanel() end
     if A.panel:IsShown() then A.panel:Hide() else A.panel:Show() end
-end
-function A.ShowGuide()
-    if not A.panel then
-        A.panel = createPanel()
-        local backup = TheOneToRuleThemAllDB and TheOneToRuleThemAllDB.backup
-        local index = C_SpecializationInfo.GetSpecialization()
-        local spec = index and C_SpecializationInfo.GetSpecializationInfo(index)
-        if backup and backup.state == "applied" and backup.class == select(2, UnitClass("player"))
-            and backup.spec == spec and A.GetPlayGuide(backup.mode) then
-            A.panel.selectedId, A.panel.layout = backup.mode, backup.layout
-        end
-    end
-    local panel = A.panel
-    refresh(panel, true)
-    if not panel.snapshot or not panel.snapshot.plan or not panel.guideButton:IsEnabled() then
-        error("A playing guide is included for SubBurst and Fatebound Assassination. Select one of those profiles in /tor.", 0)
-    end
-    panel.guide = true
-    if panel:IsShown() then refresh(panel, true) else panel:Show() end
 end

@@ -26,7 +26,7 @@ HERE = Path(__file__).resolve().parent
 MAIN = "TheOneToRuleThemAll"
 PROBE = MAIN + "_ClientTest"
 REPORT_VARIABLE = "TheOneToRuleThemAllClientTestReport"
-COMMANDS = {"tor", "guide", "test", "reload"}
+COMMANDS = {"tor", "talents", "test", "reload"}
 MAX_REPORT_BYTES = 2 * 1024 * 1024
 
 
@@ -63,17 +63,23 @@ def find_client():
 
 def source_files(folder):
     files = {}
-    for file in sorted(folder.rglob("*")):
-        relative = file.relative_to(folder)
-        if "validation" in relative.parts or any(part.startswith(".") for part in relative.parts):
-            continue
-        if file.is_file() and file.suffix.lower() in {".lua", ".toc", ".txt"}:
-            no_links(file, folder)
-            if not file.resolve().is_relative_to(folder.resolve()):
-                raise ValueError("Linked addon source files are not supported.")
-            files[relative.as_posix()] = file.read_bytes()
-    if folder.name + ".toc" not in files:
+    toc = folder / (folder.name + ".toc")
+    if not toc.is_file():
         raise ValueError(f"Missing {folder.name}.toc in {folder}")
+    no_links(toc, folder)
+    resources = {line.strip().replace("\\", "/") for line in toc.read_text(encoding="utf-8").splitlines()
+                 if line.strip() and not line.lstrip().startswith("#")}
+    resources.add(toc.name)
+    resources.update(name for name in ("START-HERE.txt", "CHANGELOG.txt", "EXTENDING.txt")
+                     if (folder / name).is_file())
+    for name in sorted(resources):
+        if Path(name).is_absolute() or ".." in Path(name).parts:
+            raise ValueError("Addon source paths must stay within their folder.")
+        file = folder / name
+        no_links(file, folder)
+        if not file.resolve().is_relative_to(folder.resolve()):
+            raise ValueError("Linked addon source files are not supported.")
+        files[name] = file.read_bytes()
     return files
 
 

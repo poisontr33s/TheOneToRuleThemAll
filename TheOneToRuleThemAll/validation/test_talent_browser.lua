@@ -4,16 +4,17 @@ return function(c)
     local test, expect, copy, equal = c.test, c.expect, c.copy, c.equal
     local function references()
         local entries = {
-            {id="standard-test-subtlety",class="ROGUE",spec=261,specName="Subtlety",
+            {id="standard-subtlety",class="ROGUE",spec=261,specName="Subtlety",
                 guide="https://www.method.gg/guides/subtlety-rogue/talents",
                 patch="test patch",updated="test date",builds={
-                    {label="Raid reference",content="Raid",hero="Deathstalker",
+                    {label="Raid reference",content="raid",hero="Deathstalker",code="CraidFixture/+=="},
+                    {label="Mythic+ reference",content="dungeon",hero="Deathstalker",
                         code="Cfixture/+" .. string.rep("Ab9/+", 80) .. "=="},
-                    {label="Dungeon reference",content="Mythic+",hero="Trickster",code="CsecondFixture/+=="},
+                    {label="Mythic+ alternative",content="dungeon",hero="Trickster",code="CsecondFixture/+=="},
                 }},
-            {id="standard-test-assassination",class="ROGUE",spec=259,specName="Assassination",
+            {id="standard-assassination",class="ROGUE",spec=259,specName="Assassination",
                 guide="https://www.method.gg/guides/assassination-rogue/talents",
-                builds={{label="Assassination reference",code="CotherSpecFixture/+=="}}},
+                builds={{label="Assassination reference",content="dungeon",code="CotherSpecFixture/+=="}}},
         }
         c.addon().standardDefinitions = entries
         return entries
@@ -47,7 +48,7 @@ return function(c)
         expect(A.talentBrowser==panel and #S.frames==count and panel:IsShown())
         unchanged(before)
     end)
-    test("Custom profile can browse and select Method codes without any action or talent writes",function()
+    test("Method Mythic+ codes can be copied without any action or talent writes",function()
         local A,S = c.addon(),c.state()
         local entries=references()
         S.slots[1]={kind="item",id=123}; S.cursor={kind="item",id=456}
@@ -61,13 +62,13 @@ return function(c)
         local previousTraits=C_Traits
         C_Traits={PurchaseRank=forbidden,RefundRank=forbidden,CommitConfig=forbidden,ResetTree=forbidden}
         local ok,err=pcall(function()
-            A.ShowTalentBuilds("subburst")
+            A.ShowTalentBuilds("standard-subtlety")
             local panel=A.talentBrowser
-            expect(panel.reference==entries[1] and panel.codeBox:GetText()==entries[1].builds[1].code)
+            expect(panel.reference==entries[1] and panel.codeBox:GetText()==entries[1].builds[2].code)
             panel.selectButton:Click()
             expect(panel.codeBox.focused and panel.codeBox.highlighted[1]==0)
             panel.nextButton:Click(); panel.previousButton:Click()
-            expect(panel.codeBox:GetText()==entries[1].builds[1].code)
+            expect(panel.codeBox:GetText()==entries[1].builds[2].code)
             S.dispatchUIEvent("PLAYER_TALENT_UPDATE")
             panel.closeButton:Click()
             unchanged(before)
@@ -75,24 +76,26 @@ return function(c)
         C_Traits=previousTraits
         expect(ok,err)
     end)
-    test("Talent references preserve exact source strings and show guide and build provenance",function()
+    test("Mythic+ selector skips raid and preserves published order, codes and source details",function()
         local A=c.addon(); local entries=references()
         A.ShowTalentBuilds(entries[1].id)
         local panel=A.talentBrowser
-        expect(panel.codeBox:GetText()==entries[1].builds[1].code)
+        expect(panel.codeBox:GetText()==entries[1].builds[2].code)
+        expect(#panel.builds==2 and panel.builds[1]==entries[1].builds[2])
+        expect(panel.builds[2]==entries[1].builds[3])
         expect(panel.sourceBox:GetText()==entries[1].guide)
         local metadata=panel.metadataText:GetText()
-        for _,text in ipairs({"Deathstalker","Raid","test patch","test date"}) do
+        for _,text in ipairs({"Deathstalker","Mythic+","test patch","test date"}) do
             expect(metadata:find(text,1,true),"Missing provenance: " .. text)
         end
         expect(panel.hint:GetText():find("Ctrl+C",1,true) and panel.hint:GetText():find("import",1,true))
         panel.nextButton:Click()
-        expect(panel.codeBox:GetText()==entries[1].builds[2].code)
+        expect(panel.codeBox:GetText()==entries[1].builds[3].code)
         expect(panel.metadataText:GetText():find("Trickster",1,true))
         panel.nextButton:Click()
-        expect(panel.codeBox:GetText()==entries[1].builds[1].code)
-        panel.previousButton:Click()
         expect(panel.codeBox:GetText()==entries[1].builds[2].code)
+        panel.previousButton:Click()
+        expect(panel.codeBox:GetText()==entries[1].builds[3].code)
     end)
     test("Typing cannot corrupt a displayed import code or its guide address",function()
         local A=c.addon(); local entries=references(); local before=baseline()
@@ -100,7 +103,7 @@ return function(c)
         local panel=A.talentBrowser
         panel.codeBox:SetText("edited code")
         panel.sourceBox:SetText("edited address")
-        expect(panel.codeBox:GetText()==entries[1].builds[1].code)
+        expect(panel.codeBox:GetText()==entries[1].builds[2].code)
         expect(panel.sourceBox:GetText()==entries[1].guide)
         panel.sourceBox:SetFocus()
         expect(panel.sourceBox.highlighted[1]==0)
@@ -110,21 +113,21 @@ return function(c)
     end)
     test("Only nonempty published codes enter the build selector",function()
         local A=c.addon(); local entries=references()
-        local valid=entries[1].builds[2]
-        entries[1].builds={{label="pending"},{code=""},{code=" \n\t"},{code=123},valid}
+        local valid=entries[1].builds[3]
+        entries[1].builds={{content="dungeon"},{content="dungeon",code=""},{content="dungeon",code=" \n\t"},{content="dungeon",code=123},valid}
         A.ShowTalentBuilds()
         local panel=A.talentBrowser
         expect(#panel.builds==1 and panel.codeBox:GetText()==valid.code)
         expect(not panel.nextButton:IsEnabled() and not panel.previousButton:IsEnabled())
         expect(panel.selectButton:IsEnabled())
     end)
-    test("Missing import codes leave a usable source link and never invent a build",function()
-        local A=c.addon(); local entries=references(); entries[1].builds={}
+    test("A raid-only source leaves a link without substituting a raid code",function()
+        local A=c.addon(); local entries=references(); entries[1].builds={entries[1].builds[1]}
         A.ShowTalentBuilds()
         local panel=A.talentBrowser
         expect(panel.codeBox:GetText()=="" and panel.sourceBox:GetText()==entries[1].guide)
         expect(not panel.selectButton:IsEnabled() and not panel.nextButton:IsEnabled())
-        expect(panel.buildText:GetText():find("No verified import code",1,true))
+        expect(panel.buildText:GetText():find("No Method Mythic+ code",1,true))
         panel.sourceBox:SetFocus(); expect(panel.sourceBox.highlighted[1]==0)
         A.standardDefinitions=nil
         panel:Refresh()
@@ -133,11 +136,11 @@ return function(c)
     end)
     test("Spec changes replace stale references without importing the new build",function()
         local A,S=c.addon(),c.state(); local entries=references(); local before=baseline()
-        A.ShowTalentBuilds("subburst")
+        A.ShowTalentBuilds("standard-subtlety")
         local panel=A.talentBrowser
         panel.nextButton:Click(); S.spec=259
         S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","party1")
-        expect(panel.codeBox:GetText()==entries[1].builds[2].code)
+        expect(panel.codeBox:GetText()==entries[1].builds[3].code)
         S.dispatchUIEvent("PLAYER_SPECIALIZATION_CHANGED","player")
         expect(panel.codeBox:GetText()==entries[2].builds[1].code and panel.profileId==nil)
         S.class="MAGE"; S.spec=62
@@ -151,8 +154,8 @@ return function(c)
         expect(A.talentBrowser.codeBox:GetText()~="")
         A.ShowTalentBuilds("missing-profile")
         expect(A.talentBrowser.codeBox:GetText()=="" and not A.HasTalentReference("missing-profile"))
-        A.ShowTalentBuilds("assa")
-        expect(A.talentBrowser.codeBox:GetText()=="" and not A.HasTalentReference("assa"))
+        A.ShowTalentBuilds("standard-assassination")
+        expect(A.talentBrowser.codeBox:GetText()=="" and not A.HasTalentReference("standard-assassination"))
     end)
     test("Talent references can be read in combat without applying a layout",function()
         local A,S=c.addon(),c.state(); references(); S.combat=true
@@ -160,19 +163,6 @@ return function(c)
         A.ShowTalentBuilds()
         A.talentBrowser.nextButton:Click(); A.talentBrowser.selectButton:Click()
         expect(A.talentBrowser:IsShown() and A.talentBrowser.codeBox.focused)
-        unchanged(before)
-    end)
-    test("Talent button preserves the existing play guide and its Apply Undo guards",function()
-        local A=c.addon(); references(); local before=baseline()
-        A.ShowGuide()
-        local setup=A.panel
-        expect(setup.guide and not setup.applyButton:IsEnabled() and not setup.undoButton:IsEnabled())
-        expect(setup.talentsButton:IsEnabled())
-        setup.talentsButton:Click()
-        expect(A.talentBrowser:IsShown() and setup.guide)
-        expect(not setup.applyButton:IsEnabled() and not setup.undoButton:IsEnabled())
-        setup.applyButton:GetScript("OnClick")(setup.applyButton)
-        setup.undoButton:GetScript("OnClick")(setup.undoButton)
         unchanged(before)
     end)
     test("Bar3 preview shows the real bound keys and local ability names",function()

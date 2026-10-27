@@ -58,10 +58,22 @@ class InstallTests(unittest.TestCase):
             (source / (source.name + ".toc")).write_text("## Interface: 120105\n")
         (self.main / "Core.lua").write_bytes(b"-- untouched\r\nlocal x = 'ae\xc3\xb8'\n")
         (self.probe / "ClientTest.lua").write_bytes(b"-- client probe\n")
+        (self.main / (lab.MAIN + ".toc")).write_text("## Interface: 120105\nCore.lua\n")
+        (self.probe / (lab.PROBE + ".toc")).write_text("## Interface: 120105\nClientTest.lua\n")
         self.state = self.root / "state"
 
     def install(self):
         return lab.install_addons(self.client, self.state, self.main, self.probe)
+
+    def test_source_uses_toc_and_excludes_archived_custom_files(self):
+        (self.main / "Custom.lua").write_text("-- archived")
+        (self.main / "GEAR-LOCK.txt").write_text("archived research")
+        (self.main / "START-HERE.txt").write_text("current instructions")
+        files = lab.source_files(self.main)
+        self.assertEqual(set(files), {lab.MAIN + ".toc", "Core.lua", "START-HERE.txt"})
+        (self.main / (lab.MAIN + ".toc")).write_text("../outside.lua\n")
+        with self.assertRaises(ValueError):
+            lab.source_files(self.main)
 
     def test_installs_exact_source_and_keeps_old_folders(self):
         old = self.client / "Interface" / "AddOns" / lab.MAIN
@@ -153,7 +165,10 @@ class TransportTests(unittest.TestCase):
         self.assertEqual(self.post("action", {"action": []})[0], 400)
         self.assertFalse(self.backend.actions)
         self.assertEqual(self.post("action", {"action": "tor"})[0], 200)
-        self.assertEqual(self.backend.actions, ["tor"])
+        self.assertEqual(self.post("action", {"action": "talents"})[0], 200)
+        self.assertEqual(self.post("action", {"action": "guide"})[0], 400)
+        self.assertEqual(windows._COMMANDS["talents"], "/tor talents")
+        self.assertEqual(self.backend.actions, ["tor", "talents"])
 
     def test_capture_id_matches_image_and_stale_clicks_are_refused(self):
         status, headers, image = self.post("capture", {})

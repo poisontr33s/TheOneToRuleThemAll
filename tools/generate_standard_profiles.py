@@ -116,6 +116,8 @@ def validate_profile(profile, location):
         version, imported_spec = talent_header(build.get("code"), where + ".code")
         require(version == 2, f"{where}: unsupported talent serialization version {version}")
         require(imported_spec == spec, f"{where}: import belongs to spec {imported_spec}, expected {spec}")
+    require(any(build["content"] == "dungeon" for build in profile["builds"]),
+            f"{location}: a published Method Mythic+ build is required")
     seen_spells = set()
     for lane, maximum in (("main", 9), ("utility", 12), ("extra", 9)):
         actions = profile.get(lane)
@@ -214,6 +216,8 @@ def generate(source=SOURCE):
             require(isinstance(data, list), f"{filename}: expected a profile array")
             for index, profile in enumerate(data):
                 validate_profile(profile, f"{filename}[{index}]")
+                # Keep other references in the source archive, outside the addon.
+                profile["builds"] = [build for build in profile["builds"] if build["content"] == "dungeon"]
                 profiles.append(profile)
     require(len({p['id'] for p in profiles}) == len(profiles), "Duplicate profile ID")
     require(len({p['spec'] for p in profiles}) == len(profiles), "Duplicate specialization")

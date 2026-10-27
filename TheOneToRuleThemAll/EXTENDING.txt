@@ -1,106 +1,56 @@
-THE ONE TO RULE THEM ALL — CLASS MODULE CONTRACT
+THE ONE TO RULE THEM ALL — DEVELOPMENT
 
-Core.lua owns profile registration, preview, compatibility checks, native
-macro creation, transactional action placement, and per-character undo.
-Modules/Rogue.lua owns Rogue spell IDs, hero requirements, layouts, stealth
-mirroring and policy evidence. Core contains no Rogue slot assumptions.
-Modules/DeathKnight.lua owns the Blood spell buttons and hero requirements.
-It uses base Heart Strike and Marrowrend IDs so temporary combat replacements
-are not captured as permanent action-bar assignments.
+SCOPE
 
-StandardData.lua is generated from tools/class_data/*.json. Edit the source
-records, then run python3 tools/generate_standard_profiles.py. --check verifies
-that the generated file matches. Records keep guide URLs, update dates, exact
-talent imports and fixed ability positions; the generator records their hashes.
-Modules/Standard.lua turns those records into separate standard-* profiles.
-Do not replace the custom Rogue/Blood modules with generated definitions.
-tools/check_foundation.py checks those preserved files against recorded hashes.
-An intentional foundation change needs review; do not refresh the hashes just
-to make an unexpected difference pass.
+Method.gg's latest verified Mythic+ builds are the talent standard.
+Keep the guide's exact imports, labels, patch and update date. Put a clear
+source recommendation first; preserve published alternatives where needed.
+Check current primary sources when changing abilities or macros.
+No new talent builds, DPS rankings or simulation requirements.
+Keep code readable and player text short.
 
-Standard profiles use native base spells, skip unlearned optional abilities,
-and reserve Bar 3 slots 10–12 for learned racial abilities. Healer Mouseover
-is a separate, explicit layout. NativeBar.lua verifies the visible native
-main bar and required form before placement, and saves the form for Undo.
-Balance requires Moonkin, Feral Cat, Guardian Bear and Restoration Druid caster form. Standard
-Rogue changes only its normal main bar outside Stealth/Shadow Dance. A row's mainButton
-identifies its visible main-bar button even when the physical slot is on a
-form page; UI and key descriptions must preserve that distinction.
+FILES
 
-To add a module, load its Lua file after Core.lua in the .toc and call
-TheOneToRuleThemAll.RegisterProfile with:
+Core.lua handles profiles, checks, placement and Undo.
+NativeBar.lua checks the visible main bar and current form.
+Modules/Standard.lua places learned spells and healer mouseover macros.
+Controls.lua reads existing keys. UI.lua shows the preview and setup actions.
+TalentBrowser.lua copies published Mythic+ codes for manual import.
 
-id, class (WoW class token), spec (numeric specialization ID), specName,
-label, optional requiredPage and blockedWhileStealthed,
-evidence {patch, gear, tuning, validation},
-layouts {standard={description}, compact={description, altSlots={...}}},
-build(api, layout, enforce) -> {rows, macros, skipped, lines}.
+Edit tools/class_data/*.json, then run:
+python3 tools/generate_standard_profiles.py
 
-Each row is {slot=<action-slot number>, action=<spell or macro record>}.
-Spell records use api.spell(id); macros use api.macro(name, body). Every
-macro referenced by a row must also occur in plan.macros. Optional spells
-must be checked with api.learned; profile compatibility checks run when
-enforce=true. Preview must not write game state. Macro bodies are localized
-through api.spellName and checked against native name/body limits.
+The generator validates all specs and records source hashes. It includes
+only dungeon builds in StandardData.lua. Raid records remain in the source.
+The TOC determines which Lua files are loaded and packaged.
 
-UI.lua is a lazy setup panel. A.Inspect returns read-only readiness and preview;
-A.Execute is the single guarded command path used by slash and panel actions.
-The panel's events refresh presentation only while the panel is visible.
-Controls.lua reads native keybindings for the preview; it never changes them.
-Unmapped bars are identified rather than assigned guessed keys.
-TalentBrowser.lua is a separate read-only window over standardDefinitions.
-It offers exact-code copying and source links; talent imports stay manual.
+Original Rogue/Blood modules and research notes are archived in place.
+They are not loaded or shipped. tools/check_foundation.py protects their
+original bytes. Do not change its hashes to hide an unintended rewrite.
 
-All writes occur on an explicit out-of-combat setup/undo command or click. Modules must
-not add combat-event decision logic, timer-driven rotation selection, gear
-changes, talent purchases, keybinding writes, or automatic profile switches.
-Do not infer a class's bars, forms, hero replacements or spell overrides from
-the Rogue module. A new class needs its own checked placement and undo tests.
+PLACEMENT
 
-EVIDENCE REQUIRED FOR A RELEASED POLICY
+Main bar: core spells. Bar 2: utility. Bar 3: extra spells, then racials
+in slots 10–12. Keep positions fixed; skip unlearned optional spells.
+Use base spell buttons so temporary combat replacements can come and go.
+Healer Mouseover is an explicit layout using localized spell names.
 
-The Standard profiles are button arrangements with published references, not
-new optimized combat policies. The requirements below apply when proposing
-new priorities, coupled casts or performance claims.
+Druid requires the spec's form; only that form's main bar changes.
+Rogue setup requires leaving Stealth/Shadow Dance and leaves that bar alone.
+A row's mainButton identifies the visible button even on a form page.
 
-- Current spell and talent data, legal talent code, eligible hero tree.
-- Fixed reference gear appropriate to armor, primary stat and weapon rules.
-- The user's tier slots: head, shoulders, chest and legs. Fixed gem placement
-  and quality across that comparison. Keep role-appropriate enchants fixed.
-- Matched control against the published guide build with its recommended
-  macros, plus the best precise control found. Preserve exact inputs.
-- Test the intended human priority, including any omitted pooling or proc
-  exceptions. A policy that requires inaccessible automatic decisions is not
-  represented by an ordinary macro.
-- Macro coupling changes timing: audit timestamps, ordering, failed/blocked
-  actions and any item/GCD interleaving, then test the changed policy.
-- Report physical keys, modifier chords, logical decisions and action tempo
-  separately. Fewer numbered keys alone does not establish a damage gain.
-- Keep boss, multi-target, contact loss and mixed-pull results separate.
-  Add spec-relevant casting/movement models. Generic DungeonSlice is not a
-  complete simulation of a season's dungeon mechanics or player mistakes.
-- Label future patch forecasts separately from the current live model.
-- For healers and tanks, assess role performance and survivability; a DPS
-  ranking alone is insufficient. Do not remove essential utility to win a
-  button-count comparison.
-- State untested classes and invalidated patch/gear assumptions explicitly.
+Profile fields: id, class, spec, specName, label, layouts, evidence, build.
+build(api, layout, enforce) returns rows, macros, skipped and lines.
+Rows contain slot, optional mainButton, and an action record.
+Use api.spell(id) or api.macro(name, body); register macros in plan.macros.
+Preview is read-only. All writes go through guarded Apply or Undo.
+Preserve backup recovery even when a profile is retired.
 
-CURRENT COVERAGE
+CHECKS AND RELEASE
 
-Native Standard setup: 40 specializations, 13 classes, with Method 12.1.5
-talent references. Existing custom Trickster Subtlety, Fatebound Assassination,
-San'layn Blood and Deathbringer Blood remain independent. Custom Blood is a
-setup-only layout for Shed Assymetry, with no new optimized policy or survival
-claim. Layouts are optional per profile; the UI and command help must match.
-Simulation research: all six eligible Rogue spec/hero pairs, with bounded
-talent and policy candidates. This is not every mathematically possible
-talent combination and does not prove a global optimum.
-The all-class expansion has no live-client acceptance or exhaustive build
-comparison yet. Placement tests and valid import headers do not establish
-rotation quality, survivability or correct casting in the actual client.
+Check placement, localization, missing spells and recovery in code.
+Test rendering, protected actions and casting in the real WoW client.
+Do not report client acceptance from mocked tests.
 
-BRANCH ORDER
-
-Implement on astra. Claude reviews astra and contributes its changes on claude.
-Only then integrate into combined. Keep fixes on the development branches too.
-Promote combined to main only after the owner accepts actual in-game results.
+Implement on astra. Claude reviews and contributes on claude.
+Reviewed work enters combined. The owner accepts it in WoW before main.

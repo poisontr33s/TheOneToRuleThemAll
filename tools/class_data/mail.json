@@ -401,10 +401,10 @@
         "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWIbwMM0glZMzMmZWGAAAAAAmxMmZZbGjZMDeATzAAAAMAYGLLzMzixMjxMDgZ2AmFjhxmBA"
       },
       {
-        "label": "Pack Leader — Mythic+",
+        "label": "Sentinel — Mythic+",
         "content": "dungeon",
-        "hero": "Pack Leader",
-        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWILwMM0gFzMzMzMWGAAAAAAmxMzMLbzYMjZwYaGAAAgBAPwYZZm5BWYmZwYMgZ2AYGjZmNDA"
+        "hero": "Sentinel",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMWgBmxYGLDgZC2mZmZmZMbzDAAAAAAYGzMzYbGjZMDGTzAAAAMAwYZZmxCmZmxYmBgZsBGjZmNDA"
       },
       {
         "label": "Sentinel — single target",
@@ -413,10 +413,10 @@
         "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWgNYGGawyMmZGzMLDAAAAAAzYGzssNjxMmBPgpZAAAAGAMjllZmZxYmxYmZAmZDYYMM2MAA"
       },
       {
-        "label": "Sentinel — Mythic+",
+        "label": "Pack Leader — Mythic+",
         "content": "dungeon",
-        "hero": "Sentinel",
-        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMWgBmxYGLDgZC2mZmZmZMbzDAAAAAAYGzMzYbGjZMDGTzAAAAMAwYZZmxCmZmxYmBgZsBGjZmNDA"
+        "hero": "Pack Leader",
+        "code": "C8PAAAAAAAAAAAAAAAAAAAAAAMgxMGWILwMM0gFzMzMzMWGAAAAAAmxMzMLbzYMjZwYaGAAAgBAPwYZZm5BWYmZwYMgZ2AYGjZmNDA"
       }
     ],
     "main": [
@@ -1013,7 +1013,7 @@
     ],
     "notes": [
       "Lightning Bolt stays native for Tempest. Ascendance replaces Doom Winds in its position when learned.",
-      "Method publishes Stormbringer imports for this patch; optional Totemic buttons remain available for an existing custom talent selection.",
+      "Method publishes Stormbringer for Mythic+.",
       "Sundering stays native for Primordial Storm."
     ],
     "spellSources": {
@@ -1675,7 +1675,7 @@
         "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhxMYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGjZGAYA"
       },
       {
-        "label": "Chronowarden — Mythic+",
+        "label": "Chronowarden — Mythic+ high keys",
         "content": "dungeon",
         "hero": "Chronowarden",
         "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbzMzgZYmZZGzMjZ2AAAAAAAAYmhZGYM1YmZGAAAAMjZMmZWGzMwMMwYGLsADMDDNwCGzMzAAD"
@@ -1687,7 +1687,7 @@
         "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbjZmxyMYmlZMzMmBAAAAAAAAzMMmBjpGzMzAAAAgZMjxMzyYmBmZzYwCsMGGbDgZQshxAzMAG"
       },
       {
-        "label": "Scalecommander — Mythic+",
+        "label": "Scalecommander — Mythic+ lower / weekly keys",
         "content": "dungeon",
         "hero": "Scalecommander",
         "code": "CEcBAAAAAAAAAAAAAAAAAAAAAMMzMbjZmxyMYmtZMzMmBAAAAAAAAmhHYGYM1YmZGAAAAMzMjxMz2YmBmZzYwCsMGGbDgZQshxMYmBDG"

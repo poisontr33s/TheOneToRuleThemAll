@@ -13,7 +13,7 @@ import time
 import zlib
 
 
-_COMMANDS = {"tor": "/tor", "guide": "/tor guide", "test": "/tortest", "reload": "/reload"}
+_COMMANDS = {"tor": "/tor", "talents": "/tor talents", "test": "/tortest", "reload": "/reload"}
 _backend = None
 
 DWORD, LONG, WORD = C.c_uint32, C.c_int32, C.c_uint16
@@ -357,7 +357,7 @@ class _WindowsBackend:
 
     def command(self, name):
         if not isinstance(name, str) or name not in _COMMANDS:
-            raise RuntimeError("Allowed commands are tor, guide, test, and reload.")
+            raise RuntimeError("Allowed commands are tor, talents, test, and reload.")
         info = self._focus()
         self._send(info, _key_press(0x1B))  # discard an existing chat entry
         time.sleep(0.05)

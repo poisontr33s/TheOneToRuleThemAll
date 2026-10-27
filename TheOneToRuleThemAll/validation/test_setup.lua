@@ -4,9 +4,14 @@ if not addonDir then
     local source = debug.getinfo(1, "S").source:gsub("^@", "")
     addonDir = (source:match("^(.*)[/\\]") or ".") .. "/.."
 end
-local function loadAddon()
+local function loadAddon(archived)
     for line in io.lines(addonDir .. "/TheOneToRuleThemAll.toc") do
         if line:match("%.lua$") then dofile(addonDir .. "/" .. line) end
+    end
+    -- Historical transaction fixtures; these modules are not in the install TOC.
+    if archived ~= false then
+        if not TheOneToRuleThemAll.profiles.sub then dofile(addonDir .. "/Modules/Rogue.lua") end
+        if not TheOneToRuleThemAll.profiles["blood-sanlayn"] then dofile(addonDir .. "/Modules/DeathKnight.lua") end
     end
 end
 local S

@@ -2047,16 +2047,16 @@
         "hero": "Void-Scarred"
       },
       {
-        "label": "Void-Scarred Mythic+",
-        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZYsplFAEwAYMzMbzMTz2MbzMDmxA",
-        "content": "dungeon",
-        "hero": "Void-Scarred"
-      },
-      {
         "label": "Annihilator Raid Cleave / Mythic+ (Recommended)",
         "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMzMzMzMzMDzsYGjFZhZmZmt2mZmBwwAQgHYMDjZA",
         "content": "dungeon",
         "hero": "Annihilator"
+      },
+      {
+        "label": "Void-Scarred Mythic+",
+        "code": "CgcBAAAAAAAAAAAAAAAAAAAAAAAWmxMzMzMzMGmBAAAAAAgxsNYGAAAAAAAAmxMMmZmZmZmZYmlZYsplFAEwAYMzMbzMTz2MbzMDmxA",
+        "content": "dungeon",
+        "hero": "Void-Scarred"
       },
       {
         "label": "Annihilator Single Target (Recommended)",
@@ -2376,8 +2376,7 @@
     "notes": [
       "The guide publishes Deathstalker defaults and discusses Fatebound without a separate import.",
       "Crimson Tempest is the current bleed-spreading generator, not its previous finisher version.",
-      "Passive Thistle Tea is not assigned as a button.",
-      "This standard profile does not alter the existing custom Rogue profiles."
+      "Passive Thistle Tea is not assigned as a button."
     ],
     "spellSources": {
       "1329": "https://www.method.gg/guides/assassination-rogue/playstyle-and-rotation",
@@ -2592,8 +2591,7 @@
     ],
     "notes": [
       "The published Trickster cleave build is the guide's dungeon setup.",
-      "Preparation is a separate cooldown reset button. Coup de Grace uses the Dispatch override.",
-      "This standard profile does not alter the existing custom Rogue profiles."
+      "Preparation is a separate cooldown reset button. Coup de Grace uses the Dispatch override."
     ],
     "spellSources": {
       "1752": "https://www.method.gg/guides/outlaw-rogue/playstyle-and-rotation",
@@ -2807,8 +2805,7 @@
     "notes": [
       "Rupture, Symbols of Death and Flagellation were removed from the spec; they are not assigned.",
       "Coup de Grace uses the Eviscerate override. Shadow Dance and Shadow Blades remain separate buttons.",
-      "Only published Trickster imports are included; Deathstalker discussion is not converted into a guessed build.",
-      "This standard profile does not alter the existing custom Rogue profiles."
+      "Only published Trickster imports are included; Deathstalker discussion is not converted into a guessed build."
     ],
     "spellSources": {
       "53": "https://www.method.gg/guides/subtlety-rogue/talents",

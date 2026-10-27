@@ -1,3 +1,11 @@
+0.4.1-astra — 27 October 2026
+
+- Uses Method Mythic+ references as the standard; raid imports stay in source.
+- Archives custom Rogue/Blood profiles and research outside the install ZIP.
+  Original files remain unchanged. Existing backups can still be restored.
+- Removes the custom playing-guide flow and shortens player instructions.
+- Awaits Claude review and actual WoW acceptance.
+
 0.4.0-astra — 27 October 2026
 
 - Adds separate Standard profiles for all 40 specializations across 13 classes,

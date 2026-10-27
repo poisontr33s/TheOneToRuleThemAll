@@ -1,7 +1,7 @@
 -- The One To Rule Them All: profile registration and transactional setup.
 -- Only explicit setup/undo commands or panel clicks write macros/action slots,
 -- out of combat. No rotation decisions, timed casting or keybinding writes.
-TheOneToRuleThemAll = { version = "0.4.0-astra", profiles = {} }
+TheOneToRuleThemAll = { version = "0.4.1-astra", profiles = {} }
 local A = TheOneToRuleThemAll
 local PREFIX = "|cff91c7adThe One:|r "
 local function say(s) print(PREFIX .. s) end
@@ -97,8 +97,7 @@ A.api = {
     end,
 }
 
--- Modules register one profile per supported policy, with separate layouts.
--- Nothing is selected by class automatically; users choose the named profile.
+-- A profile supplies the button layout for one specialization.
 function A.RegisterProfile(profile)
     check(type(profile) == "table" and type(profile.id) == "string" and profile.id:match("^[a-z][a-z0-9_-]*$"), "Invalid profile ID.")
     check(not A.profiles[profile.id], "Duplicate profile ID: " .. profile.id)
@@ -513,7 +512,7 @@ function A.Inspect(id, requestedLayout)
 end
 
 local function help()
-    say("/tor opens the panel; /tor guide; /tor talents; /tor list; /tor status; /tor check [profile] [layout]; /tor preview <profile> [layout]; /tor apply <profile> [layout]; /tor undo.")
+    say("/tor opens the panel; /tor talents; /tor list; /tor status; /tor check [profile] [layout]; /tor preview <profile> [layout]; /tor apply <profile> [layout]; /tor undo.")
     for id,p in pairs(A.profiles) do
         if p.class == classID() and p.spec == specID() and type(p.recommendedWhen) == "function" then
             local valid, compatible = pcall(p.recommendedWhen,A.api)
@@ -536,10 +535,6 @@ function A.Execute(message)
         if not cmd or cmd == "ui" then
             check(#args<=1,"Use /tor ui.")
             if type(A.TogglePanel) == "function" then A.TogglePanel() else help() end
-        elseif cmd == "guide" then
-            check(#args==1,"Use /tor guide.")
-            check(type(A.ShowGuide) == "function", "Play guide unavailable; open /tor instead.")
-            A.ShowGuide()
         elseif cmd == "talents" then
             check(#args<=2,"Use /tor talents [profile].")
             check(type(A.ShowTalentBuilds) == "function", "Talent references are unavailable.")
