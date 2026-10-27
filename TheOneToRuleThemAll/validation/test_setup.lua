@@ -30,11 +30,14 @@ local function reset()
        assistedSpell=1229376,assistedDynamic=12345,assistedVariant="identity",bindings={},bindingKeys={ACTIONBUTTON1={"1"},ACTIONBUTTON2={"2"}}}
     TheOneToRuleThemAllDB=nil; TheOneToRuleThemAll=nil; AstraRogueSetupDB=nil; AstraSubSetupDB=nil; SlashCmdList={}
     print=function(msg) S.messages[#S.messages+1]=msg end
+    -- Most binding tests use the formatter fallback; focused tests install it.
+    GetBindingText=nil
     -- Removed global aliases must stay absent: accidental reuse must fail.
     GetSpecialization=nil
     GetSpecializationInfo=nil
     C_SpecializationInfo={GetSpecialization=function() return 3 end,
-      GetSpecializationInfo=function(index) assert(index==3);return S.spec end}
+      GetSpecializationInfo=function(index) assert(index==3)
+        return S.spec,({[259]="Assassination",[260]="Outlaw",[261]="Subtlety"})[S.spec] or "Other" end}
     UnitClass=function() return S.localizedClass or "Rogue",S.class end
     UnitRace=function() return S.race,S.race end
     InCombatLockdown=function() return S.combat end
@@ -67,11 +70,19 @@ local function reset()
       IsSpellKnownOrInSpellBook=function(id) return not S.missing[id] end,
       IsSpellKnown=function(id) return not S.missing[id] and not S.unlearned[id] end
     }
-    IsPlayerSpell=function(id) return not S.missing[id] and not S.unlearned[id] end
-    C_Item={PickupItem=function(id) S.cursor={kind="item",id=id} end}
+    -- Deprecated spell/page globals must stay absent, like the specialization ones.
+    IsPlayerSpell=nil
+    GetActionBarPage=nil
+    -- S.gone marks items, sets and pets that can no longer be picked up.
+    S.gone={}; S.toys={}
+    C_Item={PickupItem=function(id) if not S.gone[id] then S.cursor={kind="item",id=id} end end,
+      GetItemNameByID=function(id) return "Item"..id end}
+    PlayerHasToy=function(id) return S.toys[id] or false end
+    C_ToyBox={PickupToyBoxItem=function(id) if S.toys[id] then S.cursor={kind="item",id=id} end end}
     PickupFlyout=nil
-    C_EquipmentSet={PickupEquipmentSet=function(id) S.cursor={kind="equipmentset",id=id} end}
-    C_PetJournal={PickupPet=function(id) S.cursor={kind="summonpet",id=id} end}
+    C_EquipmentSet={PickupEquipmentSet=function(id) if not S.gone[id] then S.cursor={kind="equipmentset",id=id} end end,
+      GetEquipmentSetInfo=function(id) return "Set"..id end}
+    C_PetJournal={PickupPet=function(id) if not S.gone[id] then S.cursor={kind="summonpet",id=id} end end}
     GetMacroInfo=function(index)
       local m=S.macros[index]; if m then return m.name,m.icon,m.body end
     end
@@ -197,12 +208,12 @@ test("sublite omits Goremaw and racial but keeps Feint on main8",function()
     command("sublite")
     for _,a in pairs(S.slots) do expect(a.id~=426591 and a.id~=260364) end
     expect(S.slots[8].id==1966 and S.slots[80].id==1966)
-    expect(messageContains("Goremaw is not bound"))
+    expect(messageContains("leaves Goremaw off the bars"))
 end)
 test("default Sub keeps Goremaw main8 and Feint on bar2",function()
     command("sub")
     expect(S.slots[8].id==426591 and S.slots[80].id==426591)
-    expect(S.slots[64].id==1966 and messageContains("Seven routine class buttons"))
+    expect(S.slots[64].id==1966 and messageContains("Seven attack keys"))
 end)
 test("default Sub rejects unlearned Goremaw before writes",function()
     S.unlearned[426591]=true; command("sub")
@@ -220,7 +231,7 @@ test("Assa preserves Vanish Shiv and shared utilities outside rotation row",func
     expect(S.slots[61].id==1856 and S.slots[62].id==5938)
     expect(S.slots[63].id==1784 and S.slots[64].id==1966)
     expect(S.slots[72].id==57934)
-    expect(messageContains("Tea is not bound"))
+    expect(messageContains("Tea has no button"))
 end)
 for _,mode in ipairs({"sub","sublite","assa"}) do
     test(mode.." undo restores empty spell item and both macro scopes",function()
@@ -241,7 +252,7 @@ end)
 for _,scenario in ipairs({
   {"combat",function() S.combat=true end,"Leave combat"},
   {"wrong spec",function() S.spec=259 end,"Select Subtlety"},
-  {"wrong class",function() S.class="MAGE" end,"No matching tested module"},
+  {"wrong class",function() S.class="MAGE" end,"This profile is for"},
   {"occupied cursor",function() S.cursor={kind="item",id=42} end,"Put down"},
   {"wrong page",function() S.page=2 end,"page 1"},
   {"Stealth",function() S.stealth=true end,"Leave Stealth"}
@@ -289,6 +300,61 @@ test("failed spell pickup rolls back all prior writes",function()
     expect(equal(prior,S.slots) and TheOneToRuleThemAllDB.backup.state=="restored")
     expect(messageContains("Original bars restored"))
 end)
+for _, entry in ipairs({{"item",33447},{"equipmentset",42},{"summonpet","BattlePet-0-000000123456"}}) do
+    local kind, id = entry[1], entry[2]
+    test("failed Apply keeps a missing "..kind.." backup for recovery after reload",function()
+        S.slots[1]={kind=kind,id=id}
+        S.slots[61]={kind="spell",id=7000}
+        local original=copy(S.slots)
+        S.gone[id]=true
+        S.failPickup=197835 -- Fail after main slot 1 and its mirror were replaced.
+        local ok,problem=TheOneToRuleThemAll.Execute("sub")
+        local backup=TheOneToRuleThemAllDB.backup
+        expect(not ok and backup.state=="needs-undo")
+        expect(S.slots[1] and S.slots[1].kind=="macro", "Rollback cleared the unresolved slot")
+        expect(equal(backup.rows[1].action,original[1]), "Original action was lost from backup")
+        expect(problem:find("Undo is still saved",1,true) and not messageContains("Original bars restored"))
+        expect(TheOneToRuleThemAll.Inspect("sub").canUndo and S.cursor==nil)
+        -- SavedVariables survive a reload; recovering the unavailable action
+        -- must let the existing backup restore the entire original layout.
+        TheOneToRuleThemAllDB=copy(TheOneToRuleThemAllDB)
+        loadAddon()
+        expect(TheOneToRuleThemAll.Inspect("sub").canUndo)
+        S.gone[id]=nil; S.failPickup=nil
+        expect(TheOneToRuleThemAll.Execute("undo"))
+        expect(equal(S.slots,original) and TheOneToRuleThemAllDB.backup.state=="restored")
+    end)
+    test("rollback preserves an untouched "..kind.." that cannot be picked up",function()
+        S.slots[2]={kind=kind,id=id}
+        local original=copy(S.slots)
+        S.gone[id]=true; S.failPickup=197835
+        local ok,problem=TheOneToRuleThemAll.Execute("sub")
+        expect(not ok and problem:find("Original bars restored",1,true))
+        expect(equal(S.slots,original), "An original button already in place was removed")
+        expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.cursor==nil)
+    end)
+    test("explicit Undo can finish failed Apply with a reported missing "..kind,function()
+        S.slots[1]={kind=kind,id=id}
+        S.slots[61]={kind="spell",id=7000}
+        S.gone[id]=true; S.failPickup=197835
+        expect(not TheOneToRuleThemAll.Execute("sub"))
+        expect(TheOneToRuleThemAllDB.backup.state=="needs-undo")
+        S.failPickup=nil; S.messages={}
+        local ok,problem,note=TheOneToRuleThemAll.Execute("undo")
+        expect(ok and problem==nil and note:find("1 slot that is now empty",1,true))
+        expect(messageContains("except main bar slot 1"))
+        expect(S.slots[1]==nil and S.slots[61].id==7000)
+        expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.cursor==nil)
+    end)
+end
+test("automatic rollback restores an owned toy through the toy box",function()
+    S.slots[1]={kind="item",id=7777}
+    local original=copy(S.slots)
+    S.gone[7777]=true; S.toys[7777]=true; S.failPickup=197835
+    local ok,problem=TheOneToRuleThemAll.Execute("sub")
+    expect(not ok and problem:find("Original bars restored",1,true))
+    expect(equal(S.slots,original) and TheOneToRuleThemAllDB.backup.state=="restored")
+end)
 test("placement exception retains undo until cursor cleared",function()
     S.slots[1]={kind="spell",id=7000}; local prior=copy(S.slots)
     S.failPlacement=5; command("sub")
@@ -307,7 +373,7 @@ end)
 test("unsupported existing action aborts before replacement",function()
     S.slots[3]={kind="unsupported",id=12}; local prior=copy(S.slots)
     command("sub")
-    expect(equal(S.slots,prior) and S.created==0 and messageContains("unsupported action"))
+    expect(equal(S.slots,prior) and S.created==0 and messageContains("which Undo cannot put back"))
 end)
 test("unlearned utility leaves existing slot untouched",function()
     S.unlearned[57934]=true; S.slots[72]={kind="spell",id=8000}
@@ -326,8 +392,9 @@ test("successful undo allows reusing generated macros and changing mode",functio
     command("undo"); S.spec=259; command("assa")
     expect(S.created==3 and TheOneToRuleThemAllDB.backup.mode=="assa")
 end)
-test("learned spell query falls back to IsPlayerSpell",function()
-    C_SpellBook.IsSpellKnown=nil; command("sub")
+test("setup runs with the deprecated spell and page globals absent",function()
+    expect(IsPlayerSpell==nil and GetActionBarPage==nil)
+    command("sub")
     expect(TheOneToRuleThemAllDB.backup.state=="applied")
 end)
 test("assisted combat restores identity despite changing display spell",function()
@@ -348,7 +415,7 @@ test("unsupported flyout rejects setup without changing actions or creating macr
     S.slots[1]={kind="macro",id=1};S.slots[61]={kind="flyout",id=123}
     local before=copy(S.slots)
     local ok,problem=TheOneToRuleThemAll.Execute("subburst")
-    expect(not ok and problem:find("unsupported action 'flyout'",1,true))
+    expect(not ok and problem:find("Action Bar 2 slot 1 holds a spell flyout",1,true))
     expect(equal(S.slots,before) and S.created==0 and S.placements==0 and S.cursor==nil)
     expect(not TheOneToRuleThemAllDB or not TheOneToRuleThemAllDB.backup)
 end)
@@ -358,6 +425,51 @@ for _,entry in ipairs({{"equipmentset",42},{"summonpet","BattlePet-0-00000012345
         command("sub"); command("undo"); expect(equal(S.slots,before))
     end)
 end
+test("undo empties and names an item that is gone and restores everything else",function()
+    S.slots[61]={kind="item",id=4444}; S.slots[62]={kind="spell",id=5555}; S.slots[1]={kind="item",id=33447}
+    command("subburst"); S.gone[4444]=true; S.messages={}
+    local ok,problem,note=TheOneToRuleThemAll.Execute("undo")
+    expect(ok and TheOneToRuleThemAllDB.backup.state=="restored")
+    expect(S.slots[61]==nil and S.slots[62].id==5555 and S.slots[1].id==33447)
+    expect(messageContains("except Action Bar 2 slot 1 (Item4444)") and note:find("1 slot that is now empty",1,true))
+    for slot=1,9 do expect(slot==1 or S.slots[slot]==nil) end
+end)
+for _,entry in ipairs({{"equipmentset",42,"Set42"},{"summonpet","BattlePet-0-000000123456","a battle pet"}}) do
+    test("undo empties a "..entry[1].." that is gone instead of stopping",function()
+        S.slots[2]={kind=entry[1],id=entry[2]}; command("sub"); S.gone[entry[2]]=true
+        command("undo")
+        expect(TheOneToRuleThemAllDB.backup.state=="restored" and S.slots[2]==nil)
+        expect(messageContains("main bar slot 2 ("..entry[3]..")"))
+    end)
+end
+test("undo puts back a toy through the toy box",function()
+    S.slots[63]={kind="item",id=7777}; S.gone[7777]=true; S.toys[7777]=true
+    command("subburst"); command("undo")
+    expect(S.slots[63] and S.slots[63].kind=="item" and S.slots[63].id==7777)
+    expect(messageContains("Original bars restored. Generated macros kept."))
+end)
+test("a spell that cannot be picked up still stops Undo without clearing it",function()
+    S.slots[5]={kind="spell",id=6666}; command("subburst"); S.failPickup=6666
+    local ok,problem=TheOneToRuleThemAll.Execute("undo")
+    expect(not ok and problem:find("Could not pick up a spell for main bar slot 5",1,true))
+    expect(TheOneToRuleThemAllDB.backup.state=="applied")
+end)
+test("mount on Action Bar 2 blocks setup with a plain explanation",function()
+    S.slots[64]={kind="summonmount",id=1234}; local before=copy(S.slots)
+    local ok,problem=TheOneToRuleThemAll.Execute("subburst")
+    expect(not ok and problem:find("Action Bar 2 slot 4 holds a mount, which Undo cannot put back",1,true))
+    expect(equal(S.slots,before) and S.created==0 and S.placements==0)
+end)
+test("Alt conflict names the binding as shown in the game",function()
+    S.bindings["ALT-1"]="MULTIACTIONBAR1BUTTON1"; BINDING_NAME_MULTIACTIONBAR1BUTTON1="Action Bar 2 Button 1"
+    command("sub compact"); BINDING_NAME_MULTIACTIONBAR1BUTTON1=nil
+    expect(messageContains("ALT-1 is bound to Action Bar 2 Button 1"))
+end)
+test("status names the specialization and the saved setup state in words",function()
+    command("subburst"); S.messages={}; command("status")
+    expect(messageContains("Rogue, Subtlety") and messageContains("(standard): active"))
+    expect(not messageContains("261") and not messageContains("Placement compatibility"))
+end)
 test("independent fork never touches v1 saved backup",function()
     AstraSubSetupDB={sentinel="original-v1"}; local old=AstraSubSetupDB
     command("sub"); command("undo")
@@ -698,7 +810,7 @@ test("separate and coupled burst layouts coexist without macro-name collisions",
     command("undo");command("subburst compact")
     expect(TheOneToRuleThemAllDB.backup.state=="applied" and S.created==6 and contains(slotBody(4),"/cast Goremaw's Bite"))
 end)
-local recommendationText="Recommended starting profile: /tor subburst"
+local recommendationText="Compatible starting profile: /tor subburst"
 test("help recommends released burst only with compatible current build",function()
     command("help")
     expect(messageContains(recommendationText) and S.created==0 and S.placements==0 and S.bindingCalls==0)
@@ -717,9 +829,11 @@ for _,scenario in ipairs({
         expect(S.created==0 and S.placements==0 and S.bindingCalls==0)
     end)
 end
-local ctx={test=test,expect=expect,copy=copy,equal=equal,command=command,messageContains=messageContains,state=function() return S end,addon=function() return TheOneToRuleThemAll end}
+local ctx={test=test,expect=expect,copy=copy,equal=equal,command=command,messageContains=messageContains,state=function() return S end,addon=function() return TheOneToRuleThemAll end,reload=loadAddon}
 dofile(addonDir .. "/validation/test_core_v2.lua")(ctx)
+dofile(addonDir .. "/validation/test_controls.lua")(ctx)
 dofile(addonDir .. "/validation/test_ui.lua")(ctx)
+dofile(addonDir .. "/validation/test_deathknight.lua")(ctx)
 TOR_TEST_TOTAL=total; TOR_TEST_FAILED=failed
 realPrint(string.format("RESULT: %d tests, %d passed, %d failed",total,total-failed,failed))
 assert(failed==0,"Mock tests failed")
