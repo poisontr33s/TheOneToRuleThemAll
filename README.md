@@ -1,7 +1,7 @@
 # TheOneToRuleThemAll
 
 WoW Retail action-bar setup for every class, based on Method.gg Mythic+ builds.
-**0.4.2-astra · Retail 12.1.5 · awaiting Claude review and in-game acceptance.**
+**0.4.2-astra · Retail 12.1.5 · in-game acceptance pending.**
 
 [Download a build](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra) · [Setup and Undo](TheOneToRuleThemAll/START-HERE.txt)
 
@@ -15,8 +15,8 @@ Method references update with addon releases. Talents are imported manually.
 
 Read [Working rules](AGENTS.md) before changing code: small readable changes,
 short plain text, and tests for real failure risks. Functionality must be tried in WoW.
-Astra develops on `astra`; Claude reviews and contributes on `claude`.
-Reviewed work enters `combined`, then `main` after the owner's in-game acceptance.
+Astra develops on `astra`; approved changes can reach `main` without waiting for Claude.
+`combined` is for later work with `claude`. New gameplay still needs acceptance in WoW.
 
 For local checks, install Python 3 and a Lua 5.4 shared library, then run:
 ```sh

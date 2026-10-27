@@ -9,6 +9,20 @@ Check current primary sources when changing abilities or macros.
 No new talent builds, DPS rankings or simulation requirements.
 Keep code readable and player text short.
 
+GEAR TEMPLATE
+
+Use the highest available quality for every gem and enchant.
+Normal sockets: Flawless Quick Lapis — Versatility first, Haste second.
+Head: Empowered Hex of Leeching — Leech.
+Shoulders: Silvermoon's Mending — Leech.
+Chest: Mark of the Worldsoul — primary stat.
+Legs, Strength/Agility specs: Forest Hunter's Armor Kit — Str/Agi + Stamina.
+Legs, Intellect specs: Sunfire Silk Spellthread — Intellect + Stamina.
+Boots: Shaladrassil's Roots — Leech + Stamina.
+Both rings: Silvermoon's Tenacity — Versatility.
+This fixed template is separate from Method's per-spec gear recommendations.
+The addon does not change equipment, gems or enchants.
+
 FILES
 
 Core.lua handles profiles, checks, placement and Undo.
@@ -52,5 +66,6 @@ Check placement, localization, missing spells and recovery in code.
 Test rendering, protected actions and casting in the real WoW client.
 Do not report client acceptance from mocked tests.
 
-Implement on astra. Claude reviews and contributes on claude.
-Reviewed work enters combined. The owner accepts it in WoW before main.
+Continue approved work on astra and main without waiting for Claude.
+Combined is for later integration of reviewed Astra and Claude contributions.
+New gameplay changes require the owner's acceptance in WoW before main.

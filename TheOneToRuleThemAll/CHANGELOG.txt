@@ -3,7 +3,9 @@
 - Shows each ability and its keys on one line in the preview.
 - Removes repeated explanations and shortens setup instructions.
 - Keeps every affected slot, form warning and recovery message visible.
-- Claude review and WoW acceptance are still pending.
+- Records the fixed gear template, maximum quality and spec-dependent leg enchants.
+- Approved main changes can proceed independently of later Claude/combined work.
+- WoW acceptance is still pending.
 
 0.4.1-astra — 27 October 2026
 
