@@ -5,10 +5,10 @@ local A = TheOneToRuleThemAll
 local function gearText(definition)
     local gear = A.gearTemplate
     local lines = {gear.quality .. ".", "Gems: " .. gear.gems}
-    for _, slot in ipairs({"head", "shoulders", "chest", "boots", "rings"}) do
-        lines[#lines+1] = slot:gsub("^%l", string.upper) .. ": " .. gear[slot]
+    for _, slot in ipairs({"head", "shoulders", "chest", "legs", "boots", "rings", "weapon"}) do
+        local value = slot == "legs" and gear.legs[definition.primaryStat] or gear[slot]
+        lines[#lines+1] = slot:gsub("^%l", string.upper) .. ": " .. value
     end
-    lines[#lines+1] = "Legs: " .. gear.legs[definition.primaryStat]
     lines[#lines+1] = "Fixed reference template. Equipment is not changed."
     return table.concat(lines, "\n")
 end

@@ -217,7 +217,7 @@ def generate(source=SOURCE):
             validate_racials(data)
             racials = data
         elif filename == "gear.json":
-            for key in ("quality", "gems", "head", "shoulders", "chest", "boots", "rings"):
+            for key in ("quality", "gems", "head", "shoulders", "chest", "boots", "rings", "weapon"):
                 text(data.get(key), "gear." + key)
             for stat in ("STRENGTH", "AGILITY", "INTELLECT"):
                 text(data["legs"].get(stat), "gear.legs." + stat)

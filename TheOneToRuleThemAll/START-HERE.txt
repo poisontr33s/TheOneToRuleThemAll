@@ -1,4 +1,4 @@
-THE ONE TO RULE THEM ALL — 0.5.0-astra
+THE ONE TO RULE THEM ALL — 0.5.1-astra
 Samlet utgave for alle klasser. Prøving og godkjenning i WoW gjenstår.
 
 INSTALLER

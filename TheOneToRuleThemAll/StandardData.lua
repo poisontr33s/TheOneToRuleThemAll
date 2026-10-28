@@ -5,7 +5,7 @@
 -- mail.json: 2375a10d2a11b112f58503a71e6aee0011dc05472cfc2aa7c5600a4e9957db37
 -- cloth.json: 40c3523d76d233e324b58486409c4ff1a6442cb9ccf371165e30347fa838b835
 -- racials.json: 0eece8ab47115f3bbd7d2e4e72219687df231a1a41d8e772f0a20559633a8f36
--- gear.json: 0b062b5356fc9956b0b4218009245eccad07fe0852c28955e229ebd569a644a0
+-- gear.json: ea246c5b93fe1f33038888f53fc52896a13ea96704074306fd00530f3bfb76e9
 local A = TheOneToRuleThemAll
 
 A.standardDefinitions = {
@@ -8158,7 +8158,7 @@ A.racialMetadata = {
 A.gearTemplate = {
     ["boots"] = "Shaladrassil's Roots — Leech + Stamina",
     ["chest"] = "Mark of the Worldsoul — primary stat",
-    ["gems"] = "Flawless Quick Lapis — Versatility first, Haste second",
+    ["gems"] = "Flawless Quick Lapis — Versatility first, Haste second; every existing normal socket, including belts",
     ["head"] = "Empowered Hex of Leeching — Leech",
     ["legs"] = {
         ["AGILITY"] = "Forest Hunter's Armor Kit — Agility + Stamina",
@@ -8168,4 +8168,5 @@ A.gearTemplate = {
     ["quality"] = "Highest available quality for every gem and enchant",
     ["rings"] = "Silvermoon's Tenacity — Versatility on both rings",
     ["shoulders"] = "Silvermoon's Mending — Leech",
+    ["weapon"] = "Worldsoul Tenacity — chance to gain Versatility for 15 sec",
 }

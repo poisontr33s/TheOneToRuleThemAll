@@ -1,3 +1,9 @@
+0.5.1-astra — 28 October 2026
+
+- Includes Worldsoul Tenacity in the existing gear template under Show details.
+- Gems apply to existing normal sockets, including socketed belts.
+- Keeps maximum quality and the agreed armor and leg enchants.
+
 0.5.0-astra — 27 October 2026
 
 - Keeps Method Mythic+ builds for every Retail specialization.
