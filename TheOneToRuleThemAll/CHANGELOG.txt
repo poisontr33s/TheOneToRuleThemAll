@@ -1,3 +1,8 @@
+0.5.2-astra — 28 October 2026
+
+- Completes the gear template: one Indecipherable Eversong Diamond,
+  Flawless Quick Lapis in remaining sockets; highest quality throughout.
+
 0.5.1-astra — 28 October 2026
 
 - Includes Worldsoul Tenacity in the existing gear template under Show details.

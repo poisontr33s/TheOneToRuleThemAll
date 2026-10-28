@@ -1,7 +1,7 @@
 # TheOneToRuleThemAll
 
 WoW Retail action-bar setup for every class, based on Method.gg Mythic+ builds.
-**0.5.1-astra · Retail 12.1.5 · in-game acceptance pending.**
+**0.5.2-astra · Retail 12.1.5 · in-game acceptance pending.**
 
 [Download a build](https://github.com/poisontr33s/TheOneToRuleThemAll/actions/workflows/ci.yml?query=branch%3Aastra) · [Setup and Undo](TheOneToRuleThemAll/START-HERE.txt)
 
