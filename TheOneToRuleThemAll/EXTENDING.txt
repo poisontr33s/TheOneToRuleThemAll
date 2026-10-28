@@ -51,7 +51,7 @@ GEAR TEMPLATE
 
 Source: tools/class_data/gear.json.
 Use the highest available quality for every gem and enchant.
-Normal sockets: Flawless Quick Lapis — Versatility first, Haste second.
+Existing normal sockets, including belts: Flawless Quick Lapis — Versatility/Haste.
 Head: Empowered Hex of Leeching — Leech.
 Shoulders: Silvermoon's Mending — Leech.
 Chest: Mark of the Worldsoul — primary stat.
@@ -59,6 +59,7 @@ Legs, Strength/Agility specs: Forest Hunter's Armor Kit — Str/Agi + Stamina.
 Legs, Intellect specs: Sunfire Silk Spellthread — Intellect + Stamina.
 Boots: Shaladrassil's Roots — Leech + Stamina.
 Both rings: Silvermoon's Tenacity — Versatility.
+Weapon: Worldsoul Tenacity — chance to gain Versatility for 15 sec.
 This fixed template is separate from Method's per-spec gear recommendations.
 The addon does not change equipment, gems or enchants.
 
