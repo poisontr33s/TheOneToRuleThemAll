@@ -1,74 +1,70 @@
-THE ONE TO RULE THEM ALL — CLASS MODULE CONTRACT
+THE ONE TO RULE THEM ALL — DEVELOPMENT
 
-Core.lua owns profile registration, preview, compatibility checks, native
-macro creation, transactional action placement, and per-character undo.
-Modules/Rogue.lua owns Rogue spell IDs, hero requirements, layouts, stealth
-mirroring and policy evidence. Core contains no Rogue slot assumptions.
-Modules/DeathKnight.lua owns the Blood spell buttons and hero requirements.
-It uses base Heart Strike and Marrowrend IDs so temporary combat replacements
-are not captured as permanent action-bar assignments.
+SCOPE
 
-To add a module, load its Lua file after Core.lua in the .toc and call
-TheOneToRuleThemAll.RegisterProfile with:
+Method.gg's latest verified Mythic+ builds are the talent standard.
+Keep the guide's exact imports, labels, patch and update date. Put a clear
+source recommendation first; preserve published alternatives where needed.
+Check current primary sources when changing abilities or macros.
+No new talent builds, DPS rankings or simulation requirements.
+Keep code readable and player text short.
 
-id, class (WoW class token), spec (numeric specialization ID), specName,
-label, optional requiredPage and blockedWhileStealthed,
-evidence {patch, gear, tuning, validation},
-layouts {standard={description}, compact={description, altSlots={...}}},
-build(api, layout, enforce) -> {rows, macros, skipped, lines}.
+GEAR TEMPLATE
 
-Each row is {slot=<action-slot number>, action=<spell or macro record>}.
-Spell records use api.spell(id); macros use api.macro(name, body). Every
-macro referenced by a row must also occur in plan.macros. Optional spells
-must be checked with api.learned; profile compatibility checks run when
-enforce=true. Preview must not write game state. Macro bodies are localized
-through api.spellName and checked against native name/body limits.
+Source: tools/class_data/gear.json; shown under Show details for the current spec.
+Use the highest available quality for every gem and enchant.
+One socket: Indecipherable Eversong Diamond (unique-equipped; one total).
+Remaining normal sockets, including belts: Flawless Quick Lapis — Versatility/Haste.
+Head: Empowered Hex of Leeching — Leech.
+Shoulders: Silvermoon's Mending — Leech.
+Chest: Mark of the Worldsoul — primary stat.
+Legs, Strength/Agility specs: Forest Hunter's Armor Kit — Str/Agi + Stamina.
+Legs, Intellect specs: Sunfire Silk Spellthread — Intellect + Stamina.
+Boots: Shaladrassil's Roots — Leech + Stamina.
+Both rings: Silvermoon's Tenacity — Versatility.
+Weapon: Worldsoul Tenacity — chance to gain Versatility for 15 sec.
+This fixed template is separate from Method's per-spec gear recommendations.
+The addon does not change equipment, gems or enchants.
 
-UI.lua is a lazy setup panel. A.Inspect returns read-only readiness and preview;
-A.Execute is the single guarded command path used by slash and panel actions.
-The panel's events refresh presentation only while the panel is visible.
-Controls.lua reads native keybindings for the preview; it never changes them.
-Unmapped bars are identified rather than assigned guessed keys.
+FILES
 
-All writes occur on an explicit out-of-combat setup/undo command or click. Modules must
-not add combat-event decision logic, timer-driven rotation selection, gear
-changes, talent purchases, keybinding writes, or automatic profile switches.
-Do not infer a class's bars, forms, hero replacements or spell overrides from
-the Rogue module. A new class needs its own checked placement and undo tests.
+Core.lua handles profiles, checks, placement and Undo.
+NativeBar.lua checks the visible main bar and current form.
+Modules/Standard.lua places learned spells and healer mouseover macros.
+Controls.lua reads existing keys. UI.lua shows the preview and setup actions.
+TalentBrowser.lua copies published Mythic+ codes for manual import.
 
-EVIDENCE REQUIRED FOR A RELEASED POLICY
+Edit tools/class_data/*.json, then run:
+python3 tools/generate_standard_profiles.py
 
-- Current spell and talent data, legal talent code, eligible hero tree.
-- Fixed reference gear appropriate to armor, primary stat and weapon rules.
-- The user's tier slots: head, shoulders, chest and legs. Fixed gem placement
-  and quality across that comparison. Keep role-appropriate enchants fixed.
-- Matched control against the published guide build with its recommended
-  macros, plus the best precise control found. Preserve exact inputs.
-- Test the intended human priority, including any omitted pooling or proc
-  exceptions. A policy that requires inaccessible automatic decisions is not
-  represented by an ordinary macro.
-- Macro coupling changes timing: audit timestamps, ordering, failed/blocked
-  actions and any item/GCD interleaving, then test the changed policy.
-- Report physical keys, modifier chords, logical decisions and action tempo
-  separately. Fewer numbered keys alone does not establish a damage gain.
-- Keep boss, multi-target, contact loss and mixed-pull results separate.
-  Add spec-relevant casting/movement models. Generic DungeonSlice is not a
-  complete simulation of a season's dungeon mechanics or player mistakes.
-- Label future patch forecasts separately from the current live model.
-- For healers and tanks, assess role performance and survivability; a DPS
-  ranking alone is insufficient. Do not remove essential utility to win a
-  button-count comparison.
-- State untested classes and invalidated patch/gear assumptions explicitly.
+The generator validates all specs and records source hashes. Only current
+Method Mythic+ builds belong in the source and StandardData.lua.
+The TOC determines which Lua files are loaded and packaged.
 
-CURRENT COVERAGE
+PLACEMENT
 
-Native setup: Trickster Subtlety, Fatebound Assassination, San'layn Blood and
-Deathbringer Blood. Blood is a setup-only layout for Shed Assymetry, with no
-new optimized policy or survival claim. It uses Standard only; profile layouts
-are optional individually and the UI/command help must reflect that.
-Simulation research: all six eligible Rogue spec/hero pairs, with bounded
-talent and policy candidates. This is not every mathematically possible
-talent combination and does not prove a global optimum.
-Other class/spec profiles: not implemented or benchmarked in this version.
-The generic registry is validated with a synthetic non-Rogue test module;
-that test is not a playable or optimized Mage profile.
+Main bar: core spells. Bar 2: utility. Bar 3: extra spells, then racials
+in slots 10–12. Keep positions fixed; skip unlearned optional spells.
+Use base spell buttons so temporary combat replacements can come and go.
+Healer Mouseover is an explicit layout using localized spell names.
+
+Druid requires the spec's form; only that form's main bar changes.
+Rogue setup requires leaving Stealth/Shadow Dance and leaves that bar alone.
+A row's mainButton identifies the visible button even on a form page.
+
+Profile fields: id, class, spec, specName, label, layouts, evidence, build.
+build(api, layout, enforce) returns rows, macros, skipped and lines.
+Rows contain slot, optional mainButton, and an action record.
+Use api.spell(id) or api.macro(name, body); register macros in plan.macros.
+Preview is read-only. All writes go through guarded Apply or Undo.
+Preserve backup recovery even when a profile is retired.
+
+CHECKS AND RELEASE
+
+Check placement, localization, missing spells and recovery in code.
+Test rendering, protected actions and casting in the real WoW client.
+Do not report client acceptance from mocked tests.
+
+Continue approved work on astra and main without waiting for Claude.
+Combined is for later integration of reviewed Astra and Claude contributions.
+New gameplay changes require the owner's acceptance in WoW before main.

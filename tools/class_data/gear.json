@@ -1,0 +1,15 @@
+{
+  "quality": "Highest available quality for every gem and enchant",
+  "gems": "One Indecipherable Eversong Diamond (unique-equipped). Flawless Quick Lapis — Versatility first, Haste second — in remaining normal sockets, including belts",
+  "head": "Empowered Hex of Leeching — Leech",
+  "shoulders": "Silvermoon's Mending — Leech",
+  "chest": "Mark of the Worldsoul — primary stat",
+  "boots": "Shaladrassil's Roots — Leech + Stamina",
+  "rings": "Silvermoon's Tenacity — Versatility on both rings",
+  "weapon": "Worldsoul Tenacity — chance to gain Versatility for 15 sec",
+  "legs": {
+    "STRENGTH": "Forest Hunter's Armor Kit — Strength + Stamina",
+    "AGILITY": "Forest Hunter's Armor Kit — Agility + Stamina",
+    "INTELLECT": "Sunfire Silk Spellthread — Intellect + Stamina"
+  }
+}

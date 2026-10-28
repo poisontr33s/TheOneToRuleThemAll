@@ -1,0 +1,1650 @@
+[
+  {
+    "id": "standard-arcane-mage",
+    "class": "MAGE",
+    "spec": 62,
+    "specName": "Arcane",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/arcane-mage",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Spellslinger Arcane Mythic+ / Raid Cleave Build",
+        "code": "C4DAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMDamxAAAwAAgAmZmZZZmJWAAYbwMzwmlZMjZMmZmZGWYmZmZGAgBAAYmZDAMDAGmZG",
+        "content": "dungeon",
+        "hero": "Spellslinger"
+      },
+      {
+        "label": "Sunfury Pure Raid Cleave / M+ Build",
+        "code": "C4DAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMDamxAAAwAAmZmmlllZAgYDAgNYmZYzyMmZZGjZmZmhFmZmZmBAYAAAGgZGwMAYYmZA",
+        "content": "dungeon",
+        "hero": "Sunfury"
+      }
+    ],
+    "main": [
+      {
+        "id": 30451,
+        "name": "Arcane Blast",
+        "required": true
+      },
+      {
+        "id": 5143,
+        "name": "Arcane Missiles",
+        "required": false
+      },
+      {
+        "id": 44425,
+        "name": "Arcane Barrage",
+        "required": true
+      },
+      {
+        "id": 153626,
+        "name": "Arcane Orb",
+        "required": false
+      },
+      {
+        "id": 1241462,
+        "name": "Arcane Pulse",
+        "required": false,
+        "alternatives": [
+          1449
+        ]
+      },
+      {
+        "id": 365350,
+        "name": "Arcane Surge",
+        "required": false
+      },
+      {
+        "id": 321507,
+        "name": "Touch of the Magi",
+        "required": false
+      },
+      {
+        "id": 12051,
+        "name": "Evocation",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 2139,
+        "name": "Counterspell",
+        "required": true
+      },
+      {
+        "id": 1953,
+        "name": "Blink",
+        "required": true,
+        "alternatives": [
+          212653
+        ]
+      },
+      {
+        "id": 235450,
+        "name": "Prismatic Barrier",
+        "required": false
+      },
+      {
+        "id": 45438,
+        "name": "Ice Block",
+        "required": false,
+        "alternatives": [
+          414658
+        ]
+      },
+      {
+        "id": 342245,
+        "name": "Alter Time",
+        "required": false
+      },
+      {
+        "id": 55342,
+        "name": "Mirror Image",
+        "required": false
+      },
+      {
+        "id": 110959,
+        "name": "Greater Invisibility",
+        "required": false
+      },
+      {
+        "id": 122,
+        "name": "Frost Nova",
+        "required": true
+      },
+      {
+        "id": 475,
+        "name": "Remove Curse",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 30449,
+        "name": "Spellsteal",
+        "required": false
+      },
+      {
+        "id": 31661,
+        "name": "Dragon's Breath",
+        "required": false
+      },
+      {
+        "id": 113724,
+        "name": "Ring of Frost",
+        "required": false,
+        "alternatives": [
+          383121
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 1459,
+        "name": "Arcane Intellect",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 80353,
+        "name": "Time Warp",
+        "required": false
+      },
+      {
+        "id": 190336,
+        "name": "Conjure Refreshment",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Arcane Blast remains a native button so Prismatic Bolt can replace it normally.",
+      "Arcane Surge and Touch of the Magi have separate buttons.",
+      "Arcane Pulse uses its mage spell ID; it is not the Nightborne racial."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/arcane-mage/playstyle-and-rotation",
+      "https://www.method.gg/guides/arcane-mage/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-fire-mage",
+    "class": "MAGE",
+    "spec": 63,
+    "specName": "Fire",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/fire-mage",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Sunfury - with Season 2 Set Bonus",
+        "code": "C8DAAAAAAAAAAAAAAAAAAAAAAYGGLzMzswMzIzMGAAAGAwMz0sstMDAwmZmx2MzMzYBAAAAALmZmZAAgZMmZmZMzsMAMzQGjBMDjB",
+        "content": "dungeon",
+        "hero": "Sunfury"
+      }
+    ],
+    "main": [
+      {
+        "id": 133,
+        "name": "Fireball",
+        "required": true,
+        "alternatives": [
+          431044
+        ]
+      },
+      {
+        "id": 108853,
+        "name": "Fire Blast",
+        "required": false
+      },
+      {
+        "id": 11366,
+        "name": "Pyroblast",
+        "required": false
+      },
+      {
+        "id": 2120,
+        "name": "Flamestrike",
+        "required": false,
+        "alternatives": [
+          1254851
+        ]
+      },
+      {
+        "id": 2948,
+        "name": "Scorch",
+        "required": false
+      },
+      {
+        "id": 190319,
+        "name": "Combustion",
+        "required": false
+      },
+      {
+        "id": 153561,
+        "name": "Meteor",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 2139,
+        "name": "Counterspell",
+        "required": true
+      },
+      {
+        "id": 1953,
+        "name": "Blink",
+        "required": true,
+        "alternatives": [
+          212653
+        ]
+      },
+      {
+        "id": 235313,
+        "name": "Blazing Barrier",
+        "required": false
+      },
+      {
+        "id": 45438,
+        "name": "Ice Block",
+        "required": false,
+        "alternatives": [
+          414658
+        ]
+      },
+      {
+        "id": 342245,
+        "name": "Alter Time",
+        "required": false
+      },
+      {
+        "id": 55342,
+        "name": "Mirror Image",
+        "required": false
+      },
+      {
+        "id": 110959,
+        "name": "Greater Invisibility",
+        "required": false
+      },
+      {
+        "id": 122,
+        "name": "Frost Nova",
+        "required": true
+      },
+      {
+        "id": 475,
+        "name": "Remove Curse",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 30449,
+        "name": "Spellsteal",
+        "required": false
+      },
+      {
+        "id": 31661,
+        "name": "Dragon's Breath",
+        "required": false
+      },
+      {
+        "id": 113724,
+        "name": "Ring of Frost",
+        "required": false,
+        "alternatives": [
+          383121
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 1459,
+        "name": "Arcane Intellect",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 80353,
+        "name": "Time Warp",
+        "required": false
+      },
+      {
+        "id": 190336,
+        "name": "Conjure Refreshment",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Method publishes one Season 2 Sunfury build, with class-utility adjustments left to the player for Mythic+. The same published code is offered for both contexts.",
+      "The Season 1 set-bonus build is deliberately excluded. Method does not publish a current Frostfire import code on this page.",
+      "Frostfire Bolt is supported as the Fireball replacement when that hero tree is selected manually.",
+      "Ground-targeted and enemy-targeted Flamestrike choices share one slot."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/fire-mage/playstyle-and-rotation",
+      "https://www.method.gg/guides/fire-mage/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-frost-mage",
+    "class": "MAGE",
+    "spec": 64,
+    "specName": "Frost",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/frost-mage",
+    "patch": "12.1.5",
+    "updated": "2026-10-16",
+    "builds": [
+      {
+        "label": "Spellslinger Mythic+ Build",
+        "code": "CAEAAAAAAAAAAAAAAAAAAAAAAMzwYZm5BmFMzEzMGzMzMziZmZMjZgAAAzMzssMz0GAAsBAAAWAYbZMzMzwsNMmhFAAAmZDYGGDYGMMA",
+        "content": "dungeon",
+        "hero": "Spellslinger"
+      },
+      {
+        "label": "Frostfire Mythic+ Build",
+        "code": "CAEAAAAAAAAAAAAAAAAAAAAAAMzwYZmZmFMzEzMGzMzMWMzMzMGzsMTzMLzCAAAaBAA2AAAALAstMmZm5BYMjxM2WAAAAzMYmMGwADD",
+        "content": "dungeon",
+        "hero": "Frostfire"
+      }
+    ],
+    "main": [
+      {
+        "id": 116,
+        "name": "Frostbolt",
+        "required": true,
+        "alternatives": [
+          431044
+        ]
+      },
+      {
+        "id": 30455,
+        "name": "Ice Lance",
+        "required": false
+      },
+      {
+        "id": 44614,
+        "name": "Flurry",
+        "required": false
+      },
+      {
+        "id": 84714,
+        "name": "Frozen Orb",
+        "required": false
+      },
+      {
+        "id": 190356,
+        "name": "Blizzard",
+        "required": false,
+        "alternatives": [
+          1248829
+        ]
+      },
+      {
+        "id": 199786,
+        "name": "Glacial Spike",
+        "required": false
+      },
+      {
+        "id": 205021,
+        "name": "Ray of Frost",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 2139,
+        "name": "Counterspell",
+        "required": true
+      },
+      {
+        "id": 1953,
+        "name": "Blink",
+        "required": true,
+        "alternatives": [
+          212653
+        ]
+      },
+      {
+        "id": 11426,
+        "name": "Ice Barrier",
+        "required": false
+      },
+      {
+        "id": 45438,
+        "name": "Ice Block",
+        "required": false,
+        "alternatives": [
+          414658
+        ]
+      },
+      {
+        "id": 342245,
+        "name": "Alter Time",
+        "required": false
+      },
+      {
+        "id": 55342,
+        "name": "Mirror Image",
+        "required": false
+      },
+      {
+        "id": 110959,
+        "name": "Greater Invisibility",
+        "required": false
+      },
+      {
+        "id": 122,
+        "name": "Frost Nova",
+        "required": true
+      },
+      {
+        "id": 475,
+        "name": "Remove Curse",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 30449,
+        "name": "Spellsteal",
+        "required": false
+      },
+      {
+        "id": 31661,
+        "name": "Dragon's Breath",
+        "required": false
+      },
+      {
+        "id": 113724,
+        "name": "Ring of Frost",
+        "required": false,
+        "alternatives": [
+          383121
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 1459,
+        "name": "Arcane Intellect",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 80353,
+        "name": "Time Warp",
+        "required": false
+      },
+      {
+        "id": 190336,
+        "name": "Conjure Refreshment",
+        "required": false
+      },
+      {
+        "id": 235219,
+        "name": "Cold Snap",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Ray of Frost remains native so the Comet Storm follow-up can replace it normally.",
+      "Frostfire Bolt replaces Frostbolt through the selected hero tree.",
+      "Both Blizzard targeting choices share one slot and retain their normal targeting."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/frost-mage/playstyle-and-rotation",
+      "https://www.method.gg/guides/frost-mage/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/class_modules/sc_mage.cpp"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-discipline-priest",
+    "class": "PRIEST",
+    "spec": 256,
+    "specName": "Discipline",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/discipline-priest",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Mythic+ Oracle (Recommended)",
+        "code": "CAQAAAAAAAAAAAAAAAAAAAAAAADsMDWmZMPwMwMbzYmZmZMzAAAAAAAAAAYGWmBzMzgxMD2MNTMAzsghwYWGgxgFAAYMzMjBzAMzMTwM",
+        "content": "dungeon",
+        "hero": "Oracle"
+      },
+      {
+        "label": "Mythic+ Voidweaver",
+        "code": "CAQAAAAAAAAAAAAAAAAAAAAAAADsYegZ2YMmZmhZDzMzMzMAAAAAAAAAAYGWmBzMzgxMD2MNTMYmBABwsNbbgxmBAgxMzMGMDmZwMNDzA",
+        "content": "dungeon",
+        "hero": "Voidweaver"
+      }
+    ],
+    "main": [
+      {
+        "id": 585,
+        "name": "Smite",
+        "required": true
+      },
+      {
+        "id": 47540,
+        "name": "Penance",
+        "required": true
+      },
+      {
+        "id": 17,
+        "name": "Power Word: Shield",
+        "required": true,
+        "helpful": true,
+        "alternatives": [
+          1253593
+        ]
+      },
+      {
+        "id": 2061,
+        "name": "Flash Heal",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 194509,
+        "name": "Power Word: Radiance",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 589,
+        "name": "Shadow Word: Pain",
+        "required": true
+      },
+      {
+        "id": 8092,
+        "name": "Mind Blast",
+        "required": false
+      },
+      {
+        "id": 32379,
+        "name": "Shadow Word: Death",
+        "required": false
+      },
+      {
+        "id": 472433,
+        "name": "Evangelism",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 527,
+        "name": "Purify",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 586,
+        "name": "Fade",
+        "required": true
+      },
+      {
+        "id": 19236,
+        "name": "Desperate Prayer",
+        "required": false
+      },
+      {
+        "id": 33206,
+        "name": "Pain Suppression",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 10060,
+        "name": "Power Infusion",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 121536,
+        "name": "Angelic Feather",
+        "required": false
+      },
+      {
+        "id": 73325,
+        "name": "Leap of Faith",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 32375,
+        "name": "Mass Dispel",
+        "required": false
+      },
+      {
+        "id": 8122,
+        "name": "Psychic Scream",
+        "required": false
+      },
+      {
+        "id": 528,
+        "name": "Dispel Magic",
+        "required": false
+      },
+      {
+        "id": 9484,
+        "name": "Shackle Horror",
+        "required": false
+      },
+      {
+        "id": 605,
+        "name": "Mind Control",
+        "required": false,
+        "alternatives": [
+          205364
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 421453,
+        "name": "Ultimate Penitence",
+        "required": false,
+        "alternatives": [
+          62618
+        ]
+      },
+      {
+        "id": 21562,
+        "name": "Power Word: Fortitude",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 212036,
+        "name": "Mass Resurrection",
+        "required": false
+      },
+      {
+        "id": 453,
+        "name": "Mind Soothe",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Penance stays a native dual-purpose button; it is not forced onto a friendly mouseover.",
+      "Smite, Power Word: Shield and Flash Heal remain native base spells for their temporary or passive upgrades.",
+      "Ultimate Penitence and Power Word: Barrier are mutually exclusive talents sharing one slot.",
+      "Current Shadowfiend and Mindbender talents are passive; no obsolete pet-summon button is added."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/discipline-priest/playstyle-and-rotation",
+      "https://www.method.gg/guides/discipline-priest/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-holy-priest",
+    "class": "PRIEST",
+    "spec": 257,
+    "specName": "Holy",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/holy-priest",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Mythic+ Oracle (Recommended)",
+        "code": "CEQAAAAAAAAAAAAAAAAAAAAAAwYAAAAAAAMzMmlxMjZGDzALzMzMAAAAGzsMzYmZmhhZGAzUAMzCGCjZbAGDsYMzCgmxMjxgZAmZmBGA",
+        "content": "dungeon",
+        "hero": "Oracle"
+      },
+      {
+        "label": "Mythic+ Archon",
+        "code": "CEQAAAAAAAAAAAAAAAAAAAAAAwYAAAAAAgZzwYWGwMzMjZmZsMzMzAAAAYYWmhZmZGmxMD2wMFAYmNzkZzAAjBbGjFANjZGjBzstMADYA",
+        "content": "dungeon",
+        "hero": "Archon"
+      }
+    ],
+    "main": [
+      {
+        "id": 2061,
+        "name": "Flash Heal",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 2050,
+        "name": "Holy Word: Serenity",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 33076,
+        "name": "Prayer of Mending",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 596,
+        "name": "Prayer of Healing",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 34861,
+        "name": "Holy Word: Sanctify",
+        "required": false
+      },
+      {
+        "id": 585,
+        "name": "Smite",
+        "required": true
+      },
+      {
+        "id": 14914,
+        "name": "Holy Fire",
+        "required": false,
+        "alternatives": [
+          589
+        ]
+      },
+      {
+        "id": 132157,
+        "name": "Holy Nova",
+        "required": false
+      },
+      {
+        "id": 120517,
+        "name": "Halo",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 527,
+        "name": "Purify",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 586,
+        "name": "Fade",
+        "required": true
+      },
+      {
+        "id": 19236,
+        "name": "Desperate Prayer",
+        "required": false
+      },
+      {
+        "id": 47788,
+        "name": "Guardian Spirit",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 10060,
+        "name": "Power Infusion",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 121536,
+        "name": "Angelic Feather",
+        "required": false
+      },
+      {
+        "id": 73325,
+        "name": "Leap of Faith",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 32375,
+        "name": "Mass Dispel",
+        "required": false
+      },
+      {
+        "id": 8122,
+        "name": "Psychic Scream",
+        "required": false
+      },
+      {
+        "id": 528,
+        "name": "Dispel Magic",
+        "required": false
+      },
+      {
+        "id": 9484,
+        "name": "Shackle Horror",
+        "required": false
+      },
+      {
+        "id": 605,
+        "name": "Mind Control",
+        "required": false,
+        "alternatives": [
+          205364
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 200183,
+        "name": "Apotheosis",
+        "required": false
+      },
+      {
+        "id": 64843,
+        "name": "Divine Hymn",
+        "required": false
+      },
+      {
+        "id": 21562,
+        "name": "Power Word: Fortitude",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 212036,
+        "name": "Mass Resurrection",
+        "required": false
+      },
+      {
+        "id": 453,
+        "name": "Mind Soothe",
+        "required": false
+      },
+      {
+        "id": 88625,
+        "name": "Holy Word: Chastise",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Only direct friendly-target spells are marked for the optional mouseover layout.",
+      "Sanctify, Halo, Holy Nova and Divine Hymn keep their native targeting.",
+      "Flash Heal keeps its native Benediction upgrade. Holy Fire replaces Shadow Word: Pain when talented."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/holy-priest/playstyle-and-rotation",
+      "https://www.method.gg/guides/holy-priest/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-shadow-priest",
+    "class": "PRIEST",
+    "spec": 258,
+    "specName": "Shadow",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/shadow-priest",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Archon Mythic+",
+        "code": "CIQAAAAAAAAAAAAAAAAAAAAAAMMDzAAAAAAAAAAAAwMLmxMbjxMzyMGzw2MzYmZGbIzYxMNAzAMzmZY2MAkxYBAzMgxMzMmNmZbZAmBDA",
+        "content": "dungeon",
+        "hero": "Archon"
+      },
+      {
+        "label": "Voidweaver Mythic+",
+        "code": "CIQAAAAAAAAAAAAAAAAAAAAAAMMDDAAAAAAAAAAAAmZxMmZbmxMzyMzYG2mZGzMzYDZGLmpBYmZGAIAz2stAmNGAYwYmZGzGzgZGMDGA",
+        "content": "dungeon",
+        "hero": "Voidweaver"
+      }
+    ],
+    "main": [
+      {
+        "id": 15407,
+        "name": "Mind Flay",
+        "required": true
+      },
+      {
+        "id": 335467,
+        "name": "Shadow Word: Madness",
+        "required": false
+      },
+      {
+        "id": 8092,
+        "name": "Mind Blast",
+        "required": false
+      },
+      {
+        "id": 34914,
+        "name": "Vampiric Touch",
+        "required": true
+      },
+      {
+        "id": 589,
+        "name": "Shadow Word: Pain",
+        "required": true
+      },
+      {
+        "id": 1227280,
+        "name": "Tentacle Slam",
+        "required": false
+      },
+      {
+        "id": 32379,
+        "name": "Shadow Word: Death",
+        "required": false
+      },
+      {
+        "id": 228260,
+        "name": "Voidform",
+        "required": false
+      },
+      {
+        "id": 120644,
+        "name": "Halo",
+        "required": false,
+        "alternatives": [
+          263165
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 15487,
+        "name": "Silence",
+        "required": false
+      },
+      {
+        "id": 586,
+        "name": "Fade",
+        "required": true
+      },
+      {
+        "id": 19236,
+        "name": "Desperate Prayer",
+        "required": false
+      },
+      {
+        "id": 47585,
+        "name": "Dispersion",
+        "required": false
+      },
+      {
+        "id": 17,
+        "name": "Power Word: Shield",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 2061,
+        "name": "Flash Heal",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 121536,
+        "name": "Angelic Feather",
+        "required": false
+      },
+      {
+        "id": 73325,
+        "name": "Leap of Faith",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 32375,
+        "name": "Mass Dispel",
+        "required": false
+      },
+      {
+        "id": 8122,
+        "name": "Psychic Scream",
+        "required": false
+      },
+      {
+        "id": 528,
+        "name": "Dispel Magic",
+        "required": false
+      },
+      {
+        "id": 213634,
+        "name": "Purify Disease",
+        "required": false,
+        "helpful": true
+      }
+    ],
+    "extra": [
+      {
+        "id": 10060,
+        "name": "Power Infusion",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 21562,
+        "name": "Power Word: Fortitude",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 453,
+        "name": "Mind Soothe",
+        "required": false
+      },
+      {
+        "id": 9484,
+        "name": "Shackle Horror",
+        "required": false
+      },
+      {
+        "id": 605,
+        "name": "Mind Control",
+        "required": false,
+        "alternatives": [
+          205364
+        ]
+      },
+      {
+        "id": 15286,
+        "name": "Vampiric Embrace",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Archon Halo and Voidweaver Void Torrent share one hero-ability slot.",
+      "Mind Blast, Mind Flay and Voidform stay native so Void Blast, Mind Flay: Insanity and Void Volley can replace their own base buttons.",
+      "Shadow Word: Madness uses the current spell name. Shadowfiend and Mindbender are passive in this patch."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/shadow-priest/playstyle-and-rotation",
+      "https://www.method.gg/guides/shadow-priest/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-affliction-warlock",
+    "class": "WARLOCK",
+    "spec": 265,
+    "specName": "Affliction",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/affliction-warlock",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Multi Target / Mythic+ Soul Harvester (Recommended)",
+        "code": "CkQAAAAAAAAAAAAAAAAAAAAAAwMMzoZzM2mZmZWGAAwMzsMbzMzyYAgx2yADYCmhtADbDAAAGAAAzMjZMzsNGzgZmZGDzMzAAMDMA",
+        "content": "dungeon",
+        "hero": "Soul Harvester"
+      }
+    ],
+    "main": [
+      {
+        "id": 686,
+        "name": "Shadow Bolt",
+        "required": true,
+        "alternatives": [
+          198590
+        ]
+      },
+      {
+        "id": 980,
+        "name": "Agony",
+        "required": false
+      },
+      {
+        "id": 172,
+        "name": "Corruption",
+        "required": true,
+        "alternatives": [
+          445468
+        ]
+      },
+      {
+        "id": 1259790,
+        "name": "Unstable Affliction",
+        "required": false
+      },
+      {
+        "id": 27243,
+        "name": "Seed of Corruption",
+        "required": false
+      },
+      {
+        "id": 48181,
+        "name": "Haunt",
+        "required": false
+      },
+      {
+        "id": 1257052,
+        "name": "Dark Harvest",
+        "required": false
+      },
+      {
+        "id": 205180,
+        "name": "Summon Darkglare",
+        "required": false
+      },
+      {
+        "id": 442726,
+        "name": "Malevolence",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 119898,
+        "name": "Command Demon",
+        "required": false
+      },
+      {
+        "id": 5782,
+        "name": "Fear",
+        "required": true
+      },
+      {
+        "id": 6789,
+        "name": "Mortal Coil",
+        "required": false
+      },
+      {
+        "id": 30283,
+        "name": "Shadowfury",
+        "required": false
+      },
+      {
+        "id": 104773,
+        "name": "Unending Resolve",
+        "required": true
+      },
+      {
+        "id": 108416,
+        "name": "Dark Pact",
+        "required": false
+      },
+      {
+        "id": 111400,
+        "name": "Burning Rush",
+        "required": false
+      },
+      {
+        "id": 48020,
+        "name": "Demonic Circle: Teleport",
+        "required": false
+      },
+      {
+        "id": 48018,
+        "name": "Demonic Circle",
+        "required": false
+      },
+      {
+        "id": 385899,
+        "name": "Soulburn",
+        "required": false
+      },
+      {
+        "id": 20707,
+        "name": "Soulstone",
+        "required": false
+      },
+      {
+        "id": 1271748,
+        "name": "Blight of Weakness",
+        "required": false,
+        "alternatives": [
+          1271802
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 691,
+        "name": "Summon Felhunter",
+        "required": false
+      },
+      {
+        "id": 697,
+        "name": "Summon Voidwalker",
+        "required": false
+      },
+      {
+        "id": 688,
+        "name": "Summon Imp",
+        "required": false
+      },
+      {
+        "id": 6201,
+        "name": "Create Healthstone",
+        "required": false
+      },
+      {
+        "id": 111771,
+        "name": "Demonic Gateway",
+        "required": false
+      },
+      {
+        "id": 698,
+        "name": "Ritual of Summoning",
+        "required": false
+      },
+      {
+        "id": 333889,
+        "name": "Fel Domination",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Unstable Affliction uses the current cast spell, not the obsolete ID linked in the guide.",
+      "Shadow Bolt and Drain Soul share their filler slot; Malefic Grasp is their native temporary replacement during Darkglare.",
+      "Wither replaces Corruption for Hellcaller. Malevolence has its own button.",
+      "Pet summons, Command Demon, Soulstone and Soulburn remain independent player-controlled actions."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/affliction-warlock/playstyle-and-rotation",
+      "https://www.method.gg/guides/affliction-warlock/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "https://www.method.gg/guides/destruction-warlock/playstyle-and-rotation"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-demonology-warlock",
+    "class": "WARLOCK",
+    "spec": 266,
+    "specName": "Demonology",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/demonology-warlock",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Diabolist Mythic+/AoE/Raid Cleave",
+        "code": "CoQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjxmZGzyAAAAAAAAGzYYBGYb0GNsYYmZZ2mZmxMAwMMmZmZAGzYMbAAgZmZmZGzwyMGwA",
+        "content": "dungeon",
+        "hero": "Diabolist"
+      },
+      {
+        "label": "Soul Harvester Mythic+/AoE",
+        "code": "CoQAAAAAAAAAAAAAAAAAAAAAAwMzMzoZjxmZGzyAAAAAAAMWWGYADYGWCZsZYmZZ2mZmxMAwMMmZAmZGzYMbAAgZmZmZGzwyMGwA",
+        "content": "dungeon",
+        "hero": "Soul Harvester"
+      }
+    ],
+    "main": [
+      {
+        "id": 686,
+        "name": "Shadow Bolt",
+        "required": true
+      },
+      {
+        "id": 264178,
+        "name": "Demonbolt",
+        "required": true
+      },
+      {
+        "id": 105174,
+        "name": "Hand of Gul'dan",
+        "required": false
+      },
+      {
+        "id": 104316,
+        "name": "Call Dreadstalkers",
+        "required": false
+      },
+      {
+        "id": 196277,
+        "name": "Implosion",
+        "required": false,
+        "alternatives": [
+          264130
+        ]
+      },
+      {
+        "id": 265187,
+        "name": "Summon Demonic Tyrant",
+        "required": false
+      },
+      {
+        "id": 1276672,
+        "name": "Summon Doomguard",
+        "required": false
+      },
+      {
+        "id": 1276452,
+        "name": "Grimoire: Imp Lord",
+        "required": false,
+        "alternatives": [
+          1276467
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 119898,
+        "name": "Command Demon",
+        "required": false
+      },
+      {
+        "id": 5782,
+        "name": "Fear",
+        "required": true
+      },
+      {
+        "id": 6789,
+        "name": "Mortal Coil",
+        "required": false
+      },
+      {
+        "id": 30283,
+        "name": "Shadowfury",
+        "required": false
+      },
+      {
+        "id": 104773,
+        "name": "Unending Resolve",
+        "required": true
+      },
+      {
+        "id": 108416,
+        "name": "Dark Pact",
+        "required": false
+      },
+      {
+        "id": 111400,
+        "name": "Burning Rush",
+        "required": false
+      },
+      {
+        "id": 48020,
+        "name": "Demonic Circle: Teleport",
+        "required": false
+      },
+      {
+        "id": 48018,
+        "name": "Demonic Circle",
+        "required": false
+      },
+      {
+        "id": 385899,
+        "name": "Soulburn",
+        "required": false
+      },
+      {
+        "id": 20707,
+        "name": "Soulstone",
+        "required": false
+      },
+      {
+        "id": 1271748,
+        "name": "Blight of Weakness",
+        "required": false,
+        "alternatives": [
+          1271802
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 30146,
+        "name": "Summon Felguard",
+        "required": false
+      },
+      {
+        "id": 697,
+        "name": "Summon Voidwalker",
+        "required": false
+      },
+      {
+        "id": 688,
+        "name": "Summon Imp",
+        "required": false
+      },
+      {
+        "id": 6201,
+        "name": "Create Healthstone",
+        "required": false
+      },
+      {
+        "id": 111771,
+        "name": "Demonic Gateway",
+        "required": false
+      },
+      {
+        "id": 698,
+        "name": "Ritual of Summoning",
+        "required": false
+      },
+      {
+        "id": 333889,
+        "name": "Fel Domination",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Implosion and Power Siphon are current choice-node alternatives.",
+      "Grimoire: Imp Lord and Grimoire: Fel Ravager are current choice-node alternatives.",
+      "Summon Vilefiend is passive in this patch and is not added as an active cast.",
+      "Doomguard and Grimoire use current cast IDs rather than obsolete or passive guide links."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/demonology-warlock/playstyle-and-rotation",
+      "https://www.method.gg/guides/demonology-warlock/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc",
+      "https://www.method.gg/guides/destruction-warlock/playstyle-and-rotation"
+    ],
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-destruction-warlock",
+    "class": "WARLOCK",
+    "spec": 267,
+    "specName": "Destruction",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/destruction-warlock",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Hellcaller (Mythic+)",
+        "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZbmZmZxMzyyYAAwMGzMzmFYgZxoxMAmtYjBAAGzwAAgZGwMmZ2AAAMzMDAAMM",
+        "content": "dungeon",
+        "hero": "Hellcaller"
+      },
+      {
+        "label": "Diabolist (AoE)",
+        "code": "CsQAAAAAAAAAAAAAAAAAAAAAAwMmZmpZbMMzMmtZbmZmZxMzyyYAAwMGzMzGYMjhFyAbDb0YhBAAGzwAAMzAwMmZ2AAAMzMDAAMM",
+        "content": "dungeon",
+        "hero": "Diabolist"
+      }
+    ],
+    "main": [
+      {
+        "id": 29722,
+        "name": "Incinerate",
+        "required": true
+      },
+      {
+        "id": 348,
+        "name": "Immolate",
+        "required": true,
+        "alternatives": [
+          445468
+        ]
+      },
+      {
+        "id": 17962,
+        "name": "Conflagrate",
+        "required": false
+      },
+      {
+        "id": 116858,
+        "name": "Chaos Bolt",
+        "required": false
+      },
+      {
+        "id": 5740,
+        "name": "Rain of Fire",
+        "required": false,
+        "alternatives": [
+          1214467
+        ]
+      },
+      {
+        "id": 17877,
+        "name": "Shadowburn",
+        "required": false
+      },
+      {
+        "id": 6353,
+        "name": "Soul Fire",
+        "required": false
+      },
+      {
+        "id": 80240,
+        "name": "Havoc",
+        "required": false
+      },
+      {
+        "id": 1122,
+        "name": "Summon Infernal",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 119898,
+        "name": "Command Demon",
+        "required": false
+      },
+      {
+        "id": 5782,
+        "name": "Fear",
+        "required": true
+      },
+      {
+        "id": 6789,
+        "name": "Mortal Coil",
+        "required": false
+      },
+      {
+        "id": 30283,
+        "name": "Shadowfury",
+        "required": false
+      },
+      {
+        "id": 104773,
+        "name": "Unending Resolve",
+        "required": true
+      },
+      {
+        "id": 108416,
+        "name": "Dark Pact",
+        "required": false
+      },
+      {
+        "id": 111400,
+        "name": "Burning Rush",
+        "required": false
+      },
+      {
+        "id": 48020,
+        "name": "Demonic Circle: Teleport",
+        "required": false
+      },
+      {
+        "id": 48018,
+        "name": "Demonic Circle",
+        "required": false
+      },
+      {
+        "id": 385899,
+        "name": "Soulburn",
+        "required": false
+      },
+      {
+        "id": 20707,
+        "name": "Soulstone",
+        "required": false
+      },
+      {
+        "id": 1271748,
+        "name": "Blight of Weakness",
+        "required": false,
+        "alternatives": [
+          1271802
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "id": 442726,
+        "name": "Malevolence",
+        "required": false
+      },
+      {
+        "id": 691,
+        "name": "Summon Felhunter",
+        "required": false
+      },
+      {
+        "id": 697,
+        "name": "Summon Voidwalker",
+        "required": false
+      },
+      {
+        "id": 688,
+        "name": "Summon Imp",
+        "required": false
+      },
+      {
+        "id": 6201,
+        "name": "Create Healthstone",
+        "required": false
+      },
+      {
+        "id": 111771,
+        "name": "Demonic Gateway",
+        "required": false
+      },
+      {
+        "id": 698,
+        "name": "Ritual of Summoning",
+        "required": false
+      },
+      {
+        "id": 333889,
+        "name": "Fel Domination",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Wither replaces Immolate for Hellcaller. Malevolence has a separate extra-bar slot.",
+      "Ground-targeted and enemy-targeted Rain of Fire choices share one slot.",
+      "Method labels one cleave code Diabolist but duplicates its Hellcaller single-target code; that inconsistent entry is excluded.",
+      "Soul Fire uses the active current spell ID."
+    ],
+    "spellSources": [
+      "https://www.method.gg/guides/destruction-warlock/playstyle-and-rotation",
+      "https://www.method.gg/guides/destruction-warlock/talents",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "https://raw.githubusercontent.com/simulationcraft/simc/12aa5dc041b0/engine/dbc/generated/trait_data.inc"
+    ],
+    "primaryStat": "INTELLECT"
+  }
+]

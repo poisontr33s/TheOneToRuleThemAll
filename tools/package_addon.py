@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the install ZIP after a successful test run; no research archive needed."""
+"""Build the install ZIP from the TOC and current instructions."""
 
 import hashlib
 import json
@@ -38,16 +38,18 @@ def build():
             "Packaging requires a nonempty, fully passing test suite.")
     require(summary.get("version") == version, "Tested version does not match the TOC.")
 
-    # Keep developer tooling and generated test output out of the installed addon.
+    # Only ship loaded resources and current player instructions.
+    resources = {line.strip().replace("\\", "/") for line in toc.splitlines()
+                 if line.strip() and not line.lstrip().startswith("#")}
+    resources.update({TOC.name, "START-HERE.txt", "CHANGELOG.txt", "EXTENDING.txt"})
     files = []
-    for path in sorted(ADDON.rglob("*")):
-        relative = path.relative_to(ADDON)
-        if "validation" in relative.parts or any(part.startswith(".") for part in relative.parts):
-            continue
-        if path.is_file() and path.suffix.lower() in {".toc", ".lua", ".txt"}:
-            require(not path.is_symlink() and path.resolve().is_relative_to(ADDON.resolve()),
-                    "Addon files must be regular files within the addon directory.")
-            files.append(path)
+    for resource in sorted(resources):
+        path = ADDON / resource
+        require(not Path(resource).is_absolute() and ".." not in Path(resource).parts,
+                "Addon resources must stay within the addon directory.")
+        require(path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(ADDON.resolve()),
+                f"Missing or linked addon resource: {resource}")
+        files.append(path)
     included = {path.relative_to(ADDON).as_posix() for path in files}
     require(TOC.name in included, "The install package is missing its TOC.")
     for line in toc.splitlines():

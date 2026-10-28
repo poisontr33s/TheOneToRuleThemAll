@@ -1,0 +1,1841 @@
+[
+  {
+    "id": "standard-blood-dk",
+    "class": "DEATHKNIGHT",
+    "spec": 250,
+    "specName": "Blood",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/blood-death-knight",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "San’layn Mythic+",
+        "content": "dungeon",
+        "hero": "San'layn",
+        "code": "CoPAAAAAAAAAAAAAAAAAAAAAAwMzyMzMmxMzMMLzMz0MLGjxMGAAAAwMmZmZmZYGDAYmZmZGAAADMwMW0YZBklBsBYGzAAAmZghB"
+      },
+      {
+        "label": "Deathbringer Mythic+",
+        "content": "dungeon",
+        "hero": "Deathbringer",
+        "code": "CoPAAAAAAAAAAAAAAAAAAAAAAwMzyMzwMmZmhZZmZmmZxYmxMGAAAAwMmZmZmZYGDAYmZmZGAAgxsNwAWC2GmADLAmxMAAMzAYYA"
+      }
+    ],
+    "main": [
+      {
+        "id": 206930,
+        "name": "Heart Strike",
+        "required": true
+      },
+      {
+        "id": 195182,
+        "name": "Marrowrend",
+        "required": true
+      },
+      {
+        "id": 49998,
+        "name": "Death Strike",
+        "required": true
+      },
+      {
+        "id": 50842,
+        "name": "Blood Boil",
+        "required": true
+      },
+      {
+        "id": 43265,
+        "name": "Death and Decay",
+        "required": false
+      },
+      {
+        "id": 49028,
+        "name": "Dancing Rune Weapon",
+        "required": false
+      },
+      {
+        "id": 47528,
+        "name": "Mind Freeze",
+        "required": false
+      },
+      {
+        "id": 48265,
+        "name": "Death's Advance",
+        "required": false
+      },
+      {
+        "id": 48707,
+        "name": "Anti-Magic Shell",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 48792,
+        "name": "Icebound Fortitude",
+        "required": false
+      },
+      {
+        "id": 55233,
+        "name": "Vampiric Blood",
+        "required": false
+      },
+      {
+        "id": 49039,
+        "name": "Lichborne",
+        "required": false
+      },
+      {
+        "id": 49576,
+        "name": "Death Grip",
+        "required": false
+      },
+      {
+        "id": 207167,
+        "name": "Blinding Sleet",
+        "required": false
+      },
+      {
+        "id": 212552,
+        "name": "Wraith Walk",
+        "required": false
+      },
+      {
+        "id": 61999,
+        "name": "Raise Ally",
+        "required": false
+      },
+      {
+        "id": 48743,
+        "name": "Death Pact",
+        "required": false
+      },
+      {
+        "id": 195292,
+        "name": "Death's Caress",
+        "required": false
+      },
+      {
+        "id": 56222,
+        "name": "Dark Command",
+        "required": false
+      },
+      {
+        "id": 51052,
+        "name": "Anti-Magic Zone",
+        "required": false
+      },
+      {
+        "id": 221562,
+        "name": "Asphyxiate",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 439843,
+        "name": "Reaper's Mark",
+        "required": false
+      },
+      {
+        "id": 1263824,
+        "name": "Consumption",
+        "required": false
+      },
+      {
+        "id": 46585,
+        "name": "Raise Dead",
+        "required": false
+      },
+      {
+        "id": 1263569,
+        "name": "Abomination Limb",
+        "required": false,
+        "alternatives": [
+          108199
+        ]
+      },
+      {
+        "id": 45524,
+        "name": "Chains of Ice",
+        "required": false
+      },
+      {
+        "id": 111673,
+        "name": "Control Undead",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Heart Strike and Marrowrend remain native buttons for Vampiric Strike and Exterminate overrides.",
+      "Consumption retains its native empower control. Defensive and offensive cooldowns remain separate buttons."
+    ],
+    "spellSources": {
+      "Heart Strike": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Marrowrend": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Death Strike": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Blood Boil": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Death and Decay": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Dancing Rune Weapon": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Mind Freeze": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death's Advance": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Anti-Magic Shell": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Icebound Fortitude": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Vampiric Blood": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Lichborne": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Death Grip": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Blinding Sleet": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Wraith Walk": "https://www.method.gg/guides/blood-death-knight/talents",
+      "Raise Ally": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death Pact": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death's Caress": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Dark Command": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Anti-Magic Zone": "https://www.method.gg/guides/blood-death-knight/talents",
+      "Asphyxiate": "https://www.method.gg/guides/blood-death-knight/talents",
+      "Reaper's Mark": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Consumption": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Raise Dead": "https://www.method.gg/guides/blood-death-knight/playstyle-and-rotation",
+      "Abomination Limb": "https://www.method.gg/guides/blood-death-knight/talents",
+      "Gorefiend's Grasp": "https://www.method.gg/guides/blood-death-knight/talents",
+      "Chains of Ice": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Control Undead": "https://www.method.gg/guides/blood-death-knight/talents"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-frost-dk",
+    "class": "DEATHKNIGHT",
+    "spec": 251,
+    "specName": "Frost",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/frost-death-knight",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "[Mythic+] Frostbane",
+        "content": "dungeon",
+        "hero": "Deathbringer",
+        "code": "CsPAAAAAAAAAAAAAAAAAAAAAAMAzMMjZAz2MzMzMLzMjMjxYYmxgZmZmZmZmZAAAAAAAAAYMbDMgFwywEyYBzMmZGYAYYmBYmBD"
+      }
+    ],
+    "main": [
+      {
+        "id": 49020,
+        "name": "Obliterate",
+        "required": true
+      },
+      {
+        "id": 49143,
+        "name": "Frost Strike",
+        "required": true
+      },
+      {
+        "id": 49184,
+        "name": "Howling Blast",
+        "required": true
+      },
+      {
+        "id": 207230,
+        "name": "Frostscythe",
+        "required": false
+      },
+      {
+        "id": 194913,
+        "name": "Glacial Advance",
+        "required": false
+      },
+      {
+        "id": 51271,
+        "name": "Pillar of Frost",
+        "required": false
+      },
+      {
+        "id": 47528,
+        "name": "Mind Freeze",
+        "required": false
+      },
+      {
+        "id": 48265,
+        "name": "Death's Advance",
+        "required": false
+      },
+      {
+        "id": 48707,
+        "name": "Anti-Magic Shell",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 48792,
+        "name": "Icebound Fortitude",
+        "required": false
+      },
+      {
+        "id": 49998,
+        "name": "Death Strike",
+        "required": false
+      },
+      {
+        "id": 49039,
+        "name": "Lichborne",
+        "required": false
+      },
+      {
+        "id": 49576,
+        "name": "Death Grip",
+        "required": false
+      },
+      {
+        "id": 207167,
+        "name": "Blinding Sleet",
+        "required": false
+      },
+      {
+        "id": 212552,
+        "name": "Wraith Walk",
+        "required": false
+      },
+      {
+        "id": 61999,
+        "name": "Raise Ally",
+        "required": false
+      },
+      {
+        "id": 48743,
+        "name": "Death Pact",
+        "required": false
+      },
+      {
+        "id": 51052,
+        "name": "Anti-Magic Zone",
+        "required": false
+      },
+      {
+        "id": 45524,
+        "name": "Chains of Ice",
+        "required": false
+      },
+      {
+        "id": 221562,
+        "name": "Asphyxiate",
+        "required": false
+      },
+      {
+        "id": 111673,
+        "name": "Control Undead",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 1249658,
+        "name": "Breath of Sindragosa",
+        "required": false
+      },
+      {
+        "id": 279302,
+        "name": "Frostwyrm's Fury",
+        "required": false
+      },
+      {
+        "id": 47568,
+        "name": "Empower Rune Weapon",
+        "required": false
+      },
+      {
+        "id": 46585,
+        "name": "Raise Dead",
+        "required": false
+      },
+      {
+        "id": 439843,
+        "name": "Reaper's Mark",
+        "required": false
+      },
+      {
+        "id": 43265,
+        "name": "Death and Decay",
+        "required": false
+      },
+      {
+        "id": 343294,
+        "name": "Soul Reaper",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Published builds are Deathbringer; the guide does not publish a separate Rider import in this revision.",
+      "Use the current Breath of Sindragosa action. Remorseless Winter from Frozen Dominion is not an extra cooldown button.",
+      "Frost Strike and Glacial Advance have separate positions because both may be learned."
+    ],
+    "spellSources": {
+      "Obliterate": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Frost Strike": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Howling Blast": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Frostscythe": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Glacial Advance": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Pillar of Frost": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Mind Freeze": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death's Advance": "https://www.method.gg/guides/frost-death-knight/playstyle-and-rotation",
+      "Anti-Magic Shell": "https://www.method.gg/guides/frost-death-knight/playstyle-and-rotation",
+      "Icebound Fortitude": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death Strike": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Lichborne": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Death Grip": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Blinding Sleet": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Wraith Walk": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Raise Ally": "https://www.method.gg/guides/frost-death-knight/playstyle-and-rotation",
+      "Death Pact": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Anti-Magic Zone": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Chains of Ice": "https://www.method.gg/guides/frost-death-knight/playstyle-and-rotation",
+      "Asphyxiate": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Control Undead": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Breath of Sindragosa": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Frostwyrm's Fury": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Empower Rune Weapon": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Raise Dead": "https://www.method.gg/guides/frost-death-knight/playstyle-and-rotation",
+      "Reaper's Mark": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Death and Decay": "https://www.method.gg/guides/frost-death-knight/talents",
+      "Soul Reaper": "https://www.method.gg/guides/frost-death-knight/talents"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-unholy-dk",
+    "class": "DEATHKNIGHT",
+    "spec": 252,
+    "specName": "Unholy",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/unholy-death-knight",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "[Mythic+] San’layn Blightfall",
+        "content": "dungeon",
+        "hero": "San'layn",
+        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAYmhZMGDz2MzMTzyMzYMjBAAAAAAAg5BGDDAWmhZ2MzYMjBGYGbassAYbiNMgZAMzMzMmBzMYMjB"
+      },
+      {
+        "label": "[Raid/Mythic+] Riders Cleave",
+        "content": "dungeon",
+        "hero": "Rider of the Apocalypse",
+        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAwMjZMDDz2MzMTzmZmZMjBAAAAAAAgZGGDAWmxMz2MzYMDYzsZYIDMbM0YBDYGAGzMjZAmZmxYA"
+      },
+      {
+        "label": "[Raid/Mythic+] Riders AoE",
+        "content": "dungeon",
+        "hero": "Rider of the Apocalypse",
+        "code": "CwPAAAAAAAAAAAAAAAAAAAAAAAYmhZMDDz2MzMTzmxMzMjBAAAAAAAgZGzYAwyMmZ2MzYMDYzsZYIDMbM0YBDYGAGzMjZAmZmxYA"
+      }
+    ],
+    "main": [
+      {
+        "id": 85948,
+        "name": "Festering Strike",
+        "required": true
+      },
+      {
+        "id": 55090,
+        "name": "Scourge Strike",
+        "required": true
+      },
+      {
+        "id": 47541,
+        "name": "Death Coil",
+        "required": true
+      },
+      {
+        "id": 207317,
+        "name": "Epidemic",
+        "required": false
+      },
+      {
+        "id": 77575,
+        "name": "Outbreak",
+        "required": false
+      },
+      {
+        "id": 1233448,
+        "name": "Dark Transformation",
+        "required": false
+      },
+      {
+        "id": 47528,
+        "name": "Mind Freeze",
+        "required": false
+      },
+      {
+        "id": 48265,
+        "name": "Death's Advance",
+        "required": false
+      },
+      {
+        "id": 48707,
+        "name": "Anti-Magic Shell",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 48792,
+        "name": "Icebound Fortitude",
+        "required": false
+      },
+      {
+        "id": 49998,
+        "name": "Death Strike",
+        "required": false
+      },
+      {
+        "id": 49039,
+        "name": "Lichborne",
+        "required": false
+      },
+      {
+        "id": 49576,
+        "name": "Death Grip",
+        "required": false
+      },
+      {
+        "id": 207167,
+        "name": "Blinding Sleet",
+        "required": false
+      },
+      {
+        "id": 212552,
+        "name": "Wraith Walk",
+        "required": false
+      },
+      {
+        "id": 61999,
+        "name": "Raise Ally",
+        "required": false
+      },
+      {
+        "id": 48743,
+        "name": "Death Pact",
+        "required": false
+      },
+      {
+        "id": 51052,
+        "name": "Anti-Magic Zone",
+        "required": false
+      },
+      {
+        "id": 45524,
+        "name": "Chains of Ice",
+        "required": false
+      },
+      {
+        "id": 221562,
+        "name": "Asphyxiate",
+        "required": false
+      },
+      {
+        "id": 111673,
+        "name": "Control Undead",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 42650,
+        "name": "Army of the Dead",
+        "required": false
+      },
+      {
+        "id": 1247378,
+        "name": "Putrefy",
+        "required": false
+      },
+      {
+        "id": 43265,
+        "name": "Death and Decay",
+        "required": false
+      },
+      {
+        "id": 343294,
+        "name": "Soul Reaper",
+        "required": false
+      },
+      {
+        "id": 46584,
+        "name": "Raise Dead",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Festering Strike, Scourge Strike, Death Coil and Epidemic retain their native proc and talent replacements.",
+      "Dark Transformation uses the current active spell and its native Blightfall transition.",
+      "Army of the Dead, Putrefy and Dark Transformation are separate manual actions."
+    ],
+    "spellSources": {
+      "Festering Strike": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Scourge Strike": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Death Coil": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Epidemic": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Outbreak": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Dark Transformation": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Mind Freeze": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Death's Advance": "https://www.method.gg/guides/unholy-death-knight/playstyle-and-rotation",
+      "Anti-Magic Shell": "https://www.method.gg/guides/unholy-death-knight/playstyle-and-rotation",
+      "Icebound Fortitude": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Death Strike": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Lichborne": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Death Grip": "https://www.method.gg/guides/unholy-death-knight/interface-and-macros",
+      "Blinding Sleet": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Wraith Walk": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Raise Ally": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Death Pact": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Anti-Magic Zone": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Chains of Ice": "https://www.method.gg/guides/unholy-death-knight/playstyle-and-rotation",
+      "Asphyxiate": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Control Undead": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Army of the Dead": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Putrefy": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Death and Decay": "https://www.method.gg/guides/unholy-death-knight/talents",
+      "Soul Reaper": "https://www.method.gg/guides/unholy-death-knight/playstyle-and-rotation",
+      "Raise Dead": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-holy-paladin",
+    "class": "PALADIN",
+    "spec": 65,
+    "specName": "Holy",
+    "role": "HEALER",
+    "guide": "https://www.method.gg/guides/holy-paladin",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Mythic+ Build",
+        "content": "dungeon",
+        "hero": "Herald of the Sun",
+        "code": "CEEAAAAAAAAAAAAAAAAAAAAAAAAAALAwMAADWGzMzMjZmZBGDLjNzsY0EDjZmhxslBgBgNwGLzMzsMbzMzWDAAAwCLMzwmHAmxgZAAMzwMGjGA"
+      }
+    ],
+    "main": [
+      {
+        "id": 20473,
+        "name": "Holy Shock",
+        "required": true
+      },
+      {
+        "id": 19750,
+        "name": "Flash of Light",
+        "required": true,
+        "helpful": true
+      },
+      {
+        "id": 85673,
+        "name": "Word of Glory",
+        "required": true,
+        "helpful": true,
+        "alternatives": [
+          156322
+        ]
+      },
+      {
+        "id": 85222,
+        "name": "Light of Dawn",
+        "required": false
+      },
+      {
+        "id": 20271,
+        "name": "Judgment",
+        "required": true
+      },
+      {
+        "id": 82326,
+        "name": "Holy Light",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 375576,
+        "name": "Divine Toll",
+        "required": false,
+        "alternatives": [
+          114165
+        ]
+      },
+      {
+        "id": 190784,
+        "name": "Divine Steed",
+        "required": false
+      },
+      {
+        "id": 200025,
+        "name": "Beacon of Virtue",
+        "required": false,
+        "helpful": true,
+        "alternatives": [
+          156910
+        ]
+      }
+    ],
+    "utility": [
+      {
+        "id": 498,
+        "name": "Divine Protection",
+        "required": false
+      },
+      {
+        "id": 642,
+        "name": "Divine Shield",
+        "required": false
+      },
+      {
+        "id": 1022,
+        "name": "Blessing of Protection",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 1044,
+        "name": "Blessing of Freedom",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 6940,
+        "name": "Blessing of Sacrifice",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 633,
+        "name": "Lay on Hands",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 4987,
+        "name": "Cleanse",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 115750,
+        "name": "Blinding Light",
+        "required": false
+      },
+      {
+        "id": 31821,
+        "name": "Aura Mastery",
+        "required": false
+      },
+      {
+        "id": 31884,
+        "name": "Avenging Wrath",
+        "required": false,
+        "alternatives": [
+          216331
+        ]
+      },
+      {
+        "id": 53563,
+        "name": "Beacon of Light",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 853,
+        "name": "Hammer of Justice",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 53600,
+        "name": "Shield of the Righteous",
+        "required": false
+      },
+      {
+        "id": 432459,
+        "name": "Holy Bulwark",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 391054,
+        "name": "Intercession",
+        "required": false
+      },
+      {
+        "id": 465,
+        "name": "Devotion Aura",
+        "required": false
+      }
+    ],
+    "notes": [
+      "The three published imports use Herald of the Sun; Lightsmith is discussed but has no separate published import here.",
+      "Holy Shock and Divine Toll keep native friendly or hostile targeting. Optional healing helpers must not force those buttons to heal.",
+      "Rebuke and Repentance are omitted: the guide explicitly records their removal from Holy in Midnight.",
+      "Beacon of Faith and Beacon of Virtue share a choice slot; Beacon of Light has its own slot. Holy Bulwark uses the native Sacred Weapon transition."
+    ],
+    "spellSources": {
+      "Holy Shock": "https://www.method.gg/guides/holy-paladin/talents",
+      "Flash of Light": "https://www.method.gg/guides/holy-paladin/talents",
+      "Word of Glory": "https://www.method.gg/guides/holy-paladin/talents",
+      "Eternal Flame": "https://www.method.gg/guides/holy-paladin/talents",
+      "Light of Dawn": "https://www.method.gg/guides/holy-paladin/talents",
+      "Judgment": "https://www.method.gg/guides/holy-paladin/talents",
+      "Holy Light": "https://www.method.gg/guides/holy-paladin/talents",
+      "Divine Toll": "https://www.method.gg/guides/holy-paladin/talents",
+      "Holy Prism": "https://www.method.gg/guides/holy-paladin/talents",
+      "Divine Steed": "https://www.method.gg/guides/holy-paladin/talents",
+      "Beacon of Virtue": "https://www.method.gg/guides/holy-paladin/talents",
+      "Beacon of Faith": "https://www.method.gg/guides/holy-paladin/talents",
+      "Divine Protection": "https://www.method.gg/guides/holy-paladin/playstyle-and-rotation",
+      "Divine Shield": "https://www.method.gg/guides/holy-paladin/playstyle-and-rotation",
+      "Blessing of Protection": "https://www.method.gg/guides/holy-paladin/talents",
+      "Blessing of Freedom": "https://www.method.gg/guides/holy-paladin/talents",
+      "Blessing of Sacrifice": "https://www.method.gg/guides/holy-paladin/talents",
+      "Lay on Hands": "https://www.method.gg/guides/holy-paladin/talents",
+      "Cleanse": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Blinding Light": "https://www.method.gg/guides/holy-paladin/talents",
+      "Aura Mastery": "https://www.method.gg/guides/holy-paladin/talents",
+      "Avenging Wrath": "https://www.method.gg/guides/holy-paladin/talents",
+      "Avenging Crusader": "https://www.method.gg/guides/holy-paladin/talents",
+      "Beacon of Light": "https://www.method.gg/guides/holy-paladin/talents",
+      "Hammer of Justice": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Shield of the Righteous": "https://www.method.gg/guides/holy-paladin/playstyle-and-rotation",
+      "Holy Bulwark": "https://www.method.gg/guides/holy-paladin/talents",
+      "Intercession": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Devotion Aura": "https://www.method.gg/guides/holy-paladin/talents"
+    },
+    "primaryStat": "INTELLECT"
+  },
+  {
+    "id": "standard-protection-paladin",
+    "class": "PALADIN",
+    "spec": 66,
+    "specName": "Protection",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/protection-paladin",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Lightsmith (Mythic+)",
+        "content": "dungeon",
+        "hero": "Lightsmith",
+        "code": "CIEAAAAAAAAAAAAAAAAAAAAAAsZsNLjZMzMzMLLjxYWmlZMAADAAAAAAaamZZmxMDzMbtBgBGwAbAAAEgZmltlWmZsYbBDAYGGDAmZAwMDyYB"
+      }
+    ],
+    "main": [
+      {
+        "id": 275779,
+        "name": "Judgment",
+        "required": true
+      },
+      {
+        "id": 31935,
+        "name": "Avenger's Shield",
+        "required": true
+      },
+      {
+        "id": 53600,
+        "name": "Shield of the Righteous",
+        "required": true
+      },
+      {
+        "id": 53595,
+        "name": "Hammer of the Righteous",
+        "required": true,
+        "alternatives": [
+          204019
+        ]
+      },
+      {
+        "id": 24275,
+        "name": "Hammer of Wrath",
+        "required": false
+      },
+      {
+        "id": 85673,
+        "name": "Word of Glory",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 96231,
+        "name": "Rebuke",
+        "required": false
+      },
+      {
+        "id": 190784,
+        "name": "Divine Steed",
+        "required": false
+      },
+      {
+        "id": 26573,
+        "name": "Consecration",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 31850,
+        "name": "Ardent Defender",
+        "required": false
+      },
+      {
+        "id": 86659,
+        "name": "Guardian of Ancient Kings",
+        "required": false
+      },
+      {
+        "id": 642,
+        "name": "Divine Shield",
+        "required": false
+      },
+      {
+        "id": 1022,
+        "name": "Blessing of Protection",
+        "required": false,
+        "helpful": true,
+        "alternatives": [
+          204018
+        ]
+      },
+      {
+        "id": 1044,
+        "name": "Blessing of Freedom",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 6940,
+        "name": "Blessing of Sacrifice",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 633,
+        "name": "Lay on Hands",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 213644,
+        "name": "Cleanse Toxins",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 853,
+        "name": "Hammer of Justice",
+        "required": false
+      },
+      {
+        "id": 62124,
+        "name": "Hand of Reckoning",
+        "required": false
+      },
+      {
+        "id": 115750,
+        "name": "Blinding Light",
+        "required": false
+      },
+      {
+        "id": 391054,
+        "name": "Intercession",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 31884,
+        "name": "Avenging Wrath",
+        "required": false,
+        "alternatives": [
+          389539
+        ]
+      },
+      {
+        "id": 375576,
+        "name": "Divine Toll",
+        "required": false
+      },
+      {
+        "id": 432459,
+        "name": "Holy Bulwark",
+        "required": false,
+        "helpful": true
+      }
+    ],
+    "notes": [
+      "The guide publishes Lightsmith imports for raid and Mythic+; Templar is discussed without a separate import.",
+      "Holy Bulwark is a native alternating armament button. Holy Armaments is a passive talent, not an action.",
+      "Hammer of Light is handled by its native Divine Toll replacement; no fixed proc button is added."
+    ],
+    "spellSources": {
+      "Judgment": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Avenger's Shield": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Shield of the Righteous": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Hammer of the Righteous": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Blessed Hammer": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Hammer of Wrath": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Word of Glory": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Rebuke": "https://www.method.gg/guides/protection-paladin/talents",
+      "Divine Steed": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Consecration": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Ardent Defender": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Guardian of Ancient Kings": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Divine Shield": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Blessing of Protection": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Blessing of Spellwarding": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Blessing of Freedom": "https://www.method.gg/guides/protection-paladin/talents",
+      "Blessing of Sacrifice": "https://www.method.gg/guides/protection-paladin/talents",
+      "Lay on Hands": "https://www.method.gg/guides/protection-paladin/talents",
+      "Cleanse Toxins": "https://www.method.gg/guides/protection-paladin/talents",
+      "Hammer of Justice": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Hand of Reckoning": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Blinding Light": "https://www.method.gg/guides/protection-paladin/talents",
+      "Intercession": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Avenging Wrath": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Sentinel": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Divine Toll": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation",
+      "Holy Bulwark": "https://www.method.gg/guides/protection-paladin/playstyle-and-rotation"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-retribution-paladin",
+    "class": "PALADIN",
+    "spec": 70,
+    "specName": "Retribution",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/retribution-paladin",
+    "patch": "12.1.5",
+    "updated": "2026-10-13",
+    "builds": [
+      {
+        "label": "Templar (Raid Cleave & Mythic+)",
+        "content": "dungeon",
+        "hero": "Templar",
+        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAwoZbbmZWGzMzAAAAAAYmyYGmZsNmthZ2mxYMGmxGbAAAZmptZmtZAAbAGAMmhBmxMzGWmBDjZMYA"
+      },
+      {
+        "label": "Herald of the Sun (Raid Cleave & Mythic+)",
+        "content": "dungeon",
+        "hero": "Herald of the Sun",
+        "code": "CYEAAAAAAAAAAAAAAAAAAAAAAAAAAAwoZbbmZWGzMzAAAAAAYmyYGmZsNmthZ2mxYMGmxCbAYWmtZmZrBBAAsAYAwYGGYGzMbAzMDjZMYA"
+      }
+    ],
+    "main": [
+      {
+        "id": 184575,
+        "name": "Blade of Justice",
+        "required": true
+      },
+      {
+        "id": 20271,
+        "name": "Judgment",
+        "required": true
+      },
+      {
+        "id": 383328,
+        "name": "Final Verdict",
+        "required": true
+      },
+      {
+        "id": 53385,
+        "name": "Divine Storm",
+        "required": false
+      },
+      {
+        "id": 255937,
+        "name": "Wake of Ashes",
+        "required": false
+      },
+      {
+        "id": 24275,
+        "name": "Hammer of Wrath",
+        "required": false
+      },
+      {
+        "id": 96231,
+        "name": "Rebuke",
+        "required": false
+      },
+      {
+        "id": 190784,
+        "name": "Divine Steed",
+        "required": false
+      },
+      {
+        "id": 343527,
+        "name": "Execution Sentence",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 498,
+        "name": "Divine Protection",
+        "required": false
+      },
+      {
+        "id": 642,
+        "name": "Divine Shield",
+        "required": false
+      },
+      {
+        "id": 1022,
+        "name": "Blessing of Protection",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 1044,
+        "name": "Blessing of Freedom",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 6940,
+        "name": "Blessing of Sacrifice",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 633,
+        "name": "Lay on Hands",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 85673,
+        "name": "Word of Glory",
+        "required": false,
+        "helpful": true,
+        "alternatives": [
+          156322
+        ]
+      },
+      {
+        "id": 213644,
+        "name": "Cleanse Toxins",
+        "required": false,
+        "helpful": true
+      },
+      {
+        "id": 853,
+        "name": "Hammer of Justice",
+        "required": false
+      },
+      {
+        "id": 115750,
+        "name": "Blinding Light",
+        "required": false
+      },
+      {
+        "id": 391054,
+        "name": "Intercession",
+        "required": false
+      },
+      {
+        "id": 19750,
+        "name": "Flash of Light",
+        "required": false,
+        "helpful": true
+      }
+    ],
+    "extra": [
+      {
+        "id": 31884,
+        "name": "Avenging Wrath",
+        "required": false
+      },
+      {
+        "id": 375576,
+        "name": "Divine Toll",
+        "required": false
+      },
+      {
+        "id": 407480,
+        "name": "Templar Strike",
+        "required": false
+      },
+      {
+        "id": 465,
+        "name": "Devotion Aura",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Templar and Herald of the Sun imports are supplied for single target and cleave/Mythic+.",
+      "Wake of Ashes and Templar Strike retain their native Hammer of Light and Templar Slash overrides.",
+      "Radiant Glory can remove the manual Avenging Wrath action; an unknown optional action keeps the existing slot."
+    ],
+    "spellSources": {
+      "Blade of Justice": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Judgment": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Final Verdict": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Divine Storm": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Wake of Ashes": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Hammer of Wrath": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Rebuke": "https://www.method.gg/guides/retribution-paladin/interface-and-macros",
+      "Divine Steed": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Execution Sentence": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Divine Protection": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Divine Shield": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Blessing of Protection": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Blessing of Freedom": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Blessing of Sacrifice": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Lay on Hands": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Word of Glory": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Eternal Flame": "https://www.method.gg/guides/retribution-paladin/talents",
+      "Cleanse Toxins": "https://www.method.gg/guides/retribution-paladin/talents",
+      "Hammer of Justice": "https://www.method.gg/guides/retribution-paladin/interface-and-macros",
+      "Blinding Light": "https://www.method.gg/guides/retribution-paladin/talents",
+      "Intercession": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Flash of Light": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Avenging Wrath": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Divine Toll": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Templar Strike": "https://www.method.gg/guides/retribution-paladin/playstyle-and-rotation",
+      "Devotion Aura": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-arms-warrior",
+    "class": "WARRIOR",
+    "spec": 71,
+    "specName": "Arms",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/arms-warrior",
+    "patch": "12.1.5",
+    "updated": "2026-10-25",
+    "builds": [
+      {
+        "label": "Slayer - AoE / Mythic+",
+        "content": "dungeon",
+        "hero": "Slayer",
+        "code": "CcEASWsDSHNyPDXnbxuIhH3ZdjZmZmFzYmZGAAAghphZGzMWmZmZGMmZAAAAAMWmZgJMW2GYBMgZYCZGsBmZYsNYWmZbAmZAwMMA"
+      },
+      {
+        "label": "Colossus - AoE / Mythic+",
+        "content": "dungeon",
+        "hero": "Colossus",
+        "code": "CcEAAAAAAAAAAAAAAAAAAAAAAgZmxsMzMzYGAAAghphxYmxyMzMzwMmZAAAAAM2MDMZDYzMGWgBmRb0YwCYmhx2MMbmtBzMAAzwA"
+      }
+    ],
+    "main": [
+      {
+        "id": 12294,
+        "name": "Mortal Strike",
+        "required": true
+      },
+      {
+        "id": 7384,
+        "name": "Overpower",
+        "required": true
+      },
+      {
+        "id": 1464,
+        "name": "Slam",
+        "required": true
+      },
+      {
+        "id": 5308,
+        "name": "Execute",
+        "required": true
+      },
+      {
+        "id": 845,
+        "name": "Cleave",
+        "required": false
+      },
+      {
+        "id": 167105,
+        "name": "Colossus Smash",
+        "required": false
+      },
+      {
+        "id": 6552,
+        "name": "Pummel",
+        "required": false
+      },
+      {
+        "id": 100,
+        "name": "Charge",
+        "required": false
+      },
+      {
+        "id": 772,
+        "name": "Rend",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 118038,
+        "name": "Die by the Sword",
+        "required": false
+      },
+      {
+        "id": 23920,
+        "name": "Spell Reflection",
+        "required": false
+      },
+      {
+        "id": 202168,
+        "name": "Impending Victory",
+        "required": false,
+        "alternatives": [
+          34428
+        ]
+      },
+      {
+        "id": 386208,
+        "name": "Defensive Stance",
+        "required": false
+      },
+      {
+        "id": 97462,
+        "name": "Rallying Cry",
+        "required": false
+      },
+      {
+        "id": 6544,
+        "name": "Heroic Leap",
+        "required": false
+      },
+      {
+        "id": 3411,
+        "name": "Intervene",
+        "required": false,
+        "alternatives": [
+          1244088
+        ]
+      },
+      {
+        "id": 12323,
+        "name": "Piercing Howl",
+        "required": false
+      },
+      {
+        "id": 107570,
+        "name": "Storm Bolt",
+        "required": false
+      },
+      {
+        "id": 46968,
+        "name": "Shockwave",
+        "required": false
+      },
+      {
+        "id": 18499,
+        "name": "Berserker Rage",
+        "required": false
+      },
+      {
+        "id": 355,
+        "name": "Taunt",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 107574,
+        "name": "Avatar",
+        "required": false
+      },
+      {
+        "id": 227847,
+        "name": "Bladestorm",
+        "required": false
+      },
+      {
+        "id": 436358,
+        "name": "Demolish",
+        "required": false
+      },
+      {
+        "id": 260708,
+        "name": "Sweeping Strikes",
+        "required": false
+      },
+      {
+        "id": 384110,
+        "name": "Wrecking Throw",
+        "required": false,
+        "alternatives": [
+          64382
+        ]
+      },
+      {
+        "id": 6673,
+        "name": "Battle Shout",
+        "required": false
+      },
+      {
+        "id": 5246,
+        "name": "Intimidating Shout",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Slayer and Colossus each have published single-target, cleave and Mythic+ imports.",
+      "Slam remains the native button when the Apex talent turns it into Heroic Strike.",
+      "Cleave and Rend remain separate actions because both can be learned."
+    ],
+    "spellSources": {
+      "Mortal Strike": "https://www.method.gg/guides/arms-warrior/interface-and-macros",
+      "Overpower": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Slam": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Execute": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Cleave": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Colossus Smash": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Pummel": "https://www.method.gg/guides/arms-warrior/talents",
+      "Charge": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Rend": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Die by the Sword": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Spell Reflection": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Impending Victory": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Victory Rush": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Defensive Stance": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Rallying Cry": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Heroic Leap": "https://www.method.gg/guides/arms-warrior/interface-and-macros",
+      "Intervene": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Interpose": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Piercing Howl": "https://www.method.gg/guides/arms-warrior/talents",
+      "Storm Bolt": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Shockwave": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Berserker Rage": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Taunt": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Avatar": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Bladestorm": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Demolish": "https://www.method.gg/guides/arms-warrior/playstyle-and-rotation",
+      "Sweeping Strikes": "https://www.method.gg/guides/arms-warrior/talents",
+      "Wrecking Throw": "https://www.method.gg/guides/arms-warrior/talents",
+      "Shattering Throw": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-fury-warrior",
+    "class": "WARRIOR",
+    "spec": 72,
+    "specName": "Fury",
+    "role": "DAMAGER",
+    "guide": "https://www.method.gg/guides/fury-warrior",
+    "patch": "12.1.5",
+    "updated": "2026-10-25",
+    "builds": [
+      {
+        "label": "Slayer: AoE/Mythic+",
+        "content": "dungeon",
+        "hero": "Slayer",
+        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDmZ2WmZmZmxMmZMjZMzyMzYMzsNmZGAAIGLLDsAmgZYCMDbAmZjxAAgZGDzMzMMYA"
+      },
+      {
+        "label": "Mountain Thane: AoE/Mythic+",
+        "content": "dungeon",
+        "hero": "Mountain Thane",
+        "code": "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGDDzMz2yMmZmxMmZMjZMzyMzYMzsMmZGAAIMwGssZ0YGQmFMjFAzgxAgZGADzMzMMYA"
+      }
+    ],
+    "main": [
+      {
+        "id": 23881,
+        "name": "Bloodthirst",
+        "required": true
+      },
+      {
+        "id": 85288,
+        "name": "Raging Blow",
+        "required": true
+      },
+      {
+        "id": 184367,
+        "name": "Rampage",
+        "required": true
+      },
+      {
+        "id": 5308,
+        "name": "Execute",
+        "required": true
+      },
+      {
+        "id": 190411,
+        "name": "Whirlwind",
+        "required": false
+      },
+      {
+        "id": 1719,
+        "name": "Recklessness",
+        "required": false
+      },
+      {
+        "id": 6552,
+        "name": "Pummel",
+        "required": false
+      },
+      {
+        "id": 100,
+        "name": "Charge",
+        "required": false
+      },
+      {
+        "id": 6343,
+        "name": "Thunder Clap",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 184364,
+        "name": "Enraged Regeneration",
+        "required": false
+      },
+      {
+        "id": 23920,
+        "name": "Spell Reflection",
+        "required": false
+      },
+      {
+        "id": 202168,
+        "name": "Impending Victory",
+        "required": false,
+        "alternatives": [
+          34428
+        ]
+      },
+      {
+        "id": 386208,
+        "name": "Defensive Stance",
+        "required": false
+      },
+      {
+        "id": 97462,
+        "name": "Rallying Cry",
+        "required": false
+      },
+      {
+        "id": 6544,
+        "name": "Heroic Leap",
+        "required": false
+      },
+      {
+        "id": 3411,
+        "name": "Intervene",
+        "required": false,
+        "alternatives": [
+          1244088
+        ]
+      },
+      {
+        "id": 12323,
+        "name": "Piercing Howl",
+        "required": false
+      },
+      {
+        "id": 107570,
+        "name": "Storm Bolt",
+        "required": false
+      },
+      {
+        "id": 46968,
+        "name": "Shockwave",
+        "required": false
+      },
+      {
+        "id": 18499,
+        "name": "Berserker Rage",
+        "required": false
+      },
+      {
+        "id": 355,
+        "name": "Taunt",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 107574,
+        "name": "Avatar",
+        "required": false
+      },
+      {
+        "id": 227847,
+        "name": "Bladestorm",
+        "required": false
+      },
+      {
+        "id": 384110,
+        "name": "Wrecking Throw",
+        "required": false,
+        "alternatives": [
+          64382
+        ]
+      },
+      {
+        "id": 6673,
+        "name": "Battle Shout",
+        "required": false
+      },
+      {
+        "id": 5246,
+        "name": "Intimidating Shout",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Slayer and Mountain Thane each have published single-target, cleave and Mythic+ imports.",
+      "Bloodthirst, Raging Blow and Thunder Clap keep their native Bloodbath, Crushing Blow and Thunder Blast overrides.",
+      "Bladestorm retains its native Slayer replacement."
+    ],
+    "spellSources": {
+      "Bloodthirst": "https://www.method.gg/guides/fury-warrior/talents",
+      "Raging Blow": "https://www.method.gg/guides/fury-warrior/talents",
+      "Rampage": "https://www.method.gg/guides/fury-warrior/talents",
+      "Execute": "https://www.method.gg/guides/fury-warrior/talents",
+      "Whirlwind": "https://www.method.gg/guides/fury-warrior/playstyle-and-rotation",
+      "Recklessness": "https://www.method.gg/guides/fury-warrior/talents",
+      "Pummel": "https://www.method.gg/guides/fury-warrior/talents",
+      "Charge": "https://www.method.gg/guides/fury-warrior/playstyle-and-rotation",
+      "Thunder Clap": "https://www.method.gg/guides/fury-warrior/talents",
+      "Enraged Regeneration": "https://www.method.gg/guides/fury-warrior/playstyle-and-rotation",
+      "Spell Reflection": "https://www.method.gg/guides/fury-warrior/playstyle-and-rotation",
+      "Impending Victory": "https://www.method.gg/guides/fury-warrior/talents",
+      "Victory Rush": "https://www.method.gg/guides/fury-warrior/talents",
+      "Defensive Stance": "https://www.method.gg/guides/fury-warrior/playstyle-and-rotation",
+      "Rallying Cry": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Heroic Leap": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Intervene": "https://www.method.gg/guides/fury-warrior/talents",
+      "Interpose": "https://www.method.gg/guides/fury-warrior/talents",
+      "Piercing Howl": "https://www.method.gg/guides/fury-warrior/talents",
+      "Storm Bolt": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Shockwave": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Berserker Rage": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Taunt": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Avatar": "https://www.method.gg/guides/fury-warrior/talents",
+      "Bladestorm": "https://www.method.gg/guides/fury-warrior/talents",
+      "Wrecking Throw": "https://www.method.gg/guides/fury-warrior/talents",
+      "Shattering Throw": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "primaryStat": "STRENGTH"
+  },
+  {
+    "id": "standard-protection-warrior",
+    "class": "WARRIOR",
+    "spec": 73,
+    "specName": "Protection",
+    "role": "TANK",
+    "guide": "https://www.method.gg/guides/protection-warrior",
+    "patch": "12.1.5",
+    "updated": "2026-10-14",
+    "builds": [
+      {
+        "label": "Mythic+ Standard",
+        "content": "dungeon",
+        "hero": "Mountain Thane",
+        "code": "CkEAAAAAAAAAAAAAAAAAAAAAA0yAAAjZMmZmZGzmZmlZMGjGzYGLzMzMDDzMAAAAYZmBwYAGYDWWMaMDgZLmZDGzMDjNAYmBAADMG"
+      }
+    ],
+    "main": [
+      {
+        "id": 23922,
+        "name": "Shield Slam",
+        "required": true
+      },
+      {
+        "id": 6343,
+        "name": "Thunder Clap",
+        "required": true
+      },
+      {
+        "id": 6572,
+        "name": "Revenge",
+        "required": true
+      },
+      {
+        "id": 2565,
+        "name": "Shield Block",
+        "required": true
+      },
+      {
+        "id": 190456,
+        "name": "Ignore Pain",
+        "required": true
+      },
+      {
+        "id": 1160,
+        "name": "Demoralizing Shout",
+        "required": false
+      },
+      {
+        "id": 6552,
+        "name": "Pummel",
+        "required": false
+      },
+      {
+        "id": 100,
+        "name": "Charge",
+        "required": false
+      },
+      {
+        "id": 385952,
+        "name": "Shield Charge",
+        "required": false
+      }
+    ],
+    "utility": [
+      {
+        "id": 871,
+        "name": "Shield Wall",
+        "required": false
+      },
+      {
+        "id": 23920,
+        "name": "Spell Reflection",
+        "required": false
+      },
+      {
+        "id": 386208,
+        "name": "Defensive Stance",
+        "required": false
+      },
+      {
+        "id": 202168,
+        "name": "Impending Victory",
+        "required": false,
+        "alternatives": [
+          34428
+        ]
+      },
+      {
+        "id": 97462,
+        "name": "Rallying Cry",
+        "required": false
+      },
+      {
+        "id": 6544,
+        "name": "Heroic Leap",
+        "required": false
+      },
+      {
+        "id": 3411,
+        "name": "Intervene",
+        "required": false,
+        "alternatives": [
+          1244088
+        ]
+      },
+      {
+        "id": 107570,
+        "name": "Storm Bolt",
+        "required": false
+      },
+      {
+        "id": 46968,
+        "name": "Shockwave",
+        "required": false
+      },
+      {
+        "id": 355,
+        "name": "Taunt",
+        "required": false
+      },
+      {
+        "id": 1161,
+        "name": "Challenging Shout",
+        "required": false
+      },
+      {
+        "id": 18499,
+        "name": "Berserker Rage",
+        "required": false
+      }
+    ],
+    "extra": [
+      {
+        "id": 107574,
+        "name": "Avatar",
+        "required": false
+      },
+      {
+        "id": 436358,
+        "name": "Demolish",
+        "required": false
+      },
+      {
+        "id": 5308,
+        "name": "Execute",
+        "required": false
+      },
+      {
+        "id": 20243,
+        "name": "Devastate",
+        "required": false
+      },
+      {
+        "id": 6673,
+        "name": "Battle Shout",
+        "required": false
+      },
+      {
+        "id": 5246,
+        "name": "Intimidating Shout",
+        "required": false
+      },
+      {
+        "id": 12323,
+        "name": "Piercing Howl",
+        "required": false
+      }
+    ],
+    "notes": [
+      "Published imports use Mountain Thane; Colossus is discussed without an import in this revision.",
+      "Shield Block and Ignore Pain have separate buttons and remain manual actions.",
+      "Last Stand is a passive Shield Wall talent in this revision and is not placed as an action. Thunder Clap retains Thunder Blast overrides."
+    ],
+    "spellSources": {
+      "Shield Slam": "https://www.method.gg/guides/protection-warrior/talents",
+      "Thunder Clap": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Revenge": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Shield Block": "https://www.method.gg/guides/protection-warrior/talents",
+      "Ignore Pain": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Demoralizing Shout": "https://www.method.gg/guides/protection-warrior/talents",
+      "Pummel": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Charge": "https://www.method.gg/guides/protection-warrior/interface-and-macros",
+      "Shield Charge": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Shield Wall": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Spell Reflection": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Defensive Stance": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Impending Victory": "https://www.method.gg/guides/protection-warrior/playstyle-and-rotation",
+      "Victory Rush": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Rallying Cry": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Heroic Leap": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Intervene": "https://www.method.gg/guides/protection-warrior/interface-and-macros",
+      "Interpose": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Storm Bolt": "https://www.method.gg/guides/protection-warrior/talents",
+      "Shockwave": "https://www.method.gg/guides/protection-warrior/talents",
+      "Taunt": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Challenging Shout": "https://www.method.gg/guides/protection-warrior/talents",
+      "Berserker Rage": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Avatar": "https://www.method.gg/guides/protection-warrior/talents",
+      "Demolish": "https://www.method.gg/guides/protection-warrior/talents",
+      "Execute": "https://www.method.gg/guides/protection-warrior/talents",
+      "Devastate": "https://www.method.gg/guides/protection-warrior/talents",
+      "Battle Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Intimidating Shout": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc",
+      "Piercing Howl": "https://github.com/simulationcraft/simc/blob/12aa5dc041b0/engine/dbc/generated/sc_spell_data.inc"
+    },
+    "primaryStat": "STRENGTH"
+  }
+]
