@@ -51,7 +51,8 @@ GEAR TEMPLATE
 
 Source: tools/class_data/gear.json.
 Use the highest available quality for every gem and enchant.
-Existing normal sockets, including belts: Flawless Quick Lapis — Versatility/Haste.
+One socket: Indecipherable Eversong Diamond (unique-equipped; one total).
+Remaining normal sockets, including belts: Flawless Quick Lapis — Versatility/Haste.
 Head: Empowered Hex of Leeching — Leech.
 Shoulders: Silvermoon's Mending — Leech.
 Chest: Mark of the Worldsoul — primary stat.
